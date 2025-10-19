@@ -1,0 +1,3 @@
+[submodule "docs/quality-standards"]
+	path = docs/quality-standards
+	url = https://github.com/antoniogomezgallardo/CodeQuality
