@@ -59,15 +59,31 @@ Then follow the kickoff checklist to set up your environment!
 14. **[Sprint Planning Template](docs/templates/sprint-planning-template.md)** - How to plan sprints (10 min)
 15. **[Sprint Retrospective Template](docs/templates/sprint-retrospective-template.md)** - How to run retrospectives (10 min)
 
-**Total reading time**: ~4 hours (core documents)
+#### Phase 6: Testing & Quality
+
+16. **[Testing Maturity Assessment](docs/13.testing-maturity-assessment.md)** - Testing maturity roadmap (Level 0 → 3) (20 min)
+17. **[ISO 25010 Quality Mapping](docs/14.iso-25010-quality-mapping.md)** - Quality characteristics mapping (15 min)
+
+#### Phase 7: Planning & Prioritization
+
+18. **[Prioritization Rationale](docs/15.prioritization-rationale.md)** - MoSCoW framework and decision rationale (15 min)
+19. **[Sprint Cadence Guide](docs/16.sprint-cadence-guide.md)** - Weekly sprint rhythm and ceremonies (15 min)
+20. **[Backlog Refinement Process](docs/17.backlog-refinement-process.md)** - Story preparation process (15 min)
+
+#### Phase 8: Design & Wireframes
+
+21. **[Slice 1 Wireframes](docs/wireframes/slice-1-wireframes.md)** - Desktop & mobile wireframes for first delivery (15 min)
+
+**Total reading time**: ~5.5 hours (core documents)
 
 ### Quick Reference Paths
 
-- **For new developers**: Read 0, 9, 10, 3, 6, 8 (start coding)
-- **For QA engineers**: Read 0, 1, 4, 5, 7, 10 (start testing)
-- **For stakeholders**: Read 1, 2, 3 (understand scope)
-- **For sprint planning**: Read 11, 12, 13, templates/sprint-planning
-- **For process improvement**: Read 11, 12, templates/sprint-retrospective
+- **For new developers**: Read 0, 9, 3, 6, 7, wireframes/slice-1, 16 (start coding)
+- **For QA engineers**: Read 0, 1, 4, 5, 7, 13, 14 (start testing)
+- **For stakeholders**: Read 1, 2, 3, 15 (understand scope and priorities)
+- **For sprint planning**: Read 16, templates/sprint-planning, 17, 12 (plan sprints)
+- **For process improvement**: Read 10, 11, 12, templates/sprint-retrospective (improve process)
+- **For UI implementation**: Read wireframes/slice-1, 3, 5 (build interface)
 - **Looking for a specific feature?** Check [Product Backlog](docs/5.product-backlog.md)
 
 ## Technology Stack
@@ -156,9 +172,16 @@ WeirdBites/
 │   ├── 10.metrics-tracking-plan.md         # ✅ Dashboard and metrics collection strategy
 │   ├── 11.change-management-process.md     # ✅ Change request process and guidelines
 │   ├── 12.velocity-tracking-system.md      # ✅ Velocity calculation and forecasting
-│   └── templates/                          # Sprint planning and retrospective templates
-│       ├── sprint-planning-template.md     # ✅ Sprint planning guide
-│       └── sprint-retrospective-template.md # ✅ Retrospective formats
+│   ├── 13.testing-maturity-assessment.md   # ✅ Testing maturity roadmap (Level 0 → 3)
+│   ├── 14.iso-25010-quality-mapping.md     # ✅ Quality characteristics mapping
+│   ├── 15.prioritization-rationale.md      # ✅ MoSCoW framework and decision rationale
+│   ├── 16.sprint-cadence-guide.md          # ✅ Weekly sprint rhythm and ceremonies
+│   ├── 17.backlog-refinement-process.md    # ✅ Story refinement and estimation process
+│   ├── templates/                          # Sprint planning and retrospective templates
+│   │   ├── sprint-planning-template.md     # ✅ Sprint planning guide
+│   │   └── sprint-retrospective-template.md # ✅ Retrospective formats
+│   └── wireframes/                         # UI wireframes and design specifications
+│       └── slice-1-wireframes.md           # ✅ Desktop & mobile wireframes for Slice 1
 ├── src/                                    # Application source code (to be created)
 ├── tests/                                  # Test suites (to be created)
 │   ├── unit/                               # Jest - 70% of tests
@@ -205,10 +228,22 @@ WeirdBites/
 - ✅ **Sprint Planning Template** (500+ lines) - Comprehensive sprint planning guide
 - ✅ **Sprint Retrospective Template** (650+ lines) - Multiple retrospective formats
 
+**Testing & Quality** (Module 04-06):
+- ✅ **Testing Maturity Assessment** (1,400+ lines) - Maturity model, baseline, roadmap to Level 3
+- ✅ **ISO 25010 Quality Mapping** (1,100+ lines) - 8 quality characteristics mapping, coverage matrix
+
+**Planning & Prioritization** (Module 02):
+- ✅ **Prioritization Rationale** (1,100+ lines) - MoSCoW framework, weighted scoring, decision rationale
+- ✅ **Sprint Cadence Guide** (1,200+ lines) - Weekly rhythm, ceremonies, time management
+- ✅ **Backlog Refinement Process** (1,100+ lines) - Story refinement, DoR application, estimation
+
+**Design & Wireframes**:
+- ✅ **Slice 1 Wireframes** (1,300+ lines) - Desktop & mobile wireframes for US-001, US-002, US-003
+
 **Configuration**:
 - ✅ **Claude Agent Configuration** (QA documentation expert)
 
-**Total**: ~10,000+ lines of professional requirements and process documentation
+**Total**: ~18,000+ lines of professional requirements, process, and design documentation
 
 ### Metrics Targets (From NFRs)
 
