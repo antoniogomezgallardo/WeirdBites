@@ -49,16 +49,25 @@ Then follow the kickoff checklist to set up your environment!
 #### Phase 4: Getting Started
 
 9. **[Project Setup (Slice 0)](docs/8.project-setup.md)** - Infrastructure setup before coding (3-5 days)
-10. **[Metrics Tracking Plan](docs/10.metrics-tracking-plan.md)** - Dashboard and metrics collection strategy (20 min)
-11. **[Project Kickoff Checklist](docs/9.project-kickoff-checklist.md)** - Simple kickoff guide (10 min)
+10. **[Project Kickoff Checklist](docs/9.project-kickoff-checklist.md)** - Simple kickoff guide (10 min)
 
-**Total reading time**: ~3 hours (core documents)
+#### Phase 5: Process & Governance
+
+11. **[Metrics Tracking Plan](docs/10.metrics-tracking-plan.md)** - Dashboard and metrics collection strategy (20 min)
+12. **[Change Management Process](docs/11.change-management-process.md)** - How to handle requirement changes (15 min)
+13. **[Velocity Tracking System](docs/12.velocity-tracking-system.md)** - Sprint planning and forecasting (15 min)
+14. **[Sprint Planning Template](docs/templates/sprint-planning-template.md)** - How to plan sprints (10 min)
+15. **[Sprint Retrospective Template](docs/templates/sprint-retrospective-template.md)** - How to run retrospectives (10 min)
+
+**Total reading time**: ~4 hours (core documents)
 
 ### Quick Reference Paths
 
-- **For new developers**: Read 0, 9, 3, 6, 8 (start coding)
-- **For QA engineers**: Read 0, 1, 4, 5, 7 (start testing)
+- **For new developers**: Read 0, 9, 10, 3, 6, 8 (start coding)
+- **For QA engineers**: Read 0, 1, 4, 5, 7, 10 (start testing)
 - **For stakeholders**: Read 1, 2, 3 (understand scope)
+- **For sprint planning**: Read 11, 12, 13, templates/sprint-planning
+- **For process improvement**: Read 11, 12, templates/sprint-retrospective
 - **Looking for a specific feature?** Check [Product Backlog](docs/5.product-backlog.md)
 
 ## Technology Stack
@@ -135,7 +144,7 @@ WeirdBites/
 ├── docs/
 │   ├── quality-standards/                  # Git submodule - Quality standards (16 modules)
 │   ├── 0.documentation-guide.md            # ✅ How to navigate documentation
-│   ├── 1.business-requirements.md          # ✅ Business context, stakeholders, scope
+│   ├── 1.business-requirements.md          # ✅ Business context, stakeholders, scope, quality framework
 │   ├── 2.personas.md                       # ✅ User personas (4 types)
 │   ├── 3.mvp-definition.md                 # ✅ MVP scope, MoSCoW, acceptance criteria
 │   ├── 4.non-functional-requirements.md    # ✅ Performance, security, accessibility
@@ -144,7 +153,12 @@ WeirdBites/
 │   ├── 7.definition-of-ready.md            # ✅ Story readiness checklist
 │   ├── 8.project-setup.md                  # ✅ Slice 0 infrastructure setup
 │   ├── 9.project-kickoff-checklist.md      # ✅ Simple "what do I need?" guide
-│   └── 10.metrics-tracking-plan.md         # ✅ Dashboard and metrics collection strategy
+│   ├── 10.metrics-tracking-plan.md         # ✅ Dashboard and metrics collection strategy
+│   ├── 11.change-management-process.md     # ✅ Change request process and guidelines
+│   ├── 12.velocity-tracking-system.md      # ✅ Velocity calculation and forecasting
+│   └── templates/                          # Sprint planning and retrospective templates
+│       ├── sprint-planning-template.md     # ✅ Sprint planning guide
+│       └── sprint-retrospective-template.md # ✅ Retrospective formats
 ├── src/                                    # Application source code (to be created)
 ├── tests/                                  # Test suites (to be created)
 │   ├── unit/                               # Jest - 70% of tests
@@ -172,8 +186,9 @@ WeirdBites/
 
 ### Completed Deliverables ✅
 
+**Requirements & Planning** (Modules 01-02):
 - ✅ **Documentation Guide** (500+ lines) - Navigation and concepts
-- ✅ **Business Requirements Document** (700+ lines, IEEE 830 inspired, with Quality Framework & Policy)
+- ✅ **Business Requirements Document** (1,000+ lines, IEEE 830 inspired, with Quality Framework, Policy & Metrics)
 - ✅ **User Personas** (4 personas with goals, behaviors, scenarios)
 - ✅ **MVP Definition** (MoSCoW prioritization, 7 vertical slices)
 - ✅ **Non-Functional Requirements** (Performance, security, accessibility targets)
@@ -181,11 +196,19 @@ WeirdBites/
 - ✅ **Vertical Slices Plan** (7 increments, 10-12 week timeline)
 - ✅ **Definition of Ready** (10-point checklist)
 - ✅ **Project Setup Guide** (Slice 0 - Infrastructure setup)
-- ✅ **Metrics Tracking Plan** (Dashboard, collection strategy, tooling)
 - ✅ **Project Kickoff Checklist** (Simple "what do I need?" guide)
+
+**Process & Governance** (Module 00-02):
+- ✅ **Metrics Tracking Plan** (1,500+ lines) - 8 metrics categories, dashboard design, collection process
+- ✅ **Change Management Process** (1,200+ lines) - Change request process, impact analysis, scenarios
+- ✅ **Velocity Tracking System** (1,000+ lines) - Velocity calculation, forecasting, planning
+- ✅ **Sprint Planning Template** (500+ lines) - Comprehensive sprint planning guide
+- ✅ **Sprint Retrospective Template** (650+ lines) - Multiple retrospective formats
+
+**Configuration**:
 - ✅ **Claude Agent Configuration** (QA documentation expert)
 
-**Total**: ~5,500+ lines of professional requirements documentation
+**Total**: ~10,000+ lines of professional requirements and process documentation
 
 ### Metrics Targets (From NFRs)
 
