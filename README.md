@@ -10,81 +10,53 @@ WeirdBites is a full-stack e-commerce application for discovering and purchasing
 
 ## 📚 Documentation Reading Guide
 
-This project follows professional requirements engineering practices (Module 01). **New to the project? Start here**:
+This project follows professional requirements engineering practices aligned with [quality-standards](docs/quality-standards/) modules 00-16.
 
-### 🚀 Quick Start (30 Minutes)
+### 🚀 **START HERE**: [docs/START-HERE.md](docs/START-HERE.md)
 
-**Just want to get started?**
+**Single entry point** for all WeirdBites documentation with:
+- Quick start guide (30 minutes)
+- Role-specific reading paths (Developer, QA, Stakeholder)
+- Module overview and navigation
+- Key concepts explained
+- Before-you-code checklist
 
-1. **[Project Kickoff Checklist](docs/9.project-kickoff-checklist.md)** (10 min) - Simple "what do I need?" checklist
-2. **[CLAUDE.md](CLAUDE.md)** (5 min) - Project purpose and phases
-3. **[MVP Definition](docs/3.mvp-definition.md)** - Section 2.1 only (15 min) - What we're building
-
-Then follow the kickoff checklist to set up your environment!
+**Quick paths from START-HERE**:
+- **New developers**: 3-hour reading path + Slice 0 setup → Start coding
+- **QA engineers**: 2.5-hour reading path → Start testing
+- **Stakeholders**: 2-hour reading path → Understand scope
 
 ---
 
-### 📖 Full Documentation Path
+### 🗂️ Documentation Structure
 
-**For comprehensive understanding, read in this order**:
+Documentation is organized into **module folders** aligned with quality-standards:
 
-#### Phase 1: Understanding the Project
+```
+docs/
+├── START-HERE.md                       # ← Single entry point
+├── 00-foundations/                     # Quality framework, ISO 25010 (2 docs)
+├── 01-requirements/                    # BRD, Personas, MVP, NFRs, Backlog (7 docs)
+├── 02-agile-planning/                  # DoR, Sprint cadence, Velocity (4 docs + templates)
+├── 09-metrics-monitoring/              # Metrics tracking plan (1 doc)
+├── 12-governance/                      # Change management (1 doc)
+├── 14-continuous-improvement/          # Testing maturity (1 doc)
+├── design/wireframes/                  # UI wireframes
+├── setup/                              # Project setup (Slice 0)
+└── quality-standards/                  # Git submodule (16 modules)
+```
 
-0. **[Documentation Guide](docs/0.documentation-guide.md)** - How to navigate all docs (20 min)
-1. **[CLAUDE.md](CLAUDE.md)** - Project context, educational goals (10 min)
-2. **[Business Requirements](docs/1.business-requirements.md)** - Business context, stakeholders, scope (25 min)
-3. **[User Personas](docs/2.personas.md)** - Target users and their needs (15 min)
+**Total**: 18 documents across 6 modules (~15,000 lines)
 
-#### Phase 2: Defining the MVP
+**Browse by module**:
+- [Module 00: Foundations](docs/00-foundations/) - Quality frameworks and models
+- [Module 01: Requirements](docs/01-requirements/) - What we're building
+- [Module 02: Agile Planning](docs/02-agile-planning/) - How we plan and execute
+- [Module 09: Metrics & Monitoring](docs/09-metrics-monitoring/) - Metrics collection
+- [Module 12: Governance](docs/12-governance/) - Change management
+- [Module 14: Continuous Improvement](docs/14-continuous-improvement/) - Testing maturity
 
-4. **[MVP Definition](docs/3.mvp-definition.md)** - What we're building, MoSCoW prioritization (30 min)
-5. **[Non-Functional Requirements](docs/4.non-functional-requirements.md)** - Performance, security, accessibility (20 min)
-
-#### Phase 3: Planning Development
-
-6. **[Product Backlog](docs/5.product-backlog.md)** - All user stories with acceptance criteria (30 min)
-7. **[Vertical Slices](docs/6.vertical-slices.md)** - 7 incremental delivery slices (30 min)
-8. **[Definition of Ready](docs/7.definition-of-ready.md)** - Checklist before starting any story (15 min)
-
-#### Phase 4: Getting Started
-
-9. **[Project Setup (Slice 0)](docs/8.project-setup.md)** - Infrastructure setup before coding (3-5 days)
-10. **[Project Kickoff Checklist](docs/9.project-kickoff-checklist.md)** - Simple kickoff guide (10 min)
-
-#### Phase 5: Process & Governance
-
-11. **[Metrics Tracking Plan](docs/10.metrics-tracking-plan.md)** - Dashboard and metrics collection strategy (20 min)
-12. **[Change Management Process](docs/11.change-management-process.md)** - How to handle requirement changes (15 min)
-13. **[Velocity Tracking System](docs/12.velocity-tracking-system.md)** - Sprint planning and forecasting (15 min)
-14. **[Sprint Planning Template](docs/templates/sprint-planning-template.md)** - How to plan sprints (10 min)
-15. **[Sprint Retrospective Template](docs/templates/sprint-retrospective-template.md)** - How to run retrospectives (10 min)
-
-#### Phase 6: Testing & Quality
-
-16. **[Testing Maturity Assessment](docs/13.testing-maturity-assessment.md)** - Testing maturity roadmap (Level 0 → 3) (20 min)
-17. **[ISO 25010 Quality Mapping](docs/14.iso-25010-quality-mapping.md)** - Quality characteristics mapping (15 min)
-
-#### Phase 7: Planning & Prioritization
-
-18. **[Prioritization Rationale](docs/15.prioritization-rationale.md)** - MoSCoW framework and decision rationale (15 min)
-19. **[Sprint Cadence Guide](docs/16.sprint-cadence-guide.md)** - Weekly sprint rhythm and ceremonies (15 min)
-20. **[Backlog Refinement Process](docs/17.backlog-refinement-process.md)** - Story preparation process (15 min)
-
-#### Phase 8: Design & Wireframes
-
-21. **[Slice 1 Wireframes](docs/wireframes/slice-1-wireframes.md)** - Desktop & mobile wireframes for first delivery (15 min)
-
-**Total reading time**: ~5.5 hours (core documents)
-
-### Quick Reference Paths
-
-- **For new developers**: Read 0, 9, 3, 6, 7, wireframes/slice-1, 16 (start coding)
-- **For QA engineers**: Read 0, 1, 4, 5, 7, 13, 14 (start testing)
-- **For stakeholders**: Read 1, 2, 3, 15 (understand scope and priorities)
-- **For sprint planning**: Read 16, templates/sprint-planning, 17, 12 (plan sprints)
-- **For process improvement**: Read 10, 11, 12, templates/sprint-retrospective (improve process)
-- **For UI implementation**: Read wireframes/slice-1, 3, 5 (build interface)
-- **Looking for a specific feature?** Check [Product Backlog](docs/5.product-backlog.md)
+Each module folder contains a README.md with document list and navigation
 
 ## Technology Stack
 
@@ -158,30 +130,44 @@ All development on this project follows the quality standards and best practices
 ```
 WeirdBites/
 ├── docs/
-│   ├── quality-standards/                  # Git submodule - Quality standards (16 modules)
-│   ├── 0.documentation-guide.md            # ✅ How to navigate documentation
-│   ├── 1.business-requirements.md          # ✅ Business context, stakeholders, scope, quality framework
-│   ├── 2.personas.md                       # ✅ User personas (4 types)
-│   ├── 3.mvp-definition.md                 # ✅ MVP scope, MoSCoW, acceptance criteria
-│   ├── 4.non-functional-requirements.md    # ✅ Performance, security, accessibility
-│   ├── 5.product-backlog.md                # ✅ 35 user stories with Given-When-Then
-│   ├── 6.vertical-slices.md                # ✅ 7 delivery increments
-│   ├── 7.definition-of-ready.md            # ✅ Story readiness checklist
-│   ├── 8.project-setup.md                  # ✅ Slice 0 infrastructure setup
-│   ├── 9.project-kickoff-checklist.md      # ✅ Simple "what do I need?" guide
-│   ├── 10.metrics-tracking-plan.md         # ✅ Dashboard and metrics collection strategy
-│   ├── 11.change-management-process.md     # ✅ Change request process and guidelines
-│   ├── 12.velocity-tracking-system.md      # ✅ Velocity calculation and forecasting
-│   ├── 13.testing-maturity-assessment.md   # ✅ Testing maturity roadmap (Level 0 → 3)
-│   ├── 14.iso-25010-quality-mapping.md     # ✅ Quality characteristics mapping
-│   ├── 15.prioritization-rationale.md      # ✅ MoSCoW framework and decision rationale
-│   ├── 16.sprint-cadence-guide.md          # ✅ Weekly sprint rhythm and ceremonies
-│   ├── 17.backlog-refinement-process.md    # ✅ Story refinement and estimation process
-│   ├── templates/                          # Sprint planning and retrospective templates
-│   │   ├── sprint-planning-template.md     # ✅ Sprint planning guide
-│   │   └── sprint-retrospective-template.md # ✅ Retrospective formats
-│   └── wireframes/                         # UI wireframes and design specifications
-│       └── slice-1-wireframes.md           # ✅ Desktop & mobile wireframes for Slice 1
+│   ├── START-HERE.md                       # ✅ Single entry point for all documentation
+│   ├── 00-foundations/                     # Module 00: Quality frameworks
+│   │   ├── README.md                       # Module overview
+│   │   ├── quality-framework.md            # ✅ Scrumban, sprint structure, quality policy
+│   │   └── iso-25010-mapping.md            # ✅ Quality characteristics mapping
+│   ├── 01-requirements/                    # Module 01: Requirements engineering
+│   │   ├── README.md                       # Module overview
+│   │   ├── business-requirements.md        # ✅ BRD, business context, scope
+│   │   ├── personas.md                     # ✅ User personas (4 types)
+│   │   ├── mvp-definition.md               # ✅ MVP scope, MoSCoW
+│   │   ├── non-functional-requirements.md  # ✅ Performance, security, accessibility
+│   │   ├── product-backlog.md              # ✅ 35 user stories with Given-When-Then
+│   │   ├── vertical-slices.md              # ✅ 7 delivery increments
+│   │   └── prioritization-rationale.md     # ✅ MoSCoW framework and decision rationale
+│   ├── 02-agile-planning/                  # Module 02: Agile planning
+│   │   ├── README.md                       # Module overview
+│   │   ├── definition-of-ready.md          # ✅ Story readiness checklist
+│   │   ├── sprint-cadence.md               # ✅ Weekly sprint rhythm and ceremonies
+│   │   ├── backlog-refinement.md           # ✅ Story refinement process
+│   │   ├── velocity-tracking.md            # ✅ Velocity calculation and forecasting
+│   │   └── templates/                      # Sprint templates
+│   │       ├── sprint-planning.md          # ✅ Sprint planning guide
+│   │       └── sprint-retrospective.md     # ✅ Retrospective formats
+│   ├── 09-metrics-monitoring/              # Module 09: Metrics & monitoring
+│   │   ├── README.md                       # Module overview
+│   │   └── metrics-tracking-plan.md        # ✅ Dashboard and metrics collection
+│   ├── 12-governance/                      # Module 12: Governance
+│   │   ├── README.md                       # Module overview
+│   │   └── change-management.md            # ✅ Change request process
+│   ├── 14-continuous-improvement/          # Module 14: Continuous improvement
+│   │   ├── README.md                       # Module overview
+│   │   └── testing-maturity-assessment.md  # ✅ Testing maturity roadmap (Level 0 → 3)
+│   ├── design/                             # Design artifacts
+│   │   └── wireframes/
+│   │       └── slice-1-wireframes.md       # ✅ Desktop & mobile wireframes for Slice 1
+│   ├── setup/                              # Project-specific setup
+│   │   └── project-setup.md                # ✅ Slice 0 infrastructure setup
+│   └── quality-standards/                  # Git submodule - Quality standards (16 modules)
 ├── src/                                    # Application source code (to be created)
 ├── tests/                                  # Test suites (to be created)
 │   ├── unit/                               # Jest - 70% of tests
@@ -209,41 +195,50 @@ WeirdBites/
 
 ### Completed Deliverables ✅
 
-**Requirements & Planning** (Modules 01-02):
-- ✅ **Documentation Guide** (500+ lines) - Navigation and concepts
-- ✅ **Business Requirements Document** (1,000+ lines, IEEE 830 inspired, with Quality Framework, Policy & Metrics)
-- ✅ **User Personas** (4 personas with goals, behaviors, scenarios)
-- ✅ **MVP Definition** (MoSCoW prioritization, 7 vertical slices)
-- ✅ **Non-Functional Requirements** (Performance, security, accessibility targets)
-- ✅ **Product Backlog** (35 MVP user stories, 135 story points)
-- ✅ **Vertical Slices Plan** (7 increments, 10-12 week timeline)
-- ✅ **Definition of Ready** (10-point checklist)
-- ✅ **Project Setup Guide** (Slice 0 - Infrastructure setup)
-- ✅ **Project Kickoff Checklist** (Simple "what do I need?" guide)
+**Module 00 - Foundations** (2 docs, ~1,450 lines):
+- ✅ **Quality Framework** - Scrumban approach, sprint structure, quality policy
+- ✅ **ISO 25010 Quality Mapping** - 8 quality characteristics, 93% coverage
 
-**Process & Governance** (Module 00-02):
-- ✅ **Metrics Tracking Plan** (1,500+ lines) - 8 metrics categories, dashboard design, collection process
-- ✅ **Change Management Process** (1,200+ lines) - Change request process, impact analysis, scenarios
-- ✅ **Velocity Tracking System** (1,000+ lines) - Velocity calculation, forecasting, planning
-- ✅ **Sprint Planning Template** (500+ lines) - Comprehensive sprint planning guide
-- ✅ **Sprint Retrospective Template** (650+ lines) - Multiple retrospective formats
+**Module 01 - Requirements** (7 docs, ~4,600 lines):
+- ✅ **Business Requirements Document** - Business context, scope, success metrics
+- ✅ **User Personas** - 4 personas (Sarah, Marcus, Emma, Antonio)
+- ✅ **MVP Definition** - MoSCoW prioritization, 7 vertical slices
+- ✅ **Non-Functional Requirements** - Performance, security, accessibility targets
+- ✅ **Product Backlog** - 35 user stories, 135 story points
+- ✅ **Vertical Slices** - 7 deployment increments with technical details
+- ✅ **Prioritization Rationale** - Weighted scoring, decision rationale
 
-**Testing & Quality** (Module 04-06):
-- ✅ **Testing Maturity Assessment** (1,400+ lines) - Maturity model, baseline, roadmap to Level 3
-- ✅ **ISO 25010 Quality Mapping** (1,100+ lines) - 8 quality characteristics mapping, coverage matrix
+**Module 02 - Agile Planning** (4 docs + 2 templates, ~4,960 lines):
+- ✅ **Definition of Ready** - 10-point story readiness checklist
+- ✅ **Sprint Cadence Guide** - Weekly rhythm, ceremonies
+- ✅ **Backlog Refinement Process** - Story refinement, estimation
+- ✅ **Velocity Tracking System** - Velocity calculation, forecasting
+- ✅ **Sprint Planning Template** - Step-by-step planning guide
+- ✅ **Sprint Retrospective Template** - Multiple retrospective formats
 
-**Planning & Prioritization** (Module 02):
-- ✅ **Prioritization Rationale** (1,100+ lines) - MoSCoW framework, weighted scoring, decision rationale
-- ✅ **Sprint Cadence Guide** (1,200+ lines) - Weekly rhythm, ceremonies, time management
-- ✅ **Backlog Refinement Process** (1,100+ lines) - Story refinement, DoR application, estimation
+**Module 09 - Metrics & Monitoring** (1 doc, ~1,500 lines):
+- ✅ **Metrics Tracking Plan** - 8 metrics categories, dashboard design
 
-**Design & Wireframes**:
-- ✅ **Slice 1 Wireframes** (1,300+ lines) - Desktop & mobile wireframes for US-001, US-002, US-003
+**Module 12 - Governance** (1 doc, ~1,200 lines):
+- ✅ **Change Management Process** - Change request process, impact analysis
+
+**Module 14 - Continuous Improvement** (1 doc, ~1,400 lines):
+- ✅ **Testing Maturity Assessment** - Maturity model, roadmap to Level 3
+
+**Design & Wireframes** (~1,300 lines):
+- ✅ **Slice 1 Wireframes** - Desktop & mobile wireframes (US-001, US-002, US-003)
+
+**Project Setup** (~1,000 lines):
+- ✅ **Project Setup Guide** - Slice 0 infrastructure setup
+
+**Navigation** (~1,000 lines):
+- ✅ **START-HERE.md** - Single entry point for all documentation
+- ✅ **Module READMEs** - 6 module overview files
 
 **Configuration**:
-- ✅ **Claude Agent Configuration** (QA documentation expert)
+- ✅ **Claude Agent Configuration** - QA documentation expert
 
-**Total**: ~18,000+ lines of professional requirements, process, and design documentation
+**Total**: 24 files (~15,000+ lines) organized in 6 modules + design + setup
 
 ### Metrics Targets (From NFRs)
 
