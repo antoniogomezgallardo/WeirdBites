@@ -49,7 +49,8 @@ Then follow the kickoff checklist to set up your environment!
 #### Phase 4: Getting Started
 
 9. **[Project Setup (Slice 0)](docs/8.project-setup.md)** - Infrastructure setup before coding (3-5 days)
-10. **[Project Kickoff Checklist](docs/9.project-kickoff-checklist.md)** - Simple kickoff guide (10 min)
+10. **[Metrics Tracking Plan](docs/10.metrics-tracking-plan.md)** - Dashboard and metrics collection strategy (20 min)
+11. **[Project Kickoff Checklist](docs/9.project-kickoff-checklist.md)** - Simple kickoff guide (10 min)
 
 **Total reading time**: ~3 hours (core documents)
 
@@ -142,7 +143,8 @@ WeirdBites/
 │   ├── 6.vertical-slices.md                # ✅ 7 delivery increments
 │   ├── 7.definition-of-ready.md            # ✅ Story readiness checklist
 │   ├── 8.project-setup.md                  # ✅ Slice 0 infrastructure setup
-│   └── 9.project-kickoff-checklist.md      # ✅ Simple "what do I need?" guide
+│   ├── 9.project-kickoff-checklist.md      # ✅ Simple "what do I need?" guide
+│   └── 10.metrics-tracking-plan.md         # ✅ Dashboard and metrics collection strategy
 ├── src/                                    # Application source code (to be created)
 ├── tests/                                  # Test suites (to be created)
 │   ├── unit/                               # Jest - 70% of tests
@@ -171,7 +173,7 @@ WeirdBites/
 ### Completed Deliverables ✅
 
 - ✅ **Documentation Guide** (500+ lines) - Navigation and concepts
-- ✅ **Business Requirements Document** (400+ lines, IEEE 830 inspired)
+- ✅ **Business Requirements Document** (700+ lines, IEEE 830 inspired, with Quality Framework & Policy)
 - ✅ **User Personas** (4 personas with goals, behaviors, scenarios)
 - ✅ **MVP Definition** (MoSCoW prioritization, 7 vertical slices)
 - ✅ **Non-Functional Requirements** (Performance, security, accessibility targets)
@@ -179,10 +181,11 @@ WeirdBites/
 - ✅ **Vertical Slices Plan** (7 increments, 10-12 week timeline)
 - ✅ **Definition of Ready** (10-point checklist)
 - ✅ **Project Setup Guide** (Slice 0 - Infrastructure setup)
+- ✅ **Metrics Tracking Plan** (Dashboard, collection strategy, tooling)
 - ✅ **Project Kickoff Checklist** (Simple "what do I need?" guide)
 - ✅ **Claude Agent Configuration** (QA documentation expert)
 
-**Total**: ~4,000+ lines of professional requirements documentation
+**Total**: ~5,500+ lines of professional requirements documentation
 
 ### Metrics Targets (From NFRs)
 
