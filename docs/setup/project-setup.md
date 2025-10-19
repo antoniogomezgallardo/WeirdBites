@@ -22,7 +22,7 @@
 - Deployment infrastructure
 
 **Duration**: 3-5 days (Week 0)
-**Story Points**: ~15 points (8 user stories)
+**Story Points**: ~15 points (8 enabler stories)
 
 ---
 
@@ -55,9 +55,11 @@ You need both, but they're different types of work!
 
 ---
 
-## Slice 0: User Stories
+## Slice 0: Enabler Stories
 
-### US-000-1: Initialize Next.js Project
+**Note**: These are **enabler stories** (infrastructure tasks), not user stories. They enable future user-facing features but don't deliver direct user value themselves.
+
+### ES-000-1: Initialize Next.js Project
 
 **As a** developer
 **I want** a Next.js 14+ project initialized with TypeScript
@@ -139,7 +141,7 @@ npx create-next-app@latest
 
 ---
 
-### US-000-2: Configure ESLint and Prettier
+### ES-000-2: Configure ESLint and Prettier
 
 **As a** developer
 **I want** ESLint and Prettier configured
@@ -147,7 +149,7 @@ npx create-next-app@latest
 
 **Priority**: Must Have (Slice 0)
 **Story Points**: 1
-**Dependencies**: US-000-1
+**Dependencies**: ES-000-1
 
 **Acceptance Criteria**:
 
@@ -228,7 +230,7 @@ pnpm add -D @typescript-eslint/eslint-plugin @typescript-eslint/parser
 
 ---
 
-### US-000-3: Set Up Database (PostgreSQL)
+### ES-000-3: Set Up Database (PostgreSQL)
 
 **As a** developer
 **I want** a PostgreSQL database configured with Prisma ORM
@@ -236,7 +238,7 @@ pnpm add -D @typescript-eslint/eslint-plugin @typescript-eslint/parser
 
 **Priority**: Must Have (Slice 0)
 **Story Points**: 3
-**Dependencies**: US-000-1
+**Dependencies**: ES-000-1
 
 **Acceptance Criteria**:
 
@@ -363,7 +365,7 @@ if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
 
 ---
 
-### US-000-4: Configure Testing Frameworks
+### ES-000-4: Configure Testing Frameworks
 
 **As a** developer
 **I want** Jest, React Testing Library, and Playwright configured
@@ -371,7 +373,7 @@ if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
 
 **Priority**: Must Have (Slice 0)
 **Story Points**: 3
-**Dependencies**: US-000-1
+**Dependencies**: ES-000-1
 
 **Acceptance Criteria**:
 
@@ -543,7 +545,7 @@ test('homepage loads', async ({ page }) => {
 
 ---
 
-### US-000-5: Set Up CI/CD Pipeline (GitHub Actions)
+### ES-000-5: Set Up CI/CD Pipeline (GitHub Actions)
 
 **As a** developer
 **I want** a CI/CD pipeline configured with quality gates
@@ -551,7 +553,7 @@ test('homepage loads', async ({ page }) => {
 
 **Priority**: Must Have (Slice 0)
 **Story Points**: 3
-**Dependencies**: US-000-1, US-000-2, US-000-4
+**Dependencies**: ES-000-1, ES-000-2, ES-000-4
 
 **Acceptance Criteria**:
 
@@ -702,7 +704,7 @@ jobs:
 
 ---
 
-### US-000-6: Configure Deployment (Vercel)
+### ES-000-6: Configure Deployment (Vercel)
 
 **As a** developer
 **I want** the application deployed to Vercel
@@ -710,7 +712,7 @@ jobs:
 
 **Priority**: Must Have (Slice 0)
 **Story Points**: 2
-**Dependencies**: US-000-1, US-000-3
+**Dependencies**: ES-000-1, ES-000-3
 
 **Acceptance Criteria**:
 
@@ -792,7 +794,7 @@ module.exports = nextConfig;
 
 ---
 
-### US-000-7: Set Up Development Environment Documentation
+### ES-000-7: Set Up Development Environment Documentation
 
 **As a** developer
 **I want** clear setup instructions in README
@@ -800,7 +802,7 @@ module.exports = nextConfig;
 
 **Priority**: Must Have (Slice 0)
 **Story Points**: 1
-**Dependencies**: US-000-1 through US-000-6
+**Dependencies**: ES-000-1 through ES-000-6
 
 **Acceptance Criteria**:
 
@@ -976,7 +978,7 @@ test(checkout): add E2E tests
 
 ---
 
-### US-000-8: Initialize Monitoring and Error Tracking
+### ES-000-8: Initialize Monitoring and Error Tracking
 
 **As a** developer
 **I want** basic monitoring and error tracking configured
@@ -984,7 +986,7 @@ test(checkout): add E2E tests
 
 **Priority**: Should Have (Slice 0)
 **Story Points**: 2
-**Dependencies**: US-000-1, US-000-6
+**Dependencies**: ES-000-1, ES-000-6
 
 **Acceptance Criteria**:
 
@@ -1153,17 +1155,17 @@ weirdbites/
 │       ├── ci.yml
 │       └── deploy.yml
 ├── docs/
-│   ├── quality-standards/     # Git submodule
-│   ├── 0.documentation-guide.md
-│   ├── 1.business-requirements.md
-│   ├── 2.personas.md
-│   ├── 3.mvp-definition.md
-│   ├── 4.non-functional-requirements.md
-│   ├── 5.product-backlog.md
-│   ├── 6.vertical-slices.md
-│   ├── 7.definition-of-ready.md
-│   ├── 8.project-setup.md      # This document
-│   └── 9.project-kickoff-checklist.md
+│   ├── START-HERE.md          # Single entry point
+│   ├── 00-foundations/        # Quality framework, ISO 25010
+│   ├── 01-requirements/       # BRD, Personas, MVP, Backlog, Slices
+│   ├── 02-agile-planning/     # DoR, Sprint cadence, Velocity
+│   ├── 09-metrics-monitoring/ # Metrics tracking
+│   ├── 12-governance/         # Change management
+│   ├── 14-continuous-improvement/ # Testing maturity
+│   ├── design/wireframes/     # UI wireframes
+│   ├── setup/
+│   │   └── project-setup.md   # This document
+│   └── quality-standards/     # Git submodule
 ├── e2e/
 │   ├── example.spec.ts
 │   └── helpers/
@@ -1206,7 +1208,7 @@ weirdbites/
 
 **Slice 0 is complete when**:
 
-1. ✅ All 8 user stories meet acceptance criteria
+1. ✅ All 8 enabler stories meet acceptance criteria
 2. ✅ All checklist items checked
 3. ✅ CI/CD pipeline passing
 4. ✅ App deployed to production
@@ -1242,10 +1244,10 @@ After completing Slice 0, reflect:
 **Next Review**: After completing Slice 0 (retrospective)
 
 **Related Documents**:
-- [9.project-kickoff-checklist.md](9.project-kickoff-checklist.md) - Simple kickoff checklist
-- [6.vertical-slices.md](6.vertical-slices.md) - Slices 1-7
-- [CLAUDE.md](../CLAUDE.md) - Project phases
-- [README.md](../README.md) - Getting started
+- [START-HERE.md](../START-HERE.md) - Single entry point for all documentation
+- [Vertical Slices](../01-requirements/vertical-slices.md) - Slices 1-7
+- [CLAUDE.md](../../CLAUDE.md) - Project phases
+- [README.md](../../README.md) - Getting started
 
 ---
 
