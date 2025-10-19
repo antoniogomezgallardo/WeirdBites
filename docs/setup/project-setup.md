@@ -569,16 +569,52 @@ And E2E tests run
 And PR cannot merge if CI fails
 ```
 
-**Scenario 2**: CD deploys on merge to main
+**Scenario 2**: CD deploys to staging on merge to staging
 ```gherkin
 Given GitHub Actions is configured
-When I merge to main branch
-Then deployment to Vercel triggers automatically
+When I merge to staging branch
+Then deployment to Vercel staging triggers automatically
 And build completes successfully
-And app is deployed to production
+And app is deployed to staging environment
+And I can test before promoting to production
+```
+
+**Scenario 3**: CD deploys to production on merge to main
+```gherkin
+Given staging tests have passed
+When I merge to main branch
+Then deployment to Vercel production triggers automatically
+And build completes successfully
+And app is deployed to production environment
 ```
 
 **Technical Approach**:
+
+**Git Branching Strategy**:
+```
+main (production)
+  ↑
+  │ (merge after staging tests pass)
+  │
+staging (production-like testing)
+  ↑
+  │ (merge feature branches here first)
+  │
+feature/* (development)
+```
+
+**Deployment Flow**:
+1. Develop in `feature/*` branch
+2. Create PR to `staging` branch → CI runs, deploys to staging on merge
+3. Test on staging environment (weirdbites-staging.vercel.app)
+4. Create PR from `staging` to `main` → CI runs, deploys to production on merge
+5. Production live at weirdbites.vercel.app
+
+**Why this approach?**:
+- Staging mirrors production exactly (same build, same config)
+- Catch issues before they reach production
+- Separate databases prevent production data corruption
+- Can demo features to stakeholders on staging before launch
 
 Create `.github/workflows/ci.yml`:
 ```yaml
@@ -670,19 +706,34 @@ name: Deploy to Vercel
 
 on:
   push:
-    branches: [main]
+    branches: [main, staging]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: vercel/actions/deploy@v1
+
+      - name: Deploy to Staging
+        if: github.ref == 'refs/heads/staging'
+        uses: vercel/actions/deploy@v1
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod'  # Deploy to staging environment
+
+      - name: Deploy to Production
+        if: github.ref == 'refs/heads/main'
+        uses: vercel/actions/deploy@v1
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod'  # Deploy to production environment
 ```
+
+**Note**: Vercel automatically differentiates environments based on the branch. The `staging` branch will deploy to the staging environment, and `main` will deploy to production.
 
 **Branch Protection Rules** (GitHub Settings):
 - Require pull request before merging
@@ -725,13 +776,22 @@ And app is deployed to production URL
 And I can access the app at weirdbites.vercel.app
 ```
 
-**Scenario 2**: Environment variables configured
+**Scenario 2**: Environment variables configured for all environments
 ```gherkin
 Given environment variables are set in Vercel
-When the app deploys
+When the app deploys to production
 Then environment variables are available
 And database connection works in production
 And no secrets are exposed in client-side code
+```
+
+**Scenario 3**: Staging environment mirrors production
+```gherkin
+Given staging branch is configured
+When I push to staging branch
+Then app deploys to staging URL (weirdbites-staging.vercel.app)
+And staging uses separate database from production
+And I can test features before production deployment
 ```
 
 **Technical Approach**:
@@ -744,17 +804,37 @@ And no secrets are exposed in client-side code
    - Build Command: `pnpm build`
    - Output Directory: `.next`
    - Install Command: `pnpm install`
+4. **Set up 3 environments**:
+   - **Production** (main branch) → `weirdbites.vercel.app`
+   - **Staging** (staging branch) → `weirdbites-staging.vercel.app`
+   - **Preview** (PR branches) → `weirdbites-pr-XXX.vercel.app`
 
 **Environment Variables** (Vercel Dashboard):
-```
-# Production
-DATABASE_URL=postgresql://...
-NEXT_PUBLIC_APP_URL=https://weirdbites.vercel.app
 
-# Preview (for PRs)
-DATABASE_URL=postgresql://...(staging)
-NEXT_PUBLIC_APP_URL=https://weirdbites-preview.vercel.app
+Configure separately for each environment:
+
 ```
+# Production Environment (main branch)
+DATABASE_URL=postgresql://[production-database-url]
+NEXT_PUBLIC_APP_URL=https://weirdbites.vercel.app
+NODE_ENV=production
+
+# Staging Environment (staging branch)
+DATABASE_URL=postgresql://[staging-database-url]
+NEXT_PUBLIC_APP_URL=https://weirdbites-staging.vercel.app
+NODE_ENV=production
+
+# Preview Environment (PR branches)
+DATABASE_URL=postgresql://[staging-database-url]  # Share with staging
+NEXT_PUBLIC_APP_URL=https://weirdbites-preview.vercel.app
+NODE_ENV=production
+```
+
+**Note**: You'll need **two separate databases**:
+- Production database (only main branch)
+- Staging database (staging branch + PR previews)
+
+This ensures production data is never affected by testing.
 
 **Vercel Configuration** (`vercel.json`):
 ```json
@@ -786,9 +866,13 @@ module.exports = nextConfig;
 **Definition of Done**:
 - [ ] Vercel account created
 - [ ] Repository imported to Vercel
-- [ ] Production deployment successful
-- [ ] Environment variables configured
-- [ ] Database connection works in production
+- [ ] **Staging branch created** (`staging`)
+- [ ] **Staging deployment successful** (weirdbites-staging.vercel.app)
+- [ ] **Staging database created** (separate from production)
+- [ ] **Production deployment successful** (weirdbites.vercel.app)
+- [ ] **Production database created** (separate from staging)
+- [ ] Environment variables configured for all 3 environments (production, staging, preview)
+- [ ] Database connection works in both staging and production
 - [ ] Custom domain configured (optional)
 - [ ] Preview deployments work for PRs
 
@@ -1086,9 +1170,15 @@ Before starting Slice 1, verify ALL of the following:
 
 ### Deployment
 - [ ] Vercel project created
-- [ ] Production deployment successful
-- [ ] Environment variables configured
+- [ ] **Staging branch created** in repository
+- [ ] **Staging database created** (separate from production)
+- [ ] **Staging deployment successful** (weirdbites-staging.vercel.app)
+- [ ] **Production database created** (separate from staging)
+- [ ] **Production deployment successful** (weirdbites.vercel.app)
+- [ ] Environment variables configured for all 3 environments
+- [ ] Database connection works in staging
 - [ ] Database connection works in production
+- [ ] App accessible at staging URL
 - [ ] App accessible at production URL
 
 ### Documentation
