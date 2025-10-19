@@ -1,0 +1,197 @@
+{
+  "mcpServers": {},
+  "customInstructions": {
+    "project": "WeirdBites - Educational E-commerce Quality Engineering Project",
+    "role": "QA Documentation Expert and Quality Mentor",
+    "primaryReference": "docs/quality-standards/ - Comprehensive SDLC/STLC documentation",
+    "approach": "Phase-by-phase development following industry best practices",
+    "commitGuidelines": {
+      "format": "type(scope): description",
+      "types": ["feat", "fix", "docs", "test", "refactor", "ci", "chore"],
+      "alwaysUseConfiguredUser": true,
+      "referenceDocumentation": "Cite module (e.g., 'per Module 05: Testing Strategy')"
+    },
+    "qualityStandards": {
+      "manifesto": "docs/quality-standards/MANIFESTO.md",
+      "philosophy": "docs/quality-standards/PHILOSOPHY.md",
+      "modules": [
+        "00-foundations",
+        "01-requirements",
+        "02-agile-planning",
+        "03-version-control",
+        "04-testing-strategy",
+        "05-test-levels",
+        "06-quality-attributes",
+        "07-development-practices",
+        "08-cicd-pipeline",
+        "09-metrics-monitoring",
+        "10-deployment",
+        "11-tools-ecosystem",
+        "12-governance",
+        "13-incident-management",
+        "14-continuous-improvement",
+        "15-ai-in-quality-assurance",
+        "16-agentic-workflows"
+      ],
+      "templates": 18,
+      "examples": 19
+    },
+    "targetMetrics": {
+      "dora": {
+        "deploymentFrequency": "Daily",
+        "leadTime": "< 1 day",
+        "mttr": "< 4 hours",
+        "changeFailureRate": "< 10%"
+      },
+      "quality": {
+        "codeCoverage": "> 80%",
+        "cyclomaticComplexity": "< 10 per method",
+        "technicalDebtRatio": "< 5%",
+        "defectDensity": "< 1 per KLOC"
+      },
+      "testing": {
+        "testAutomationRate": "> 80%",
+        "testExecutionTime": "< 10 minutes",
+        "flakyTestRate": "< 5%",
+        "testPyramid": "70% unit, 20% integration, 10% E2E"
+      }
+    },
+    "industryStandards": [
+      "ISO/IEC 25010 - Software Quality Model",
+      "IEEE 829 - Test Documentation",
+      "IEEE 830 - Software Requirements Specifications",
+      "ISTQB - Testing Best Practices",
+      "OWASP - Security Standards",
+      "WCAG 2.1 - Accessibility Guidelines",
+      "DORA - DevOps Performance Metrics"
+    ]
+  },
+  "slashCommands": {
+    "/qa-guide": {
+      "description": "Query quality-standards documentation for best practices, templates, and examples",
+      "file": ".claude/commands/qa-guide.md",
+      "usage": "/qa-guide <topic>",
+      "examples": [
+        "/qa-guide acceptance criteria",
+        "/qa-guide test pyramid",
+        "/qa-guide DORA metrics"
+      ],
+      "behavior": "Read documentation files, extract relevant information, provide actionable guidance"
+    },
+    "/phase-requirements": {
+      "description": "Module 01: Requirements Engineering phase guidance",
+      "file": ".claude/commands/phase-requirements.md",
+      "usage": "/phase-requirements [step or topic]",
+      "scope": "User stories, acceptance criteria, DoR, prioritization, vertical slicing",
+      "deliverables": [
+        "Product backlog",
+        "User story map",
+        "Requirements traceability matrix",
+        "MVP definition"
+      ]
+    },
+    "/phase-testing": {
+      "description": "Module 04-05: Testing Strategy and Test Levels guidance",
+      "file": ".claude/commands/phase-testing.md",
+      "usage": "/phase-testing [step or topic]",
+      "scope": "Test pyramid, unit/integration/E2E tests, accessibility, performance",
+      "deliverables": [
+        "Test strategy document",
+        "Unit tests (>80% coverage)",
+        "Integration tests (API, DB)",
+        "E2E tests (critical paths)",
+        "Accessibility tests (WCAG 2.1)",
+        "Performance baselines"
+      ]
+    },
+    "/phase-cicd": {
+      "description": "Module 08: CI/CD Pipeline implementation guidance",
+      "file": ".claude/commands/phase-cicd.md",
+      "usage": "/phase-cicd [step or topic]",
+      "scope": "Continuous integration, quality gates, deployment automation, DORA metrics",
+      "deliverables": [
+        "CI pipeline (GitHub Actions)",
+        "Quality gates enforced",
+        "CD to staging/production",
+        "Blue-Green deployment",
+        "DORA metrics tracking"
+      ]
+    }
+  },
+  "agentBehavior": {
+    "alwaysReadDocumentation": true,
+    "citeSourcesExplicitly": true,
+    "useTemplatesWhenAvailable": true,
+    "referenceExamplesFrequently": true,
+    "enforceQualityStandards": true,
+    "challengeDeviationsFromBestPractices": true,
+    "connectToManifestoAndPhilosophy": true,
+    "educationalFocus": "Explain WHY, not just WHAT",
+    "phaseProgression": "Complete each phase before advancing",
+    "testingMindset": "Write tests before/with code (TDD/BDD), never after",
+    "continuousImprovement": "Measure, learn, iterate"
+  },
+  "currentState": {
+    "phase": "Initialization",
+    "nextMilestone": "Complete Phase 1 - Requirements Engineering",
+    "projectStructure": "Repository initialized with quality-standards documentation",
+    "setupTasks": {
+      "completed": [
+        "Repository created",
+        "Quality-standards submodule integrated",
+        "Claude agent configured",
+        "CLAUDE.md documentation",
+        "Custom slash commands created"
+      ],
+      "pending": [
+        "Project overview documentation (README.md)",
+        "Development roadmap",
+        "Begin Phase 1: Requirements"
+      ]
+    }
+  },
+  "reminders": {
+    "everyCommit": [
+      "Use configured git user",
+      "Follow conventional commits",
+      "Reference documentation module in message"
+    ],
+    "beforeMerging": [
+      "All tests pass",
+      "Code coverage >80%",
+      "Linting clean",
+      "Security scan clear",
+      "PR reviewed and approved"
+    ],
+    "phaseCompletion": [
+      "All deliverables created",
+      "Completion checklist verified",
+      "Documentation updated",
+      "Lessons learned captured"
+    ]
+  },
+  "resourcePaths": {
+    "documentation": "docs/quality-standards/",
+    "templates": "docs/quality-standards/templates/",
+    "examples": "docs/quality-standards/examples/",
+    "manifesto": "docs/quality-standards/MANIFESTO.md",
+    "philosophy": "docs/quality-standards/PHILOSOPHY.md",
+    "projectDocs": "docs/",
+    "tests": "tests/",
+    "sourceCode": "src/"
+  },
+  "links": {
+    "repository": "https://github.com/your-username/WeirdBites",
+    "qualityStandardsRepo": "https://github.com/your-username/quality-standards",
+    "ciPipeline": null,
+    "stagingUrl": null,
+    "productionUrl": null
+  },
+  "metadata": {
+    "createdAt": "2025-10-19",
+    "lastUpdated": "2025-10-19",
+    "version": "1.0.0",
+    "maintainer": "Your Name",
+    "purpose": "Educational project for QAE role preparation starting November 3rd"
+  }
+}

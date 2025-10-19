@@ -80,3 +80,7 @@ artillery-reports/
 # Temporary files
 tmp/
 temp/
+
+# Claude configuration (keep settings.json, ignore local overrides)
+.claude/settings.local.json
+.claude/.cache/
