@@ -79,38 +79,109 @@ Each module folder contains a README.md with document list and navigation
 
 ### Prerequisites
 
-- Node.js 18+ (LTS recommended)
-- pnpm 8+
-- PostgreSQL 14+ (or Supabase/Neon account)
-- Git 2.13+
+- **Node.js** 18+ (we're using v20.18.0)
+- **pnpm** 10+ (we're using v10.16.0)
+- **PostgreSQL** 14+ (or Supabase/Neon account) - *Not yet required in Slice 0*
+- **Git** 2.13+
 
-### Clone the Repository
+### Installation & Setup
+
+#### 1. Clone the Repository
 
 **Important**: This repository uses Git submodules for documentation and quality standards.
 
-#### New Clone (Recommended)
-
-Clone the repository with all submodules:
-
 ```bash
+# Clone with all submodules (recommended)
 git clone --recurse-submodules https://github.com/antoniogomezgallardo/WeirdBites.git
 cd WeirdBites
-```
 
-#### Existing Clone
-
-If you already cloned the repository without submodules, initialize them:
-
-```bash
+# OR if already cloned without submodules
 git submodule update --init --recursive
 ```
 
-#### Update Submodules
-
-To pull the latest changes from submodules:
+#### 2. Install Dependencies
 
 ```bash
-git submodule update --remote --merge
+# Install all npm packages (367 packages)
+pnpm install
+```
+
+This installs:
+- Next.js 15.5.6
+- React 19.2.0
+- TypeScript 5.9.3
+- Tailwind CSS 3.4.18
+- ESLint 9.38.0
+- And all their dependencies
+
+#### 3. Run the Development Server
+
+```bash
+# Start the Next.js development server
+pnpm dev
+```
+
+The app will be available at:
+- **Local**: [http://localhost:3000](http://localhost:3000)
+- **Network**: http://192.168.x.x:3000
+
+**You should see**: WeirdBites welcome page with orange branding
+
+#### 4. Verify Installation
+
+```bash
+# Check for TypeScript errors
+pnpm tsc --noEmit
+
+# Run linter
+pnpm lint
+
+# Both should pass with no errors ✅
+```
+
+### Available Commands
+
+```bash
+# Development
+pnpm dev          # Start development server (localhost:3000)
+pnpm build        # Build for production
+pnpm start        # Start production server
+
+# Code Quality
+pnpm lint         # Run ESLint
+pnpm tsc          # TypeScript type checking (noEmit)
+
+# Testing (Coming in IS-005)
+pnpm test         # Run all tests
+pnpm test:unit    # Run unit tests
+pnpm test:e2e     # Run E2E tests
+pnpm test:watch   # Run tests in watch mode
+```
+
+### Troubleshooting
+
+**Issue**: `pnpm: command not found`
+```bash
+# Install pnpm globally
+npm install -g pnpm
+```
+
+**Issue**: Port 3000 already in use
+```bash
+# Kill process on port 3000
+# Windows
+netstat -ano | findstr :3000
+taskkill /PID <PID> /F
+
+# Linux/Mac
+lsof -ti:3000 | xargs kill -9
+```
+
+**Issue**: Module not found errors
+```bash
+# Clear node_modules and reinstall
+rm -rf node_modules pnpm-lock.yaml
+pnpm install
 ```
 
 ## Quality Standards
@@ -278,7 +349,7 @@ This project follows a Git Flow-inspired branching strategy:
 
 | Slice | Name | Duration | Story Points | Status |
 |-------|------|----------|--------------|--------|
-| 0 | **Project Setup** (Infrastructure) | 3-5 days | 15 | 📋 **Ready to Start** |
+| 0 | **Project Setup** (Infrastructure) | 3-5 days | 17 | 🚧 **In Progress** (1/9 stories) |
 | 1 | Browse Products | 2 weeks | 13 | ⏳ Planned |
 | 2 | Shopping Cart | 1 week | 13 | ⏳ Planned |
 | 3 | Guest Checkout | 2 weeks | 19 | ⏳ Planned |
