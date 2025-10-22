@@ -51,11 +51,13 @@ docs/quality-standards/
 **This is a common source of confusion. Please read carefully:**
 
 **Correct Relationship**:
+
 ```
 User Story → (split into) → Vertical Slices → (grouped into) → Deployment Increment
 ```
 
 **Key Points**:
+
 - ✅ **Correct**: "US-001 is split into vertical slices for listing, filtering, and pagination"
 - ❌ **Incorrect**: "Deployment Increment 1 contains US-001, US-002, US-003"
 - **User Story** = Feature requirement describing user value (1-8 story points)
@@ -63,6 +65,7 @@ User Story → (split into) → Vertical Slices → (grouped into) → Deploymen
 - **Deployment Increment** = Collection of vertical slices (from multiple split stories) delivered together (10-50 points)
 
 **Why This Matters**:
+
 - Prevents conceptual errors in documentation and planning
 - Ensures correct understanding of incremental delivery
 - Aligns with industry best practices for vertical slicing
@@ -76,6 +79,7 @@ User Story → (split into) → Vertical Slices → (grouped into) → Deploymen
 We will build WeirdBites **incrementally**, implementing each SDLC/STLC phase with strict adherence to the quality standards:
 
 ### Current Phase: **Requirements Engineering** - ✅ COMPLETED
+
 - [x] Repository initialized
 - [x] Quality standards documentation integrated as submodule
 - [x] Claude agent configured for QA guidance
@@ -94,6 +98,7 @@ We will build WeirdBites **incrementally**, implementing each SDLC/STLC phase wi
 - [x] Documentation aligned with quality-standards module structure (Modules 00-16)
 
 ### Next Phase: **Slice 0 - Project Setup** (3-5 days, 17 story points, 9 stories) 📋 Ready to Start
+
 - IS-001: Initialize Next.js 14+ project with TypeScript (2 pts)
 - IS-002: Configure ESLint and Prettier (1 pt)
 - IS-003: Set up PostgreSQL database with Prisma ORM (3 pts)
@@ -109,6 +114,7 @@ We will build WeirdBites **incrementally**, implementing each SDLC/STLC phase wi
 ### Upcoming Phases
 
 **Phase 1: Foundations & Requirements** (Module 00-01) - ✅ COMPLETED
+
 - ✅ Establish quality objectives and metrics
 - ✅ Define business requirements for WeirdBites
 - ✅ Create user stories with acceptance criteria
@@ -116,6 +122,7 @@ We will build WeirdBites **incrementally**, implementing each SDLC/STLC phase wi
 - ✅ Document requirements following industry best practices
 
 **Phase 2: Agile Planning** (Module 02)
+
 - Define Definition of Ready (DoR)
 - Define Definition of Done (DoD)
 - Estimate user stories using story points
@@ -123,6 +130,7 @@ We will build WeirdBites **incrementally**, implementing each SDLC/STLC phase wi
 - Establish team working agreements
 
 **Phase 3: Version Control & Branching** (Module 03)
+
 - Implement GitFlow methodology
 - Configure branch protection rules
 - Set up pull request templates
@@ -130,6 +138,7 @@ We will build WeirdBites **incrementally**, implementing each SDLC/STLC phase wi
 - Configure CI/CD hooks
 
 **Phase 4: Testing Strategy** (Module 04-05)
+
 - Design test pyramid strategy
 - Implement shift-left testing approach
 - Set up test frameworks (unit, integration, E2E)
@@ -137,6 +146,7 @@ We will build WeirdBites **incrementally**, implementing each SDLC/STLC phase wi
 - Establish test coverage targets (>80%)
 
 **Phase 5: Development with Quality** (Module 06-07)
+
 - Implement clean code principles
 - Apply SOLID design patterns
 - Practice TDD/BDD where appropriate
@@ -144,6 +154,7 @@ We will build WeirdBites **incrementally**, implementing each SDLC/STLC phase wi
 - Performance budgets and monitoring
 
 **Phase 6: CI/CD Pipeline** (Module 08)
+
 - Build automated test pipeline
 - Configure continuous integration
 - Implement automated quality gates
@@ -151,6 +162,7 @@ We will build WeirdBites **incrementally**, implementing each SDLC/STLC phase wi
 - Configure notifications and alerts
 
 **Phase 7: Production & Monitoring** (Module 09-10)
+
 - Implement deployment strategies (blue-green or canary)
 - Configure observability (logs, metrics, traces)
 - Set up DORA metrics dashboard
@@ -158,13 +170,15 @@ We will build WeirdBites **incrementally**, implementing each SDLC/STLC phase wi
 - Create runbooks for common issues
 
 **Phase 8: Governance & Improvement** (Module 11-14)
+
 - Establish quality governance process
 - Implement compliance checks
 - Set up incident management workflow
 - Create retrospective process
 - Document lessons learned
 
-**Phase 9: Advanced - AI & Agents** (Module 15-16) *(Optional)*
+**Phase 9: Advanced - AI & Agents** (Module 15-16) _(Optional)_
+
 - Implement AI-assisted test generation
 - Build autonomous test maintenance agent
 - Create multi-agent code review system
@@ -205,17 +219,20 @@ As the AI assistant for this project, Claude acts as a **QA Documentation Expert
 ### How to Use Claude Effectively
 
 **Use Slash Commands**:
+
 - `/qa-guide <topic>` - Query the QA documentation for specific topics
 - `/phase-requirements` - Get guidance for requirements phase
 - `/phase-testing` - Get guidance for testing strategy phase
 - `/phase-cicd` - Get guidance for CI/CD pipeline phase
 
 **Ask Phase-Specific Questions**:
+
 - "What does the DoR checklist require for this user story?"
 - "What test levels should I implement according to Module 05?"
 - "How should I structure my CI/CD pipeline per Module 08?"
 
 **Request Documentation**:
+
 - "Create acceptance criteria following the template in Module 01"
 - "Generate a test plan using the IEEE 829 template"
 - "Show me the code review checklist from Module 07"
@@ -251,18 +268,21 @@ Following the **Code Quality Manifesto**, we commit to:
 We will measure success using industry-standard metrics:
 
 ### DORA Metrics (DevOps Research and Assessment)
+
 - **Deployment Frequency**: Target daily deployments
 - **Lead Time for Changes**: < 1 day
 - **Mean Time to Recovery (MTTR)**: < 4 hours
 - **Change Failure Rate**: < 10%
 
 ### Quality Metrics
+
 - **Code Coverage**: > 80%
 - **Cyclomatic Complexity**: < 10 per method
 - **Technical Debt Ratio**: < 5%
 - **Defect Density**: < 1 per 1000 lines of code
 
 ### Testing Metrics
+
 - **Test Automation Rate**: > 80%
 - **Test Execution Time**: < 10 minutes for full suite
 - **Flaky Test Rate**: < 5%
@@ -271,6 +291,7 @@ We will measure success using industry-standard metrics:
 ## Git Workflow
 
 ### Commit Guidelines
+
 - **Always commit changes using my configured user**
 - Follow conventional commits format: `type(scope): description`
   - Types: feat, fix, docs, test, refactor, ci, chore
@@ -279,6 +300,7 @@ We will measure success using industry-standard metrics:
   - Example: `test(payment): add unit tests per Module 05 testing strategy`
 
 ### Configuration Management
+
 - When adding content to `.claude/` directory:
   - Update `.claude/settings.json` or `.claude/settings.local.json`
   - Document new commands in this file
@@ -325,13 +347,14 @@ WeirdBites/
 
 ---
 
-*"Quality is never an accident; it is always the result of intelligent effort." - John Ruskin*
+_"Quality is never an accident; it is always the result of intelligent effort." - John Ruskin_
 
 **Last Updated**: 2025-10-19
 **Current Phase**: Requirements Engineering - ✅ COMPLETED
 **Next Milestone**: Complete Slice 0 - Project Setup (Infrastructure)
 
 **Documentation Deliverables**: 10 documents (~4,000+ lines)
+
 - 0. Documentation Guide
 - 1. Business Requirements
 - 2. User Personas

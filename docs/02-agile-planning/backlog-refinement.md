@@ -24,6 +24,7 @@ Backlog refinement (also called "backlog grooming") is the ongoing process of re
 **Definition**: The process of adding detail, estimates, and order to product backlog items.
 
 **Activities**:
+
 - Review upcoming user stories
 - Add missing details (acceptance criteria, mockups)
 - Estimate story points
@@ -36,6 +37,7 @@ Backlog refinement (also called "backlog grooming") is the ongoing process of re
 ### 1.2 Why Backlog Refinement Matters
 
 **Without Refinement**:
+
 - ❌ Sprint planning takes 2-3 hours (instead of 60 min)
 - ❌ Unclear stories lead to mid-sprint questions
 - ❌ Poor estimates lead to over/under-commitment
@@ -43,6 +45,7 @@ Backlog refinement (also called "backlog grooming") is the ongoing process of re
 - ❌ Missing acceptance criteria → ambiguous implementation
 
 **With Refinement**:
+
 - ✅ Sprint planning is fast and focused (60 min)
 - ✅ Stories are clear and actionable
 - ✅ Estimates are accurate (within 20%)
@@ -63,6 +66,7 @@ Backlog refinement (also called "backlog grooming") is the ongoing process of re
 **Participants**: Developer/QAE (solo)
 
 **Why Wednesday?**
+
 - Mid-sprint (current sprint is progressing)
 - Not too early (don't know velocity yet)
 - Not too late (need time to prepare)
@@ -73,12 +77,14 @@ Backlog refinement (also called "backlog grooming") is the ongoing process of re
 **When**: As needed, between scheduled sessions
 **Duration**: 15-30 minutes
 **Trigger**:
+
 - New story ideas emerge
 - Stakeholder feedback received
 - Technical discovery changes requirements
 - Story needs splitting mid-sprint
 
 **Process**:
+
 1. Capture story idea immediately (GitHub issue)
 2. Add to backlog with priority tag
 3. Schedule for next refinement session
@@ -91,6 +97,7 @@ Backlog refinement (also called "backlog grooming") is the ongoing process of re
 ### 3.1 Preparation (5 min)
 
 **Before Wednesday Refinement**:
+
 - [ ] Review current sprint progress (velocity tracking)
 - [ ] Identify which vertical slice is next
 - [ ] Pull up product backlog (GitHub Projects)
@@ -100,17 +107,20 @@ Backlog refinement (also called "backlog grooming") is the ongoing process of re
 ### 3.2 Story Selection (10 min)
 
 **Select Stories to Refine**:
+
 1. Pull top 5-7 stories from backlog (highest priority)
 2. Focus on next sprint (not 3-4 sprints out)
 3. Aim for ~20 story points (enough for next sprint + buffer)
 
 **Priority Order**:
+
 - Stories from current vertical slice (finish slice incrementally)
 - High-value stories (user-facing features)
 - Technical debt (10-20% capacity)
 - Bug fixes (as needed)
 
 **Example Selection** (Sprint 1 preparing for Sprint 2):
+
 ```
 Selected for Refinement:
 1. US-004: Add to Cart (5 points - estimate)
@@ -127,17 +137,20 @@ Total: ~19 points (slightly over target - will refine down)
 **For Each Story** (8 min per story):
 
 **Step 1: Read Story (1 min)**
+
 - Read user story format ("As a... I want... So that...")
 - Understand user value
 - Check if it aligns with current vertical slice
 
 **Step 2: Review Acceptance Criteria (2 min)**
+
 - Check if AC exists
 - Verify AC is in Given-When-Then format
 - Ensure AC is testable
 - Identify missing scenarios
 
 Example AC Review:
+
 ```
 Story: US-004 Add to Cart
 
@@ -157,22 +170,26 @@ Missing AC (add these):
 ```
 
 **Step 3: Check Dependencies (1 min)**
+
 - Identify technical dependencies (APIs, libraries)
 - Identify story dependencies (blocks/blocked by)
 - Note if any dependencies aren't ready
 
 **Step 4: Identify Missing Details (2 min)**
+
 - UI mockups (if UI change)
 - API contracts (if new API)
 - Data models (if new database fields)
 - Business rules (validation, edge cases)
 
 **Step 5: Apply DoR Checklist (2 min)**
+
 - Go through 10-point DoR checklist
 - Mark pass/fail for each criterion
 - Note what's missing
 
 DoR Checklist:
+
 ```
 Story: US-004 Add to Cart
 
@@ -196,11 +213,13 @@ Action: Add missing AC, create cart UI mockup
 **Estimation Process**:
 
 **Step 1: Reference Stories**
+
 - Compare to similar past stories
 - Use completed stories as baseline
 - Adjust for complexity differences
 
 Example:
+
 ```
 Story: US-004 Add to Cart (new)
 
@@ -220,6 +239,7 @@ Estimate: 5 points (same as US-002, complexity balances out)
 ```
 
 **Step 2: Fibonacci Scale**
+
 - Use Fibonacci: 1, 2, 3, 5, 8, 13
 - Don't use: 4, 6, 7, 9, 10, 11, 12 (precision is false)
 - 13+ points → Story too large, must split
@@ -235,12 +255,14 @@ Estimate: 5 points (same as US-002, complexity balances out)
 | 13+ | Too Large | 24+ hours | MUST SPLIT |
 
 **Step 3: Document Estimation**
+
 - Add estimate to story (custom field in GitHub Projects)
 - Note estimation rationale (in story comments)
 
 ### 3.5 Story Splitting (15 min if needed)
 
 **When to Split**:
+
 - Story >8 points
 - Story has multiple user personas
 - Story has too many acceptance criteria (>7-8)
@@ -249,6 +271,7 @@ Estimate: 5 points (same as US-002, complexity balances out)
 **How to Split**:
 
 **Pattern 1: By CRUD Operations**
+
 ```
 Original Story (13 points):
 US-024: Manage Products (Create, Read, Update, Delete)
@@ -263,6 +286,7 @@ Total: Still 13 points, but now 4 shippable increments
 ```
 
 **Pattern 2: By Happy Path vs. Edge Cases**
+
 ```
 Original Story (13 points):
 US-008: Checkout Form Validation (all fields, all edge cases)
@@ -274,6 +298,7 @@ Split Into:
 ```
 
 **Pattern 3: By User Persona**
+
 ```
 Original Story (13 points):
 US-020: Search Products (for all users, with filters, facets)
@@ -285,6 +310,7 @@ Split Into:
 ```
 
 **Splitting Rules**:
+
 - Each split story must still deliver value
 - Each split story must be testable
 - Maintain story independence (can implement in any order)
@@ -297,12 +323,14 @@ Split Into:
 ### 4.1 Story States
 
 **Not Ready**:
+
 - Missing acceptance criteria
 - No estimate
 - Dependencies unclear
 - DoR checklist fails
 
 **Ready**:
+
 - All DoR criteria met
 - Estimated (≤8 points)
 - No blocking dependencies
@@ -311,6 +339,7 @@ Split Into:
 ### 4.2 Backlog Health Metrics
 
 **Target Metrics**:
+
 - Stories ready for next sprint: ≥15 points
 - Stories ready for sprint after: ≥10 points
 - DoR pass rate: >80%
@@ -318,6 +347,7 @@ Split Into:
 - Stories >8 points: 0
 
 **Measure After Each Refinement**:
+
 ```
 Refinement Session: 2025-10-23
 
@@ -333,18 +363,21 @@ Health: ✅ GOOD (enough for next sprint)
 ### 4.3 Refinement Output
 
 **Updated Backlog**:
+
 - Stories moved to "Ready" column (GitHub Projects)
 - Estimates added (story points field)
 - DoR checklist passed (checkbox field)
 - Priority adjusted if needed
 
 **Action Items**:
+
 - Missing mockups → Assign to design/create
 - Missing AC → Schedule discussion with stakeholder
 - Technical questions → Spike story created
 - Large stories → Splitting scheduled
 
 **Documentation**:
+
 - Refinement notes in GitHub issue comments
 - Updated product backlog document (if major changes)
 
@@ -376,21 +409,25 @@ Health: ✅ GOOD (enough for next sprint)
 ### 5.3 Refinement Anti-Patterns
 
 **Anti-Pattern 1: Over-Refinement**
+
 - Problem: Refining stories 6 sprints out in detail
 - Impact: Wasted effort (requirements change)
 - Solution: Refine just-in-time (1-2 sprints ahead)
 
 **Anti-Pattern 2: Design in Refinement**
+
 - Problem: Spending 30 min discussing implementation details
 - Impact: Analysis paralysis, wasted time
 - Solution: Focus on "what" (requirements), defer "how" (design)
 
 **Anti-Pattern 3: Rubber Stamping**
+
 - Problem: Marking all stories "Ready" without review
 - Impact: Unclear stories enter sprint, cause rework
 - Solution: Enforce DoR strictly, reject incomplete stories
 
 **Anti-Pattern 4: No Estimates**
+
 - Problem: "We'll estimate during sprint planning"
 - Impact: Sprint planning takes 3 hours
 - Solution: Always estimate during refinement
@@ -402,6 +439,7 @@ Health: ✅ GOOD (enough for next sprint)
 ### 6.1 GitHub Projects
 
 **Backlog Columns**:
+
 1. **Backlog** - All stories, not yet refined
 2. **Ready** - Stories passing DoR, ready for sprint
 3. **Sprint X** - Stories committed to current sprint
@@ -410,6 +448,7 @@ Health: ✅ GOOD (enough for next sprint)
 6. **Done** - Meets DoD, shipped
 
 **Custom Fields**:
+
 - Story Points (number, 1-13)
 - Priority (Must/Should/Could/Won't)
 - Sprint (text, "Sprint 1", "Sprint 2", etc.)
@@ -417,6 +456,7 @@ Health: ✅ GOOD (enough for next sprint)
 - Dependencies (text, "US-XXX")
 
 **Views**:
+
 - Backlog View (all stories, sorted by priority)
 - Ready View (stories passing DoR, ready for planning)
 - Sprint View (current sprint stories only)
@@ -450,23 +490,28 @@ Health: ✅ GOOD (enough for next sprint)
 ## Completed Stories (Baseline)
 
 ### 1-Point Stories
+
 - Copy change (update text on page)
 - CSS tweak (adjust margin, color)
 
 ### 2-Point Stories
+
 - Simple component (button, card, badge)
 - Basic form (1-2 fields)
 
 ### 3-Point Stories
+
 - US-005: Update Cart Quantity (actual: 2.5 days)
 - US-006: Remove from Cart (actual: 2 days)
 
 ### 5-Point Stories
+
 - US-001: Browse Products (actual: 2 days)
 - US-002: View Product Details (actual: 2.5 days)
 - US-004: Add to Cart (actual: 2 days)
 
 ### 8-Point Stories
+
 - US-011: Payment Processing (actual: 4 days)
 ```
 
@@ -477,6 +522,7 @@ Health: ✅ GOOD (enough for next sprint)
 ### 7.1 Track Weekly
 
 **DoR Pass Rate**:
+
 ```
 DoR Pass Rate = (Stories Passing DoR / Stories Reviewed) × 100%
 
@@ -489,6 +535,7 @@ Week 3: 3/5 = 60% ❌ (action: improve story templates)
 ```
 
 **Story Points Ready**:
+
 ```
 Target: ≥15 points ready for next sprint
 
@@ -499,6 +546,7 @@ Week 3: 12 points ❌ (need to refine more stories)
 ```
 
 **Average Story Size**:
+
 ```
 Target: 3-5 points (sweet spot)
 
@@ -510,6 +558,7 @@ Week 2: 6.2 points ⚠️ (stories too large, need splitting)
 ### 7.2 Track Monthly
 
 **Refinement Effectiveness**:
+
 ```
 Sprint Planning Duration = f(Refinement Quality)
 
@@ -519,6 +568,7 @@ If planning >90 min → Improve refinement
 ```
 
 **Estimation Accuracy**:
+
 ```
 Estimation Accuracy = Actual Points / Estimated Points
 
@@ -564,13 +614,14 @@ Track over 3-4 sprints to see if estimates improving
 
 **Version History**:
 
-| Version | Date | Author | Changes |
-|---------|------|--------|---------|
-| 1.0.0 | 2025-10-19 | Antonio Gomez Gallardo | Initial backlog refinement process (Module 02 alignment) |
+| Version | Date       | Author                 | Changes                                                  |
+| ------- | ---------- | ---------------------- | -------------------------------------------------------- |
+| 1.0.0   | 2025-10-19 | Antonio Gomez Gallardo | Initial backlog refinement process (Module 02 alignment) |
 
 **Next Review**: After Sprint 2 (validate refinement effectiveness)
 
 **Related Documents**:
+
 - [Definition of Ready](7.definition-of-ready.md) - DoR checklist details
 - [Sprint Cadence Guide](16.sprint-cadence-guide.md) - Refinement ceremony schedule
 - [Product Backlog](5.product-backlog.md) - All user stories
@@ -578,4 +629,4 @@ Track over 3-4 sprints to see if estimates improving
 
 ---
 
-*This backlog refinement process follows Module 02: Agile Planning from the quality-standards documentation, emphasizing just-in-time refinement, story quality, and estimation accuracy.*
+_This backlog refinement process follows Module 02: Agile Planning from the quality-standards documentation, emphasizing just-in-time refinement, story quality, and estimation accuracy._

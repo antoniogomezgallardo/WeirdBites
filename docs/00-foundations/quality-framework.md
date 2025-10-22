@@ -10,6 +10,7 @@
 ## Overview
 
 This document defines the quality framework for the WeirdBites project, including:
+
 - Agile methodology selection (Hybrid Scrum/Kanban)
 - Sprint structure and ceremonies
 - Quality policy and principles
@@ -27,6 +28,7 @@ This framework is extracted from the Business Requirements Document and represen
 **Framework**: **Hybrid Scrum/Kanban** (Scrumban)
 
 **Rationale**:
+
 - **Solo Developer Context**: Traditional Scrum is team-focused; adaptation needed for single-person project
 - **Educational Purpose**: Demonstrates understanding of both frameworks
 - **Flexibility**: Kanban's flow-based approach suits varying story sizes
@@ -37,30 +39,33 @@ This framework is extracted from the Business Requirements Document and represen
 **Sprint Duration**: **1 week** (Monday - Sunday)
 
 **Rationale**:
+
 - Faster feedback loops than 2-week sprints
 - Aligns with vertical slice delivery (most slices are 1-2 weeks)
 - Weekly retrospectives enable rapid process improvement
 - Reduces planning overhead for solo developer
 
 **Sprint Capacity**: **10-15 story points**
+
 - Based on 20-30 hours/week development time (part-time while learning)
 - Includes buffer for learning, documentation, quality activities
 
 ### 1.3 Scrum Ceremonies (Adapted for Solo Developer)
 
-| Ceremony | Cadence | Duration | Purpose | Adaptation |
-|----------|---------|----------|---------|------------|
-| **Sprint Planning** | Monday (start of sprint) | 30-60 min | Select stories, define sprint goal | Solo planning with DoR checklist |
-| **Daily Standup** | Daily (morning) | 5-10 min | Review progress, identify blockers | Written daily log or voice memo |
-| **Sprint Review** | Sunday (end of sprint) | 30-45 min | Demo completed work | Record demo video, share with peers/mentors |
-| **Sprint Retrospective** | Sunday (after review) | 30-45 min | Reflect and improve | Written retrospective using template |
-| **Backlog Refinement** | Mid-week (Wednesday) | 30-60 min | Prepare upcoming stories | Apply DoR checklist, estimate, clarify |
+| Ceremony                 | Cadence                  | Duration  | Purpose                            | Adaptation                                  |
+| ------------------------ | ------------------------ | --------- | ---------------------------------- | ------------------------------------------- |
+| **Sprint Planning**      | Monday (start of sprint) | 30-60 min | Select stories, define sprint goal | Solo planning with DoR checklist            |
+| **Daily Standup**        | Daily (morning)          | 5-10 min  | Review progress, identify blockers | Written daily log or voice memo             |
+| **Sprint Review**        | Sunday (end of sprint)   | 30-45 min | Demo completed work                | Record demo video, share with peers/mentors |
+| **Sprint Retrospective** | Sunday (after review)    | 30-45 min | Reflect and improve                | Written retrospective using template        |
+| **Backlog Refinement**   | Mid-week (Wednesday)     | 30-60 min | Prepare upcoming stories           | Apply DoR checklist, estimate, clarify      |
 
 **Total Ceremony Time**: ~3-4 hours/week (~15-20% of development time)
 
 ### 1.4 Kanban Elements
 
 **Board Columns**:
+
 1. **Backlog** - Prioritized stories ready for development
 2. **Ready** - Stories meeting Definition of Ready
 3. **In Progress** - Currently being worked on
@@ -69,6 +74,7 @@ This framework is extracted from the Business Requirements Document and represen
 6. **Done** - Meets Definition of Done, deployed
 
 **WIP Limits**:
+
 - **In Progress**: 1-2 stories (focus on completing, not starting)
 - **In Review**: 2 stories max (prevent review bottleneck)
 - **Testing**: 1 story (quality gate)
@@ -82,6 +88,7 @@ This framework is extracted from the Business Requirements Document and represen
 **Week Structure**:
 
 **Monday (Sprint Planning)**:
+
 1. Review last sprint (what completed, what didn't, why)
 2. Set sprint goal (aligned with vertical slice)
 3. Select stories from "Ready" column (10-15 points)
@@ -89,6 +96,7 @@ This framework is extracted from the Business Requirements Document and represen
 5. Commit to sprint backlog
 
 **Tuesday-Thursday (Development)**:
+
 1. Morning standup (5 min written log)
 2. Work on highest priority story
 3. Follow TDD/BDD practices
@@ -96,6 +104,7 @@ This framework is extracted from the Business Requirements Document and represen
 5. Update story status on board
 
 **Wednesday (Refinement)**:
+
 1. Review upcoming stories (next 2-3 sprints)
 2. Apply Definition of Ready checklist
 3. Estimate new stories (planning poker with confidence level)
@@ -103,6 +112,7 @@ This framework is extracted from the Business Requirements Document and represen
 5. Update priorities if needed
 
 **Friday (Quality Focus)**:
+
 1. Code review of week's PRs
 2. Run full test suite
 3. Address technical debt
@@ -110,6 +120,7 @@ This framework is extracted from the Business Requirements Document and represen
 5. Prepare for demo
 
 **Sunday (Review & Retrospective)**:
+
 1. **Sprint Review** (30-45 min):
    - Record demo of completed work
    - Verify Definition of Done met
@@ -127,21 +138,25 @@ This framework is extracted from the Business Requirements Document and represen
 **Quality Built Into Framework**:
 
 **Sprint Planning**:
+
 - Story must meet Definition of Ready (quality gate #1)
 - Test cases identified during planning
 - Performance/security considerations discussed
 
 **Development**:
+
 - TDD/BDD: Write tests first (Red-Green-Refactor)
 - Continuous integration: Every commit runs CI pipeline
 - Code review: All code reviewed before merge
 
 **Sprint Review**:
+
 - Demo on production (or staging identical to production)
 - Verify non-functional requirements (performance, accessibility)
 - User acceptance (based on acceptance criteria)
 
 **Retrospective**:
+
 - Review quality metrics (coverage, DORA, performance)
 - Identify quality process improvements
 - Update Definition of Done if needed
@@ -149,21 +164,25 @@ This framework is extracted from the Business Requirements Document and represen
 ### 1.7 Tools & Automation
 
 **Project Management**:
+
 - **Tool**: GitHub Projects (Kanban board)
 - **Automation**: Issues move columns based on PR/commit status
 - **Metrics**: Velocity, cycle time, burndown (tracked in spreadsheet)
 
 **Development**:
+
 - **IDE**: VS Code with extensions (ESLint, Prettier, Jest, Playwright)
 - **Version Control**: Git + GitHub (GitFlow branching)
 - **CI/CD**: GitHub Actions (automated quality gates)
 
 **Communication** (Solo):
+
 - **Daily Log**: Markdown file tracking progress, blockers, learnings
 - **Sprint Journal**: Weekly summary (what shipped, what learned)
 - **Demo Videos**: Loom/OBS recordings of sprint reviews
 
 **Metrics Dashboard**:
+
 - **Tool**: Google Sheets or GitHub Projects Insights
 - **Metrics**: Velocity, cycle time, code coverage, DORA metrics
 - **Review Cadence**: Weekly (sprint retrospective)
@@ -171,12 +190,14 @@ This framework is extracted from the Business Requirements Document and represen
 ### 1.8 Scaling & Adaptation
 
 **As Project Grows**:
+
 - **Add collaborators**: Transition to full Scrum with team ceremonies
 - **Increase sprint duration**: Move to 2-week sprints if stories grow
 - **Add roles**: Product Owner (stakeholder), Scrum Master (process facilitator)
 - **Upgrade tools**: Migrate to Jira/Linear if GitHub Projects insufficient
 
 **Framework Flexibility**:
+
 - Framework is a guide, not a religion
 - Adapt based on what works (measure and iterate)
 - Document changes in retrospectives
@@ -221,6 +242,7 @@ We commit to the following quality principles (aligned with the Code Quality Man
 ### 2.3 Quality Standards
 
 **Code Quality**:
+
 - ✅ Code coverage: **>80%** (unit, integration, E2E)
 - ✅ Cyclomatic complexity: **<10 per method**
 - ✅ Technical debt ratio: **<5%**
@@ -228,12 +250,14 @@ We commit to the following quality principles (aligned with the Code Quality Man
 - ✅ All code reviewed before merge
 
 **Testing Standards**:
+
 - ✅ Test pyramid: **70% unit, 20% integration, 10% E2E**
 - ✅ Test execution time: **<10 minutes** for full suite
 - ✅ Flaky test rate: **<5%**
 - ✅ Test automation rate: **>80%**
 
 **Performance Standards**:
+
 - ✅ Page load (LCP): **<2.5s**
 - ✅ First Contentful Paint: **<1.5s**
 - ✅ Time to Interactive: **<3.5s**
@@ -241,6 +265,7 @@ We commit to the following quality principles (aligned with the Code Quality Man
 - ✅ Lighthouse score: **>90** (Performance, Accessibility, Best Practices, SEO)
 
 **Security Standards**:
+
 - ✅ Zero critical/high vulnerabilities
 - ✅ OWASP Top 10 compliance
 - ✅ Password hashing (bcrypt, cost factor ≥10)
@@ -248,6 +273,7 @@ We commit to the following quality principles (aligned with the Code Quality Man
 - ✅ HTTPS only (enforced by Vercel)
 
 **Accessibility Standards**:
+
 - ✅ WCAG 2.1 Level AA compliance
 - ✅ Keyboard navigation support
 - ✅ Screen reader compatible
@@ -255,6 +281,7 @@ We commit to the following quality principles (aligned with the Code Quality Man
 - ✅ axe-core automated checks passing
 
 **DevOps Standards (DORA Metrics)**:
+
 - ✅ Deployment frequency: **Daily** (target)
 - ✅ Lead time for changes: **<1 day**
 - ✅ Mean time to recovery: **<4 hours**
@@ -263,6 +290,7 @@ We commit to the following quality principles (aligned with the Code Quality Man
 ### 2.4 Quality Gates
 
 **Code cannot be merged unless**:
+
 1. All automated tests pass (unit, integration, E2E)
 2. Code coverage ≥80% for new code
 3. No ESLint/TypeScript errors
@@ -273,6 +301,7 @@ We commit to the following quality principles (aligned with the Code Quality Man
 8. Lighthouse performance >90
 
 **Releases cannot be deployed unless**:
+
 1. All quality gates passed
 2. E2E tests passing on staging
 3. Performance benchmarks met
@@ -283,6 +312,7 @@ We commit to the following quality principles (aligned with the Code Quality Man
 ### 2.5 Quality Assurance Process
 
 **Continuous Quality Activities**:
+
 1. **Every Commit**: Automated linting, type-checking, unit tests (via pre-commit hooks)
 2. **Every Pull Request**: Full CI pipeline (lint, typecheck, test, build)
 3. **Every Merge**: Automated deployment to staging, smoke tests
@@ -290,6 +320,7 @@ We commit to the following quality principles (aligned with the Code Quality Man
 5. **Every Sprint**: Retrospective, process improvement, metrics review
 
 **Review & Audit Schedule**:
+
 - **Daily**: CI/CD pipeline status, failed builds/tests
 - **Weekly**: Code coverage trends, velocity, WIP limits
 - **Sprint**: Retrospective, quality metrics review, improvement actions
@@ -299,6 +330,7 @@ We commit to the following quality principles (aligned with the Code Quality Man
 ### 2.6 Non-Conformance
 
 **When quality standards are not met**:
+
 1. **Identify**: Log the non-conformance (failed test, missed coverage, etc.)
 2. **Analyze**: Root cause analysis (5 Whys, fishbone diagram)
 3. **Fix**: Immediate corrective action
@@ -306,6 +338,7 @@ We commit to the following quality principles (aligned with the Code Quality Man
 5. **Document**: Record in retrospective, update documentation
 
 **Escalation**:
+
 - **Minor**: Developer fixes within same PR
 - **Major**: Revert commit, create bug ticket, fix in next sprint
 - **Critical**: Stop deployment, emergency fix, post-mortem required
@@ -313,6 +346,7 @@ We commit to the following quality principles (aligned with the Code Quality Man
 ### 2.7 Continuous Improvement
 
 **Improvement Mechanisms**:
+
 1. **Retrospectives**: After every vertical slice (every 1-2 weeks)
 2. **Metrics Review**: Track trends, identify patterns
 3. **Process Experiments**: Try new practices, measure results
@@ -320,6 +354,7 @@ We commit to the following quality principles (aligned with the Code Quality Man
 5. **Tool Evaluation**: Continuously assess and improve tooling
 
 **Success Criteria**:
+
 - Quality metrics improving sprint over sprint
 - Fewer defects escaping to production
 - Faster cycle time while maintaining quality
@@ -330,21 +365,26 @@ We commit to the following quality principles (aligned with the Code Quality Man
 ## 3. Related Documents
 
 **Module 00 - Foundations**:
+
 - [ISO 25010 Quality Mapping](iso-25010-mapping.md) - Quality characteristics mapping
 
 **Module 01 - Requirements**:
+
 - [Business Requirements](../01-requirements/business-requirements.md) - Complete BRD (includes metrics section)
 - [Non-Functional Requirements](../01-requirements/non-functional-requirements.md) - Detailed quality targets
 
 **Module 02 - Agile Planning**:
+
 - [Definition of Ready](../02-agile-planning/definition-of-ready.md) - Story readiness checklist
 - [Sprint Cadence](../02-agile-planning/sprint-cadence.md) - Detailed weekly rhythm
 - [Velocity Tracking](../02-agile-planning/velocity-tracking.md) - Velocity calculation and forecasting
 
 **Module 09 - Metrics & Monitoring**:
+
 - [Metrics Tracking Plan](../09-metrics-monitoring/metrics-tracking-plan.md) - Comprehensive metrics dashboard
 
 **Module 14 - Continuous Improvement**:
+
 - [Testing Maturity Assessment](../14-continuous-improvement/testing-maturity-assessment.md) - Testing maturity roadmap
 
 ---
@@ -353,9 +393,9 @@ We commit to the following quality principles (aligned with the Code Quality Man
 
 **Version History**:
 
-| Version | Date | Author | Changes |
-|---------|------|--------|---------|
-| 1.0.0 | 2025-10-19 | Antonio Gomez Gallardo | Extracted from BRD sections 12-13, organized as Module 00 deliverable |
+| Version | Date       | Author                 | Changes                                                               |
+| ------- | ---------- | ---------------------- | --------------------------------------------------------------------- |
+| 1.0.0   | 2025-10-19 | Antonio Gomez Gallardo | Extracted from BRD sections 12-13, organized as Module 00 deliverable |
 
 **Source**: Extracted from Business Requirements Document (Sections 12-13)
 
@@ -363,4 +403,4 @@ We commit to the following quality principles (aligned with the Code Quality Man
 
 ---
 
-*This document follows Module 00 (Foundations) best practices and aligns with the quality-standards framework.*
+_This document follows Module 00 (Foundations) best practices and aligns with the quality-standards framework._

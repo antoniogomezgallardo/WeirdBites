@@ -11,14 +11,14 @@ This module contains agile planning artifacts including Definition of Ready, spr
 
 ## Documents in This Module
 
-| Document | Purpose | Lines | Status |
-|----------|---------|-------|--------|
-| [definition-of-ready.md](definition-of-ready.md) | Story readiness checklist (10 criteria) | 510+ | ✅ Complete |
-| [sprint-cadence.md](sprint-cadence.md) | Weekly sprint rhythm, ceremonies, time management | 1,200+ | ✅ Complete |
-| [backlog-refinement.md](backlog-refinement.md) | Story refinement process, estimation, splitting | 1,100+ | ✅ Complete |
-| [velocity-tracking.md](velocity-tracking.md) | Velocity calculation, forecasting, sprint planning | 1,000+ | ✅ Complete |
-| [templates/sprint-planning.md](templates/sprint-planning.md) | Step-by-step sprint planning guide | 500+ | ✅ Complete |
-| [templates/sprint-retrospective.md](templates/sprint-retrospective.md) | Retrospective formats (Mad/Sad/Glad, 4 L's, etc.) | 650+ | ✅ Complete |
+| Document                                                               | Purpose                                            | Lines  | Status      |
+| ---------------------------------------------------------------------- | -------------------------------------------------- | ------ | ----------- |
+| [definition-of-ready.md](definition-of-ready.md)                       | Story readiness checklist (10 criteria)            | 510+   | ✅ Complete |
+| [sprint-cadence.md](sprint-cadence.md)                                 | Weekly sprint rhythm, ceremonies, time management  | 1,200+ | ✅ Complete |
+| [backlog-refinement.md](backlog-refinement.md)                         | Story refinement process, estimation, splitting    | 1,100+ | ✅ Complete |
+| [velocity-tracking.md](velocity-tracking.md)                           | Velocity calculation, forecasting, sprint planning | 1,000+ | ✅ Complete |
+| [templates/sprint-planning.md](templates/sprint-planning.md)           | Step-by-step sprint planning guide                 | 500+   | ✅ Complete |
+| [templates/sprint-retrospective.md](templates/sprint-retrospective.md) | Retrospective formats (Mad/Sad/Glad, 4 L's, etc.)  | 650+   | ✅ Complete |
 
 **Total**: 4 documents + 2 templates, ~4,960 lines
 
@@ -27,6 +27,7 @@ This module contains agile planning artifacts including Definition of Ready, spr
 ## Alignment with Quality-Standards
 
 Implements concepts from:
+
 - `quality-standards/docs/02-agile-planning/definition-of-ready.md`
 - `quality-standards/docs/02-agile-planning/definition-of-done.md`
 - `quality-standards/docs/02-agile-planning/estimation-techniques.md`

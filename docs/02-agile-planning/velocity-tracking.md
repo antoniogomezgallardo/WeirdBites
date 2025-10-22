@@ -12,6 +12,7 @@
 Velocity is a key agile metric that measures how much work a team completes in a sprint, typically measured in story points. This document defines how WeirdBites tracks velocity, interprets trends, and uses velocity data for planning and forecasting.
 
 **Key Benefits**:
+
 - **Predictability**: Forecast future sprint capacity
 - **Planning**: Set realistic sprint commitments
 - **Improvement**: Track team productivity trends
@@ -26,6 +27,7 @@ Velocity is a key agile metric that measures how much work a team completes in a
 **Velocity** = **Sum of story points completed in a sprint**
 
 **Key Points**:
+
 - ✅ Only **completed** stories count (met DoD)
 - ❌ **In-progress** stories don't count
 - ❌ **Partially completed** stories don't count
@@ -33,6 +35,7 @@ Velocity is a key agile metric that measures how much work a team completes in a
 - ✅ Include all types of stories (features, bugs, technical debt)
 
 **Example**:
+
 ```
 Sprint 1 Commitment:
 - US-001 (5 points) → ✅ Completed
@@ -45,6 +48,7 @@ Sprint 1 Velocity = 5 + 5 = 10 points
 ### 1.2 What Velocity is NOT
 
 **Velocity is NOT**:
+
 - ❌ A measure of individual productivity
 - ❌ A metric to compare teams
 - ❌ A target to maximize (quality matters more)
@@ -60,6 +64,7 @@ Sprint 1 Velocity = 5 + 5 = 10 points
 ### 2.1 Basic Calculation
 
 **Formula**:
+
 ```
 Velocity = Σ (Story Points of Completed Stories)
 ```
@@ -77,11 +82,13 @@ Velocity = Σ (Story Points of Completed Stories)
 ### 2.2 Rolling Average Velocity
 
 **Why use average?**
+
 - Individual sprints have variance
 - Average smooths out outliers
 - More reliable for planning
 
 **3-Sprint Rolling Average**:
+
 ```
 Avg Velocity = (Sprint N + Sprint N-1 + Sprint N-2) / 3
 ```
@@ -99,15 +106,18 @@ Avg Velocity = (Sprint N + Sprint N-1 + Sprint N-2) / 3
 ### 2.3 Weighted Average (Optional)
 
 **Why weighted?**
+
 - Recent sprints more relevant than old sprints
 - Team velocity improves over time (learning effect)
 
 **Weighted Formula**:
+
 ```
 Weighted Avg = (Sprint N × 3) + (Sprint N-1 × 2) + (Sprint N-2 × 1) / 6
 ```
 
 **Example (Sprint 4)**:
+
 ```
 Weighted Avg = (14 × 3) + (12 × 2) + (11 × 1) / 6
              = (42 + 24 + 11) / 6
@@ -124,6 +134,7 @@ Weighted Avg = (14 × 3) + (12 × 2) + (11 × 1) / 6
 ### 3.1 Sprint Planning (Monday)
 
 **Record Commitment**:
+
 1. Open Google Sheets: `Metrics Dashboard → Sprint Summary`
 2. Add new row for current sprint
 3. Record:
@@ -143,17 +154,18 @@ Weighted Avg = (14 × 3) + (12 × 2) + (11 × 1) / 6
 
 Create daily log tracking remaining story points:
 
-| Day | Date | Remaining SP | Notes |
-|-----|------|--------------|-------|
-| Mon | 11/25 | 13 | Sprint start |
-| Tue | 11/26 | 13 | US-010 in progress |
-| Wed | 11/27 | 8 | US-010 done (5 points) |
-| Thu | 11/28 | 5 | US-011 done (3 points) |
-| Fri | 11/29 | 2 | US-012 done (3 points) |
-| Sat | 11/30 | 2 | Weekend break |
-| Sun | 12/01 | 0 | US-013 done (2 points) |
+| Day | Date  | Remaining SP | Notes                  |
+| --- | ----- | ------------ | ---------------------- |
+| Mon | 11/25 | 13           | Sprint start           |
+| Tue | 11/26 | 13           | US-010 in progress     |
+| Wed | 11/27 | 8            | US-010 done (5 points) |
+| Thu | 11/28 | 5            | US-011 done (3 points) |
+| Fri | 11/29 | 2            | US-012 done (3 points) |
+| Sat | 11/30 | 2            | Weekend break          |
+| Sun | 12/01 | 0            | US-013 done (2 points) |
 
 **Burndown Chart**:
+
 ```
 Story Points
  14 |●
@@ -170,6 +182,7 @@ Story Points
 ### 3.3 Sprint Review (Sunday)
 
 **Record Completion**:
+
 1. Open Google Sheets: `Metrics Dashboard → Sprint Summary`
 2. Update current sprint row:
    - **Completed story points** (sum of done stories)
@@ -184,11 +197,13 @@ Story Points
 ### 3.4 Calculate Rolling Average
 
 **After each sprint**:
+
 1. Calculate 3-sprint rolling average
 2. Update "Recommended Capacity" column
 3. Use for next sprint planning
 
 **Formula in Google Sheets**:
+
 ```
 =AVERAGE(E3:E5)  // Average of last 3 velocities
 ```
@@ -201,20 +216,22 @@ Story Points
 
 **Sheet: Sprint Summary**
 
-| A | B | C | D | E | F | G | H |
-|---|---|---|---|---|---|---|---|
-| Sprint | Start Date | End Date | Planned (SP) | Completed (SP) | Velocity | Commitment Reliability | 3-Sprint Avg |
-| Sprint 1 | 2025-10-21 | 2025-10-27 | 13 | 11 | 11 | 85% | 11 |
-| Sprint 2 | 2025-10-28 | 2025-11-03 | 13 | 13 | 13 | 100% | 12 |
-| Sprint 3 | 2025-11-04 | 2025-11-10 | 13 | 12 | 12 | 92% | 12 |
-| Sprint 4 | 2025-11-11 | 2025-11-17 | 13 | 14 | 14 | 108% | 13 |
+| A        | B          | C          | D            | E              | F        | G                      | H            |
+| -------- | ---------- | ---------- | ------------ | -------------- | -------- | ---------------------- | ------------ |
+| Sprint   | Start Date | End Date   | Planned (SP) | Completed (SP) | Velocity | Commitment Reliability | 3-Sprint Avg |
+| Sprint 1 | 2025-10-21 | 2025-10-27 | 13           | 11             | 11       | 85%                    | 11           |
+| Sprint 2 | 2025-10-28 | 2025-11-03 | 13           | 13             | 13       | 100%                   | 12           |
+| Sprint 3 | 2025-11-04 | 2025-11-10 | 13           | 12             | 12       | 92%                    | 12           |
+| Sprint 4 | 2025-11-11 | 2025-11-17 | 13           | 14             | 14       | 108%                   | 13           |
 
 **Column Formulas**:
+
 - **F (Velocity)**: `=E2` (Velocity = Completed SP)
 - **G (Commitment Reliability)**: `=E2/D2*100` (format as percentage)
 - **H (3-Sprint Avg)**: `=AVERAGE(F2:F4)` (average of last 3 velocities)
 
 **Conditional Formatting**:
+
 - **Commitment Reliability**:
   - Green: ≥85%
   - Yellow: 70-84%
@@ -227,6 +244,7 @@ Story Points
 ### 4.2 Velocity Chart
 
 **Line Chart**:
+
 - **X-axis**: Sprint number
 - **Y-axis**: Story points
 - **Series**:
@@ -235,6 +253,7 @@ Story Points
   - 3-Sprint Avg (dashed line)
 
 **Example Chart**:
+
 ```
 Story Points
  16 |                    ●
@@ -249,11 +268,13 @@ Story Points
 ### 4.3 Commitment Reliability Chart
 
 **Bar Chart**:
+
 - **X-axis**: Sprint number
 - **Y-axis**: Percentage (0-120%)
 - **Target line**: 85% (horizontal)
 
 **Example**:
+
 ```
 Percentage
 120%|        ┃
@@ -273,6 +294,7 @@ Percentage
 ### 5.1 Sprint Planning
 
 **Step 1: Review Historical Velocity**
+
 ```
 Sprint 1: 10 points
 Sprint 2: 11 points
@@ -281,12 +303,14 @@ Average: 11 points
 ```
 
 **Step 2: Adjust for Capacity Changes**
+
 - Holidays this sprint? Reduce 20-30%
 - New to team? Reduce 10-20% for learning
 - Technical debt sprint? Reduce 10-15%
 - Stable sprint? Use average velocity
 
 **Step 3: Set Sprint Commitment**
+
 ```
 Base Capacity: 11 points (3-sprint average)
 Adjustment: -2 points (1 day holiday)
@@ -294,6 +318,7 @@ Target Commitment: 9 points
 ```
 
 **Step 4: Select Stories**
+
 - Select stories totaling ~9 points
 - Add buffer story (+2-3 points) as "stretch goal"
 - If finish early, pull in buffer story
@@ -303,11 +328,13 @@ Target Commitment: 9 points
 **How many sprints to complete remaining backlog?**
 
 **Formula**:
+
 ```
 Sprints Needed = Total Remaining Story Points / Average Velocity
 ```
 
 **Example**:
+
 ```
 Remaining MVP Stories: 85 story points
 Average Velocity: 12 points/sprint
@@ -316,6 +343,7 @@ Timeline: 7-8 weeks
 ```
 
 **With Buffer (Recommended)**:
+
 ```
 Sprints with Buffer = Sprints Needed × 1.2 (20% buffer)
                     = 7 × 1.2 = 8.4 ≈ 9 sprints
@@ -327,6 +355,7 @@ Timeline: 9 weeks (conservative estimate)
 **What-If Scenarios**:
 
 **Scenario 1: Velocity Stays Constant**
+
 ```
 Current Velocity: 12 points/sprint
 Remaining Work: 60 points
@@ -335,6 +364,7 @@ Completion Date: December 30, 2025
 ```
 
 **Scenario 2: Velocity Improves 10%**
+
 ```
 Improved Velocity: 12 × 1.1 = 13.2 points/sprint
 Remaining Work: 60 points
@@ -343,6 +373,7 @@ Completion Date: December 23, 2025 (1 week earlier)
 ```
 
 **Scenario 3: Velocity Decreases 10%**
+
 ```
 Decreased Velocity: 12 × 0.9 = 10.8 points/sprint
 Remaining Work: 60 points
@@ -359,18 +390,21 @@ Completion Date: January 6, 2026 (1 week later)
 ### 6.1 Healthy Velocity Patterns
 
 **Pattern 1: Stable Velocity**
+
 ```
 Sprint 1: 10, Sprint 2: 11, Sprint 3: 10, Sprint 4: 11
 Interpretation: ✅ Predictable, good estimation
 ```
 
 **Pattern 2: Gradually Increasing**
+
 ```
 Sprint 1: 8, Sprint 2: 10, Sprint 3: 11, Sprint 4: 12
 Interpretation: ✅ Team learning, improving efficiency
 ```
 
 **Pattern 3: High Commitment Reliability**
+
 ```
 Commitment: 85%, 92%, 90%, 88%
 Interpretation: ✅ Good planning, realistic commitments
@@ -379,6 +413,7 @@ Interpretation: ✅ Good planning, realistic commitments
 ### 6.2 Concerning Velocity Patterns
 
 **Pattern 1: Erratic Velocity**
+
 ```
 Sprint 1: 5, Sprint 2: 15, Sprint 3: 8, Sprint 4: 14
 Interpretation: ⚠️ Inconsistent estimation or unstable stories
@@ -386,6 +421,7 @@ Action: Improve story sizing, review estimation process
 ```
 
 **Pattern 2: Declining Velocity**
+
 ```
 Sprint 1: 14, Sprint 2: 12, Sprint 3: 10, Sprint 4: 8
 Interpretation: ⚠️ Accumulating technical debt, burnout, blockers
@@ -393,6 +429,7 @@ Action: Investigate root cause, address technical debt, reduce WIP
 ```
 
 **Pattern 3: Low Commitment Reliability**
+
 ```
 Commitment: 60%, 65%, 70%, 55%
 Interpretation: ⚠️ Over-committing or underestimating
@@ -400,6 +437,7 @@ Action: Reduce sprint commitment, break stories smaller, buffer capacity
 ```
 
 **Pattern 4: Consistently Over-Delivering**
+
 ```
 Planned: 10, Completed: 15 (150% commitment reliability)
 Interpretation: ⚠️ Stories too small or sandbagging estimates
@@ -409,6 +447,7 @@ Action: Review story sizing, increase commitment
 ### 6.3 Velocity Variance
 
 **Standard Deviation Formula**:
+
 ```
 σ = √[ Σ(x - μ)² / N ]
 
@@ -419,6 +458,7 @@ Where:
 ```
 
 **Example Calculation**:
+
 ```
 Velocities: 10, 11, 12, 11
 Average: 11
@@ -428,6 +468,7 @@ Std Dev: √0.5 = 0.71 points
 ```
 
 **Interpretation**:
+
 - **Low variance (<2 points)**: ✅ Predictable velocity
 - **Medium variance (2-4 points)**: ⚠️ Some inconsistency
 - **High variance (>4 points)**: ⚠️ Unpredictable, investigate root cause
@@ -439,37 +480,45 @@ Std Dev: √0.5 = 0.71 points
 ### 7.1 Internal Factors
 
 **Team Size**:
+
 - Solo developer: 10-15 points/week
 - 2-person team: 20-30 points/week
 - 5-person team: 50-70 points/week
 
 **Experience Level**:
+
 - New to tech stack: Lower initial velocity, ramps up
 - Experienced: Higher stable velocity
 
 **Technical Debt**:
+
 - Low debt: Higher velocity
 - High debt: Lower velocity (more time fixing issues)
 
 **Testing Maturity**:
+
 - Good test automation: Stable velocity
 - Manual testing: Variable velocity
 
 ### 7.2 External Factors
 
 **Holidays & Time Off**:
+
 - 1 day off: -20% velocity
 - 1 week off: -100% velocity (skip sprint or reduce drastically)
 
 **Meetings & Interruptions**:
+
 - High meeting load: -10-20% velocity
 - Context switching: -15-30% velocity
 
 **Unclear Requirements**:
+
 - Many clarification questions: -20-40% velocity
 - Well-defined stories: Higher velocity
 
 **Dependencies & Blockers**:
+
 - External dependencies: Unpredictable velocity
 - Self-contained stories: Stable velocity
 
@@ -477,13 +526,13 @@ Std Dev: √0.5 = 0.71 points
 
 **Sprint Planning Adjustments**:
 
-| Factor | Adjustment | Example |
-|--------|------------|---------|
-| 1 day holiday | -20% | 12 points → 10 points |
-| New technology | -30% | 12 points → 8 points |
-| High technical debt | -15% | 12 points → 10 points |
-| Refactoring sprint | -20% | 12 points → 10 points |
-| Stable sprint | 0% | 12 points → 12 points |
+| Factor              | Adjustment | Example               |
+| ------------------- | ---------- | --------------------- |
+| 1 day holiday       | -20%       | 12 points → 10 points |
+| New technology      | -30%       | 12 points → 8 points  |
+| High technical debt | -15%       | 12 points → 10 points |
+| Refactoring sprint  | -20%       | 12 points → 10 points |
+| Stable sprint       | 0%         | 12 points → 12 points |
 
 ---
 
@@ -492,6 +541,7 @@ Std Dev: √0.5 = 0.71 points
 ### 8.1 How to Improve Velocity (The Right Way)
 
 ✅ **Do**:
+
 - **Improve estimation accuracy**: Better story sizing → less variance
 - **Reduce technical debt**: Cleaner code → faster development
 - **Automate testing**: Faster feedback → less rework
@@ -501,6 +551,7 @@ Std Dev: √0.5 = 0.71 points
 - **Continuous learning**: Skill improvement → efficiency gains
 
 ✅ **Examples**:
+
 - "Added API mocks, reduced E2E test time by 50%, gained 2 hours/sprint"
 - "Refactored UserService, reduced complexity from 15 to 8, velocity increased 10%"
 - "Improved DoR process, zero mid-sprint clarifications, velocity more stable"
@@ -508,6 +559,7 @@ Std Dev: √0.5 = 0.71 points
 ### 8.2 How NOT to Improve Velocity
 
 ❌ **Don't**:
+
 - **Inflate story points**: Makes velocity meaningless
 - **Skip testing**: Short-term gain, long-term pain (technical debt)
 - **Rush work**: Lower quality → more defects → slower velocity later
@@ -516,6 +568,7 @@ Std Dev: √0.5 = 0.71 points
 - **Compare to other teams**: Velocity is team-specific
 
 ❌ **Anti-Patterns**:
+
 - "Let's call this 8 points instead of 5 to boost velocity"
 - "Skip unit tests this sprint to go faster" → Bugs in production, slower next sprint
 - "Work 60 hours this week to finish" → Exhausted next sprint, velocity crashes
@@ -532,6 +585,7 @@ Std Dev: √0.5 = 0.71 points
 6. **Repeat**: Continuous improvement
 
 **Example Improvement Story**:
+
 ```
 Problem: E2E tests take 15 minutes, slowing CI pipeline
 Experiment: Add mocking layer for external APIs
@@ -547,12 +601,14 @@ Decision: Keep mocking layer, expand to more tests
 ### 9.1 Google Sheets (Primary)
 
 **Setup**:
+
 1. Create "Sprint Summary" sheet
 2. Columns: Sprint, Start Date, End Date, Planned SP, Completed SP, Velocity, Commitment Reliability, 3-Sprint Avg
 3. Add formulas for automatic calculation
 4. Create charts: Velocity trend, Commitment reliability
 
 **Benefits**:
+
 - Free, accessible anywhere
 - Easy to share
 - Flexible for custom metrics
@@ -561,12 +617,14 @@ Decision: Keep mocking layer, expand to more tests
 ### 9.2 GitHub Projects (Integrated)
 
 **Setup**:
+
 1. Add custom field: "Story Points" (number)
 2. Add custom field: "Sprint" (text)
 3. Create view: "Sprint X" (filter by sprint)
 4. Sum story points in "Done" column
 
 **Benefits**:
+
 - Integrated with development workflow
 - Automatic lead time / cycle time tracking
 - No manual data entry
@@ -576,6 +634,7 @@ Decision: Keep mocking layer, expand to more tests
 ### 9.3 Jira / Azure DevOps (Future)
 
 **If transitioning to team project**:
+
 - Built-in velocity charts
 - Automatic burndown charts
 - Historical velocity analysis
@@ -586,6 +645,7 @@ Decision: Keep mocking layer, expand to more tests
 ## 10. Velocity Tracking Checklist
 
 **Sprint Planning (Monday)**:
+
 - [ ] Review last 3 sprints' velocity
 - [ ] Calculate 3-sprint average
 - [ ] Adjust for holidays, time off, other factors
@@ -593,10 +653,12 @@ Decision: Keep mocking layer, expand to more tests
 - [ ] Record planned story points in Google Sheets
 
 **During Sprint (Daily)**:
+
 - [ ] (Optional) Update burndown chart
 - [ ] Track remaining story points
 
 **Sprint Review (Sunday)**:
+
 - [ ] Count completed story points
 - [ ] Record completed SP in Google Sheets
 - [ ] Calculate velocity (= completed SP)
@@ -605,6 +667,7 @@ Decision: Keep mocking layer, expand to more tests
 - [ ] Note any anomalies (holidays, blockers, etc.)
 
 **Sprint Retrospective (Sunday)**:
+
 - [ ] Review velocity trend (increasing, stable, decreasing?)
 - [ ] Discuss commitment reliability (<85%? Why?)
 - [ ] Identify factors affecting velocity
@@ -612,6 +675,7 @@ Decision: Keep mocking layer, expand to more tests
 - [ ] Document learnings
 
 **Monthly**:
+
 - [ ] Review velocity over last 4-6 sprints
 - [ ] Calculate velocity variance (standard deviation)
 - [ ] Update release forecast based on current velocity
@@ -651,13 +715,14 @@ A: Investigate root cause: Accumulating technical debt? Burnout? Increased compl
 
 **Version History**:
 
-| Version | Date | Author | Changes |
-|---------|------|--------|---------|
-| 1.0.0 | 2025-10-19 | Antonio Gomez Gallardo | Initial velocity tracking system (Module 02 alignment) |
+| Version | Date       | Author                 | Changes                                                |
+| ------- | ---------- | ---------------------- | ------------------------------------------------------ |
+| 1.0.0   | 2025-10-19 | Antonio Gomez Gallardo | Initial velocity tracking system (Module 02 alignment) |
 
 **Next Review**: After Sprint 4 (enough data to assess tracking effectiveness)
 
 **Related Documents**:
+
 - [Metrics Tracking Plan](10.metrics-tracking-plan.md) - Overall metrics strategy
 - [Sprint Planning Template](templates/sprint-planning-template.md) - How to plan sprints
 - [Sprint Retrospective Template](templates/sprint-retrospective-template.md) - How to review velocity
@@ -665,4 +730,4 @@ A: Investigate root cause: Accumulating technical debt? Burnout? Increased compl
 
 ---
 
-*This velocity tracking system follows Module 02: Agile Planning from the quality-standards documentation, emphasizing predictability, continuous improvement, and sustainable pace.*
+_This velocity tracking system follows Module 02: Agile Planning from the quality-standards documentation, emphasizing predictability, continuous improvement, and sustainable pace._

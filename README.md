@@ -15,6 +15,7 @@ This project follows professional requirements engineering practices aligned wit
 ### 🚀 **START HERE**: [docs/START-HERE.md](docs/START-HERE.md)
 
 **Single entry point** for all WeirdBites documentation with:
+
 - Quick start guide (30 minutes)
 - Role-specific reading paths (Developer, QA, Stakeholder)
 - Module overview and navigation
@@ -22,6 +23,7 @@ This project follows professional requirements engineering practices aligned wit
 - Before-you-code checklist
 
 **Quick paths from START-HERE**:
+
 - **New developers**: 3-hour reading path + Slice 0 setup → Start coding
 - **QA engineers**: 2.5-hour reading path → Start testing
 - **Stakeholders**: 2-hour reading path → Understand scope
@@ -49,6 +51,7 @@ docs/
 **Total**: 18 documents across 6 modules (~15,000 lines)
 
 **Browse by module**:
+
 - [Module 00: Foundations](docs/00-foundations/) - Quality frameworks and models
 - [Module 01: Requirements](docs/01-requirements/) - What we're building
 - [Module 02: Agile Planning](docs/02-agile-planning/) - How we plan and execute
@@ -81,7 +84,7 @@ Each module folder contains a README.md with document list and navigation
 
 - **Node.js** 18+ (we're using v20.18.0)
 - **pnpm** 10+ (we're using v10.16.0)
-- **PostgreSQL** 14+ (or Supabase/Neon account) - *Not yet required in Slice 0*
+- **PostgreSQL** 14+ (or Supabase/Neon account) - _Not yet required in Slice 0_
 - **Git** 2.13+
 
 ### Installation & Setup
@@ -107,6 +110,7 @@ pnpm install
 ```
 
 This installs:
+
 - Next.js 15.5.6
 - React 19.2.0
 - TypeScript 5.9.3
@@ -122,6 +126,7 @@ pnpm dev
 ```
 
 The app will be available at:
+
 - **Local**: [http://localhost:3000](http://localhost:3000)
 - **Network**: http://192.168.x.x:3000
 
@@ -161,12 +166,14 @@ pnpm test:watch   # Run tests in watch mode
 ### Troubleshooting
 
 **Issue**: `pnpm: command not found`
+
 ```bash
 # Install pnpm globally
 npm install -g pnpm
 ```
 
 **Issue**: Port 3000 already in use
+
 ```bash
 # Kill process on port 3000
 # Windows
@@ -178,6 +185,7 @@ lsof -ti:3000 | xargs kill -9
 ```
 
 **Issue**: Module not found errors
+
 ```bash
 # Clear node_modules and reinstall
 rm -rf node_modules pnpm-lock.yaml
@@ -263,6 +271,7 @@ WeirdBites/
 **Phase**: Requirements Engineering (Module 01) - ✅ **COMPLETED**
 
 **Current Phase**: Slice 0 - Project Setup (3-5 days, 17 story points) 🚧 **IN PROGRESS**
+
 - ✅ IS-001: Next.js 15 + TypeScript + Tailwind initialized (2 pts)
 - 🚧 IS-002-IS-009: Pending (15 pts remaining)
 
@@ -271,10 +280,12 @@ WeirdBites/
 ### Completed Deliverables ✅
 
 **Module 00 - Foundations** (2 docs, ~1,450 lines):
+
 - ✅ **Quality Framework** - Scrumban approach, sprint structure, quality policy
 - ✅ **ISO 25010 Quality Mapping** - 8 quality characteristics, 93% coverage
 
 **Module 01 - Requirements** (7 docs, ~4,600 lines):
+
 - ✅ **Business Requirements Document** - Business context, scope, success metrics
 - ✅ **User Personas** - 4 personas (Sarah, Marcus, Emma, Antonio)
 - ✅ **MVP Definition** - MoSCoW prioritization, 7 vertical slices
@@ -284,6 +295,7 @@ WeirdBites/
 - ✅ **Prioritization Rationale** - Weighted scoring, decision rationale
 
 **Module 02 - Agile Planning** (4 docs + 2 templates, ~4,960 lines):
+
 - ✅ **Definition of Ready** - 10-point story readiness checklist
 - ✅ **Sprint Cadence Guide** - Weekly rhythm, ceremonies
 - ✅ **Backlog Refinement Process** - Story refinement, estimation
@@ -292,25 +304,32 @@ WeirdBites/
 - ✅ **Sprint Retrospective Template** - Multiple retrospective formats
 
 **Module 09 - Metrics & Monitoring** (1 doc, ~1,500 lines):
+
 - ✅ **Metrics Tracking Plan** - 8 metrics categories, dashboard design
 
 **Module 12 - Governance** (1 doc, ~1,200 lines):
+
 - ✅ **Change Management Process** - Change request process, impact analysis
 
 **Module 14 - Continuous Improvement** (1 doc, ~1,400 lines):
+
 - ✅ **Testing Maturity Assessment** - Maturity model, roadmap to Level 3
 
 **Design & Wireframes** (~1,300 lines):
+
 - ✅ **Slice 1 Wireframes** - Desktop & mobile wireframes (US-001, US-002, US-003)
 
 **Project Setup** (~1,000 lines):
+
 - ✅ **Project Setup Guide** - Slice 0 infrastructure setup
 
 **Navigation** (~1,000 lines):
+
 - ✅ **START-HERE.md** - Single entry point for all documentation
 - ✅ **Module READMEs** - 6 module overview files
 
 **Configuration**:
+
 - ✅ **Claude Agent Configuration** - QA documentation expert
 
 **Total**: 24 files (~15,000+ lines) organized in 6 modules + design + setup
@@ -318,17 +337,20 @@ WeirdBites/
 ### Metrics Targets (From NFRs)
 
 **Performance**:
+
 - Page Load (LCP): < 2.5s
 - API Response (p95): < 500ms
 - Lighthouse: > 90
 
 **Quality**:
+
 - Code Coverage: > 80%
 - Test Pyramid: 70% unit, 20% integration, 10% E2E
 - WCAG 2.1 Level AA compliance
 - Zero critical/high security vulnerabilities
 
 **DevOps** (DORA):
+
 - Deployment Frequency: Daily (target)
 - Lead Time: < 1 day
 - MTTR: < 4 hours
@@ -347,16 +369,16 @@ This project follows a Git Flow-inspired branching strategy:
 
 ## Development Phases (Vertical Slices)
 
-| Slice | Name | Duration | Story Points | Status |
-|-------|------|----------|--------------|--------|
-| 0 | **Project Setup** (Infrastructure) | 3-5 days | 17 | 🚧 **In Progress** (1/9 stories) |
-| 1 | Browse Products | 2 weeks | 13 | ⏳ Planned |
-| 2 | Shopping Cart | 1 week | 13 | ⏳ Planned |
-| 3 | Guest Checkout | 2 weeks | 19 | ⏳ Planned |
-| 4 | User Accounts | 1 week | 16 | ⏳ Planned |
-| 5 | Registered Checkout & History | 1 week | 11 | ⏳ Planned |
-| 6 | Search & Reviews | 1 week | 13 | ⏳ Planned |
-| 7 | Admin Panel | 2 weeks | 50 | ⏳ Planned |
+| Slice | Name                               | Duration | Story Points | Status                           |
+| ----- | ---------------------------------- | -------- | ------------ | -------------------------------- |
+| 0     | **Project Setup** (Infrastructure) | 3-5 days | 17           | 🚧 **In Progress** (1/9 stories) |
+| 1     | Browse Products                    | 2 weeks  | 13           | ⏳ Planned                       |
+| 2     | Shopping Cart                      | 1 week   | 13           | ⏳ Planned                       |
+| 3     | Guest Checkout                     | 2 weeks  | 19           | ⏳ Planned                       |
+| 4     | User Accounts                      | 1 week   | 16           | ⏳ Planned                       |
+| 5     | Registered Checkout & History      | 1 week   | 11           | ⏳ Planned                       |
+| 6     | Search & Reviews                   | 1 week   | 13           | ⏳ Planned                       |
+| 7     | Admin Panel                        | 2 weeks  | 50           | ⏳ Planned                       |
 
 **Total**: 11-13 weeks | 150 story points
 
@@ -388,4 +410,4 @@ TBD
 
 ---
 
-*Built with ❤️ following professional SDLC/STLC best practices*
+_Built with ❤️ following professional SDLC/STLC best practices_

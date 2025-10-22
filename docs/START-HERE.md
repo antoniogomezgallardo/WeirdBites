@@ -115,6 +115,7 @@ docs/
 6. **[Wireframes](design/wireframes/slice-1-wireframes.md)** (15 min) - UI mockups
 
 **Optional**:
+
 - [Non-Functional Requirements](01-requirements/non-functional-requirements.md) - Quality targets
 - [ISO 25010 Quality Mapping](00-foundations/iso-25010-mapping.md) - Quality coverage
 
@@ -125,41 +126,49 @@ docs/
 Click on any module to see detailed README and document list:
 
 ### [00-Foundations](00-foundations/)
+
 **What**: Quality frameworks and models
 **Docs**: Quality Framework, ISO 25010 Mapping (2 docs)
 **Read When**: Understanding our quality approach
 
 ### [01-Requirements](01-requirements/)
+
 **What**: Business context, user needs, functional requirements
 **Docs**: BRD, Personas, MVP Definition, NFRs, Product Backlog, Vertical Slices, Prioritization (7 docs)
 **Read When**: Understanding what we're building and why
 
 ### [02-Agile Planning](02-agile-planning/)
+
 **What**: Agile practices, sprint planning, estimation
 **Docs**: Definition of Ready, Sprint Cadence, Backlog Refinement, Velocity Tracking + 2 templates (6 docs)
 **Read When**: Planning sprints and managing backlog
 
 ### [09-Metrics & Monitoring](09-metrics-monitoring/)
+
 **What**: Metrics collection and dashboards
 **Docs**: Metrics Tracking Plan (1 doc)
 **Read When**: Setting up metrics or reviewing quality
 
 ### [12-Governance](12-governance/)
+
 **What**: Change management and governance
 **Docs**: Change Management Process (1 doc)
 **Read When**: Handling requirement changes
 
 ### [14-Continuous Improvement](14-continuous-improvement/)
+
 **What**: Maturity models and improvement processes
 **Docs**: Testing Maturity Assessment (1 doc)
 **Read When**: Planning testing strategy
 
 ### [Design](design/wireframes/)
+
 **What**: UI wireframes and design specifications
 **Docs**: Slice 1 Wireframes (1 doc, more coming)
 **Read When**: Implementing UI components
 
 ### [Setup](setup/)
+
 **What**: Project infrastructure setup
 **Docs**: Project Setup (Slice 0) (1 doc)
 **Read When**: Before coding (Day 1)
@@ -169,6 +178,7 @@ Click on any module to see detailed README and document list:
 ## ✅ Before You Start Coding Checklist
 
 ### Documentation ☑️
+
 - [ ] You understand the project purpose (educational QA portfolio)
 - [ ] You know what we're building (e-commerce for weird snacks)
 - [ ] You know the MVP scope (35 Must Have user stories)
@@ -176,6 +186,7 @@ Click on any module to see detailed README and document list:
 - [ ] You know Deployment Increment 1 is "Browse Products" (2 weeks, 13 points from split stories)
 
 ### Environment ☑️
+
 - [ ] Repository cloned with submodules
 - [ ] Node.js, pnpm, PostgreSQL installed
 - [ ] Next.js project initialized
@@ -185,6 +196,7 @@ Click on any module to see detailed README and document list:
 - [ ] App deployed to Vercel
 
 ### Knowledge ☑️
+
 - [ ] You know where to find user stories (01-requirements/product-backlog.md)
 - [ ] You know what "ready" means (02-agile-planning/definition-of-ready.md)
 - [ ] You know the tech stack (Next.js, TypeScript, PostgreSQL, Prisma)
@@ -197,11 +209,13 @@ Click on any module to see detailed README and document list:
 ## 📖 Key Concepts Explained
 
 ### What is a BRD (Business Requirements Document)?
+
 A BRD captures the **business context** for why we're building this project (goals, stakeholders, scope, constraints, success metrics).
 
 **See**: [01-requirements/business-requirements.md](01-requirements/business-requirements.md)
 
 ### What are User Personas?
+
 Fictional but realistic representations of target users with demographics, goals, behaviors, and pain points.
 
 **WeirdBites has 4 personas**: Sarah (Curious Snacker), Marcus (Gift Giver), Emma (Food Blogger), Antonio (Admin)
@@ -209,6 +223,7 @@ Fictional but realistic representations of target users with demographics, goals
 **See**: [01-requirements/personas.md](01-requirements/personas.md)
 
 ### What is an MVP (Minimum Viable Product)?
+
 The simplest version of the product that delivers core value and can be released.
 
 **WeirdBites MVP**: 35 Must Have user stories across 7 vertical slices
@@ -216,6 +231,7 @@ The simplest version of the product that delivers core value and can be released
 **See**: [01-requirements/mvp-definition.md](01-requirements/mvp-definition.md)
 
 ### What are Vertical Slices?
+
 Thin, end-to-end increments created by **splitting user stories** across all architectural layers (UI → API → Database) to deliver working functionality incrementally.
 
 **WeirdBites has 7 deployment increments** composed of vertical slices derived from 35+ user stories.
@@ -223,6 +239,7 @@ Thin, end-to-end increments created by **splitting user stories** across all arc
 **See**: [01-requirements/vertical-slices.md](01-requirements/vertical-slices.md)
 
 ### Vertical Slices vs User Stories?
+
 **Key Relationship**: User Stories are **split into** Vertical Slices
 
 - **User Story** = A feature requirement that describes user value (1-8 story points)
@@ -230,6 +247,7 @@ Thin, end-to-end increments created by **splitting user stories** across all arc
 - **Deployment Increment** = A collection of vertical slices (from multiple split stories) delivered together (10-20 points)
 
 **Example**:
+
 - ✅ Correct: "US-001 (Browse Products) is split into vertical slices for listing, filtering, and pagination"
 - ❌ Incorrect: "Deployment Increment 1 contains US-001, US-002, US-003"
 
@@ -240,6 +258,7 @@ Both slices and stories cross all layers, but slices are the result of splitting
 ## 🔍 Finding What You Need
 
 **Looking for...**
+
 - **A specific feature**: Check [01-requirements/product-backlog.md](01-requirements/product-backlog.md)
 - **Sprint planning help**: Check [02-agile-planning/sprint-cadence.md](02-agile-planning/sprint-cadence.md)
 - **Quality standards**: Check [00-foundations/quality-framework.md](00-foundations/quality-framework.md)
@@ -269,6 +288,7 @@ Optional: Read other docs as needed during development.
 ### Q: Where are the templates?
 
 **A**: Sprint templates in [02-agile-planning/templates/](02-agile-planning/templates/)
+
 - sprint-planning.md
 - sprint-retrospective.md
 
@@ -289,16 +309,16 @@ Optional: Read other docs as needed during development.
 
 ## 🎯 Development Phases
 
-| Slice | Name | Duration | Story Points | Status |
-|-------|------|----------|--------------|--------|
-| 0 | **Project Setup** (Infrastructure) | 3-5 days | 17 (9 stories) | 📋 Ready |
-| 1 | Browse Products | 2 weeks | 13 | ⏳ Planned |
-| 2 | Shopping Cart | 1 week | 13 | ⏳ Planned |
-| 3 | Guest Checkout | 2 weeks | 19 | ⏳ Planned |
-| 4 | User Accounts | 1 week | 16 | ⏳ Planned |
-| 5 | Registered Checkout & History | 1 week | 11 | ⏳ Planned |
-| 6 | Search & Reviews | 1 week | 13 | ⏳ Planned |
-| 7 | Admin Panel | 2 weeks | 50 | ⏳ Planned |
+| Slice | Name                               | Duration | Story Points   | Status     |
+| ----- | ---------------------------------- | -------- | -------------- | ---------- |
+| 0     | **Project Setup** (Infrastructure) | 3-5 days | 17 (9 stories) | 📋 Ready   |
+| 1     | Browse Products                    | 2 weeks  | 13             | ⏳ Planned |
+| 2     | Shopping Cart                      | 1 week   | 13             | ⏳ Planned |
+| 3     | Guest Checkout                     | 2 weeks  | 19             | ⏳ Planned |
+| 4     | User Accounts                      | 1 week   | 16             | ⏳ Planned |
+| 5     | Registered Checkout & History      | 1 week   | 11             | ⏳ Planned |
+| 6     | Search & Reviews                   | 1 week   | 13             | ⏳ Planned |
+| 7     | Admin Panel                        | 2 weeks  | 50             | ⏳ Planned |
 
 **Total**: 11-13 weeks | 150 story points
 
@@ -307,6 +327,7 @@ Optional: Read other docs as needed during development.
 ## 📞 Getting Help
 
 **Stuck?**
+
 1. Check the relevant module README (e.g., [01-requirements/README.md](01-requirements/README.md))
 2. Check [../README.md](../README.md) for troubleshooting
 3. Review [CLAUDE.md](../CLAUDE.md) for project context
@@ -331,19 +352,20 @@ Optional: Read other docs as needed during development.
 
 **Version History**:
 
-| Version | Date | Author | Changes |
-|---------|------|--------|---------|
-| 2.0.0 | 2025-10-19 | Antonio Gomez Gallardo | Created from merger of documentation-guide.md + project-kickoff-checklist.md with updated module structure |
-| 1.1.0 | 2025-10-19 | Antonio Gomez Gallardo | Previous: documentation-guide.md updated |
-| 1.0.0 | 2025-10-19 | Antonio Gomez Gallardo | Previous: Initial documentation-guide.md |
+| Version | Date       | Author                 | Changes                                                                                                    |
+| ------- | ---------- | ---------------------- | ---------------------------------------------------------------------------------------------------------- |
+| 2.0.0   | 2025-10-19 | Antonio Gomez Gallardo | Created from merger of documentation-guide.md + project-kickoff-checklist.md with updated module structure |
+| 1.1.0   | 2025-10-19 | Antonio Gomez Gallardo | Previous: documentation-guide.md updated                                                                   |
+| 1.0.0   | 2025-10-19 | Antonio Gomez Gallardo | Previous: Initial documentation-guide.md                                                                   |
 
 **Related Documents**:
+
 - [../README.md](../README.md) - Project overview
 - [../CLAUDE.md](../CLAUDE.md) - Project phases and quality commitments
 - All module READMEs in their respective folders
 
 ---
 
-*Welcome to WeirdBites! Let's build something amazing together.* ✨
+_Welcome to WeirdBites! Let's build something amazing together._ ✨
 
 **Remember**: Quality over speed. We're learning, not racing. 📚🎯

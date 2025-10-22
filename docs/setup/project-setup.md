@@ -14,6 +14,7 @@
 ### What is Slice 0?
 
 **Slice 0** is the "setup sprint" or "sprint zero" that establishes:
+
 - Development environment
 - Repository structure
 - Technology stack configuration
@@ -34,20 +35,22 @@
 
 ### User Stories vs Enabler Stories
 
-| Type | Purpose | Example | In Backlog? |
-|------|---------|---------|-------------|
-| **User Story** | Deliver user value directly | "Browse products" | ✅ YES (Product Backlog) |
-| **Enabler Story** | Enable future features | "Set up database" | ❌ NO (Project Setup doc) |
-| **Technical Debt** | Fix technical issues | "Refactor cart logic" | ✅ YES (as tech story) |
-| **Spike** | Research/investigation | "Evaluate payment APIs" | ✅ YES (time-boxed) |
+| Type               | Purpose                     | Example                 | In Backlog?               |
+| ------------------ | --------------------------- | ----------------------- | ------------------------- |
+| **User Story**     | Deliver user value directly | "Browse products"       | ✅ YES (Product Backlog)  |
+| **Enabler Story**  | Enable future features      | "Set up database"       | ❌ NO (Project Setup doc) |
+| **Technical Debt** | Fix technical issues        | "Refactor cart logic"   | ✅ YES (as tech story)    |
+| **Spike**          | Research/investigation      | "Evaluate payment APIs" | ✅ YES (time-boxed)       |
 
 **Enabler stories** are infrastructure prerequisites that:
+
 - Don't deliver direct user value (yet)
 - Enable ALL future features
 - Are done once (foundation work)
 - Not iterated on (setup, then build)
 
 **Real-world analogy**:
+
 - **Backlog**: Rooms in a house (bedroom, kitchen)
 - **Slice 0**: Foundation, plumbing, electrical
 
@@ -60,16 +63,19 @@ You need both, but they're different types of work!
 **Slice 0** (also called "Sprint Zero" or "Iteration 0") is the infrastructure setup phase that establishes the foundation for all future development.
 
 **Key Differences**:
+
 - **Slice 0** = Infrastructure setup (IS-001 through IS-009)
 - **Slices 1-7** = User-facing features (derived from splitting user stories US-001+)
 
 **Stories in Slice 0**:
+
 - **IS-001 through IS-009** = **I**nfrastructure **S**tories
 - NOT user stories (US-XXX) - these don't deliver direct user value
 - NOT derived from user requirements - these enable user requirements
 - Enable ALL future user stories by providing development infrastructure
 
 **Why "Slice 0"?**
+
 - It's a deployable increment (crosses all layers: repo → CI/CD → deployment)
 - It's independently testable (tests run, deployment works, health checks pass)
 - It delivers value (infrastructure for future features)
@@ -96,6 +102,7 @@ You need both, but they're different types of work!
 **Acceptance Criteria**:
 
 **Scenario 1**: Project initialized successfully
+
 ```gherkin
 Given I have Node.js 18+ and pnpm installed
 When I initialize the Next.js project
@@ -106,6 +113,7 @@ And I see the default Next.js welcome page
 ```
 
 **Scenario 2**: Project structure follows best practices
+
 ```gherkin
 Given the Next.js project is initialized
 When I review the project structure
@@ -119,6 +127,7 @@ Then I see:
 ```
 
 **Technical Approach**:
+
 ```bash
 # Create Next.js project with TypeScript
 pnpm create next-app@latest weirdbites --typescript --tailwind --eslint --app --src-dir
@@ -131,6 +140,7 @@ npx create-next-app@latest
 **Configuration**:
 
 `tsconfig.json` (strict mode):
+
 ```json
 {
   "compilerOptions": {
@@ -156,6 +166,7 @@ npx create-next-app@latest
 ```
 
 **Definition of Done**:
+
 - [ ] Next.js 14+ installed
 - [ ] TypeScript strict mode enabled
 - [ ] App runs on localhost:3000
@@ -178,6 +189,7 @@ npx create-next-app@latest
 **Acceptance Criteria**:
 
 **Scenario 1**: ESLint catches code quality issues
+
 ```gherkin
 Given ESLint is configured
 When I run "pnpm lint"
@@ -189,6 +201,7 @@ And no errors if code follows rules
 ```
 
 **Scenario 2**: Prettier formats code automatically
+
 ```gherkin
 Given Prettier is configured
 When I run "pnpm format"
@@ -199,19 +212,17 @@ And I can run "pnpm format:check" to verify formatting
 **Technical Approach**:
 
 Install dependencies:
+
 ```bash
 pnpm add -D prettier eslint-config-prettier eslint-plugin-prettier
 pnpm add -D @typescript-eslint/eslint-plugin @typescript-eslint/parser
 ```
 
 `.eslintrc.json`:
+
 ```json
 {
-  "extends": [
-    "next/core-web-vitals",
-    "plugin:@typescript-eslint/recommended",
-    "prettier"
-  ],
+  "extends": ["next/core-web-vitals", "plugin:@typescript-eslint/recommended", "prettier"],
   "rules": {
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-explicit-any": "warn",
@@ -221,6 +232,7 @@ pnpm add -D @typescript-eslint/eslint-plugin @typescript-eslint/parser
 ```
 
 `.prettierrc`:
+
 ```json
 {
   "semi": true,
@@ -233,6 +245,7 @@ pnpm add -D @typescript-eslint/eslint-plugin @typescript-eslint/parser
 ```
 
 `package.json` scripts:
+
 ```json
 {
   "scripts": {
@@ -245,6 +258,7 @@ pnpm add -D @typescript-eslint/eslint-plugin @typescript-eslint/parser
 ```
 
 **Definition of Done**:
+
 - [ ] ESLint configured
 - [ ] Prettier configured
 - [ ] Scripts added to package.json
@@ -267,6 +281,7 @@ pnpm add -D @typescript-eslint/eslint-plugin @typescript-eslint/parser
 **Acceptance Criteria**:
 
 **Scenario 1**: Database connection works
+
 ```gherkin
 Given PostgreSQL database is running
 And Prisma is configured
@@ -277,6 +292,7 @@ And I see tables in the database
 ```
 
 **Scenario 2**: Prisma Client is available
+
 ```gherkin
 Given Prisma is configured
 When I generate Prisma Client
@@ -287,6 +303,7 @@ And TypeScript types are available for all models
 **Technical Approach**:
 
 **Option 1: Supabase (Recommended for Free Tier)**
+
 ```bash
 # 1. Sign up at https://supabase.com
 # 2. Create new project
@@ -295,6 +312,7 @@ And TypeScript types are available for all models
 ```
 
 **Option 2: Neon (Alternative Free Tier)**
+
 ```bash
 # 1. Sign up at https://neon.tech
 # 2. Create project
@@ -302,6 +320,7 @@ And TypeScript types are available for all models
 ```
 
 **Option 3: Local PostgreSQL**
+
 ```bash
 # Install PostgreSQL locally (development only)
 brew install postgresql  # macOS
@@ -310,6 +329,7 @@ sudo apt-get install postgresql  # Linux
 ```
 
 Install Prisma:
+
 ```bash
 pnpm add prisma @prisma/client
 pnpm add -D prisma
@@ -317,6 +337,7 @@ npx prisma init
 ```
 
 `.env.local` (never commit this!):
+
 ```env
 # Database
 DATABASE_URL="postgresql://user:password@host:5432/weirdbites?schema=public"
@@ -326,6 +347,7 @@ DATABASE_URL="postgresql://user:password@host:5432/weirdbites?schema=public"
 ```
 
 Initial `prisma/schema.prisma`:
+
 ```prisma
 generator client {
   provider = "prisma-client-js"
@@ -356,12 +378,14 @@ model Product {
 ```
 
 Generate client and push schema:
+
 ```bash
 pnpm prisma generate
 pnpm prisma db push
 ```
 
 Create Prisma client singleton (`src/lib/prisma.ts`):
+
 ```typescript
 import { PrismaClient } from '@prisma/client';
 
@@ -379,6 +403,7 @@ if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
 ```
 
 **Definition of Done**:
+
 - [ ] PostgreSQL database created (Supabase/Neon/Local)
 - [ ] Prisma configured
 - [ ] Initial schema created (Product model)
@@ -403,6 +428,7 @@ if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
 **Acceptance Criteria**:
 
 **Scenario 1**: API Routes folder structure exists
+
 ```gherkin
 Given the Next.js project is initialized
 When I review the project structure
@@ -414,6 +440,7 @@ Then I see:
 ```
 
 **Scenario 2**: Health check endpoint works
+
 ```gherkin
 Given the API routes structure is created
 When I run the dev server
@@ -423,6 +450,7 @@ And the response has status 200
 ```
 
 **Scenario 3**: Database integration example works
+
 ```gherkin
 Given Prisma is configured
 When the health check endpoint queries the database
@@ -432,6 +460,7 @@ And TypeScript types are correct
 ```
 
 **Scenario 4**: API testing setup works
+
 ```gherkin
 Given Jest is configured
 When I create an integration test for /api/health
@@ -446,6 +475,7 @@ And all tests pass
 1. **Create API health check endpoint**:
 
 `src/app/api/health/route.ts`:
+
 ```typescript
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
@@ -460,14 +490,14 @@ export async function GET() {
       message: 'API and database working',
       timestamp: new Date().toISOString(),
       database: 'connected',
-      environment: process.env.NODE_ENV
+      environment: process.env.NODE_ENV,
     });
   } catch (error) {
     return NextResponse.json(
       {
         status: 'error',
         message: 'Database connection failed',
-        error: error instanceof Error ? error.message : 'Unknown error'
+        error: error instanceof Error ? error.message : 'Unknown error',
       },
       { status: 500 }
     );
@@ -480,6 +510,7 @@ export async function GET() {
 2. **Create API utilities**:
 
 `src/lib/api/response.ts`:
+
 ```typescript
 import { NextResponse } from 'next/server';
 
@@ -491,7 +522,7 @@ export function apiError(message: string, status = 500, details?: unknown) {
   return NextResponse.json(
     {
       error: message,
-      ...(details && { details })
+      ...(details && { details }),
     },
     { status }
   );
@@ -501,7 +532,7 @@ export function apiValidationError(errors: Record<string, string[]>) {
   return NextResponse.json(
     {
       error: 'Validation failed',
-      errors
+      errors,
     },
     { status: 400 }
   );
@@ -511,6 +542,7 @@ export function apiValidationError(errors: Record<string, string[]>) {
 3. **Create API types**:
 
 `src/types/api.ts`:
+
 ```typescript
 export interface ApiResponse<T = unknown> {
   data?: T;
@@ -545,6 +577,7 @@ export interface HealthCheckResponse {
 4. **Create integration test example**:
 
 `src/app/api/health/route.test.ts`:
+
 ```typescript
 /**
  * @jest-environment node
@@ -579,6 +612,7 @@ describe('GET /api/health', () => {
 ```
 
 5. **Update package.json scripts**:
+
 ```json
 {
   "scripts": {
@@ -591,6 +625,7 @@ describe('GET /api/health', () => {
 ```
 
 **Definition of Done**:
+
 - [ ] src/app/api/ structure created
 - [ ] Health check endpoint implemented (GET /api/health)
 - [ ] Database connection test in API endpoint
@@ -615,6 +650,7 @@ describe('GET /api/health', () => {
 **Acceptance Criteria**:
 
 **Scenario 1**: Unit tests run successfully
+
 ```gherkin
 Given Jest and React Testing Library are configured
 When I run "pnpm test"
@@ -624,6 +660,7 @@ And example test passes
 ```
 
 **Scenario 2**: E2E tests run successfully
+
 ```gherkin
 Given Playwright is configured
 When I run "pnpm test:e2e"
@@ -633,6 +670,7 @@ And example E2E test passes
 ```
 
 **Scenario 3**: Coverage reports generated
+
 ```gherkin
 Given tests are configured
 When I run "pnpm test:coverage"
@@ -644,12 +682,14 @@ And HTML report is available
 **Technical Approach**:
 
 **Install Jest and React Testing Library**:
+
 ```bash
 pnpm add -D jest jest-environment-jsdom @testing-library/react @testing-library/jest-dom @testing-library/user-event
 pnpm add -D @types/jest ts-node
 ```
 
 `jest.config.js`:
+
 ```javascript
 const nextJest = require('next/jest');
 
@@ -683,17 +723,20 @@ module.exports = createJestConfig(customJestConfig);
 ```
 
 `jest.setup.js`:
+
 ```javascript
 import '@testing-library/jest-dom';
 ```
 
 **Install Playwright**:
+
 ```bash
 pnpm create playwright
 # Options: TypeScript: Yes, tests folder: e2e, GitHub Actions: Yes
 ```
 
 `playwright.config.ts`:
+
 ```typescript
 import { defineConfig, devices } from '@playwright/test';
 
@@ -727,11 +770,13 @@ export default defineConfig({
 ```
 
 **Install axe-core for accessibility testing**:
+
 ```bash
 pnpm add -D @axe-core/playwright
 ```
 
 `package.json` scripts:
+
 ```json
 {
   "scripts": {
@@ -748,6 +793,7 @@ pnpm add -D @axe-core/playwright
 Create example tests:
 
 `src/components/__tests__/Example.test.tsx`:
+
 ```typescript
 import { render, screen } from '@testing-library/react';
 import Example from '../Example';
@@ -761,6 +807,7 @@ describe('Example Component', () => {
 ```
 
 `e2e/example.spec.ts`:
+
 ```typescript
 import { test, expect } from '@playwright/test';
 
@@ -771,6 +818,7 @@ test('homepage loads', async ({ page }) => {
 ```
 
 **Definition of Done**:
+
 - [ ] Jest configured
 - [ ] React Testing Library configured
 - [ ] Playwright configured
@@ -795,6 +843,7 @@ test('homepage loads', async ({ page }) => {
 **Acceptance Criteria**:
 
 **Scenario 1**: CI runs on pull requests
+
 ```gherkin
 Given GitHub Actions is configured
 When I create a pull request
@@ -807,6 +856,7 @@ And PR cannot merge if CI fails
 ```
 
 **Scenario 2**: CD deploys to staging on merge to staging
+
 ```gherkin
 Given GitHub Actions is configured
 When I merge to staging branch
@@ -817,6 +867,7 @@ And I can test before promoting to production
 ```
 
 **Scenario 3**: CD deploys to production on merge to main
+
 ```gherkin
 Given staging tests have passed
 When I merge to main branch
@@ -828,6 +879,7 @@ And app is deployed to production environment
 **Technical Approach**:
 
 **Git Branching Strategy**:
+
 ```
 main (production)
   ↑
@@ -841,6 +893,7 @@ feature/* (development)
 ```
 
 **Deployment Flow**:
+
 1. Develop in `feature/*` branch
 2. Create PR to `staging` branch → CI runs, deploys to staging on merge
 3. Test on staging environment (weirdbites-staging.vercel.app)
@@ -848,12 +901,14 @@ feature/* (development)
 5. Production live at weirdbites.vercel.app
 
 **Why this approach?**:
+
 - Staging mirrors production exactly (same build, same config)
 - Catch issues before they reach production
 - Separate databases prevent production data corruption
 - Can demo features to stakeholders on staging before launch
 
 Create `.github/workflows/ci.yml`:
+
 ```yaml
 name: CI
 
@@ -938,6 +993,7 @@ jobs:
 ```
 
 Create `.github/workflows/deploy.yml` (Vercel):
+
 ```yaml
 name: Deploy to Vercel
 
@@ -958,7 +1014,7 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          vercel-args: '--prod'  # Deploy to staging environment
+          vercel-args: '--prod' # Deploy to staging environment
 
       - name: Deploy to Production
         if: github.ref == 'refs/heads/main'
@@ -967,12 +1023,13 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          vercel-args: '--prod'  # Deploy to production environment
+          vercel-args: '--prod' # Deploy to production environment
 ```
 
 **Note**: Vercel automatically differentiates environments based on the branch. The `staging` branch will deploy to the staging environment, and `main` will deploy to production.
 
 **Branch Protection Rules** (GitHub Settings):
+
 - Require pull request before merging
 - Require status checks to pass:
   - Lint
@@ -983,6 +1040,7 @@ jobs:
 - Do not allow force pushes
 
 **Definition of Done**:
+
 - [ ] CI workflow configured
 - [ ] CD workflow configured
 - [ ] Branch protection rules enabled
@@ -1005,6 +1063,7 @@ jobs:
 **Acceptance Criteria**:
 
 **Scenario 1**: App deployed to Vercel
+
 ```gherkin
 Given Vercel is configured
 When I push to main branch
@@ -1014,6 +1073,7 @@ And I can access the app at weirdbites.vercel.app
 ```
 
 **Scenario 2**: Environment variables configured for all environments
+
 ```gherkin
 Given environment variables are set in Vercel
 When the app deploys to production
@@ -1023,6 +1083,7 @@ And no secrets are exposed in client-side code
 ```
 
 **Scenario 3**: Staging environment mirrors production
+
 ```gherkin
 Given staging branch is configured
 When I push to staging branch
@@ -1034,6 +1095,7 @@ And I can test features before production deployment
 **Technical Approach**:
 
 **Vercel Setup**:
+
 1. Sign up at https://vercel.com (free tier)
 2. Import GitHub repository
 3. Configure project settings:
@@ -1068,12 +1130,14 @@ NODE_ENV=production
 ```
 
 **Note**: You'll need **two separate databases**:
+
 - Production database (only main branch)
 - Staging database (staging branch + PR previews)
 
 This ensures production data is never affected by testing.
 
 **Vercel Configuration** (`vercel.json`):
+
 ```json
 {
   "buildCommand": "pnpm build",
@@ -1085,6 +1149,7 @@ This ensures production data is never affected by testing.
 ```
 
 **Next.js Configuration** (`next.config.js`):
+
 ```javascript
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -1101,6 +1166,7 @@ module.exports = nextConfig;
 ```
 
 **Definition of Done**:
+
 - [ ] Vercel account created
 - [ ] Repository imported to Vercel
 - [ ] **Staging branch created** (`staging`)
@@ -1128,6 +1194,7 @@ module.exports = nextConfig;
 **Acceptance Criteria**:
 
 **Scenario 1**: README has complete setup instructions
+
 ```gherkin
 Given I'm a new developer
 When I read the README
@@ -1138,6 +1205,7 @@ And common issues are addressed
 ```
 
 **Scenario 2**: New developer can set up project
+
 ```gherkin
 Given I follow README instructions
 When I complete all setup steps
@@ -1149,7 +1217,8 @@ And I can make my first commit
 **Technical Approach**:
 
 Update `README.md`:
-```markdown
+
+````markdown
 # WeirdBites
 
 > E-commerce platform for unusual snacks
@@ -1170,6 +1239,7 @@ Update `README.md`:
 git clone --recurse-submodules https://github.com/antoniogomezgallardo/WeirdBites.git
 cd WeirdBites
 ```
+````
 
 ### 2. Install Dependencies
 
@@ -1180,6 +1250,7 @@ pnpm install
 ### 3. Set Up Environment Variables
 
 Create `.env.local`:
+
 ```env
 DATABASE_URL="postgresql://user:password@localhost:5432/weirdbites"
 NEXT_PUBLIC_APP_URL="http://localhost:3000"
@@ -1219,12 +1290,15 @@ pnpm test:coverage
 ## Common Issues
 
 ### "Module not found" errors
+
 Run: `pnpm install`
 
 ### Database connection fails
+
 Check DATABASE_URL in .env.local
 
 ### Tests fail
+
 Ensure test database is running
 
 ## Project Structure
@@ -1248,7 +1322,8 @@ weirdbites/
 - `pnpm lint` - Run ESLint
 - `pnpm test` - Run unit tests
 - `pnpm test:e2e` - Run E2E tests
-```
+
+````
 
 Create `CONTRIBUTING.md`:
 ```markdown
@@ -1264,7 +1339,8 @@ Create `CONTRIBUTING.md`:
    pnpm lint
    pnpm test
    pnpm test:e2e
-   ```
+````
+
 5. Create pull request
 6. Wait for CI to pass
 7. Get code review
@@ -1281,13 +1357,15 @@ Create `CONTRIBUTING.md`:
 ## Commit Messages
 
 Follow conventional commits:
+
 ```
 feat(auth): add user registration
 fix(cart): resolve quantity update bug
 docs(readme): update setup instructions
 test(checkout): add E2E tests
 ```
-```
+
+````
 
 **Definition of Done**:
 - [ ] README.md updated with setup instructions
@@ -1318,9 +1396,10 @@ When an error occurs in production
 Then error is captured and logged
 And I receive notification
 And stack trace is available
-```
+````
 
 **Scenario 2**: Basic analytics tracking
+
 ```gherkin
 Given analytics is configured
 When users visit the site
@@ -1331,17 +1410,20 @@ And performance metrics are collected
 **Technical Approach** (Optional for Slice 0):
 
 **Option 1: Sentry (Error Tracking)**
+
 ```bash
 pnpm add @sentry/nextjs
 npx @sentry/wizard@latest -i nextjs
 ```
 
 **Option 2: Vercel Analytics (Built-in)**
+
 ```bash
 pnpm add @vercel/analytics
 ```
 
 Add to `src/app/layout.tsx`:
+
 ```typescript
 import { Analytics } from '@vercel/analytics/react';
 
@@ -1358,11 +1440,13 @@ export default function RootLayout({ children }) {
 ```
 
 **Option 3: LogRocket (Session Replay)**
+
 ```bash
 pnpm add logrocket
 ```
 
 **Definition of Done**:
+
 - [ ] Error tracking configured (Sentry or alternative)
 - [ ] Analytics configured (Vercel Analytics)
 - [ ] Errors logged in production
@@ -1376,6 +1460,7 @@ pnpm add logrocket
 Before starting Slice 1, verify ALL of the following:
 
 ### Development Environment
+
 - [ ] Next.js 14+ project initialized
 - [ ] TypeScript strict mode enabled
 - [ ] ESLint and Prettier configured
@@ -1383,6 +1468,7 @@ Before starting Slice 1, verify ALL of the following:
 - [ ] `pnpm dev` starts app on localhost:3000
 
 ### Database
+
 - [ ] PostgreSQL database created (Supabase/Neon/Local)
 - [ ] Prisma configured and connected
 - [ ] Initial schema created (Product model)
@@ -1390,6 +1476,7 @@ Before starting Slice 1, verify ALL of the following:
 - [ ] Test data seeded (optional)
 
 ### Testing
+
 - [ ] Jest configured
 - [ ] React Testing Library configured
 - [ ] Playwright configured
@@ -1399,6 +1486,7 @@ Before starting Slice 1, verify ALL of the following:
 - [ ] `pnpm test:e2e` runs successfully
 
 ### CI/CD
+
 - [ ] GitHub Actions workflows created
 - [ ] Branch protection rules enabled
 - [ ] CI runs on pull requests
@@ -1406,6 +1494,7 @@ Before starting Slice 1, verify ALL of the following:
 - [ ] CD deploys to Vercel
 
 ### Deployment
+
 - [ ] Vercel project created
 - [ ] **Staging branch created** in repository
 - [ ] **Staging database created** (separate from production)
@@ -1419,12 +1508,14 @@ Before starting Slice 1, verify ALL of the following:
 - [ ] App accessible at production URL
 
 ### Documentation
+
 - [ ] README.md updated with setup instructions
 - [ ] CONTRIBUTING.md created
 - [ ] Environment variables documented
 - [ ] Common issues documented
 
 ### Optional (Nice to Have)
+
 - [ ] Error tracking configured
 - [ ] Analytics configured
 - [ ] Monitoring dashboard accessible
@@ -1437,6 +1528,7 @@ Before starting Slice 1, verify ALL of the following:
 ## Technology Stack Summary
 
 ### Frontend
+
 - **Framework**: Next.js 14+ (App Router)
 - **Language**: TypeScript (strict mode)
 - **Styling**: Tailwind CSS
@@ -1445,6 +1537,7 @@ Before starting Slice 1, verify ALL of the following:
 - **State Management**: React Context + hooks (start simple)
 
 ### Backend
+
 - **API**: Next.js API Routes (serverless)
 - **Database**: PostgreSQL (Supabase or Neon)
 - **ORM**: Prisma
@@ -1452,6 +1545,7 @@ Before starting Slice 1, verify ALL of the following:
 - **Payment**: Stripe (test mode only)
 
 ### Testing
+
 - **Unit**: Jest + React Testing Library
 - **Integration**: Jest + Supertest
 - **E2E**: Playwright
@@ -1459,12 +1553,14 @@ Before starting Slice 1, verify ALL of the following:
 - **Performance**: Lighthouse CI (later)
 
 ### DevOps
+
 - **Version Control**: Git + GitHub
 - **CI/CD**: GitHub Actions
 - **Hosting**: Vercel (free tier)
 - **Monitoring**: Vercel Analytics + Sentry (optional)
 
 ### Development Tools
+
 - **Package Manager**: pnpm
 - **Linting**: ESLint
 - **Formatting**: Prettier
@@ -1564,13 +1660,14 @@ After completing Slice 0, reflect:
 
 **Version History**:
 
-| Version | Date | Author | Changes |
-|---------|------|--------|---------|
-| 1.0.0 | 2025-10-19 | Antonio Gomez Gallardo | Initial Slice 0 project setup plan |
+| Version | Date       | Author                 | Changes                            |
+| ------- | ---------- | ---------------------- | ---------------------------------- |
+| 1.0.0   | 2025-10-19 | Antonio Gomez Gallardo | Initial Slice 0 project setup plan |
 
 **Next Review**: After completing Slice 0 (retrospective)
 
 **Related Documents**:
+
 - [START-HERE.md](../START-HERE.md) - Single entry point for all documentation
 - [Vertical Slices](../01-requirements/vertical-slices.md) - Slices 1-7
 - [CLAUDE.md](../../CLAUDE.md) - Project phases
@@ -1578,4 +1675,4 @@ After completing Slice 0, reflect:
 
 ---
 
-*This project setup document follows Module 01 (Vertical Slicing) and Module 11 (Tools Ecosystem) from the quality-standards documentation. It represents "Slice 0" - the foundation before user-facing features.*
+_This project setup document follows Module 01 (Vertical Slicing) and Module 11 (Tools Ecosystem) from the quality-standards documentation. It represents "Slice 0" - the foundation before user-facing features._

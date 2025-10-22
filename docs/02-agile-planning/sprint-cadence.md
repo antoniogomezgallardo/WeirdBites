@@ -109,32 +109,38 @@ Afternoon:
 **Agenda**:
 
 **Part 1: Sprint Goal (15 min)**
+
 - Review vertical slice for this sprint
 - Define sprint goal (1-2 sentences)
 - Align with MVP milestones
 
 Example Sprint Goal:
+
 > "Enable users to browse all products and view product details"
 
 **Part 2: Capacity Planning (10 min)**
+
 - Review last 3 sprints' velocity
 - Calculate 3-sprint rolling average
 - Adjust for holidays, time off, other commitments
 - Set sprint commitment (story points)
 
 **Part 3: Story Selection (20 min)**
+
 - Pull stories from backlog (top priority, DoR met)
 - Verify each story meets Definition of Ready
 - Ensure total points ≤ capacity
 - Add stretch goal (optional, low priority story)
 
 **Part 4: Task Breakdown (15 min)**
+
 - Break each story into tasks
 - Estimate tasks in hours
 - Identify dependencies and risks
 - Create sprint plan document (from template)
 
 **Checklist**:
+
 - [ ] Sprint goal defined
 - [ ] Capacity calculated
 - [ ] Stories selected (all DoR met)
@@ -162,23 +168,28 @@ Example Sprint Goal:
 ## Sprint X, Day Y
 
 **Yesterday**:
+
 - [What did I complete?]
 - [What did I learn?]
 
 **Today**:
+
 - [What will I work on?]
 - [What are my goals?]
 
 **Blockers**:
+
 - [Any impediments? None if clear]
 
 **Progress**:
+
 - Stories completed: X/Y
 - Story points completed: Z/W
 - Stories in progress: [US-XXX]
 - WIP: X (target: ≤2)
 
 **Notes**:
+
 - [Any observations, decisions, or learnings]
 ```
 
@@ -190,24 +201,29 @@ Example Sprint Goal:
 ## Sprint 1, Day 1
 
 **Yesterday**:
+
 - Completed sprint planning
 - Set up development environment
 
 **Today**:
+
 - Start US-001 (Browse Products)
 - Implement product listing API
 - Write unit tests for Product model
 
 **Blockers**:
+
 - None
 
 **Progress**:
+
 - Stories completed: 0/3
 - Story points completed: 0/13
 - Stories in progress: US-001 (5 points)
 - WIP: 1
 
 **Notes**:
+
 - Using Next.js App Router for first time, following docs closely
 - TDD approach: writing tests before implementation
 ```
@@ -215,6 +231,7 @@ Example Sprint Goal:
 **Storage**: `docs/daily-logs/YYYY-MM-DD.md`
 
 **Benefits**:
+
 - Accountability (even solo)
 - Progress tracking
 - Historical record (useful for retrospectives)
@@ -232,11 +249,13 @@ Example Sprint Goal:
 **Agenda**:
 
 **Part 1: Review Upcoming Stories (30 min)**
+
 - Pull top 5-7 stories from backlog (next sprint candidates)
 - Read each story, ask clarifying questions
 - Identify missing information
 
 **Part 2: Apply Definition of Ready (30 min)**
+
 - For each story, check DoR checklist:
   - [ ] Story follows template (As a... I want... So that...)
   - [ ] Acceptance criteria defined (Given-When-Then)
@@ -250,16 +269,19 @@ Example Sprint Goal:
   - [ ] Dependencies identified
 
 **Part 3: Story Estimation (20 min)**
+
 - Estimate each story in story points (Fibonacci: 1, 2, 3, 5, 8, 13)
 - Use Planning Poker (with yourself - compare to similar past stories)
 - Document estimation rationale
 
 **Part 4: Story Splitting (10 min if needed)**
+
 - If any story >8 points, split into smaller stories
 - Ensure each split story is still valuable
 - Update backlog
 
 **Checklist**:
+
 - [ ] Top 5-7 stories reviewed
 - [ ] DoR applied to each story
 - [ ] All stories estimated
@@ -281,17 +303,20 @@ Example Sprint Goal:
 **Agenda**:
 
 **Part 1: Demo Preparation (10 min)**
+
 - Test all completed stories in staging environment
 - Prepare demo script (user scenarios)
 - Screen record setup (OBS or Loom)
 
 **Part 2: Demo Recording (30 min)**
+
 - Record walkthrough of completed features
 - Follow user scenarios (e.g., "As Sarah, I browse products...")
 - Show acceptance criteria being met
 - Highlight interesting technical details (if relevant)
 
 Demo Script Example:
+
 ```
 "This sprint, I completed 3 stories totaling 13 points.
 
@@ -319,16 +344,19 @@ Next sprint: Shopping cart functionality"
 ```
 
 **Part 3: Metrics Review (10 min)**
+
 - Review sprint metrics (velocity, coverage, quality)
 - Compare against targets
 - Note any trends (improving, declining, stable)
 
 **Part 4: Stakeholder Feedback (10 min if applicable)**
+
 - Share demo with mentor or peer
 - Collect feedback
 - Document for backlog refinement
 
 **Checklist**:
+
 - [ ] All completed stories demoed
 - [ ] Sprint goal achievement stated
 - [ ] Metrics reviewed
@@ -336,6 +364,7 @@ Next sprint: Shopping cart functionality"
 - [ ] Feedback collected (if applicable)
 
 **Storage**:
+
 - Demo video: Upload to YouTube (unlisted) or Loom
 - Summary: `docs/sprint-reviews/sprint-X-review.md`
 
@@ -351,28 +380,33 @@ Next sprint: Shopping cart functionality"
 **Agenda**:
 
 **Part 1: Data Gathering (15 min)**
+
 - Review metrics (velocity, coverage, defects, etc.)
 - Review daily logs (patterns, blockers)
 - Reflect on week (what went well, what didn't)
 
 **Part 2: Generate Insights (20 min)**
+
 - Use retrospective format (e.g., Mad/Sad/Glad)
 - Identify 3-5 things that went well
 - Identify 3-5 things that didn't go well
 - Brainstorm improvements for each problem
 
 **Part 3: Decide Actions (15 min)**
+
 - Select 1-2 actionable improvements
 - Make them specific and measurable (SMART)
 - Assign to backlog (as stories or tasks)
 - Set due date (usually: before next sprint)
 
 **Part 4: Document (10 min)**
+
 - Complete retrospective template
 - Update process documents if needed
 - Close retrospective issue in GitHub
 
 **Example Action Items**:
+
 ```
 Problem: E2E tests are flaky (20% failure rate)
 Root Cause: Race conditions, missing explicit waits
@@ -383,6 +417,7 @@ Success Metric: Flaky rate <5%
 ```
 
 **Checklist**:
+
 - [ ] Metrics reviewed
 - [ ] What went well identified (3-5 items)
 - [ ] What didn't go well identified (3-5 items)
@@ -407,6 +442,7 @@ Success Metric: Flaky rate <5%
 **Location**: `docs/sprint-plans/sprint-X-plan.md`
 
 **Contents**:
+
 - Sprint goal
 - Sprint capacity
 - Committed stories (with story points)
@@ -422,6 +458,7 @@ Success Metric: Flaky rate <5%
 **Location**: GitHub Projects (Kanban board)
 
 **Contents**:
+
 - Stories committed to sprint
 - Tasks for each story
 - Story status (To Do, In Progress, In Review, Done)
@@ -435,6 +472,7 @@ Success Metric: Flaky rate <5%
 **Location**: `docs/daily-logs/YYYY-MM-DD.md`
 
 **Contents** (see section 2.2 for template):
+
 - Yesterday's accomplishments
 - Today's plan
 - Blockers
@@ -449,6 +487,7 @@ Success Metric: Flaky rate <5%
 **Location**: `docs/sprint-reviews/sprint-X-review.md` + video
 
 **Contents**:
+
 - Completed stories (with demo)
 - Sprint goal achievement
 - Metrics (velocity, coverage, quality)
@@ -462,6 +501,7 @@ Success Metric: Flaky rate <5%
 **Location**: `docs/retrospectives/sprint-X-retrospective.md`
 
 **Contents**:
+
 - What went well
 - What didn't go well
 - Action items (specific, measurable)
@@ -475,6 +515,7 @@ Success Metric: Flaky rate <5%
 **Location**: `main` branch (merged via PR)
 
 **Definition**:
+
 - All sprint stories meet Definition of Done
 - All tests passing (unit, integration, E2E)
 - Code coverage >80%
@@ -488,17 +529,20 @@ Success Metric: Flaky rate <5%
 ### 4.1 Metrics to Track (Weekly)
 
 **Progress Metrics**:
+
 - Velocity (story points completed)
 - Commitment reliability (% of stories completed)
 - Sprint burndown (story points remaining per day)
 
 **Quality Metrics**:
+
 - Code coverage (%)
 - Test pass rate (%)
 - Defects found (count)
 - Lighthouse score
 
 **Process Metrics**:
+
 - Stories meeting DoR (%)
 - WIP (count, target ≤2)
 - Lead time (days from start to done)
@@ -507,20 +551,24 @@ Success Metric: Flaky rate <5%
 ### 4.2 Metrics Collection Process
 
 **Monday (Sprint Planning)**:
+
 - Record planned story points
 - Set sprint goal
 
 **Daily (Standup)**:
+
 - Update story status in GitHub Projects
 - Record remaining story points (for burndown)
 
 **Sunday (Sprint Review)**:
+
 - Record completed story points
 - Calculate velocity
 - Calculate commitment reliability
 - Update Google Sheets dashboard
 
 **Sunday (Retrospective)**:
+
 - Review all metrics
 - Identify trends (improving, stable, declining)
 - Define improvement actions
@@ -549,12 +597,14 @@ Success Metric: Flaky rate <5%
 ### 5.1 Time Allocation by Activity
 
 **Development** (70% = 16-21 hours/week):
+
 - Coding (40%)
 - Testing (20%)
 - Code review (5%)
 - Refactoring (5%)
 
 **Ceremonies** (15% = 3-4 hours/week):
+
 - Sprint Planning: 1 hour
 - Daily Standup: 0.75 hours (10 min × 5 days)
 - Backlog Refinement: 1.5 hours
@@ -562,11 +612,13 @@ Success Metric: Flaky rate <5%
 - Sprint Retrospective: 1 hour
 
 **Documentation** (10% = 2-3 hours/week):
+
 - Daily logs: 0.5 hours
 - Sprint artifacts: 1 hour
 - Technical docs: 0.5-1 hour
 
 **Learning** (5% = 1-2 hours/week):
+
 - New technologies
 - Best practices
 - Code reviews of open-source projects
@@ -574,6 +626,7 @@ Success Metric: Flaky rate <5%
 ### 5.2 Typical Work Week
 
 **Full-Time (40 hours/week)**:
+
 - Mon-Fri: 8 hours/day
 - Ceremonies: 5 hours
 - Development: 28 hours
@@ -581,6 +634,7 @@ Success Metric: Flaky rate <5%
 - Learning: 3 hours
 
 **Part-Time (24 hours/week)** ← WeirdBites schedule:
+
 - Mon-Fri: 4-5 hours/day
 - Ceremonies: 3 hours
 - Development: 17 hours
@@ -590,16 +644,19 @@ Success Metric: Flaky rate <5%
 ### 5.3 Focus Time Blocks
 
 **Morning Block** (09:15-12:00):
+
 - 2.75 hours of focused development
 - No meetings (except Monday planning)
 - Deep work (complex features, architecture)
 
 **Afternoon Block** (13:00-17:00):
+
 - 4 hours (with breaks)
 - Testing, code review, documentation
 - Lighter tasks (CSS, refactoring)
 
 **Wednesday Mid-Block** (14:30-16:00):
+
 - 1.5 hours backlog refinement
 - Planning for next sprint
 
@@ -610,31 +667,37 @@ Success Metric: Flaky rate <5%
 ### 6.1 What to Avoid
 
 **Anti-Pattern 1: Skipping Ceremonies**
+
 - Problem: "Too busy coding to plan/review"
 - Impact: Lack of direction, missed improvements
 - Solution: Ceremonies are non-negotiable (even solo)
 
 **Anti-Pattern 2: Inconsistent Schedule**
+
 - Problem: Sprint on random days, irregular work hours
 - Impact: Unpredictable velocity, poor planning
 - Solution: Fixed sprint boundaries (Monday-Sunday)
 
 **Anti-Pattern 3: Over-Committing**
+
 - Problem: Committing 20 points when velocity is 12
 - Impact: Burnout, incomplete sprints, low morale
 - Solution: Use rolling 3-sprint average for capacity
 
 **Anti-Pattern 4: No Daily Logs**
+
 - Problem: "I'll remember what I did"
 - Impact: Lost context, poor retrospectives
 - Solution: 5-minute daily log (non-negotiable)
 
 **Anti-Pattern 5: Skipping Retrospectives**
+
 - Problem: "Sprint went fine, nothing to improve"
 - Impact: No continuous improvement, repeated mistakes
 - Solution: Every sprint needs retrospective (even if short)
 
 **Anti-Pattern 6: Working Without Breaks**
+
 - Problem: 8-hour coding marathons
 - Impact: Burnout, poor code quality, mistakes
 - Solution: Pomodoro (25 min work, 5 min break)
@@ -684,13 +747,14 @@ Success Metric: Flaky rate <5%
 
 **Version History**:
 
-| Version | Date | Author | Changes |
-|---------|------|--------|---------|
-| 1.0.0 | 2025-10-19 | Antonio Gomez Gallardo | Initial sprint cadence guide (Module 02 alignment) |
+| Version | Date       | Author                 | Changes                                            |
+| ------- | ---------- | ---------------------- | -------------------------------------------------- |
+| 1.0.0   | 2025-10-19 | Antonio Gomez Gallardo | Initial sprint cadence guide (Module 02 alignment) |
 
 **Next Review**: After Sprint 2 (validate cadence effectiveness)
 
 **Related Documents**:
+
 - [Business Requirements](1.business-requirements.md) - Section 12: Quality Framework (Scrumban approach)
 - [Sprint Planning Template](templates/sprint-planning-template.md)
 - [Sprint Retrospective Template](templates/sprint-retrospective-template.md)
@@ -699,4 +763,4 @@ Success Metric: Flaky rate <5%
 
 ---
 
-*This sprint cadence guide follows Module 02: Agile Planning from the quality-standards documentation, emphasizing rhythm, consistency, and continuous improvement.*
+_This sprint cadence guide follows Module 02: Agile Planning from the quality-standards documentation, emphasizing rhythm, consistency, and continuous improvement._

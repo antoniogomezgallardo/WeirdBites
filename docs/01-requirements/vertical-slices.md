@@ -12,12 +12,14 @@
 **Vertical slicing** is the practice of splitting user stories into thin, end-to-end increments that cross all architectural layers (UI → API → Database) and deliver working, valuable functionality. Each slice is independently deployable and testable.
 
 **Key Relationship**: User Stories are **split into** Vertical Slices, not the other way around.
+
 - ✅ Correct: "US-001 is split into Vertical Slices 1.1, 1.2, 1.3"
 - ❌ Incorrect: "Vertical Slice 1 contains US-001, US-002, US-003"
 
 ### 1.1 Why Vertical Slices?
 
 **Benefits**:
+
 - ✅ **Faster feedback**: Deploy and validate each slice
 - ✅ **Reduced risk**: Spread risk across iterations
 - ✅ **Continuous value**: Something useful after each slice
@@ -47,15 +49,15 @@ Sprint 3: Checkout (DB + API + UI) → Delivers value!
 
 WeirdBites MVP will be built in **7 deployment increments**, where each increment is composed of multiple vertical slices derived by splitting user stories. Each deployment increment delivers working, valuable functionality across all architectural layers.
 
-| Deployment<br>Increment | Name | Duration | Story Points<br>(from split stories) | Value Delivered |
-|-------|------|----------|--------------------------------------|-----------------|
-| 1 | Browse Products | 2 weeks | 13 | Product discovery |
-| 2 | Shopping Cart | 1 week | 13 | Cart management |
-| 3 | Guest Checkout | 2 weeks | 19 | Complete purchase flow |
-| 4 | User Accounts | 1 week | 16 | Authentication & profiles |
-| 5 | Registered Checkout & History | 1 week | 11 | Enhanced user experience |
-| 6 | Search & Reviews | 1 week | 13 | Discovery & social proof |
-| 7 | Admin Panel | 2 weeks | 50 | Platform management |
+| Deployment<br>Increment | Name                          | Duration | Story Points<br>(from split stories) | Value Delivered           |
+| ----------------------- | ----------------------------- | -------- | ------------------------------------ | ------------------------- |
+| 1                       | Browse Products               | 2 weeks  | 13                                   | Product discovery         |
+| 2                       | Shopping Cart                 | 1 week   | 13                                   | Cart management           |
+| 3                       | Guest Checkout                | 2 weeks  | 19                                   | Complete purchase flow    |
+| 4                       | User Accounts                 | 1 week   | 16                                   | Authentication & profiles |
+| 5                       | Registered Checkout & History | 1 week   | 11                                   | Enhanced user experience  |
+| 6                       | Search & Reviews              | 1 week   | 13                                   | Discovery & social proof  |
+| 7                       | Admin Panel                   | 2 weeks  | 50                                   | Platform management       |
 
 **Total**: 10-12 weeks | 135 story points
 
@@ -74,6 +76,7 @@ WeirdBites MVP will be built in **7 deployment increments**, where each incremen
 ### 3.1 Value Delivered
 
 After Deployment Increment 1, users can:
+
 - Visit WeirdBites.com
 - Browse product catalog (grid view)
 - View product details
@@ -83,6 +86,7 @@ After Deployment Increment 1, users can:
 ### 3.2 Layers Implemented
 
 **Frontend (Next.js)**:
+
 - Homepage with product grid
 - Product detail page
 - Category filter component
@@ -90,11 +94,13 @@ After Deployment Increment 1, users can:
 - Responsive layout
 
 **Backend (API Routes)**:
+
 - `GET /api/products` - List products (paginated)
 - `GET /api/products/:id` - Product details
 - `GET /api/categories` - List categories
 
 **Database (PostgreSQL)**:
+
 ```sql
 CREATE TABLE products (
   id SERIAL PRIMARY KEY,
@@ -115,7 +121,9 @@ CREATE INDEX idx_products_name ON products(name); -- for search later
 ```
 
 ### 3.3 Derived from User Stories
+
 This slice represents the first deployable increment derived by splitting these user stories:
+
 - US-001: Browse Product Catalog (5 pts) - Split into thin vertical slice for basic browsing
 - US-002: View Product Details (5 pts) - Split into thin vertical slice for basic product view
 - US-003: Filter by Category (3 pts) - Split into thin vertical slice for basic filtering
@@ -123,6 +131,7 @@ This slice represents the first deployable increment derived by splitting these 
 **Note**: Each user story may be split into multiple vertical slices. This slice implements the minimal viable increment for product discovery.
 
 ### 3.4 Testing
+
 - **Unit**: Product card component, filtering logic
 - **Integration**: API endpoints return correct data
 - **E2E**: Browse products → click product → view details → filter
@@ -130,6 +139,7 @@ This slice represents the first deployable increment derived by splitting these 
 ### 3.5 Acceptance Criteria
 
 **Slice 1 is complete when**:
+
 - [ ] Homepage displays 8-12 products in responsive grid
 - [ ] Product detail page shows all product info
 - [ ] Category filtering works (updates URL)
@@ -142,6 +152,7 @@ This slice represents the first deployable increment derived by splitting these 
 - [ ] Deployed to Vercel
 
 ### 3.6 Success Metrics
+
 - Page load (LCP) < 2.5s
 - No console errors
 - Accessible (axe-core clean)
@@ -158,6 +169,7 @@ This slice represents the first deployable increment derived by splitting these 
 ### 4.1 Value Delivered
 
 After Slice 2, users can:
+
 - Add products to cart
 - View cart with all items
 - Update quantities
@@ -168,6 +180,7 @@ After Slice 2, users can:
 ### 4.2 Layers Implemented
 
 **Frontend**:
+
 - Add to Cart button with toast notification
 - Cart page (/cart)
 - Cart badge in header
@@ -175,12 +188,14 @@ After Slice 2, users can:
 - Remove item button
 
 **Backend**:
+
 - `POST /api/cart` - Add item to cart
 - `GET /api/cart` - Get cart items
 - `PATCH /api/cart/:itemId` - Update quantity
 - `DELETE /api/cart/:itemId` - Remove item
 
 **Database**:
+
 ```sql
 CREATE TABLE cart_sessions (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -202,7 +217,9 @@ CREATE INDEX idx_cart_session ON cart_items(cart_session_id);
 ```
 
 ### 4.3 Derived from User Stories
+
 This slice represents vertical slices derived by splitting these user stories:
+
 - US-006: Add to Cart (5 pts) - Split into basic add-to-cart vertical slice
 - US-007: View Cart (3 pts) - Split into basic cart view vertical slice
 - US-008: Update Quantity (3 pts) - Split into quantity management vertical slice
@@ -211,6 +228,7 @@ This slice represents vertical slices derived by splitting these user stories:
 **Note**: Each story is split to create deployable increments that cross all layers (UI → API → DB).
 
 ### 4.4 Testing
+
 - **Unit**: Cart logic, quantity validation
 - **Integration**: Cart API endpoints
 - **E2E**: Add to cart → view cart → update quantity → remove
@@ -218,6 +236,7 @@ This slice represents vertical slices derived by splitting these user stories:
 ### 4.5 Acceptance Criteria
 
 **Slice 2 is complete when**:
+
 - [ ] Can add products to cart
 - [ ] Cart badge shows correct count
 - [ ] Cart page displays all items with subtotal
@@ -240,6 +259,7 @@ This slice represents vertical slices derived by splitting these user stories:
 ### 5.1 Value Delivered
 
 After Slice 3, users can:
+
 - Enter shipping information
 - Simulate payment (Stripe test mode)
 - Receive order confirmation
@@ -251,6 +271,7 @@ After Slice 3, users can:
 ### 5.2 Layers Implemented
 
 **Frontend**:
+
 - Checkout page (/checkout)
 - Shipping information form
 - Payment form (Stripe Elements)
@@ -258,12 +279,14 @@ After Slice 3, users can:
 - Form validation UI
 
 **Backend**:
+
 - `POST /api/checkout/shipping` - Save shipping info
 - `POST /api/checkout/payment` - Process payment (simulated)
 - `POST /api/orders` - Create order
 - `GET /api/orders/:orderNumber` - Order status
 
 **Database**:
+
 ```sql
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY,
@@ -295,7 +318,9 @@ CREATE INDEX idx_orders_number ON orders(order_number);
 ```
 
 ### 5.3 Derived from User Stories
+
 This slice represents vertical slices derived by splitting these user stories:
+
 - US-010: Enter Shipping Information (5 pts) - Split into shipping form vertical slice
 - US-011: Payment Simulation (5 pts) - Split into payment processing vertical slice
 - US-012: Order Confirmation (3 pts) - Split into confirmation flow vertical slice
@@ -305,6 +330,7 @@ This slice represents vertical slices derived by splitting these user stories:
 **Note**: This critical MVP slice combines multiple story splits into a complete checkout flow.
 
 ### 5.4 Testing
+
 - **Unit**: Form validation, order calculations
 - **Integration**: Order creation API
 - **E2E**: Full checkout flow (critical path!)
@@ -313,6 +339,7 @@ This slice represents vertical slices derived by splitting these user stories:
 ### 5.5 Acceptance Criteria
 
 **Slice 3 is complete when**:
+
 - [ ] Shipping form validates all fields
 - [ ] Stripe test mode integrated
 - [ ] Test card 4242... succeeds
@@ -338,6 +365,7 @@ This slice represents vertical slices derived by splitting these user stories:
 ### 6.1 Value Delivered
 
 After Slice 4, users can:
+
 - Register for an account
 - Login with email/password
 - Logout
@@ -347,6 +375,7 @@ After Slice 4, users can:
 ### 6.2 Layers Implemented
 
 **Frontend**:
+
 - Registration page (/register)
 - Login page (/login)
 - Logout button in header
@@ -354,12 +383,14 @@ After Slice 4, users can:
 - Session-aware UI (show/hide login/logout)
 
 **Backend**:
+
 - `POST /api/auth/register` - Create account
 - `POST /api/auth/login` - Authenticate
 - `POST /api/auth/logout` - End session
 - `GET /api/auth/me` - Get current user
 
 **Database**:
+
 ```sql
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
@@ -375,7 +406,9 @@ CREATE INDEX idx_users_email ON users(email);
 ```
 
 ### 6.3 Derived from User Stories
+
 This slice represents vertical slices derived by splitting these user stories:
+
 - US-015: User Registration (5 pts) - Split into registration flow vertical slice
 - US-016: User Login (3 pts) - Split into login flow vertical slice
 - US-017: User Logout (1 pt) - Split into logout vertical slice
@@ -386,6 +419,7 @@ This slice represents vertical slices derived by splitting these user stories:
 **Note**: Authentication stories split into secure, testable vertical slices.
 
 ### 6.4 Testing
+
 - **Unit**: Password hashing, validation
 - **Integration**: Auth API endpoints
 - **E2E**: Register → login → logout
@@ -394,6 +428,7 @@ This slice represents vertical slices derived by splitting these user stories:
 ### 6.5 Acceptance Criteria
 
 **Slice 4 is complete when**:
+
 - [ ] Can register with email/password
 - [ ] Password validation enforced (8+ chars, mixed)
 - [ ] Passwords hashed with bcrypt
@@ -417,6 +452,7 @@ This slice represents vertical slices derived by splitting these user stories:
 ### 7.1 Value Delivered
 
 After Slice 5, registered users can:
+
 - Checkout faster (saved info)
 - View order history
 - See order details
@@ -425,22 +461,27 @@ After Slice 5, registered users can:
 ### 7.2 Layers Implemented
 
 **Frontend**:
+
 - Pre-filled checkout form (for logged-in users)
 - Order history page (/account/orders)
 - Order details page (/account/orders/:id)
 - "My Account" navigation
 
 **Backend**:
+
 - `GET /api/users/:id/orders` - User's orders
 - `GET /api/users/:id/profile` - User profile
 - Update order creation to link to user_id
 
 **Database**:
+
 - Link orders to users (user_id column already exists)
 - Update cart_sessions to link to user_id
 
 ### 7.3 Derived from User Stories
+
 This slice represents vertical slices derived by splitting these user stories:
+
 - US-021: Saved Checkout Info (3 pts) - Split into saved profile vertical slice
 - US-022: Order History (5 pts) - Split into order listing vertical slice
 - US-023: Order Details View (3 pts) - Split into order detail vertical slice
@@ -450,6 +491,7 @@ This slice represents vertical slices derived by splitting these user stories:
 ### 7.4 Acceptance Criteria
 
 **Slice 5 is complete when**:
+
 - [ ] Logged-in users see pre-filled checkout
 - [ ] Order history shows all past orders
 - [ ] Can view order details
@@ -468,6 +510,7 @@ This slice represents vertical slices derived by splitting these user stories:
 ### 8.1 Value Delivered
 
 After Slice 6, users can:
+
 - Search for products by name
 - See search results
 - Leave product reviews (logged in)
@@ -477,6 +520,7 @@ After Slice 6, users can:
 ### 8.2 Layers Implemented
 
 **Frontend**:
+
 - Search bar in header
 - Search results page (/search)
 - Review form on product page
@@ -484,11 +528,13 @@ After Slice 6, users can:
 - Star rating component
 
 **Backend**:
+
 - `GET /api/search?q=query` - Search products
 - `POST /api/products/:id/reviews` - Submit review
 - `GET /api/products/:id/reviews` - Get reviews
 
 **Database**:
+
 ```sql
 CREATE TABLE reviews (
   id SERIAL PRIMARY KEY,
@@ -507,7 +553,9 @@ ALTER TABLE products ADD COLUMN review_count INTEGER DEFAULT 0;
 ```
 
 ### 8.3 Derived from User Stories
+
 This slice represents vertical slices derived by splitting these user stories:
+
 - US-024: Product Search (5 pts) - Split into search functionality vertical slice
 - US-025: Search Results (3 pts) - Split into results display vertical slice
 - US-026: Leave Review (3 pts) - Split into review submission vertical slice
@@ -518,6 +566,7 @@ This slice represents vertical slices derived by splitting these user stories:
 ### 8.4 Acceptance Criteria
 
 **Slice 6 is complete when**:
+
 - [ ] Search bar functional
 - [ ] Search results display correctly
 - [ ] Can leave review (logged in only)
@@ -538,6 +587,7 @@ This slice represents vertical slices derived by splitting these user stories:
 ### 9.1 Value Delivered
 
 After Slice 7, admin can:
+
 - Login to admin panel
 - Manage products (CRUD)
 - Track inventory
@@ -547,6 +597,7 @@ After Slice 7, admin can:
 ### 9.2 Layers Implemented
 
 **Frontend**:
+
 - Admin login page (/admin/login)
 - Admin dashboard (/admin)
 - Products management (/admin/products)
@@ -554,17 +605,21 @@ After Slice 7, admin can:
 - Analytics dashboard
 
 **Backend**:
+
 - Admin authentication (role-based)
 - Product CRUD endpoints (admin-only)
 - Order management endpoints
 - Analytics endpoints
 
 **Database**:
+
 - Add admin role to users
 - Admin action logging (optional)
 
 ### 9.3 Derived from User Stories
+
 This slice represents vertical slices derived by splitting 12 admin-related user stories:
+
 - US-028 through US-039 (Admin authentication, product CRUD, inventory, orders, analytics)
 - Each story split into vertical slices crossing UI → API → DB layers
 
@@ -573,6 +628,7 @@ This slice represents vertical slices derived by splitting 12 admin-related user
 ### 9.4 Acceptance Criteria
 
 **Slice 7 is complete when**:
+
 - [ ] Admin can login with admin email
 - [ ] Admin dashboard shows key metrics
 - [ ] Can add/edit/delete products
@@ -590,6 +646,7 @@ This slice represents vertical slices derived by splitting 12 admin-related user
 ### 10.1 Per-Slice Deployment
 
 **After each slice**:
+
 1. ✅ All tests pass (unit, integration, E2E)
 2. ✅ Code reviewed (self-review + quality checklist)
 3. ✅ Security scan clean (npm audit)
@@ -603,6 +660,7 @@ This slice represents vertical slices derived by splitting 12 admin-related user
 ### 10.2 Feature Flags (Optional)
 
 For slices 3+, consider feature flags to deploy behind toggle:
+
 ```typescript
 // Example
 const FEATURE_FLAGS = {
@@ -613,6 +671,7 @@ const FEATURE_FLAGS = {
 ```
 
 **Benefits**:
+
 - Deploy code without exposing feature
 - Test in production safely
 - Gradual rollout
@@ -625,6 +684,7 @@ const FEATURE_FLAGS = {
 ### Definition of Done (Per Slice)
 
 A deployment increment is complete when:
+
 - [ ] All vertical slices (derived from split stories) meet acceptance criteria
 - [ ] All layers implemented (UI, API, DB)
 - [ ] Feature works end-to-end
@@ -647,24 +707,31 @@ A deployment increment is complete when:
 ### Per-Slice Risks
 
 **Slice 1**: Learning Next.js App Router
+
 - Mitigation: Tutorials, documentation, simple implementation first
 
 **Slice 2**: Cart persistence strategy
+
 - Mitigation: Start with localStorage, can upgrade to DB later
 
 **Slice 3**: Stripe integration complexity
+
 - Mitigation: Use test mode, follow official docs, limit to basic flow
 
 **Slice 4**: Authentication security
+
 - Mitigation: Use established patterns (NextAuth.js or bcrypt + JWT)
 
 **Slice 5**: Order-user linking
+
 - Mitigation: Simple foreign key, no complex logic
 
 **Slice 6**: Search performance
+
 - Mitigation: Basic SQL LIKE, can upgrade to full-text later
 
 **Slice 7**: Admin complexity
+
 - Mitigation: Break into sub-slices if needed
 
 ---
@@ -673,23 +740,24 @@ A deployment increment is complete when:
 
 ### Slice Completion Log
 
-| Slice | Start Date | End Date | Actual Points | Velocity | Status |
-|-------|-----------|----------|---------------|----------|--------|
-| 1 | TBD | TBD | TBD | TBD | Not Started |
-| 2 | TBD | TBD | TBD | TBD | Not Started |
-| 3 | TBD | TBD | TBD | TBD | Not Started |
-| 4 | TBD | TBD | TBD | TBD | Not Started |
-| 5 | TBD | TBD | TBD | TBD | Not Started |
-| 6 | TBD | TBD | TBD | TBD | Not Started |
-| 7 | TBD | TBD | TBD | TBD | Not Started |
+| Slice | Start Date | End Date | Actual Points | Velocity | Status      |
+| ----- | ---------- | -------- | ------------- | -------- | ----------- |
+| 1     | TBD        | TBD      | TBD           | TBD      | Not Started |
+| 2     | TBD        | TBD      | TBD           | TBD      | Not Started |
+| 3     | TBD        | TBD      | TBD           | TBD      | Not Started |
+| 4     | TBD        | TBD      | TBD           | TBD      | Not Started |
+| 5     | TBD        | TBD      | TBD           | TBD      | Not Started |
+| 6     | TBD        | TBD      | TBD           | TBD      | Not Started |
+| 7     | TBD        | TBD      | TBD           | TBD      | Not Started |
 
-*Update as slices complete*
+_Update as slices complete_
 
 ---
 
 ## 14. Retrospective per Slice
 
 After each slice, reflect:
+
 - What went well?
 - What could be improved?
 - What did we learn?
@@ -702,12 +770,12 @@ After each slice, reflect:
 
 **Version History**:
 
-| Version | Date | Author | Changes |
-|---------|------|--------|---------|
-| 1.0.0 | 2025-10-19 | Antonio Gomez Gallardo | Initial vertical slices plan |
+| Version | Date       | Author                 | Changes                      |
+| ------- | ---------- | ---------------------- | ---------------------------- |
+| 1.0.0   | 2025-10-19 | Antonio Gomez Gallardo | Initial vertical slices plan |
 
 **Next Review**: After Slice 1 completion
 
 ---
 
-*This vertical slicing plan follows Module 01: Vertical Slicing from the quality-standards documentation. Each slice is thin, end-to-end, valuable, and independently deployable.*
+_This vertical slicing plan follows Module 01: Vertical Slicing from the quality-standards documentation. Each slice is thin, end-to-end, valuable, and independently deployable._

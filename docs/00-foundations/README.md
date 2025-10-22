@@ -11,10 +11,10 @@ This module contains foundational quality artifacts that define **how we approac
 
 ## Documents in This Module
 
-| Document | Purpose | Lines | Status |
-|----------|---------|-------|--------|
-| [quality-framework.md](quality-framework.md) | Agile framework (Scrumban), sprint structure, quality policy | 360+ | ✅ Complete |
-| [iso-25010-mapping.md](iso-25010-mapping.md) | Feature mapping to ISO 25010 quality characteristics | 1,100+ | ✅ Complete |
+| Document                                     | Purpose                                                      | Lines  | Status      |
+| -------------------------------------------- | ------------------------------------------------------------ | ------ | ----------- |
+| [quality-framework.md](quality-framework.md) | Agile framework (Scrumban), sprint structure, quality policy | 360+   | ✅ Complete |
+| [iso-25010-mapping.md](iso-25010-mapping.md) | Feature mapping to ISO 25010 quality characteristics         | 1,100+ | ✅ Complete |
 
 **Total**: 2 documents, ~1,450 lines
 
@@ -23,7 +23,9 @@ This module contains foundational quality artifacts that define **how we approac
 ## What's in This Module
 
 ### Quality Framework
+
 Defines our approach to quality and agile development:
+
 - **Scrumban Framework**: Hybrid Scrum/Kanban for solo developer
 - **Sprint Structure**: 1-week sprints, 10-15 story points capacity
 - **Ceremonies**: Planning, Standup, Review, Retrospective, Refinement
@@ -31,7 +33,9 @@ Defines our approach to quality and agile development:
 - **Continuous Improvement**: Metrics review, process experiments
 
 ### ISO 25010 Quality Mapping
+
 Maps all WeirdBites features to ISO 25010 quality model:
+
 - **8 Quality Characteristics**: Functional Suitability, Performance, Compatibility, Usability, Reliability, Security, Maintainability, Portability
 - **31 Sub-characteristics**: Complete coverage matrix
 - **Quality Coverage**: 93% overall (excellent)
@@ -42,6 +46,7 @@ Maps all WeirdBites features to ISO 25010 quality model:
 ## Alignment with Quality-Standards
 
 This module implements concepts from:
+
 - `quality-standards/docs/00-foundations/quality-frameworks.md`
 - `quality-standards/docs/00-foundations/software-quality-models.md`
 - `quality-standards/docs/00-foundations/measurement-fundamentals.md`

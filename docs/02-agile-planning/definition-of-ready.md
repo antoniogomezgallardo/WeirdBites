@@ -12,6 +12,7 @@
 The **Definition of Ready (DoR)** is a checklist that ensures user stories are sufficiently detailed, understood, and unblocked before development begins. Stories that don't meet DoR should not enter a sprint.
 
 **Benefits**:
+
 - ✅ Prevents starting work on unclear requirements
 - ✅ Reduces mid-sprint surprises and blockers
 - ✅ Improves estimation accuracy
@@ -32,6 +33,7 @@ A user story is **ready for development** when ALL of the following are true:
 - [ ] **Value statement**: Clearly articulates business or user value
 
 **Example**:
+
 ```markdown
 ✅ GOOD:
 Title: Browse Product Catalog
@@ -57,6 +59,7 @@ Add products list
 - [ ] **NFRs specified**: Performance, security, accessibility requirements noted (if applicable)
 
 **Example**:
+
 ```gherkin
 ✅ GOOD:
 Scenario 1: Homepage displays products
@@ -87,14 +90,17 @@ And I see "Out of Stock" badge
 - [ ] **Data requirements**: Test data, seed data, or fixtures identified
 
 **Example**:
+
 ```markdown
 ✅ Dependencies Resolved:
+
 - Depends on: US-001 (Browse Products) - COMPLETED
 - Database: Products table exists
 - Test data: 20 sample products in staging DB
 - No blockers
 
 ❌ Not Ready:
+
 - Depends on: US-001 (Browse Products) - IN PROGRESS
 - Needs Stripe API keys - NOT OBTAINED YET
 - Blocked by database migration - PENDING
@@ -110,12 +116,14 @@ And I see "Out of Stock" badge
 - [ ] **Confidence level**: Team feels confident in the estimate
 
 **Guidelines**:
+
 - **1-2 points**: < 1 day, trivial
 - **3-5 points**: 1-3 days, moderate complexity
 - **8 points**: 3-5 days, complex (consider splitting)
 - **13+ points**: Epic, must be split into smaller stories
 
 **Example**:
+
 ```markdown
 ✅ Story Points: 5
 Estimated by team on: 2025-10-18
@@ -137,14 +145,17 @@ No estimate (team didn't discuss)
 - [ ] **Design tokens**: Colors, typography, spacing follow design system (or defined)
 
 **Example**:
+
 ```markdown
 ✅ Design Ready:
+
 - Wireframe: docs/wireframes/product-detail-page.png
 - Mobile view: Sketch provided
 - Accessibility: All images need alt text, form labels required
 - Design tokens: Use theme colors (--primary, --secondary)
 
 ❌ Not Ready:
+
 - No wireframe (team unsure how it should look)
 - Accessibility not considered
 ```
@@ -160,29 +171,33 @@ No estimate (team didn't discuss)
 - [ ] **Security considerations**: Authentication, authorization, validation requirements clear
 
 **Example**:
+
 ```markdown
 ✅ Technical Approach Defined:
 API Endpoint:
-  GET /api/products
-  Query params: page (number), limit (number), category (string)
-  Response: { products: Product[], total: number, page: number }
+GET /api/products
+Query params: page (number), limit (number), category (string)
+Response: { products: Product[], total: number, page: number }
 
 Database:
-  Table: products
-  Indexes: category, name
-  No migration needed (table exists)
+Table: products
+Indexes: category, name
+No migration needed (table exists)
 
 Tech:
-  - Frontend: Next.js App Router
-  - ORM: Prisma
-  - Validation: Zod
+
+- Frontend: Next.js App Router
+- ORM: Prisma
+- Validation: Zod
 
 Security:
-  - No auth required (public endpoint)
-  - Input validation: page/limit max values
-  - Rate limit: 1000 req/min per IP
+
+- No auth required (public endpoint)
+- Input validation: page/limit max values
+- Rate limit: 1000 req/min per IP
 
 ❌ Not Ready:
+
 - API contract not defined
 - Team unsure about database approach
 - No security discussion
@@ -198,24 +213,30 @@ Security:
 - [ ] **Testable**: Acceptance criteria are objective and verifiable
 
 **Example**:
+
 ```markdown
 ✅ Testability:
 Unit Tests:
-  - Product card component renders correctly
-  - Filter logic applies correctly
+
+- Product card component renders correctly
+- Filter logic applies correctly
 
 Integration Tests:
-  - GET /api/products returns products
-  - Pagination works correctly
+
+- GET /api/products returns products
+- Pagination works correctly
 
 E2E Tests:
-  - Browse products → filter → view details
+
+- Browse products → filter → view details
 
 Test Data:
-  - 50 test products across 5 categories
-  - Some in stock, some out of stock
+
+- 50 test products across 5 categories
+- Some in stock, some out of stock
 
 ❌ Not Ready:
+
 - No test plan
 - Unclear how to verify acceptance criteria
 - Test environment not available
@@ -231,14 +252,17 @@ Test Data:
 - [ ] **No ambiguity**: Team has shared understanding of what needs to be built
 
 **Example**:
+
 ```markdown
 ✅ Team Aligned:
+
 - Story reviewed in refinement session (2025-10-18)
 - 3 clarifying questions answered
 - Team unanimously agrees story is clear
 - PO committed to daily availability
 
 ❌ Not Ready:
+
 - Team hasn't seen story yet
 - Multiple questions unanswered
 - Team unsure what "weird snacks" means
@@ -252,7 +276,7 @@ Test Data:
 - [ ] **DoD understood**: Team knows what "done" means for this story
 - [ ] **Achievable**: Story can meet DoD within sprint timeframe
 
-*(See separate `definition-of-done.md` document)*
+_(See separate `definition-of-done.md` document)_
 
 ---
 
@@ -264,14 +288,17 @@ Test Data:
 - [ ] **Value clear**: Stakeholders understand and approve priority
 
 **Example**:
+
 ```markdown
 ✅ Sprint Ready:
+
 - Priority: Must Have (MVP critical)
 - Sprint 1 capacity: 13 points available, story is 5 points
 - No blockers
 - PO approved for Sprint 1
 
 ❌ Not Ready:
+
 - Priority unclear
 - Sprint already at capacity
 - Blocked by infrastructure setup
@@ -284,27 +311,29 @@ Test Data:
 ### When to Check DoR
 
 **Backlog Refinement** (Weekly):
+
 1. Review upcoming stories (next 2-3 sprints)
 2. Apply DoR checklist
 3. Identify stories that don't meet DoR
 4. Plan work to make stories ready
 
 **Sprint Planning**:
+
 1. Only pull stories that meet DoR
 2. Final DoR check before committing to sprint
 3. Document any exceptions (with PO approval)
 
 ### Who Reviews DoR
 
-| Criteria | Reviewer |
-|----------|----------|
-| Story structure, value | Product Owner |
-| Acceptance criteria | Product Owner + QA |
-| Technical approach | Development Team |
-| Estimation | Development Team |
-| Design/UX | Designer (if available) + Dev Team |
-| Dependencies | Development Team |
-| Testability | QA + Development Team |
+| Criteria               | Reviewer                           |
+| ---------------------- | ---------------------------------- |
+| Story structure, value | Product Owner                      |
+| Acceptance criteria    | Product Owner + QA                 |
+| Technical approach     | Development Team                   |
+| Estimation             | Development Team                   |
+| Design/UX              | Designer (if available) + Dev Team |
+| Dependencies           | Development Team                   |
+| Testability            | QA + Development Team              |
 
 ---
 
@@ -337,9 +366,11 @@ Test Data:
 ## DoR for Different Story Types
 
 ### Feature Stories
+
 - Full DoR checklist applies
 
 ### Bug Fix Stories
+
 - [ ] Steps to reproduce documented
 - [ ] Expected vs actual behavior clear
 - [ ] Severity/priority assigned
@@ -347,12 +378,14 @@ Test Data:
 - [ ] Test to prevent regression identified
 
 ### Technical/Infrastructure Stories
+
 - [ ] Business value justified
 - [ ] User impact explained
 - [ ] Success metrics defined
 - [ ] Approach validated (spike completed)
 
 ### Spike Stories
+
 - [ ] Research question clearly stated
 - [ ] Time-boxed (usually 1-3 days)
 - [ ] Output defined (document, POC, decision)
@@ -368,14 +401,17 @@ Use this template when creating/reviewing user stories:
 # [Story Title]
 
 ## User Story
+
 As a [user type]
 I want [goal]
 So that [benefit]
 
 ## Value
+
 [Why this matters to users/business]
 
 ## Acceptance Criteria
+
 **Scenario 1**: [Name]
 Given [context]
 When [action]
@@ -387,29 +423,35 @@ When [action]
 Then [outcome]
 
 ## Technical Approach
+
 - API: [Endpoints]
 - Database: [Changes]
 - Frontend: [Components]
 - Security: [Considerations]
 
 ## Dependencies
+
 - [ ] [Dependency 1]
 - [ ] [Dependency 2]
 
 ## Design
+
 - Wireframe: [Link]
 - Accessibility: [Requirements]
 
 ## Testing
+
 - Unit: [What to test]
 - Integration: [What to test]
 - E2E: [What to test]
 
 ## Estimation
+
 Story Points: [Number]
 Confidence: [High/Medium/Low]
 
 ## DoR Checklist
+
 - [ ] Story structure complete
 - [ ] Acceptance criteria defined
 - [ ] Dependencies resolved
@@ -430,13 +472,13 @@ Confidence: [High/Medium/Low]
 
 Track these to improve DoR process:
 
-| Metric | Formula | Target |
-|--------|---------|--------|
-| **Stories meeting DoR** | Stories passing DoR / Total stories | > 80% |
-| **Sprint commitment accuracy** | Completed / Committed | > 85% |
-| **Mid-sprint blockers** | Stories blocked mid-sprint | < 10% |
-| **Estimation variance** | Actual / Estimated | 0.8 - 1.2 |
-| **Refinement time** | Hours spent refining / Stories refined | < 0.5 hrs/story |
+| Metric                         | Formula                                | Target          |
+| ------------------------------ | -------------------------------------- | --------------- |
+| **Stories meeting DoR**        | Stories passing DoR / Total stories    | > 80%           |
+| **Sprint commitment accuracy** | Completed / Committed                  | > 85%           |
+| **Mid-sprint blockers**        | Stories blocked mid-sprint             | < 10%           |
+| **Estimation variance**        | Actual / Estimated                     | 0.8 - 1.2       |
+| **Refinement time**            | Hours spent refining / Stories refined | < 0.5 hrs/story |
 
 ---
 
@@ -489,6 +531,7 @@ Track these to improve DoR process:
 **Status**: ❌ NOT READY - Needs Refinement
 
 **Action Items**:
+
 - Define what "better" means
 - Create specific acceptance criteria
 - Provide wireframes
@@ -501,12 +544,12 @@ Track these to improve DoR process:
 
 **Version History**:
 
-| Version | Date | Author | Changes |
-|---------|------|--------|---------|
-| 1.0.0 | 2025-10-19 | Antonio Gomez Gallardo | Initial DoR based on Module 02 |
+| Version | Date       | Author                 | Changes                        |
+| ------- | ---------- | ---------------------- | ------------------------------ |
+| 1.0.0   | 2025-10-19 | Antonio Gomez Gallardo | Initial DoR based on Module 02 |
 
 **Next Review**: After Sprint 1 retrospective (adjust based on learnings)
 
 ---
 
-*This Definition of Ready follows Module 02: Agile Planning from the quality-standards documentation and Scrum best practices.*
+_This Definition of Ready follows Module 02: Agile Planning from the quality-standards documentation and Scrum best practices._

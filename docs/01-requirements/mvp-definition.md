@@ -10,10 +10,13 @@
 ## 1. What is the MVP?
 
 ### 1.1 MVP Vision
+
 The **Minimum Viable Product (MVP)** for WeirdBites is the simplest version of the platform that delivers core e-commerce functionality while demonstrating professional SDLC/STLC practices. The MVP enables customers to discover, purchase, and review weird snacks, and allows admins to manage products, inventory, and orders.
 
 ### 1.2 MVP Purpose
+
 **Educational Goals**:
+
 - Demonstrate complete requirements engineering (Module 01)
 - Implement test pyramid with >80% coverage (Module 04-05)
 - Build CI/CD pipeline with quality gates (Module 08)
@@ -22,13 +25,16 @@ The **Minimum Viable Product (MVP)** for WeirdBites is the simplest version of t
 - Showcase TDD/BDD practices (Module 07)
 
 **Functional Goals**:
+
 - Operational e-commerce platform
 - Complete customer shopping flow
 - Complete admin management flow
 - Simulated payment and shipping
 
 ### 1.3 MVP Success Criteria
+
 The MVP is considered successful when:
+
 - ✅ All "Must Have" features are implemented and tested
 - ✅ All user stories meet Definition of Done
 - ✅ Code coverage >80%
@@ -49,6 +55,7 @@ The MVP is considered successful when:
 #### 2.1.1 Customer Features
 
 **Epic 1: Product Discovery**
+
 - [x] **Browse product catalog**
   - Grid view of products (responsive)
   - Product card showing: image, name, price, brief description
@@ -69,6 +76,7 @@ The MVP is considered successful when:
   - Product count per category
 
 **Epic 2: Shopping Cart**
+
 - [x] **Add to cart (guest users)**
   - Add product with quantity selector
   - Cart badge shows item count
@@ -89,6 +97,7 @@ The MVP is considered successful when:
   - Minimum order validation ($5)
 
 **Epic 3: Checkout (Guest)**
+
 - [x] **Guest checkout flow**
   - Email input (required, validated)
   - Shipping information form:
@@ -123,6 +132,7 @@ The MVP is considered successful when:
   - "View Order Status" link (future: requires tracking by order number)
 
 **Epic 4: User Accounts**
+
 - [x] **User registration**
   - Registration form: email, password, confirm password, name
   - Email validation
@@ -143,6 +153,7 @@ The MVP is considered successful when:
   - Redirect to homepage
 
 **Epic 5: Registered User Checkout**
+
 - [x] **Saved information**
   - Pre-fill shipping info from profile
   - Save new shipping address to profile (checkbox)
@@ -155,6 +166,7 @@ The MVP is considered successful when:
   - Filter by status (optional)
 
 **Epic 6: Product Search**
+
 - [x] **Search functionality**
   - Search bar in header
   - Search by product name
@@ -163,6 +175,7 @@ The MVP is considered successful when:
   - Handle "no results" gracefully
 
 **Epic 7: Product Reviews**
+
 - [x] **Leave review (registered users only)**
   - Star rating (1-5, required)
   - Review text (optional, max 500 chars)
@@ -178,6 +191,7 @@ The MVP is considered successful when:
 #### 2.1.2 Admin Features
 
 **Epic 8: Admin Authentication**
+
 - [x] **Admin login**
   - Separate admin login page (`/admin/login`)
   - Admin credentials (email whitelist or role-based)
@@ -185,6 +199,7 @@ The MVP is considered successful when:
   - Admin session management
 
 **Epic 9: Product Management**
+
 - [x] **View products list (admin)**
   - Table view: name, price, stock, category, status
   - Search products
@@ -217,6 +232,7 @@ The MVP is considered successful when:
   - Remove from customer-facing catalog
 
 **Epic 10: Inventory Management**
+
 - [x] **Track stock levels**
   - Automatic stock decrease on order
   - Stock level display in product list
@@ -232,6 +248,7 @@ The MVP is considered successful when:
   - Admin notification
 
 **Epic 11: Order Management**
+
 - [x] **View orders list**
   - Table view: order number, customer email, date, total, status
   - Filter by status (Pending, Processing, Shipped, Delivered)
@@ -253,6 +270,7 @@ The MVP is considered successful when:
   - Add tracking number (optional, simulated)
 
 **Epic 12: Admin Dashboard**
+
 - [x] **Basic analytics**
   - Total orders (all time)
   - Total revenue (all time)
@@ -265,6 +283,7 @@ The MVP is considered successful when:
 #### 2.1.3 Technical Requirements
 
 **Architecture**
+
 - [x] Next.js 14+ (App Router)
 - [x] TypeScript (strict mode)
 - [x] PostgreSQL database
@@ -272,6 +291,7 @@ The MVP is considered successful when:
 - [x] Responsive design (mobile-first)
 
 **Testing**
+
 - [x] Unit tests (Jest)
   - Business logic
   - Utility functions
@@ -295,6 +315,7 @@ The MVP is considered successful when:
   - Key pages: Home, Product Detail, Cart, Checkout, Admin
 
 **CI/CD**
+
 - [x] GitHub Actions pipeline
   - Lint on every commit
   - Tests on every PR
@@ -309,6 +330,7 @@ The MVP is considered successful when:
   - All tests passing
 
 **Performance**
+
 - [x] Lighthouse score >90
 - [x] Core Web Vitals:
   - LCP < 2.5s
@@ -317,6 +339,7 @@ The MVP is considered successful when:
 - [x] API response time p95 < 500ms
 
 **Security**
+
 - [x] Input validation
 - [x] SQL injection prevention (ORM)
 - [x] XSS prevention (React)
@@ -326,6 +349,7 @@ The MVP is considered successful when:
 - [x] HTTPS only (Vercel automatic)
 
 **Accessibility**
+
 - [x] WCAG 2.1 Level AA compliant
 - [x] Keyboard navigation
 - [x] Screen reader compatible
@@ -338,6 +362,7 @@ The MVP is considered successful when:
 ### 2.2 SHOULD HAVE (Important but not critical)
 
 **Customer Features**:
+
 - [ ] Wishlist/favorites
 - [ ] Password reset flow
 - [ ] User profile editing (name, email)
@@ -353,6 +378,7 @@ The MVP is considered successful when:
 - [ ] Related products ("You might also like")
 
 **Admin Features**:
+
 - [ ] Bulk product upload (CSV import)
 - [ ] Category management (CRUD)
 - [ ] Customer list view
@@ -364,6 +390,7 @@ The MVP is considered successful when:
 - [ ] Inventory reports (low stock report)
 
 **Technical**:
+
 - [ ] Performance monitoring (Real User Monitoring)
 - [ ] Error tracking (Sentry or similar)
 - [ ] Advanced caching (Redis)
@@ -374,6 +401,7 @@ The MVP is considered successful when:
 ### 2.3 COULD HAVE (Nice to have)
 
 **Customer Features**:
+
 - [ ] Product recommendations (ML-based)
 - [ ] Social sharing (share product links)
 - [ ] Gift message option
@@ -384,6 +412,7 @@ The MVP is considered successful when:
 - [ ] Notify when back in stock
 
 **Admin Features**:
+
 - [ ] Promotion/discount management
 - [ ] Custom reports builder
 - [ ] A/B testing tools
@@ -391,6 +420,7 @@ The MVP is considered successful when:
 - [ ] Automated marketing emails
 
 **Technical**:
+
 - [ ] GraphQL API (alternative to REST)
 - [ ] Server-Side Rendering optimization
 - [ ] Image optimization (WebP, lazy loading)
@@ -402,6 +432,7 @@ The MVP is considered successful when:
 ### 2.4 WON'T HAVE (Out of scope for MVP)
 
 **Definitely Not in V1**:
+
 - ❌ Real payment processing (only simulation)
 - ❌ Real shipping integration (only simulation)
 - ❌ Mobile native app
@@ -426,7 +457,9 @@ The MVP is considered successful when:
 The MVP will be built incrementally using vertical slicing. Each slice delivers working, deployable functionality.
 
 ### Slice 1: Browse Products (Guest) - Week 1-2
+
 **Goal**: Users can discover weird snacks
+
 - Homepage with product grid
 - Product detail page
 - Category filtering
@@ -438,7 +471,9 @@ The MVP will be built incrementally using vertical slicing. Each slice delivers 
 ---
 
 ### Slice 2: Shopping Cart (Guest) - Week 3
+
 **Goal**: Users can collect items for purchase
+
 - Add to cart functionality
 - Cart page (view, update, remove items)
 - Cart persistence (session/localStorage)
@@ -450,7 +485,9 @@ The MVP will be built incrementally using vertical slicing. Each slice delivers 
 ---
 
 ### Slice 3: Guest Checkout - Week 4-5
+
 **Goal**: Users can complete purchase without account
+
 - Checkout flow (shipping info → payment → confirmation)
 - Form validation
 - Payment simulation (Stripe test mode)
@@ -463,7 +500,9 @@ The MVP will be built incrementally using vertical slicing. Each slice delivers 
 ---
 
 ### Slice 4: User Accounts - Week 6
+
 **Goal**: Users can create accounts and login
+
 - Registration page
 - Login page
 - Logout functionality
@@ -477,7 +516,9 @@ The MVP will be built incrementally using vertical slicing. Each slice delivers 
 ---
 
 ### Slice 5: Registered Checkout & Order History - Week 7
+
 **Goal**: Registered users get enhanced experience
+
 - Pre-fill checkout with saved info
 - Order history page
 - Order details page
@@ -489,7 +530,9 @@ The MVP will be built incrementally using vertical slicing. Each slice delivers 
 ---
 
 ### Slice 6: Product Search & Reviews - Week 8
+
 **Goal**: Users can find products and read/write reviews
+
 - Search functionality
 - Search results page
 - Leave review (registered users)
@@ -502,7 +545,9 @@ The MVP will be built incrementally using vertical slicing. Each slice delivers 
 ---
 
 ### Slice 7: Admin Panel - Week 9-10
+
 **Goal**: Admin can manage platform
+
 - Admin authentication
 - Product CRUD
 - Inventory management
@@ -522,18 +567,21 @@ The MVP will be built incrementally using vertical slicing. Each slice delivers 
 ## 4. Out of Scope Details
 
 ### 4.1 Why No Real Payments?
+
 - **Educational focus**: Don't need PCI compliance complexity
 - **Stripe Test Mode**: Demonstrates integration knowledge without legal/financial burden
 - **Simpler testing**: No need to handle actual refunds, chargebacks
 - **Zero risk**: No customer financial data at risk
 
 ### 4.2 Why No Real Shipping?
+
 - **Complexity**: Real shipping APIs (USPS, FedEx) are complex
 - **Cost**: Shipping APIs often require paid accounts
 - **Simulation sufficient**: Demonstrates understanding of order flow
 - **Focus**: More time for quality engineering practices
 
 ### 4.3 Why No Mobile App?
+
 - **Scope**: Web responsive design demonstrates mobile UX
 - **Technology**: Native app requires different tech stack
 - **Time**: Would double development time
@@ -544,6 +592,7 @@ The MVP will be built incrementally using vertical slicing. Each slice delivers 
 ## 5. MVP Acceptance Criteria
 
 ### 5.1 Functional Acceptance
+
 - [ ] All "Must Have" user stories completed
 - [ ] All user stories pass acceptance criteria
 - [ ] All critical user journeys work end-to-end:
@@ -552,6 +601,7 @@ The MVP will be built incrementally using vertical slicing. Each slice delivers 
   - [ ] Admin: Login → Add Product → Manage Inventory → Process Orders
 
 ### 5.2 Quality Acceptance
+
 - [ ] Code coverage ≥80%
 - [ ] All tests passing (unit, integration, E2E)
 - [ ] Zero ESLint errors
@@ -565,6 +615,7 @@ The MVP will be built incrementally using vertical slicing. Each slice delivers 
 - [ ] Zero high security vulnerabilities
 
 ### 5.3 DevOps Acceptance
+
 - [ ] CI/CD pipeline operational
 - [ ] Quality gates enforced
 - [ ] Deployed to Vercel production
@@ -574,6 +625,7 @@ The MVP will be built incrementally using vertical slicing. Each slice delivers 
 - [ ] Monitoring/alerting configured (basic)
 
 ### 5.4 Documentation Acceptance
+
 - [ ] README.md complete with setup instructions
 - [ ] API documentation (endpoint list)
 - [ ] Deployment runbook
@@ -587,39 +639,43 @@ The MVP will be built incrementally using vertical slicing. Each slice delivers 
 ## 6. Success Metrics (MVP Launch)
 
 ### 6.1 Technical Metrics
-| Metric | Target | Measurement |
-|--------|--------|-------------|
-| Code Coverage | ≥80% | Jest/Coverage report |
-| Test Execution Time | <10 min | CI pipeline |
-| Build Time | <5 min | Vercel build logs |
-| Deployment Frequency | Daily (once stable) | Git commits |
-| Lead Time | <1 day | Git history |
-| MTTR | <4 hours | Incident logs |
-| Change Failure Rate | <10% | Failed deployments |
+
+| Metric               | Target              | Measurement          |
+| -------------------- | ------------------- | -------------------- |
+| Code Coverage        | ≥80%                | Jest/Coverage report |
+| Test Execution Time  | <10 min             | CI pipeline          |
+| Build Time           | <5 min              | Vercel build logs    |
+| Deployment Frequency | Daily (once stable) | Git commits          |
+| Lead Time            | <1 day              | Git history          |
+| MTTR                 | <4 hours            | Incident logs        |
+| Change Failure Rate  | <10%                | Failed deployments   |
 
 ### 6.2 Performance Metrics
-| Metric | Target | Measurement |
-|--------|--------|-------------|
-| LCP (Largest Contentful Paint) | <2.5s | Lighthouse |
-| FCP (First Contentful Paint) | <1.5s | Lighthouse |
-| TTI (Time to Interactive) | <3.5s | Lighthouse |
-| API Response (p95) | <500ms | Performance monitoring |
-| Lighthouse Performance | ≥90 | Lighthouse CI |
+
+| Metric                         | Target | Measurement            |
+| ------------------------------ | ------ | ---------------------- |
+| LCP (Largest Contentful Paint) | <2.5s  | Lighthouse             |
+| FCP (First Contentful Paint)   | <1.5s  | Lighthouse             |
+| TTI (Time to Interactive)      | <3.5s  | Lighthouse             |
+| API Response (p95)             | <500ms | Performance monitoring |
+| Lighthouse Performance         | ≥90    | Lighthouse CI          |
 
 ### 6.3 Quality Metrics
-| Metric | Target | Measurement |
-|--------|--------|-------------|
-| Accessibility Score | ≥90 | Lighthouse |
-| WCAG 2.1 Compliance | Level AA | axe-core audit |
-| Security Vulnerabilities (Critical/High) | 0 | npm audit |
-| ESLint Errors | 0 | ESLint report |
-| TypeScript Errors | 0 | tsc --noEmit |
+
+| Metric                                   | Target   | Measurement    |
+| ---------------------------------------- | -------- | -------------- |
+| Accessibility Score                      | ≥90      | Lighthouse     |
+| WCAG 2.1 Compliance                      | Level AA | axe-core audit |
+| Security Vulnerabilities (Critical/High) | 0        | npm audit      |
+| ESLint Errors                            | 0        | ESLint report  |
+| TypeScript Errors                        | 0        | tsc --noEmit   |
 
 ---
 
 ## 7. Post-MVP Roadmap (V2 Ideas)
 
 **After MVP is stable and documented**:
+
 1. **Wishlist Feature**: Save favorites
 2. **Email Notifications**: Real emails via Resend
 3. **Advanced Admin Analytics**: Charts and trends
@@ -635,10 +691,10 @@ The MVP will be built incrementally using vertical slicing. Each slice delivers 
 
 ## 8. Approval
 
-| Role | Name | Date | Status |
-|------|------|------|--------|
+| Role          | Name                   | Date       | Status      |
+| ------------- | ---------------------- | ---------- | ----------- |
 | Developer/QAE | Antonio Gomez Gallardo | 2025-10-19 | ✅ Approved |
-| Stakeholder | Antonio Gomez Gallardo | 2025-10-19 | ✅ Approved |
+| Stakeholder   | Antonio Gomez Gallardo | 2025-10-19 | ✅ Approved |
 
 **Status**: Approved - Ready for development
 
@@ -648,12 +704,12 @@ The MVP will be built incrementally using vertical slicing. Each slice delivers 
 
 **Version History**:
 
-| Version | Date | Author | Changes |
-|---------|------|--------|---------|
-| 1.0.0 | 2025-10-19 | Antonio Gomez Gallardo | MVP definition based on BRD and personas |
+| Version | Date       | Author                 | Changes                                  |
+| ------- | ---------- | ---------------------- | ---------------------------------------- |
+| 1.0.0   | 2025-10-19 | Antonio Gomez Gallardo | MVP definition based on BRD and personas |
 
 **Next Review**: After completing Slice 1 (adjust based on learnings)
 
 ---
 
-*This MVP definition follows Module 01: Requirements Engineering and Module 02: Agile Planning from the quality-standards documentation. It uses MoSCoW prioritization and vertical slicing techniques.*
+_This MVP definition follows Module 01: Requirements Engineering and Module 02: Agile Planning from the quality-standards documentation. It uses MoSCoW prioritization and vertical slicing techniques._

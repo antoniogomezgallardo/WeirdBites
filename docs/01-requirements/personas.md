@@ -23,12 +23,14 @@ User personas represent the primary types of users who will interact with the We
 **Tech Savviness**: High
 
 #### Demographics
+
 - Income: $65,000/year
 - Education: Bachelor's degree
 - Family: Single, no children
 - Living situation: Urban apartment
 
 #### Goals & Motivations
+
 - **Primary Goal**: Discover unique snacks she can't find in regular stores
 - **Motivations**:
   - Loves trying new foods and experiences
@@ -38,6 +40,7 @@ User personas represent the primary types of users who will interact with the We
   - Wants products that tell a story
 
 #### Behaviors
+
 - **Shopping Habits**:
   - Shops online 2-3 times per week
   - Comfortable with e-commerce checkout flows
@@ -52,6 +55,7 @@ User personas represent the primary types of users who will interact with the We
   - Expects fast, responsive websites
 
 #### Pain Points
+
 - Mainstream stores only carry boring, mass-market snacks
 - Hard to find genuinely unique products
 - Wants detailed information before trying something weird
@@ -59,6 +63,7 @@ User personas represent the primary types of users who will interact with the We
 - Frustrated by out-of-stock items with no restock info
 
 #### User Needs
+
 - **Must Have**:
   - Easy product discovery (browsing, search)
   - Detailed product descriptions ("What makes this weird?")
@@ -79,15 +84,19 @@ User personas represent the primary types of users who will interact with the We
 #### Scenarios
 
 **Scenario 1: Discovery**
+
 > Sarah opens WeirdBites.com during lunch break. She scrolls through the product grid, intrigued by unusual packaging and names. She clicks on "Ghost Pepper Chocolate Bar" to learn more. The product page shows multiple images, ingredients, heat level, and origin story. She's sold! She adds it to cart.
 
 **Scenario 2: Checkout**
+
 > Sarah has 3 items in her cart ($42 total). She clicks checkout, enters her shipping info, and uses the test payment. Within 2 minutes, she's done and receives a confirmation email. Easy!
 
 **Scenario 3: Sharing**
+
 > Sarah received her order. The snacks were as weird as promised! She logs in, leaves a 5-star review on the Ghost Pepper Chocolate, and shares the product link with friends.
 
 #### Success Metrics
+
 - Completes purchase within 5 minutes of adding to cart
 - Returns to browse 2-3 times per month
 - Shares products on social media (future feature)
@@ -104,12 +113,14 @@ User personas represent the primary types of users who will interact with the We
 **Tech Savviness**: Very High
 
 #### Demographics
+
 - Income: $95,000/year
 - Education: Master's degree
 - Family: Married, no children
 - Living situation: Suburban home
 
 #### Goals & Motivations
+
 - **Primary Goal**: Find unique, memorable gifts for friends and family
 - **Motivations**:
   - Hates giving generic gifts
@@ -119,6 +130,7 @@ User personas represent the primary types of users who will interact with the We
   - Time-constrained (busy schedule)
 
 #### Behaviors
+
 - **Shopping Habits**:
   - Shops online primarily (hates malls)
   - Purchases gifts 1-2 times per month
@@ -133,12 +145,14 @@ User personas represent the primary types of users who will interact with the We
   - Prefers guest checkout for one-time purchases
 
 #### Pain Points
+
 - Generic gift options at regular stores
 - Time-consuming to find truly unique items
 - Uncertain if recipient will like weird products
 - Wants gift-specific features (notes, special packaging)
 
 #### User Needs
+
 - **Must Have**:
   - Easy browsing with clear categorization
   - Detailed product information
@@ -158,12 +172,15 @@ User personas represent the primary types of users who will interact with the We
 #### Scenarios
 
 **Scenario 1: Last-Minute Gift**
+
 > Marcus remembers his colleague's birthday is tomorrow. He visits WeirdBites, filters by "Spicy" category (knowing his colleague loves heat). He finds a "World's Weirdest Hot Sauces" collection, adds it to cart as a guest, and checks out in 3 minutes. Perfect!
 
 **Scenario 2: Multiple Recipients**
+
 > Marcus is buying holiday gifts for 5 coworkers. He creates an account to save multiple shipping addresses, then adds different weird snacks to cart, specifying different addresses for each. Checkout is smooth despite complexity.
 
 #### Success Metrics
+
 - Completes guest checkout successfully
 - Finds gift-appropriate items quickly (<5 min)
 - Returns for repeat gift purchases
@@ -180,12 +197,14 @@ User personas represent the primary types of users who will interact with the We
 **Tech Savviness**: High
 
 #### Demographics
+
 - Income: $55,000/year (freelance)
 - Education: Bachelor's degree in Journalism
 - Family: Single, no children
 - Living situation: Urban apartment
 
 #### Goals & Motivations
+
 - **Primary Goal**: Source unique content for food blog/social media
 - **Motivations**:
   - Needs constant stream of novel food experiences
@@ -195,6 +214,7 @@ User personas represent the primary types of users who will interact with the We
   - May write about products (publicity value)
 
 #### Behaviors
+
 - **Shopping Habits**:
   - Shops weekly for new content
   - Creates account to track order history
@@ -209,12 +229,14 @@ User personas represent the primary types of users who will interact with the We
   - Active across all social platforms
 
 #### Pain Points
+
 - Needs to remember what she's already reviewed
 - Wants to track spending for tax purposes
 - Frustrated by slow websites (content creation is time-sensitive)
 - Needs variety - doesn't want to see same products repeatedly
 
 #### User Needs
+
 - **Must Have**:
   - User account with order history
   - Saved shipping/payment information
@@ -235,12 +257,15 @@ User personas represent the primary types of users who will interact with the We
 #### Scenarios
 
 **Scenario 1: Weekly Content Shopping**
+
 > Emma logs into her account, checks "What's New" to see latest additions. She adds 4 new products to cart, knowing her payment/shipping info is saved. Checkout takes 30 seconds. She receives confirmation and makes note to film unboxing when it arrives.
 
 **Scenario 2: Content Research**
+
 > Emma is writing blog post about Japanese weird snacks. She searches "Japan" on WeirdBites, filters by category, and finds 8 relevant products. She adds to wishlist for future purchase and takes screenshots of product descriptions for research.
 
 #### Success Metrics
+
 - Weekly repeat purchases
 - High engagement (reviews, wishlist usage)
 - Fast checkout time (<1 minute for registered users)
@@ -259,6 +284,7 @@ User personas represent the primary types of users who will interact with the We
 **Tech Savviness**: Very High
 
 #### Goals & Motivations
+
 - **Primary Goal**: Efficiently manage product catalog and orders
 - **Motivations**:
   - Demonstrate professional admin panel design
@@ -268,6 +294,7 @@ User personas represent the primary types of users who will interact with the We
   - Learn full-stack development
 
 #### Behaviors
+
 - **Admin Habits**:
   - Logs into admin panel daily
   - Adds new products weekly
@@ -282,12 +309,14 @@ User personas represent the primary types of users who will interact with the We
   - Values data accuracy
 
 #### Pain Points
+
 - Manual data entry is time-consuming
 - Needs quick way to update stock levels
 - Wants visibility into low-stock products
 - Requires clear order management workflow
 
 #### User Needs
+
 - **Must Have**:
   - Product CRUD (Create, Read, Update, Delete)
   - Inventory tracking with alerts
@@ -310,15 +339,19 @@ User personas represent the primary types of users who will interact with the We
 #### Scenarios
 
 **Scenario 1: Adding New Product**
+
 > Antonio sources new weird snack from supplier. He logs into admin panel, clicks "Add Product", fills form (name, description, price, stock, category), uploads 3 images, and saves. Product immediately appears on customer site. Takes 5 minutes.
 
 **Scenario 2: Inventory Management**
+
 > Antonio sees "Low Stock Alert" notification on dashboard. He clicks to view all low-stock products, updates quantities for 5 items, and marks 2 as "Out of Stock". Customers immediately see updated availability.
 
 **Scenario 3: Order Processing**
+
 > Antonio checks "New Orders" daily. He sees 3 new orders, reviews items, and updates status from "Pending" to "Processing". Customers (theoretically) receive email notification. He marks as "Shipped" the next day.
 
 #### Success Metrics
+
 - Add product in <5 minutes
 - Update inventory efficiently
 - Zero data entry errors
@@ -329,12 +362,15 @@ User personas represent the primary types of users who will interact with the We
 ## Anti-Personas (Not Our Target Users)
 
 ### Anti-Persona 1: Bargain Hunter
+
 **Why Not Target**: Weird/unique snacks are niche and premium-priced. Users primarily seeking lowest prices won't value our USP.
 
 ### Anti-Persona 2: Health-Focused Shopper
+
 **Why Not Target**: Many weird snacks are novelty items, not health foods. Users seeking organic/low-calorie won't find what they need.
 
 ### Anti-Persona 3: Bulk Business Buyer
+
 **Why Not Target**: This is a consumer-focused platform, not B2B. No wholesale pricing or bulk ordering features.
 
 ---
@@ -342,6 +378,7 @@ User personas represent the primary types of users who will interact with the We
 ## Persona Prioritization
 
 ### Primary Focus (MVP)
+
 1. **Curious Snacker (Sarah)**: 60% of development decisions
    - Core customer persona
    - Drives main shopping experience
@@ -352,6 +389,7 @@ User personas represent the primary types of users who will interact with the We
    - Admin panel features prioritized
 
 ### Secondary Consideration
+
 3. **Gift Giver (Marcus)**: 5% of development decisions
    - Guest checkout must work seamlessly
    - Multi-address shipping deferred to v2
@@ -365,21 +403,25 @@ User personas represent the primary types of users who will interact with the We
 ## Usage Across Development Phases
 
 ### Requirements Engineering (Module 01)
+
 - ✅ User stories written from persona perspectives
 - ✅ Acceptance criteria reflect persona needs
 - ✅ Scenarios inform test cases
 
 ### Design (Future Phase)
+
 - UI/UX decisions validated against persona expectations
 - Information architecture matches mental models
 - Visual design appeals to target demographic
 
 ### Testing (Module 04-05)
+
 - E2E tests follow persona scenarios
 - Usability testing with persona profiles
 - Performance targets based on persona tech usage
 
 ### Metrics (Module 09)
+
 - Track success metrics per persona
 - Measure if goals are being achieved
 - Identify persona-specific pain points
@@ -390,12 +432,12 @@ User personas represent the primary types of users who will interact with the We
 
 **Version History**:
 
-| Version | Date | Author | Changes |
-|---------|------|--------|---------|
-| 1.0.0 | 2025-10-19 | Antonio Gomez Gallardo | Initial personas based on BRD |
+| Version | Date       | Author                 | Changes                       |
+| ------- | ---------- | ---------------------- | ----------------------------- |
+| 1.0.0   | 2025-10-19 | Antonio Gomez Gallardo | Initial personas based on BRD |
 
 **Next Review**: After MVP launch (gather real user data to validate/refine personas)
 
 ---
 
-*These personas follow best practices from Module 01: Requirements Engineering and will guide all user story creation and design decisions.*
+_These personas follow best practices from Module 01: Requirements Engineering and will guide all user story creation and design decisions._

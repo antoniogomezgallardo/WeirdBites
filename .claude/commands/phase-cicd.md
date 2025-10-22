@@ -5,6 +5,7 @@
 **Usage**: `/phase-cicd [step or topic]`
 
 **Examples**:
+
 - `/phase-cicd` - Start CI/CD phase
 - `/phase-cicd github-actions` - Set up GitHub Actions
 - `/phase-cicd quality-gates` - Configure quality gates
@@ -19,6 +20,7 @@ This command guides you through **Module 08: CI/CD Pipeline**, which focuses on 
 ### Phase Objectives
 
 By completing this phase, you will have:
+
 - [ ] Continuous Integration (CI) pipeline configured
 - [ ] Automated testing on every commit/PR
 - [ ] Quality gates enforced (coverage, linting, security)
@@ -32,6 +34,7 @@ By completing this phase, you will have:
 ### Relevant Documentation
 
 **Core Modules**:
+
 - `docs/quality-standards/docs/08-cicd-pipeline/08-README.md`
 - `docs/quality-standards/docs/08-cicd-pipeline/continuous-integration.md`
 - `docs/quality-standards/docs/08-cicd-pipeline/continuous-delivery.md`
@@ -40,13 +43,16 @@ By completing this phase, you will have:
 - `docs/quality-standards/docs/03-version-control/cicd-best-practices/03.1-README.md`
 
 **Templates**:
+
 - `docs/quality-standards/templates/pipeline-template.yaml`
 
 **Examples**:
+
 - `docs/quality-standards/examples/ci-pipelines/` - GitHub Actions, GitLab CI, Jenkins
 - `docs/quality-standards/examples/deployment/` - Blue-Green, Canary, Terraform (10 files)
 
 ### Industry Standards Referenced
+
 - DORA Metrics (DevOps Research and Assessment)
 - CI/CD Best Practices (GitHub Flow, GitLab Flow, Trunk-Based Development)
 
@@ -59,6 +65,7 @@ By completing this phase, you will have:
 **Goal**: Automate build and test execution on every commit and pull request.
 
 **Actions**:
+
 1. Read `docs/quality-standards/docs/08-cicd-pipeline/continuous-integration.md`
 2. Review examples in `docs/quality-standards/examples/ci-pipelines/`
 3. Choose CI platform: GitHub Actions (recommended for GitHub repos)
@@ -310,6 +317,7 @@ jobs:
 ```
 
 **Deliverables**:
+
 - CI pipeline configuration file
 - Build passing on all branches
 - Fast feedback (<10 minutes)
@@ -322,6 +330,7 @@ jobs:
 **Goal**: Enforce quality standards automatically before code can be merged.
 
 **Actions**:
+
 1. Read quality gate requirements from Module 08
 2. Configure branch protection rules
 3. Set up required status checks
@@ -333,55 +342,56 @@ jobs:
 # Quality Gate Configuration
 quality_gates:
   # Code Quality
-  - name: "Linting"
+  - name: 'Linting'
     required: true
     failure_blocks_merge: true
 
-  - name: "Code Coverage"
+  - name: 'Code Coverage'
     required: true
     threshold: 80%
     failure_blocks_merge: true
 
-  - name: "Type Safety"
+  - name: 'Type Safety'
     required: true
     failure_blocks_merge: true
 
   # Security
-  - name: "Security Scan"
+  - name: 'Security Scan'
     required: true
     failure_blocks_merge: true
-    allowed_severities: ["low", "medium"]  # Block on high/critical
+    allowed_severities: ['low', 'medium'] # Block on high/critical
 
-  - name: "Dependency Audit"
+  - name: 'Dependency Audit'
     required: true
     failure_blocks_merge: true
 
   # Testing
-  - name: "Unit Tests"
+  - name: 'Unit Tests'
     required: true
     failure_blocks_merge: true
 
-  - name: "Integration Tests"
+  - name: 'Integration Tests'
     required: true
     failure_blocks_merge: true
 
-  - name: "E2E Tests (Critical Paths)"
+  - name: 'E2E Tests (Critical Paths)'
     required: true
     failure_blocks_merge: true
 
   # Performance
-  - name: "Bundle Size"
+  - name: 'Bundle Size'
     required: true
-    threshold: "500KB (gzipped)"
-    failure_blocks_merge: false  # Warning only
+    threshold: '500KB (gzipped)'
+    failure_blocks_merge: false # Warning only
 
-  - name: "Lighthouse Score"
+  - name: 'Lighthouse Score'
     required: false
     threshold: 90
     failure_blocks_merge: false
 ```
 
 **GitHub Branch Protection Rules**:
+
 ```yaml
 # Configure in GitHub repo settings
 branches:
@@ -390,12 +400,12 @@ branches:
       required_status_checks:
         strict: true
         contexts:
-          - "Lint & Code Quality"
-          - "Security Scan"
-          - "Unit Tests"
-          - "Integration Tests"
-          - "E2E Tests"
-          - "Build Application"
+          - 'Lint & Code Quality'
+          - 'Security Scan'
+          - 'Unit Tests'
+          - 'Integration Tests'
+          - 'E2E Tests'
+          - 'Build Application'
       required_pull_request_reviews:
         required_approving_review_count: 1
         dismiss_stale_reviews: true
@@ -405,6 +415,7 @@ branches:
 ```
 
 **Deliverables**:
+
 - Quality gates configured
 - Branch protection enabled
 - Status checks required
@@ -417,6 +428,7 @@ branches:
 **Goal**: Automate deployment to staging/production environments.
 
 **Actions**:
+
 1. Read `docs/quality-standards/docs/08-cicd-pipeline/continuous-delivery.md`
 2. Read `docs/quality-standards/docs/08-cicd-pipeline/deployment-automation.md`
 3. Review deployment examples in `docs/quality-standards/examples/deployment/`
@@ -431,7 +443,7 @@ name: Continuous Deployment
 on:
   push:
     branches: [main]
-  workflow_dispatch:  # Manual trigger
+  workflow_dispatch: # Manual trigger
 
 jobs:
   deploy-staging:
@@ -531,7 +543,7 @@ jobs:
       - name: Run production smoke tests
         run: npm run test:smoke:production
         env:
-          BASE_URL: https://green.weirdbites.com  # Green environment URL
+          BASE_URL: https://green.weirdbites.com # Green environment URL
 
       - name: Switch traffic to green
         run: |
@@ -590,6 +602,7 @@ jobs:
 ```
 
 **Deliverables**:
+
 - CD pipeline for staging
 - CD pipeline for production
 - Smoke tests configured
@@ -603,6 +616,7 @@ jobs:
 **Goal**: Measure DevOps performance using DORA metrics.
 
 **Actions**:
+
 1. Read `docs/quality-standards/docs/09-metrics-monitoring/dora-metrics.md`
 2. Track 4 key metrics:
    - Deployment Frequency
@@ -662,6 +676,7 @@ jobs:
 | Change Failure Rate | N/A | < 10% | 0-15% |
 
 **Deliverables**:
+
 - DORA metrics dashboard
 - Automated metric collection
 - Trend tracking over time
@@ -716,6 +731,7 @@ Before moving to **Phase 7: Production & Monitoring**, ensure:
 
 Once CI/CD phase is complete, proceed to:
 **Phase 7: Production & Monitoring**
+
 - Set up observability (logs, metrics, traces)
 - Configure alerting
 - Create runbooks
@@ -726,10 +742,12 @@ Once CI/CD phase is complete, proceed to:
 ## Resources
 
 **Examples**:
+
 - CI Pipelines: `examples/ci-pipelines/` (GitHub Actions, GitLab CI, Jenkins)
 - Deployment: `examples/deployment/` (Blue-Green, Canary, Terraform)
 
 **Tools**:
+
 - CI: GitHub Actions, GitLab CI, Jenkins, CircleCI
 - CD: ArgoCD, Flux, Spinnaker
 - Infrastructure: Terraform, CloudFormation, Pulumi

@@ -5,6 +5,7 @@
 **Usage**: `/phase-testing [step or topic]`
 
 **Examples**:
+
 - `/phase-testing` - Start testing phase
 - `/phase-testing strategy` - Define testing strategy
 - `/phase-testing unit` - Set up unit testing
@@ -20,6 +21,7 @@ This command guides you through **Module 04: Testing Strategy** and **Module 05:
 ### Phase Objectives
 
 By completing this phase, you will have:
+
 - [ ] Comprehensive testing strategy document
 - [ ] Test pyramid established (70% unit, 20% integration, 10% E2E)
 - [ ] Unit tests with >80% coverage
@@ -34,6 +36,7 @@ By completing this phase, you will have:
 ### Relevant Documentation
 
 **Core Modules**:
+
 - `docs/quality-standards/docs/04-testing-strategy/04-README.md`
 - `docs/quality-standards/docs/04-testing-strategy/shift-left-approach.md`
 - `docs/quality-standards/docs/04-testing-strategy/shift-right-approach.md`
@@ -48,10 +51,12 @@ By completing this phase, you will have:
 - `docs/quality-standards/docs/06-quality-attributes/performance-testing.md`
 
 **Templates**:
+
 - `docs/quality-standards/templates/test-case-template.md` (IEEE 829)
 - `docs/quality-standards/templates/test-plan-ieee829.md`
 
 **Examples** (19 comprehensive directories):
+
 - `docs/quality-standards/examples/unit-tests/` - Jest, Vitest, mutation testing
 - `docs/quality-standards/examples/integration-tests/` - API testing, database integration
 - `docs/quality-standards/examples/api-testing/` - Supertest, GraphQL, Pact (9 files, 4500+ lines)
@@ -61,6 +66,7 @@ By completing this phase, you will have:
 - `docs/quality-standards/examples/performance/` - k6, JMeter, Artillery
 
 ### Industry Standards Referenced
+
 - IEEE 829 - Test Documentation
 - ISO/IEC/IEEE 29119 - Software Testing
 - ISTQB - Testing Best Practices
@@ -75,6 +81,7 @@ By completing this phase, you will have:
 **Goal**: Create comprehensive testing strategy aligned with shift-left and test pyramid principles.
 
 **Actions**:
+
 1. Read `docs/quality-standards/docs/04-testing-strategy/04-README.md`
 2. Read `docs/quality-standards/docs/04-testing-strategy/shift-left-approach.md`
 3. Use template from `docs/quality-standards/templates/test-plan-ieee829.md`
@@ -87,6 +94,7 @@ By completing this phase, you will have:
    - Risk assessment
 
 **WeirdBites Testing Strategy**:
+
 ```markdown
 ## Test Pyramid (Target Distribution)
 
@@ -95,20 +103,21 @@ By completing this phase, you will have:
       ╱────╲       - Smoke tests in production
      ╱ API  ╲      Integration/API (20%)
     ╱ Tests  ╲     - Service integration
-   ╱──────────╲    - Database operations
-  ╱Integration ╲   - External API contracts
- ╱────────────────╲
-╱   Unit Tests     ╱  Unit Tests (70%)
-└───────────────────┘  - Business logic
-                        - Utility functions
-                        - Component behavior
+
+╱──────────╲ - Database operations
+╱Integration ╲ - External API contracts
+╱────────────────╲
+╱ Unit Tests ╱ Unit Tests (70%)
+└───────────────────┘ - Business logic - Utility functions - Component behavior
 
 ## Coverage Targets
+
 - Overall: >80%
 - Critical paths: >95%
 - New code: 100%
 
 ## Test Frameworks
+
 - Unit: Jest (JavaScript), pytest (Python)
 - Integration: Supertest (API), pytest (services)
 - E2E: Playwright (cross-browser)
@@ -118,6 +127,7 @@ By completing this phase, you will have:
 ```
 
 **Deliverables**:
+
 - Test strategy document (`docs/test-strategy.md`)
 - Test plan following IEEE 829
 
@@ -128,6 +138,7 @@ By completing this phase, you will have:
 **Goal**: Implement fast, isolated unit tests for business logic and components.
 
 **Actions**:
+
 1. Read `docs/quality-standards/docs/05-test-levels/unit-testing.md`
 2. Review examples in `docs/quality-standards/examples/unit-tests/`
 3. Choose framework: Jest (JS/TS), pytest (Python), JUnit (Java)
@@ -172,6 +183,7 @@ describe('ShoppingCart', () => {
 ```
 
 **Best Practices** (from documentation):
+
 - Test behavior, not implementation
 - Use AAA pattern (Arrange, Act, Assert)
 - One assertion per test (when possible)
@@ -180,6 +192,7 @@ describe('ShoppingCart', () => {
 - Fast execution (< 1ms per test)
 
 **Deliverables**:
+
 - Unit test framework configured
 - Coverage reporting enabled (Istanbul/NYC/Coverage.py)
 - Test scripts in package.json/Makefile
@@ -192,6 +205,7 @@ describe('ShoppingCart', () => {
 **Goal**: Test interaction between components, services, and external dependencies.
 
 **Actions**:
+
 1. Read `docs/quality-standards/docs/05-test-levels/integration-testing.md`
 2. Read `docs/quality-standards/docs/05-test-levels/api-testing.md`
 3. Review examples:
@@ -241,9 +255,7 @@ describe('Products API', () => {
         .expect(200);
 
       expect(response.body.products).toEqual(
-        expect.arrayContaining([
-          expect.objectContaining({ category: 'snacks' })
-        ])
+        expect.arrayContaining([expect.objectContaining({ category: 'snacks' })])
       );
     });
   });
@@ -254,7 +266,7 @@ describe('Products API', () => {
         name: 'Spicy Weird Chips',
         price: 5.99,
         category: 'snacks',
-        stock: 100
+        stock: 100,
       };
 
       const response = await request(app)
@@ -271,19 +283,17 @@ describe('Products API', () => {
       const invalidProduct = {
         name: 'Bad Product',
         price: -1, // Invalid
-        category: 'snacks'
+        category: 'snacks',
       };
 
-      await request(app)
-        .post('/api/products')
-        .send(invalidProduct)
-        .expect(400);
+      await request(app).post('/api/products').send(invalidProduct).expect(400);
     });
   });
 });
 ```
 
 **Deliverables**:
+
 - Integration tests for all API endpoints
 - Database integration tests
 - Test database setup/teardown scripts
@@ -296,6 +306,7 @@ describe('Products API', () => {
 **Goal**: Ensure API contracts between services are honored.
 
 **Actions**:
+
 1. Read `docs/quality-standards/docs/05-test-levels/contract-testing.md`
 2. Review examples in `docs/quality-standards/examples/contract-testing/`
 3. Use Pact for consumer-driven contracts
@@ -311,7 +322,7 @@ const { ProductService } = require('../../src/services/product-service');
 describe('Products Service Contract', () => {
   const provider = new Pact({
     consumer: 'WeirdBites-Frontend',
-    provider: 'WeirdBites-API'
+    provider: 'WeirdBites-API',
   });
 
   beforeAll(() => provider.setup());
@@ -324,7 +335,7 @@ describe('Products Service Contract', () => {
         uponReceiving: 'a request for product 123',
         withRequest: {
           method: 'GET',
-          path: '/api/products/123'
+          path: '/api/products/123',
         },
         willRespondWith: {
           status: 200,
@@ -333,9 +344,9 @@ describe('Products Service Contract', () => {
             id: '123',
             name: 'Weird Chips',
             price: 4.99,
-            category: 'snacks'
-          }
-        }
+            category: 'snacks',
+          },
+        },
       });
 
       const service = new ProductService(provider.mockService.baseUrl);
@@ -349,6 +360,7 @@ describe('Products Service Contract', () => {
 ```
 
 **Deliverables**:
+
 - Consumer contracts defined
 - Provider verification tests
 - Contract test execution in CI
@@ -361,6 +373,7 @@ describe('Products Service Contract', () => {
 **Goal**: Test critical user journeys end-to-end using Playwright or Cypress.
 
 **Actions**:
+
 1. Read `docs/quality-standards/docs/05-test-levels/e2e-testing.md`
 2. Review examples in `docs/quality-standards/examples/e2e-tests/`
 3. Choose framework: Playwright (recommended) or Cypress
@@ -402,14 +415,14 @@ test.describe('Checkout Flow', () => {
       name: 'John Doe',
       address: '123 Main St',
       city: 'Portland',
-      zip: '97201'
+      zip: '97201',
     });
 
     // Enter payment (test mode)
     await checkoutPage.fillPaymentInfo({
       cardNumber: '4242424242424242',
       expiry: '12/25',
-      cvc: '123'
+      cvc: '123',
     });
 
     // Complete purchase
@@ -424,6 +437,7 @@ test.describe('Checkout Flow', () => {
 ```
 
 **Critical Paths for WeirdBites**:
+
 1. Browse → Add to Cart → Checkout → Purchase (guest)
 2. Browse → Add to Cart → Checkout → Purchase (logged in)
 3. User Registration → Login
@@ -431,6 +445,7 @@ test.describe('Checkout Flow', () => {
 5. Add Multiple Items → Update Quantities → Checkout
 
 **Deliverables**:
+
 - E2E tests for critical paths
 - Page Object Models
 - Test data management strategy
@@ -444,6 +459,7 @@ test.describe('Checkout Flow', () => {
 **Goal**: Ensure WCAG 2.1 Level AA compliance.
 
 **Actions**:
+
 1. Read `docs/quality-standards/docs/06-quality-attributes/accessibility.md`
 2. Review examples in `docs/quality-standards/examples/accessibility-testing/` (13 files)
 3. Integrate axe-core into E2E tests
@@ -485,6 +501,7 @@ test.describe('Accessibility Compliance', () => {
 ```
 
 **WCAG 2.1 Checklist for WeirdBites**:
+
 - [ ] All images have alt text
 - [ ] Color contrast ratio ≥ 4.5:1
 - [ ] Keyboard navigation works
@@ -495,6 +512,7 @@ test.describe('Accessibility Compliance', () => {
 - [ ] Screen reader tested
 
 **Deliverables**:
+
 - Automated accessibility tests
 - Manual testing checklist
 - Accessibility report
@@ -507,6 +525,7 @@ test.describe('Accessibility Compliance', () => {
 **Goal**: Establish performance baseline and prevent regressions.
 
 **Actions**:
+
 1. Read `docs/quality-standards/docs/06-quality-attributes/performance-testing.md`
 2. Review examples in `docs/quality-standards/examples/load-testing/` (k6, JMeter, Artillery)
 3. Define performance budgets
@@ -523,26 +542,26 @@ export const options = {
   stages: [
     { duration: '2m', target: 100 }, // Ramp up to 100 users
     { duration: '5m', target: 100 }, // Stay at 100 users
-    { duration: '2m', target: 0 },   // Ramp down
+    { duration: '2m', target: 0 }, // Ramp down
   ],
   thresholds: {
     http_req_duration: ['p(95)<500'], // 95% of requests < 500ms
-    http_req_failed: ['rate<0.01'],   // Error rate < 1%
+    http_req_failed: ['rate<0.01'], // Error rate < 1%
   },
 };
 
 export default function () {
   // Homepage
   const homeRes = http.get('https://weirdbites.com');
-  check(homeRes, { 'homepage loaded': (r) => r.status === 200 });
+  check(homeRes, { 'homepage loaded': r => r.status === 200 });
 
   sleep(1);
 
   // Product listing
   const productsRes = http.get('https://weirdbites.com/api/products');
   check(productsRes, {
-    'products API responds': (r) => r.status === 200,
-    'products returned': (r) => JSON.parse(r.body).products.length > 0
+    'products API responds': r => r.status === 200,
+    'products returned': r => JSON.parse(r.body).products.length > 0,
   });
 
   sleep(2);
@@ -550,6 +569,7 @@ export default function () {
 ```
 
 **Performance Budgets**:
+
 - First Contentful Paint (FCP): < 1.5s
 - Largest Contentful Paint (LCP): < 2.5s
 - Time to Interactive (TTI): < 3.5s
@@ -557,6 +577,7 @@ export default function () {
 - Database Query Time: < 100ms
 
 **Deliverables**:
+
 - Performance test scripts
 - Baseline performance metrics
 - Performance budgets defined
@@ -585,6 +606,7 @@ Before moving to **Phase 6: CI/CD Pipeline**, ensure:
 ## Key Metrics
 
 Track these metrics throughout testing:
+
 - **Code Coverage**: >80% (target: 90%)
 - **Test Execution Time**: <10 minutes
 - **Flaky Test Rate**: <5%
@@ -612,6 +634,7 @@ Track these metrics throughout testing:
 
 Once testing phase is complete, proceed to:
 **Phase 6: CI/CD Pipeline** (`/phase-cicd`)
+
 - Integrate tests into pipeline
 - Configure quality gates
 - Automate test execution
@@ -622,6 +645,7 @@ Once testing phase is complete, proceed to:
 ## Resources
 
 **Examples** (Copy patterns from these):
+
 - Unit: `examples/unit-tests/` (Jest, Vitest, mutation)
 - Integration: `examples/integration-tests/`, `examples/api-testing/`
 - E2E: `examples/e2e-tests/` (Cypress, Playwright)
@@ -630,6 +654,7 @@ Once testing phase is complete, proceed to:
 - Performance: `examples/load-testing/` (k6, JMeter)
 
 **Tools**:
+
 - Test Frameworks: Jest, pytest, JUnit, Playwright
 - Coverage: Istanbul, Coverage.py, JaCoCo
 - API Testing: Supertest, REST Assured, Postman

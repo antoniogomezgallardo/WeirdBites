@@ -14,17 +14,20 @@
 **⚠️ IMPORTANT**: The relationship between User Stories and Vertical Slices is often misunderstood.
 
 **Correct Relationship**:
+
 ```
 User Story → (split into) → Vertical Slices → (grouped into) → Deployment Increment
 ```
 
 **Examples**:
+
 - ✅ **Correct**: "US-001 (Browse Products) is split into vertical slices for listing, filtering, and pagination"
 - ✅ **Correct**: "We'll implement Slice 1.1 (basic product listing) this sprint, derived from US-001"
 - ❌ **Incorrect**: "Deployment Increment 1 contains US-001, US-002, US-003"
 - ❌ **Incorrect**: "US-001 is part of Vertical Slice 1"
 
 **Why This Matters**:
+
 - User Stories describe **what** the user wants (feature requirements)
 - Vertical Slices describe **how** we incrementally deliver that feature (implementation strategy)
 - A single User Story may be split into multiple Vertical Slices for gradual delivery
@@ -35,17 +38,20 @@ User Story → (split into) → Vertical Slices → (grouped into) → Deploymen
 ## Agile & Planning Terms
 
 ### User Story
+
 **Definition**: A feature requirement written from the user's perspective describing the value they want to achieve.
 
 **Format**: "As a [user type], I want [goal] so that [benefit]"
 
 **Characteristics**:
+
 - Follows INVEST criteria (Independent, Negotiable, Valuable, Estimable, Small, Testable)
 - Estimated in story points (1-8 points typical)
 - Contains acceptance criteria in Given-When-Then format
 - May be split into multiple vertical slices for delivery
 
 **Example**:
+
 ```
 US-001: Browse Product Catalog
 As a visitor
@@ -59,9 +65,11 @@ Splits Into: Deployment Increment 1
 ---
 
 ### Vertical Slice
+
 **Definition**: A thin, end-to-end increment created by splitting a user story across all architectural layers (UI → API → Database) to deliver working functionality incrementally.
 
 **Characteristics**:
+
 - Crosses all layers (Frontend, Backend, Database)
 - Independently deployable and testable
 - Delivers working, valuable functionality
@@ -69,6 +77,7 @@ Splits Into: Deployment Increment 1
 - Always derived BY SPLITTING a user story
 
 **Example**:
+
 ```
 US-001 (Browse Products) splits into:
   → Vertical Slice 1.1: Basic product grid (UI + API + DB)
@@ -83,15 +92,18 @@ Each slice is deployable independently.
 ---
 
 ### Deployment Increment
+
 **Definition**: A collection of vertical slices (derived from one or more split user stories) that are grouped together for deployment as a cohesive feature set.
 
 **Characteristics**:
+
 - Aggregates story points from multiple split stories (10-50 points typical)
 - Represents a significant, deployable milestone
 - Contains all vertical slices needed for a complete feature area
 - Planned for 1-2 week delivery cycles
 
 **Example**:
+
 ```
 Deployment Increment 1: Browse Products (13 points)
   Composed of vertical slices from:
@@ -105,29 +117,34 @@ Deployment Increment 1: Browse Products (13 points)
 ---
 
 ### Story Points
+
 **Definition**: A relative unit of measure for estimating the effort required to implement a user story.
 
 **Characteristics**:
+
 - Relative, not absolute (compare stories to each other)
 - Consider complexity, effort, uncertainty, and dependencies
 - Use Fibonacci sequence (1, 2, 3, 5, 8, 13, 21, ...)
 - 1 point = Very simple task (~2-4 hours)
 - 8 points = Complex task approaching sprint capacity limit
-- >8 points = Story should be split
+- > 8 points = Story should be split
 
 **Important**: Story points represent the ORIGINAL user story estimate. When split into vertical slices, the total points of all slices equal the original story's points.
 
 ---
 
 ### Epic
+
 **Definition**: A large body of work that can be broken down into multiple user stories.
 
 **Characteristics**:
+
 - Too large to complete in a single sprint (weeks to months)
 - Broken down into smaller user stories
 - Represents a major feature area or business capability
 
 **WeirdBites Epics**:
+
 1. Product Discovery (5 stories)
 2. Shopping Cart (4 stories)
 3. Guest Checkout (5 stories)
@@ -137,9 +154,11 @@ Deployment Increment 1: Browse Products (13 points)
 ---
 
 ### Sprint
+
 **Definition**: A fixed time-box (typically 1-2 weeks) during which a planned set of work is completed.
 
 **WeirdBites Sprint Cadence**:
+
 - Duration: 1 week (Monday-Friday)
 - Target velocity: 10-15 story points per sprint
 - Sprint 1 = Deployment Increment 1 (Week 1-2)
@@ -149,6 +168,7 @@ Deployment Increment 1: Browse Products (13 points)
 ---
 
 ### Velocity
+
 **Definition**: The amount of work (story points) a team completes in a sprint.
 
 **Calculation**: `Velocity = Sum of story points of completed stories`
@@ -162,9 +182,11 @@ Deployment Increment 1: Browse Products (13 points)
 ## Quality & Testing Terms
 
 ### Definition of Ready (DoR)
+
 **Definition**: A checklist of criteria that must be met before a user story can be pulled into a sprint for development.
 
 **Key Criteria**:
+
 - User story follows INVEST criteria
 - Acceptance criteria defined (Given-When-Then)
 - Story points estimated
@@ -177,9 +199,11 @@ Deployment Increment 1: Browse Products (13 points)
 ---
 
 ### Definition of Done (DoD)
+
 **Definition**: A checklist of criteria that must be met before a user story (or vertical slice) is considered complete.
 
 **Key Criteria**:
+
 - Code implemented and follows style guide
 - Unit tests written and passing (≥80% coverage)
 - Integration tests passing
@@ -195,11 +219,13 @@ Deployment Increment 1: Browse Products (13 points)
 ---
 
 ### Acceptance Criteria
+
 **Definition**: Specific conditions that must be met for a user story to be considered complete and acceptable.
 
 **Format**: Given-When-Then (Gherkin syntax)
 
 **Example**:
+
 ```gherkin
 Scenario: Homepage displays products
 Given I visit the WeirdBites homepage
@@ -211,9 +237,11 @@ And each product shows: image, name, price, brief description
 ---
 
 ### Test Levels
+
 **Definition**: Different scopes of testing aligned with the test pyramid.
 
 **Levels**:
+
 1. **Unit Tests** (70% of tests)
    - Test individual functions/methods in isolation
    - Fast, reliable, numerous
@@ -239,9 +267,11 @@ And each product shows: image, name, price, brief description
 ## Architecture & Development Terms
 
 ### Layer
+
 **Definition**: A horizontal division of the application architecture by technical responsibility.
 
 **WeirdBites Layers**:
+
 1. **UI Layer (Frontend)**
    - Next.js pages and components
    - User interface, client-side logic
@@ -262,9 +292,11 @@ And each product shows: image, name, price, brief description
 ---
 
 ### Tech Stack
+
 **Definition**: The collection of technologies used to build the application.
 
 **WeirdBites Stack**:
+
 - **Frontend**: Next.js 14+, React 18+, TypeScript, Tailwind CSS
 - **Backend**: Next.js API Routes, Node.js
 - **Database**: PostgreSQL, Prisma ORM
@@ -275,9 +307,11 @@ And each product shows: image, name, price, brief description
 ---
 
 ### MoSCoW Prioritization
+
 **Definition**: A prioritization technique categorizing requirements into four categories.
 
 **Categories**:
+
 - **M**ust Have: Critical for MVP (35 stories)
 - **S**hould Have: Important but not critical for MVP (12 stories)
 - **C**ould Have: Nice to have, low priority (8 stories)
@@ -290,54 +324,71 @@ And each product shows: image, name, price, brief description
 ## Quality Standards Modules
 
 ### Module 00: Foundations
+
 Quality frameworks, software quality models, ISO 25010 mapping
 
 ### Module 01: Requirements Engineering
+
 User stories, acceptance criteria, vertical slicing, prioritization
 
 ### Module 02: Agile Planning
+
 DoR, DoD, INVEST criteria, estimation, sprint planning
 
 ### Module 03: Version Control
+
 GitFlow methodology, branching strategies, code review
 
 ### Module 04: Testing Strategy
+
 Shift-left, shift-right, test pyramid, risk-based testing
 
 ### Module 05: Test Levels
+
 Unit, integration, E2E, API, contract, visual regression testing
 
 ### Module 06: Quality Attributes
+
 Performance, security, accessibility, scalability testing
 
 ### Module 07: Development Practices
+
 Clean code, TDD, BDD, refactoring, design patterns
 
 ### Module 08: CI/CD Pipeline
+
 Build automation, continuous integration, deployment automation
 
 ### Module 09: Metrics & Monitoring
+
 DORA metrics, code coverage, observability
 
 ### Module 10: Deployment
+
 Deployment strategies (blue-green, canary), rollback
 
 ### Module 11: Tools Ecosystem
+
 Tool selection, integration, evaluation
 
 ### Module 12: Governance
+
 Quality gates, compliance, change management
 
 ### Module 13: Incident Management
+
 Incident response, postmortems, root cause analysis
 
 ### Module 14: Continuous Improvement
+
 Retrospectives, testing maturity models, Kaizen
 
 ### Module 15: AI in Quality Assurance
+
 AI-assisted testing, test generation, predictive analytics
 
 ### Module 16: Agentic Workflows
+
 Autonomous QA agents, multi-agent systems, self-healing tests
 
 ---
@@ -371,6 +422,7 @@ Autonomous QA agents, multi-agent systems, self-healing tests
 ## Visual Reference
 
 ### Relationship Diagram
+
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                         EPIC                                │
@@ -423,11 +475,12 @@ Sprint 3: Checkout (DB + API + UI) → Delivers value!
 
 **Version History**:
 
-| Version | Date | Author | Changes |
-|---------|------|--------|---------|
-| 1.0.0 | 2025-10-22 | Antonio Gomez Gallardo | Initial glossary created to prevent User Stories vs Vertical Slices confusion |
+| Version | Date       | Author                 | Changes                                                                       |
+| ------- | ---------- | ---------------------- | ----------------------------------------------------------------------------- |
+| 1.0.0   | 2025-10-22 | Antonio Gomez Gallardo | Initial glossary created to prevent User Stories vs Vertical Slices confusion |
 
 **Related Documents**:
+
 - [CLAUDE.md](../CLAUDE.md) - Project instructions
 - [vertical-slices.md](01-requirements/vertical-slices.md) - Vertical slicing implementation
 - [product-backlog.md](01-requirements/product-backlog.md) - User stories
@@ -435,4 +488,4 @@ Sprint 3: Checkout (DB + API + UI) → Delivers value!
 
 ---
 
-*This glossary serves as the authoritative reference for all WeirdBites terminology. When in doubt, refer here to ensure consistent understanding across all documentation and communication.*
+_This glossary serves as the authoritative reference for all WeirdBites terminology. When in doubt, refer here to ensure consistent understanding across all documentation and communication._

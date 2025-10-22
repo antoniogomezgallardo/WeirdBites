@@ -12,11 +12,13 @@
 This document contains wireframes for Deployment Increment 1, which is composed of vertical slices derived by splitting user stories US-001, US-002, and US-003. These wireframes serve as visual specifications for implementation and help ensure alignment with user experience goals.
 
 **Stories Split into Vertical Slices**:
+
 - **US-001**: Browse all products → Split into vertical slices for product listing
 - **US-002**: View product details → Split into vertical slices for product detail view
 - **US-003**: View product images → Split into vertical slices for image gallery
 
 **Design Principles**:
+
 - Clean, modern e-commerce aesthetic
 - Mobile-first responsive design
 - WCAG 2.1 AA accessibility compliance
@@ -158,16 +160,19 @@ This document contains wireframes for Deployment Increment 1, which is composed 
 ### 1.3 Key Elements
 
 **Header**:
+
 - Logo (clickable, returns to home)
 - Search bar (collapsed on mobile, expand on tap)
 - Cart icon with item count
 - Navigation menu (hamburger on mobile)
 
 **Filter & Sort**:
+
 - Country/region checkboxes (expandable on mobile)
 - Sort dropdown: Featured, Price (Low-High), Price (High-Low), Rating, Name
 
 **Product Card**:
+
 - Product image (aspect ratio 1:1, 300x300px desktop, 200x200px mobile)
 - Product name (truncated to 2 lines)
 - Price (prominent, $X.XX format)
@@ -175,11 +180,13 @@ This document contains wireframes for Deployment Increment 1, which is composed 
 - "View Details" button (primary CTA)
 
 **Grid Layout**:
+
 - Desktop: 4 columns (1fr 1fr 1fr 1fr)
 - Tablet: 3 columns
 - Mobile: 1 column (full width cards)
 
 **Pagination**:
+
 - Desktop: Previous/Next + numbered pages
 - Mobile: "Load More" infinite scroll
 
@@ -360,11 +367,13 @@ This document contains wireframes for Deployment Increment 1, which is composed 
 ### 2.3 Key Elements
 
 **Breadcrumb Navigation**:
+
 - Home > Products > [Product Name]
 - Clickable links for navigation
 - Mobile: Truncate middle items if needed
 
 **Product Image Gallery**:
+
 - Main image (large, 600x600px desktop)
 - Thumbnail strip (4 thumbnails below main image)
 - Click thumbnail to change main image
@@ -372,6 +381,7 @@ This document contains wireframes for Deployment Increment 1, which is composed 
 - Zoom on hover (desktop), pinch-to-zoom (mobile)
 
 **Product Information**:
+
 - Product name (H1)
 - Brand/manufacturer
 - Price (prominent, large font)
@@ -380,17 +390,20 @@ This document contains wireframes for Deployment Increment 1, which is composed 
 - Description (2-3 paragraphs, expandable on mobile)
 
 **Quantity Selector**:
+
 - Minus button (disabled at 1)
 - Number input (min: 1, max: 99)
 - Plus button
 - Keyboard accessible (arrow keys)
 
 **Add to Cart Button**:
+
 - Primary CTA (high contrast)
 - Loading state during cart update
 - Success feedback (cart icon animation, count update)
 
 **Accordion Sections** (Desktop: always open, Mobile: collapsible):
+
 - Details (weight, origin, allergens, expiry)
 - Shipping (cost, delivery time)
 - Reviews (expandable list)
@@ -399,6 +412,7 @@ This document contains wireframes for Deployment Increment 1, which is composed 
 ### 2.4 Interaction States
 
 **Add to Cart Success**:
+
 ```
 ┌─────────────────────────────────┐
 │  ✓ Added to Cart!               │
@@ -408,6 +422,7 @@ This document contains wireframes for Deployment Increment 1, which is composed 
 ```
 
 **Out of Stock**:
+
 ```
 Product Information (grayed out)
 Stock status: ❌ Out of Stock
@@ -415,6 +430,7 @@ Stock status: ❌ Out of Stock
 ```
 
 **Image Zoom (Desktop Hover)**:
+
 ```
 Cursor over image → Show magnified view (2x zoom)
 Use cursor position to pan around zoomed area
@@ -497,6 +513,7 @@ Use cursor position to pan around zoomed area
 ### 3.3 Gallery Features
 
 **Desktop**:
+
 - Click main image → Open fullscreen modal
 - Hover over zoomed image → Pan to follow cursor
 - Scroll wheel → Zoom in/out (1x to 4x)
@@ -505,6 +522,7 @@ Use cursor position to pan around zoomed area
 - ESC key → Close modal
 
 **Mobile**:
+
 - Tap main image → Open fullscreen view
 - Swipe left/right → Navigate images
 - Pinch gesture → Zoom in/out
@@ -512,6 +530,7 @@ Use cursor position to pan around zoomed area
 - Swipe down → Close fullscreen
 
 **Image Loading**:
+
 - Progressive JPEG (shows blurred preview while loading)
 - Lazy load thumbnails
 - Preload next/previous images when gallery opens
@@ -520,27 +539,33 @@ Use cursor position to pan around zoomed area
 ### 3.4 Image Gallery Controls
 
 **Thumbnail Strip**:
+
 ```
 [Img1*] [Img2] [Img3] [Img4]
   ●      ○      ○      ○
 ```
+
 - Active thumbnail has border/highlight
 - Keyboard accessible (Tab + Enter)
 - Touch-friendly (48x48px minimum)
 
 **Zoom Controls** (Desktop):
+
 ```
 [−] 100% [+]
 ```
+
 - Zoom out button
 - Zoom percentage indicator
 - Zoom in button
 - Keyboard: `+` / `-` keys
 
 **Navigation Arrows**:
+
 ```
 [< Previous]        [Next >]
 ```
+
 - Large, high-contrast arrows
 - Disabled when at first/last image
 - Keyboard: Arrow keys
@@ -573,10 +598,10 @@ Use cursor position to pan around zoomed area
 
 ```css
 /* Mobile First Approach */
---mobile: 375px;      /* Small phones */
---mobile-lg: 425px;   /* Large phones */
---tablet: 768px;      /* Tablets */
---desktop: 1024px;    /* Small desktop */
+--mobile: 375px; /* Small phones */
+--mobile-lg: 425px; /* Large phones */
+--tablet: 768px; /* Tablets */
+--desktop: 1024px; /* Small desktop */
 --desktop-lg: 1280px; /* Large desktop */
 --desktop-xl: 1536px; /* Extra large desktop */
 ```
@@ -584,16 +609,19 @@ Use cursor position to pan around zoomed area
 ### 4.2 Grid Changes by Breakpoint
 
 **Product Listing Grid**:
+
 - `< 768px`: 1 column (full width cards)
 - `768px - 1024px`: 2 columns
 - `1024px - 1280px`: 3 columns
 - `>= 1280px`: 4 columns
 
 **Product Detail Layout**:
+
 - `< 768px`: Stacked (image above, info below)
 - `>= 768px`: Side-by-side (60% image, 40% info)
 
 **Navigation**:
+
 - `< 768px`: Hamburger menu
 - `>= 768px`: Full horizontal navigation
 
@@ -615,11 +643,13 @@ interface ProductCardProps {
 ```
 
 **Dimensions**:
+
 - Desktop: 280px × 400px
 - Tablet: 240px × 360px
 - Mobile: Full width × 320px
 
 **Elements**:
+
 - Image container (1:1 aspect ratio)
 - Product name (2 line truncation)
 - Price (bold, large)
@@ -630,14 +660,15 @@ interface ProductCardProps {
 
 ```typescript
 interface ImageGalleryProps {
-  images: string[];      // Array of image URLs
-  altTexts: string[];    // Array of alt texts
-  activeIndex: number;   // Currently displayed image
+  images: string[]; // Array of image URLs
+  altTexts: string[]; // Array of alt texts
+  activeIndex: number; // Currently displayed image
   onImageChange: (index: number) => void;
 }
 ```
 
 **Features**:
+
 - Thumbnail navigation
 - Arrow navigation
 - Keyboard navigation
@@ -656,6 +687,7 @@ interface QuantitySelectorProps {
 ```
 
 **Behavior**:
+
 - Decrement button disabled at `min`
 - Increment button disabled at `max`
 - Manual input allowed (validated on blur)
@@ -669,28 +701,28 @@ interface QuantitySelectorProps {
 
 ```css
 /* Primary Colors */
---primary: #FF6B35;      /* Vibrant Orange (CTA buttons) */
---primary-dark: #E55A2B; /* Hover state */
---primary-light: #FF8558; /* Focus state */
+--primary: #ff6b35; /* Vibrant Orange (CTA buttons) */
+--primary-dark: #e55a2b; /* Hover state */
+--primary-light: #ff8558; /* Focus state */
 
 /* Secondary Colors */
---secondary: #004E89;     /* Deep Blue (links, accents) */
---secondary-dark: #003D6B;
---secondary-light: #1A6AA8;
+--secondary: #004e89; /* Deep Blue (links, accents) */
+--secondary-dark: #003d6b;
+--secondary-light: #1a6aa8;
 
 /* Neutrals */
---gray-900: #1A1A1A;     /* Primary text */
---gray-700: #4A4A4A;     /* Secondary text */
---gray-500: #808080;     /* Disabled text */
---gray-300: #D1D1D1;     /* Borders */
---gray-100: #F5F5F5;     /* Backgrounds */
---white: #FFFFFF;
+--gray-900: #1a1a1a; /* Primary text */
+--gray-700: #4a4a4a; /* Secondary text */
+--gray-500: #808080; /* Disabled text */
+--gray-300: #d1d1d1; /* Borders */
+--gray-100: #f5f5f5; /* Backgrounds */
+--white: #ffffff;
 
 /* Semantic Colors */
---success: #28A745;      /* In stock, success messages */
---warning: #FFC107;      /* Low stock warnings */
---error: #DC3545;        /* Out of stock, errors */
---info: #17A2B8;         /* Info messages */
+--success: #28a745; /* In stock, success messages */
+--warning: #ffc107; /* Low stock warnings */
+--error: #dc3545; /* Out of stock, errors */
+--info: #17a2b8; /* Info messages */
 ```
 
 ### 6.2 Typography
@@ -701,13 +733,13 @@ interface QuantitySelectorProps {
 --font-body: 'Inter', sans-serif;
 
 /* Font Sizes (Fluid Typography) */
---text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);    /* 12-14px */
---text-sm: clamp(0.875rem, 0.825rem + 0.25vw, 1rem);     /* 14-16px */
---text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);    /* 16-18px */
---text-lg: clamp(1.125rem, 1.05rem + 0.375vw, 1.25rem);  /* 18-20px */
---text-xl: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);      /* 20-24px */
---text-2xl: clamp(1.5rem, 1.35rem + 0.75vw, 2rem);       /* 24-32px */
---text-3xl: clamp(2rem, 1.75rem + 1.25vw, 3rem);         /* 32-48px */
+--text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem); /* 12-14px */
+--text-sm: clamp(0.875rem, 0.825rem + 0.25vw, 1rem); /* 14-16px */
+--text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem); /* 16-18px */
+--text-lg: clamp(1.125rem, 1.05rem + 0.375vw, 1.25rem); /* 18-20px */
+--text-xl: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem); /* 20-24px */
+--text-2xl: clamp(1.5rem, 1.35rem + 0.75vw, 2rem); /* 24-32px */
+--text-3xl: clamp(2rem, 1.75rem + 1.25vw, 3rem); /* 32-48px */
 
 /* Font Weights */
 --font-normal: 400;
@@ -719,15 +751,18 @@ interface QuantitySelectorProps {
 ### 6.3 Text Styles
 
 **Headings**:
+
 - H1: `--text-3xl`, `--font-bold`, `--font-heading`
 - H2: `--text-2xl`, `--font-semibold`, `--font-heading`
 - H3: `--text-xl`, `--font-semibold`, `--font-heading`
 
 **Body Text**:
+
 - Regular: `--text-base`, `--font-normal`, `--font-body`
 - Small: `--text-sm`, `--font-normal`, `--font-body`
 
 **UI Elements**:
+
 - Buttons: `--text-base`, `--font-semibold`, `--font-body`
 - Labels: `--text-sm`, `--font-medium`, `--font-body`
 
@@ -769,6 +804,7 @@ src/
 ### 7.3 Data Fetching
 
 **Product Listing** (US-001):
+
 ```typescript
 // Server Component (SSR)
 async function getProducts() {
@@ -778,11 +814,12 @@ async function getProducts() {
 ```
 
 **Product Detail** (US-002):
+
 ```typescript
 // Server Component (SSR) with ISR
 async function getProduct(id: number) {
   const res = await fetch(`/api/products/${id}`, {
-    next: { revalidate: 3600 } // Revalidate every hour
+    next: { revalidate: 3600 }, // Revalidate every hour
   });
   return res.json();
 }
@@ -811,17 +848,18 @@ async function getProduct(id: number) {
 
 **Version History**:
 
-| Version | Date | Author | Changes |
-|---------|------|--------|---------|
-| 1.0.0 | 2025-10-19 | Antonio Gomez Gallardo | Initial wireframes for Slice 1 |
+| Version | Date       | Author                 | Changes                        |
+| ------- | ---------- | ---------------------- | ------------------------------ |
+| 1.0.0   | 2025-10-19 | Antonio Gomez Gallardo | Initial wireframes for Slice 1 |
 
 **Next Review**: After Slice 1 implementation (validate against actual UI)
 
 **Related Documents**:
+
 - [Product Backlog](../5.product-backlog.md) - User stories US-001, US-002, US-003
 - [Non-Functional Requirements](../4.non-functional-requirements.md) - Performance, accessibility targets
 - [Vertical Slices](../6.vertical-slices.md) - Slice 1 technical details
 
 ---
 
-*Wireframes created for Slice 1: Browse Products feature set, ensuring alignment with user experience goals and technical requirements.*
+_Wireframes created for Slice 1: Browse Products feature set, ensuring alignment with user experience goals and technical requirements._

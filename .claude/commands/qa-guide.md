@@ -5,6 +5,7 @@
 **Usage**: `/qa-guide <topic or question>`
 
 **Examples**:
+
 - `/qa-guide requirements validation`
 - `/qa-guide test pyramid`
 - `/qa-guide DORA metrics`
@@ -21,6 +22,7 @@ When the user asks a question via `/qa-guide`, you must:
 ### 1. Identify Relevant Documentation Module(s)
 
 Map the user's question to the appropriate module(s):
+
 - **Foundations** (00): Quality models, industry standards, measurement
 - **Requirements** (01): User stories, acceptance criteria, validation, prioritization
 - **Agile Planning** (02): DoR, DoD, INVEST criteria, estimation
@@ -42,6 +44,7 @@ Map the user's question to the appropriate module(s):
 ### 2. Read Relevant Files
 
 Use the `Read` tool to access the specific documentation files. Key files include:
+
 - Module READMEs: `docs/quality-standards/docs/XX-module-name/XX-README.md`
 - Specific topics: `docs/quality-standards/docs/XX-module-name/topic-name.md`
 - Templates: `docs/quality-standards/templates/*.md`
@@ -50,6 +53,7 @@ Use the `Read` tool to access the specific documentation files. Key files includ
 ### 3. Extract and Synthesize Information
 
 Provide a comprehensive answer that includes:
+
 - **Concept Explanation**: What is this topic and why it matters
 - **Best Practices**: Specific recommendations from the documentation
 - **Templates/Examples**: If available, show relevant templates or code examples
@@ -61,16 +65,19 @@ Provide a comprehensive answer that includes:
 ### 4. Cite Your Sources
 
 Always reference where information comes from:
+
 - Module name and file path
 - Specific section or heading
 - Template or example directory
 
 Format citations like this:
+
 > **Source**: Module 01: Requirements Engineering - `docs/quality-standards/docs/01-requirements/acceptance-criteria.md`
 
 ### 5. Contextualize for WeirdBites
 
 Adapt the guidance to the WeirdBites e-commerce project:
+
 - Provide e-commerce specific examples when possible
 - Connect to current phase of development
 - Suggest next concrete steps
@@ -83,36 +90,47 @@ Structure your response as follows:
 # [Topic Name]
 
 ## Overview
+
 [Brief explanation of the concept - 2-3 sentences]
 
 ## Why It Matters for WeirdBites
+
 [Relevance to the e-commerce project - 1-2 sentences]
 
 ## Best Practices
+
 [From documentation - bulleted list of 5-10 key practices]
 
 ## Implementation Guide
+
 [Step-by-step approach with specific actions]
 
 ### Step 1: [Action]
+
 [Details]
 
 ### Step 2: [Action]
+
 [Details]
 
 ## Templates & Examples
+
 [Show relevant template or code example if available]
 
 ## Success Metrics
+
 [How to measure if you're doing this correctly]
 
 ## Common Pitfalls to Avoid
+
 [Anti-patterns from documentation]
 
 ## Related Topics
+
 [Links to related modules or documentation]
 
 ## Sources
+
 - Module XX: [Module Name] - `[file path]`
 - Template: `[template path]`
 - Example: `[example path]`
@@ -131,6 +149,7 @@ Structure your response as follows:
 ## Topics Commonly Requested
 
 ### Requirements & Planning
+
 - User story format (INVEST criteria)
 - Acceptance criteria (Given-When-Then)
 - Definition of Ready (DoR)
@@ -139,6 +158,7 @@ Structure your response as follows:
 - Requirements prioritization (MoSCoW, WSJF)
 
 ### Testing
+
 - Test pyramid strategy
 - Unit testing best practices
 - Integration testing patterns
@@ -148,6 +168,7 @@ Structure your response as follows:
 - Test coverage targets
 
 ### Development
+
 - Clean code principles (SOLID, DRY, KISS)
 - TDD/BDD workflows
 - Code review checklists
@@ -155,6 +176,7 @@ Structure your response as follows:
 - Design patterns
 
 ### CI/CD
+
 - Pipeline stages
 - Quality gates
 - Automated testing integration
@@ -162,6 +184,7 @@ Structure your response as follows:
 - Rollback procedures
 
 ### Metrics
+
 - DORA metrics (deployment frequency, lead time, MTTR, change failure rate)
 - Code coverage
 - Cyclomatic complexity
@@ -169,6 +192,7 @@ Structure your response as follows:
 - Defect density
 
 ### Standards
+
 - ISO/IEC 25010 (quality model)
 - IEEE 829 (test documentation)
 - ISTQB (testing practices)
@@ -180,6 +204,7 @@ Structure your response as follows:
 **User**: `/qa-guide acceptance criteria`
 
 **Your Response**:
+
 1. Read `docs/quality-standards/docs/01-requirements/acceptance-criteria.md`
 2. Read `docs/quality-standards/templates/acceptance-criteria-template.md`
 3. Provide comprehensive answer with:

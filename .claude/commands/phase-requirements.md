@@ -5,6 +5,7 @@
 **Usage**: `/phase-requirements [step or topic]`
 
 **Examples**:
+
 - `/phase-requirements` - Start requirements phase
 - `/phase-requirements user stories` - Create user stories
 - `/phase-requirements acceptance criteria` - Define acceptance criteria
@@ -19,6 +20,7 @@ This command guides you through **Module 01: Requirements Engineering**, which f
 ### Phase Objectives
 
 By completing this phase, you will have:
+
 - [ ] Clear, prioritized business requirements for WeirdBites e-commerce platform
 - [ ] User stories following INVEST criteria
 - [ ] Acceptance criteria in Given-When-Then format
@@ -30,6 +32,7 @@ By completing this phase, you will have:
 ### Relevant Documentation
 
 **Core Modules**:
+
 - `docs/quality-standards/docs/01-requirements/01-README.md`
 - `docs/quality-standards/docs/01-requirements/user-stories.md`
 - `docs/quality-standards/docs/01-requirements/acceptance-criteria.md`
@@ -39,11 +42,13 @@ By completing this phase, you will have:
 - `docs/quality-standards/docs/01-requirements/user-story-mapping.md`
 
 **Templates**:
+
 - `docs/quality-standards/templates/user-story.md`
 - `docs/quality-standards/templates/acceptance-criteria-template.md`
 - `docs/quality-standards/templates/definition-of-ready.md`
 
 ### Industry Standards Referenced
+
 - IEEE 830 - Software Requirements Specifications
 - ISO/IEC/IEEE 29148 - Requirements Engineering
 
@@ -56,17 +61,20 @@ By completing this phase, you will have:
 **Goal**: Understand what WeirdBites needs to do from a business perspective.
 
 **Actions**:
+
 1. Read Module 01 README to understand requirements engineering process
 2. Identify stakeholder needs (customers, business owners, operations)
 3. Define business goals and success criteria
 4. Identify constraints (budget, timeline, technology, compliance)
 
 **WeirdBites Context**:
+
 - E-commerce platform for unique food products
 - Core features: product catalog, shopping cart, checkout, user accounts
 - Non-functional: performance, security, accessibility, scalability
 
 **Deliverables**:
+
 - Business requirements document
 - Stakeholder analysis
 - Success metrics definition
@@ -78,6 +86,7 @@ By completing this phase, you will have:
 **Goal**: Transform business requirements into user-centric stories using INVEST criteria.
 
 **Actions**:
+
 1. Read `docs/quality-standards/docs/01-requirements/user-stories.md`
 2. Use the template from `docs/quality-standards/templates/user-story.md`
 3. Create user stories following format:
@@ -95,6 +104,7 @@ By completing this phase, you will have:
    - **T**estable
 
 **WeirdBites Examples**:
+
 ```
 User Story: Product Search
 As a customer
@@ -108,6 +118,7 @@ So that I can purchase multiple items in a single transaction
 ```
 
 **Deliverables**:
+
 - Product backlog with prioritized user stories
 - Each story validated against INVEST
 
@@ -118,6 +129,7 @@ So that I can purchase multiple items in a single transaction
 **Goal**: Make each user story testable with clear acceptance criteria.
 
 **Actions**:
+
 1. Read `docs/quality-standards/docs/01-requirements/acceptance-criteria.md`
 2. Use Given-When-Then format from template
 3. For each user story, define:
@@ -128,6 +140,7 @@ So that I can purchase multiple items in a single transaction
 5. Define edge cases and boundary conditions
 
 **WeirdBites Example**:
+
 ```
 User Story: Add to Cart
 
@@ -150,6 +163,7 @@ Acceptance Criteria:
 ```
 
 **Deliverables**:
+
 - Acceptance criteria for each user story
 - Edge cases documented
 - Validation rules defined
@@ -161,6 +175,7 @@ Acceptance Criteria:
 **Goal**: Determine implementation order using prioritization techniques.
 
 **Actions**:
+
 1. Read `docs/quality-standards/docs/01-requirements/requirements-prioritization.md`
 2. Apply MoSCoW method:
    - **M**ust have (MVP features)
@@ -171,6 +186,7 @@ Acceptance Criteria:
    - Cost of Delay / Job Duration
 
 **WeirdBites Prioritization Example**:
+
 ```
 Must Have (MVP):
 - User registration/login
@@ -199,6 +215,7 @@ Won't Have (v1):
 ```
 
 **Deliverables**:
+
 - Prioritized product backlog
 - MVP scope defined
 - Release roadmap
@@ -210,6 +227,7 @@ Won't Have (v1):
 **Goal**: Break features into deliverable increments.
 
 **Actions**:
+
 1. Read `docs/quality-standards/docs/01-requirements/vertical-slicing.md`
 2. Identify thin vertical slices that deliver end-to-end value
 3. Each slice should:
@@ -219,6 +237,7 @@ Won't Have (v1):
    - Be testable
 
 **WeirdBites Vertical Slice Example**:
+
 ```
 Slice 1: "Browse and View Products"
 - UI: Product listing page (simple grid)
@@ -252,6 +271,7 @@ Value: Users can complete purchase
 ```
 
 **Deliverables**:
+
 - Vertical slices identified
 - Implementation order defined
 - Each slice scoped and estimated
@@ -263,6 +283,7 @@ Value: Users can complete purchase
 **Goal**: Ensure requirements are ready for development.
 
 **Actions**:
+
 1. Read `docs/quality-standards/templates/definition-of-ready.md`
 2. For each user story, verify:
    - [ ] Clear and testable acceptance criteria
@@ -277,6 +298,7 @@ Value: Users can complete purchase
    - [ ] Team has the skills to deliver
 
 **Deliverables**:
+
 - DoR checklist completed for each story
 - Stories marked "Ready for Development"
 - Blocked stories identified with resolution plan
@@ -288,6 +310,7 @@ Value: Users can complete purchase
 **Goal**: Visualize the user journey and identify releases.
 
 **Actions**:
+
 1. Read `docs/quality-standards/docs/01-requirements/user-story-mapping.md`
 2. Create user story map with:
    - **Backbone**: Major user activities (top row)
@@ -296,6 +319,7 @@ Value: Users can complete purchase
 3. Identify release boundaries (horizontal slices)
 
 **WeirdBites User Story Map**:
+
 ```
 Backbone:       Discover    →    Select    →    Purchase    →    Receive
 ─────────────────────────────────────────────────────────────────────────
@@ -315,6 +339,7 @@ Release 2:                  ▼────────────────�
 ```
 
 **Deliverables**:
+
 - User story map
 - Release plan with scope
 - Walking skeleton identified
@@ -379,6 +404,7 @@ Before moving to **Phase 2: Agile Planning**, ensure:
 
 Once requirements phase is complete, proceed to:
 **Phase 2: Agile Planning** (`/phase-planning`)
+
 - Define Definition of Done (DoD)
 - Estimate user stories
 - Sprint planning
@@ -389,14 +415,17 @@ Once requirements phase is complete, proceed to:
 ## Resources
 
 **Templates to Use**:
+
 - User Story Template: `templates/user-story.md`
 - Acceptance Criteria: `templates/acceptance-criteria-template.md`
 - Definition of Ready: `templates/definition-of-ready.md`
 
 **Examples to Reference**:
+
 - Manual Testing Examples: `examples/manual-testing/` (has test cases based on requirements)
 
 **Standards**:
+
 - IEEE 830: Software Requirements Specification
 - ISO/IEC/IEEE 29148: Requirements Engineering
 

@@ -20,12 +20,14 @@ This product backlog contains all user stories for the WeirdBites MVP, organized
 ## Backlog Organization
 
 ### By Priority (MoSCoW)
+
 - **Must Have**: 35 stories (MVP required)
 - **Should Have**: 12 stories (Post-MVP v1.1)
 - **Could Have**: 8 stories (Future enhancements)
 - **Won't Have**: Listed in mvp-definition.md
 
 ### By Epic
+
 1. Product Discovery (5 stories) - Split into deployment increments
 2. Shopping Cart (4 stories) - Split into deployment increments
 3. Guest Checkout (5 stories) - Split into deployment increments
@@ -55,6 +57,7 @@ This product backlog contains all user stories for the WeirdBites MVP, organized
 **Acceptance Criteria**:
 
 **Scenario 1**: Homepage displays products
+
 ```gherkin
 Given I visit the WeirdBites homepage
 When the page loads
@@ -64,6 +67,7 @@ And products are displayed responsively (1 column mobile, 2-3 tablet, 4 desktop)
 ```
 
 **Scenario 2**: Pagination works
+
 ```gherkin
 Given there are more than 12 products in the catalog
 When I scroll to the bottom of the page
@@ -72,6 +76,7 @@ And clicking it loads the next set of products
 ```
 
 **Scenario 3**: Loading states
+
 ```gherkin
 Given I visit the homepage
 When products are being fetched
@@ -80,12 +85,14 @@ And they match the expected grid layout
 ```
 
 **Technical Notes**:
+
 - Use Next.js Image component for optimization
 - Implement server-side rendering (SSR) or static generation (SSG)
 - Paginate at database level (LIMIT/OFFSET)
 - Add indexes on products table
 
 **Definition of Done**:
+
 - [ ] Homepage renders product grid
 - [ ] Pagination/infinite scroll functional
 - [ ] Loading states implemented
@@ -109,6 +116,7 @@ And they match the expected grid layout
 **Acceptance Criteria**:
 
 **Scenario 1**: Product detail page displays all information
+
 ```gherkin
 Given I click on a product card
 When the product detail page loads
@@ -120,6 +128,7 @@ And I see customer reviews and average rating
 ```
 
 **Scenario 2**: In-stock product shows Add to Cart
+
 ```gherkin
 Given the product has stock > 0
 When I view the product page
@@ -128,6 +137,7 @@ And I see the stock quantity (e.g., "15 in stock")
 ```
 
 **Scenario 3**: Out-of-stock product disables Add to Cart
+
 ```gherkin
 Given the product has stock = 0
 When I view the product page
@@ -137,11 +147,13 @@ And I see a message "This item is currently unavailable"
 ```
 
 **Technical Notes**:
+
 - Dynamic route: `/products/[id]` or `/products/[slug]`
 - Image gallery with zoom (optional for MVP)
 - Fetch product by ID with reviews
 
 **Definition of Done**:
+
 - [ ] Product detail page renders correctly
 - [ ] All product information displayed
 - [ ] Stock status affects UI correctly
@@ -165,6 +177,7 @@ And I see a message "This item is currently unavailable"
 **Acceptance Criteria**:
 
 **Scenario 1**: Category filter displays options
+
 ```gherkin
 Given I am on the products page
 When the page loads
@@ -173,6 +186,7 @@ And each category shows product count
 ```
 
 **Scenario 2**: Selecting category filters products
+
 ```gherkin
 Given I am viewing all products
 When I click "Spicy" category
@@ -182,6 +196,7 @@ And the product count updates
 ```
 
 **Scenario 3**: Clear filters
+
 ```gherkin
 Given I have filtered by "Spicy"
 When I click "Clear Filters" or "All Products"
@@ -190,11 +205,13 @@ And no category is selected
 ```
 
 **Technical Notes**:
+
 - Query parameter: `?category=spicy`
 - Filter at database level (WHERE clause)
 - Update URL when filtering (shareable links)
 
 **Definition of Done**:
+
 - [ ] Category filter UI implemented
 - [ ] Filtering works correctly
 - [ ] URL updates with query params
@@ -204,7 +221,7 @@ And no category is selected
 
 ---
 
-*(Continue with remaining 32 stories...)*
+_(Continue with remaining 32 stories...)_
 
 ---
 
@@ -223,6 +240,7 @@ And no category is selected
 **Acceptance Criteria**:
 
 **Scenario 1**: Add item to cart successfully
+
 ```gherkin
 Given I am viewing a product detail page
 And the product is in stock
@@ -233,6 +251,7 @@ And the cart badge count increases by 1
 ```
 
 **Scenario 2**: Add same item increases quantity
+
 ```gherkin
 Given I have "Ghost Pepper Chocolate" in my cart (quantity: 1)
 When I add "Ghost Pepper Chocolate" again
@@ -241,6 +260,7 @@ And the product is NOT duplicated in the cart
 ```
 
 **Scenario 3**: Cart persists for guest users
+
 ```gherkin
 Given I have items in my cart as a guest
 When I close the browser and return within 24 hours
@@ -249,11 +269,13 @@ And quantities are preserved
 ```
 
 **Technical Notes**:
+
 - Guest cart: localStorage or session-based
 - Cart data structure: `{ productId, quantity, addedAt }`
 - Validation: Check stock before adding
 
 **Definition of Done**:
+
 - [ ] Add to cart functionality works
 - [ ] Cart persistence implemented (24hrs for guest)
 - [ ] Toast notifications shown
@@ -277,6 +299,7 @@ And quantities are preserved
 **Acceptance Criteria**:
 
 **Scenario 1**: Cart displays all items
+
 ```gherkin
 Given I have 3 items in my cart
 When I navigate to the cart page (/cart)
@@ -286,6 +309,7 @@ And I see the cart total at the bottom
 ```
 
 **Scenario 2**: Empty cart message
+
 ```gherkin
 Given my cart is empty
 When I navigate to the cart page
@@ -294,6 +318,7 @@ And I see a "Continue Shopping" button
 ```
 
 **Scenario 3**: Cart shows updated prices
+
 ```gherkin
 Given I added a product to cart 2 days ago
 And the product price changed since then
@@ -302,6 +327,7 @@ Then I see the current price (not the old price)
 ```
 
 **Definition of Done**:
+
 - [ ] Cart page displays all items correctly
 - [ ] Empty cart message shown
 - [ ] Cart total calculated correctly
@@ -316,6 +342,7 @@ Then I see the current price (not the old price)
 Due to length constraints, here's the complete list of MVP user stories with story points:
 
 **Epic 1: Product Discovery**
+
 - US-001: Browse Product Catalog (5 pts) ✓
 - US-002: View Product Details (5 pts) ✓
 - US-003: Filter by Category (3 pts) ✓
@@ -323,12 +350,14 @@ Due to length constraints, here's the complete list of MVP user stories with sto
 - US-005: Sort Products (2 pts)
 
 **Epic 2: Shopping Cart**
+
 - US-006: Add to Cart (5 pts) ✓
 - US-007: View Cart (3 pts) ✓
 - US-008: Update Cart Quantity (3 pts)
 - US-009: Remove from Cart (2 pts)
 
 **Epic 3: Guest Checkout**
+
 - US-010: Enter Shipping Information (5 pts)
 - US-011: Payment Simulation (5 pts)
 - US-012: Order Confirmation (3 pts)
@@ -336,6 +365,7 @@ Due to length constraints, here's the complete list of MVP user stories with sto
 - US-014: Checkout Error Handling (3 pts)
 
 **Epic 4: User Accounts**
+
 - US-015: User Registration (5 pts)
 - US-016: User Login (3 pts)
 - US-017: User Logout (1 pt)
@@ -344,36 +374,43 @@ Due to length constraints, here's the complete list of MVP user stories with sto
 - US-020: Remember Me (2 pts)
 
 **Epic 5: Registered User Features**
+
 - US-021: Saved Checkout Info (3 pts)
 - US-022: Order History (5 pts)
 - US-023: Order Details View (3 pts)
 
 **Epic 6: Product Search & Reviews**
+
 - US-024: Product Search (5 pts)
 - US-025: Search Results (3 pts)
 - US-026: Leave Review (3 pts)
 - US-027: View Reviews (2 pts)
 
 **Epic 7: Admin Authentication**
+
 - US-028: Admin Login (3 pts)
 - US-029: Admin Session (2 pts)
 
 **Epic 8: Admin Product Management**
+
 - US-030: View Products List (Admin) (3 pts)
 - US-031: Add New Product (5 pts)
 - US-032: Edit Product (3 pts)
 - US-033: Delete Product (2 pts)
 
 **Epic 9: Admin Inventory**
+
 - US-034: Track Stock Levels (5 pts)
 - US-035: Low Stock Alerts (3 pts)
 
 **Epic 10: Admin Orders**
+
 - US-036: View Orders List (3 pts)
 - US-037: View Order Details (3 pts)
 - US-038: Update Order Status (3 pts)
 
 **Epic 11: Admin Dashboard**
+
 - US-039: Basic Analytics (5 pts)
 
 **Total MVP Story Points**: ~135 points
@@ -387,24 +424,31 @@ Due to length constraints, here's the complete list of MVP user stories with sto
 Stories are split into vertical slices and grouped into deployment increments:
 
 **Deployment Increment 1: Browse Products** (Week 1-2)
+
 - Stories US-001, US-002, US-003 split into vertical slices = 13 points total
 
 **Deployment Increment 2: Shopping Cart** (Week 3)
+
 - Stories US-006, US-007, US-008, US-009 split into vertical slices = 13 points total
 
 **Deployment Increment 3: Guest Checkout** (Week 4-5)
+
 - Stories US-010, US-011, US-012, US-013, US-014 split into vertical slices = 19 points total
 
 **Deployment Increment 4: User Accounts** (Week 6)
+
 - Stories US-015, US-016, US-017, US-018, US-019, US-020 split into vertical slices = 16 points total
 
 **Deployment Increment 5: Registered Features** (Week 7)
+
 - Stories US-021, US-022, US-023 split into vertical slices = 11 points total
 
 **Deployment Increment 6: Search & Reviews** (Week 8)
+
 - Stories US-024, US-025, US-026, US-027 split into vertical slices = 13 points total
 
 **Deployment Increment 7: Admin Panel** (Week 9-10)
+
 - Stories US-028 through US-039 split into vertical slices = 50 points total
 
 **Note**: Each story is split into one or more vertical slices that cross all architectural layers (UI → API → DB).
@@ -448,6 +492,7 @@ A story is complete when:
 ## Post-MVP Backlog (Should Have)
 
 ### Epic 12: Enhanced Features
+
 - US-040: Wishlist/Favorites (5 pts)
 - US-041: Password Reset Flow (5 pts)
 - US-042: User Profile Editing (3 pts)
@@ -469,14 +514,14 @@ A story is complete when:
 
 **Target Velocity**: 10-15 story points per week (single developer, learning-focused)
 
-| Sprint | Planned | Completed | Velocity | Notes |
-|--------|---------|-----------|----------|-------|
-| Sprint 1 | 13 | TBD | TBD | Slice 1: Browse Products |
-| Sprint 2 | 13 | TBD | TBD | Slice 2: Shopping Cart |
-| Sprint 3 | 19 | TBD | TBD | Slice 3: Guest Checkout |
-| ... | ... | ... | ... | ... |
+| Sprint   | Planned | Completed | Velocity | Notes                    |
+| -------- | ------- | --------- | -------- | ------------------------ |
+| Sprint 1 | 13      | TBD       | TBD      | Slice 1: Browse Products |
+| Sprint 2 | 13      | TBD       | TBD      | Slice 2: Shopping Cart   |
+| Sprint 3 | 19      | TBD       | TBD      | Slice 3: Guest Checkout  |
+| ...      | ...     | ...       | ...      | ...                      |
 
-*Velocity will be tracked as sprints complete*
+_Velocity will be tracked as sprints complete_
 
 ---
 
@@ -485,6 +530,7 @@ A story is complete when:
 **Cadence**: Weekly (or as needed)
 **Participants**: Developer/QAE (Antonio)
 **Activities**:
+
 - Review upcoming stories
 - Break down large stories (>8 points)
 - Update acceptance criteria
@@ -497,9 +543,9 @@ A story is complete when:
 
 **Version History**:
 
-| Version | Date | Author | Changes |
-|---------|------|--------|---------|
-| 1.0.0 | 2025-10-19 | Antonio Gomez Gallardo | Initial backlog with 35 MVP stories |
+| Version | Date       | Author                 | Changes                             |
+| ------- | ---------- | ---------------------- | ----------------------------------- |
+| 1.0.0   | 2025-10-19 | Antonio Gomez Gallardo | Initial backlog with 35 MVP stories |
 
 **Next Review**: Weekly during development
 
@@ -507,4 +553,4 @@ A story is complete when:
 
 **Note**: Full user story details for US-004 through US-039 are available in the project management tool or can be expanded in this document as needed. Each follows the same template with detailed Given-When-Then scenarios.
 
-*This product backlog follows Module 01 (Requirements Engineering) and Module 02 (Agile Planning) best practices, using INVEST criteria, vertical slicing, and MoSCoW prioritization.*
+_This product backlog follows Module 01 (Requirements Engineering) and Module 02 (Agile Planning) best practices, using INVEST criteria, vertical slicing, and MoSCoW prioritization._
