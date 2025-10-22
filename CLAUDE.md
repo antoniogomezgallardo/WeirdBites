@@ -93,15 +93,18 @@ We will build WeirdBites **incrementally**, implementing each SDLC/STLC phase wi
 - [x] **Navigation**: START-HERE.md + 6 module READMEs (7 docs)
 - [x] Documentation aligned with quality-standards module structure (Modules 00-16)
 
-### Next Phase: **Slice 0 - Project Setup** (3-5 days, 15 story points) 📋 Ready to Start
-- Initialize Next.js 14+ project with TypeScript
-- Configure ESLint and Prettier
-- Set up PostgreSQL database with Prisma ORM
-- Configure testing frameworks (Jest, Playwright, axe-core)
-- Set up CI/CD pipeline (GitHub Actions)
-- Configure deployment to Vercel
-- Create development environment documentation
-- Set up basic monitoring and error tracking
+### Next Phase: **Slice 0 - Project Setup** (3-5 days, 17 story points, 9 stories) 📋 Ready to Start
+- IS-001: Initialize Next.js 14+ project with TypeScript (2 pts)
+- IS-002: Configure ESLint and Prettier (1 pt)
+- IS-003: Set up PostgreSQL database with Prisma ORM (3 pts)
+- IS-004: Setup API Routes structure and example endpoint (2 pts) **[NEW]**
+- IS-005: Configure testing frameworks (Jest, Playwright, axe-core) (3 pts)
+- IS-006: Set up CI/CD pipeline (GitHub Actions) (2 pts)
+- IS-007: Configure deployment to Vercel (2 pts)
+- IS-008: Create development environment documentation (1 pt)
+- IS-009: Set up basic monitoring and error tracking (1 pt)
+
+**Key Addition**: IS-004 adds backend API layer setup with health check endpoint, API utilities, type definitions, and integration testing.
 
 ### Upcoming Phases
 

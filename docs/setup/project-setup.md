@@ -22,7 +22,7 @@
 - Deployment infrastructure
 
 **Duration**: 3-5 days (Week 0)
-**Story Points**: ~15 points (8 enabler stories)
+**Story Points**: ~17 points (9 infrastructure stories)
 
 ---
 
@@ -55,16 +55,40 @@ You need both, but they're different types of work!
 
 ---
 
-## Slice 0: Enabler Stories
+## What is Slice 0?
 
-**Note**: These are **enabler stories** (infrastructure tasks), not user stories. They enable future user-facing features but don't deliver direct user value themselves.
+**Slice 0** (also called "Sprint Zero" or "Iteration 0") is the infrastructure setup phase that establishes the foundation for all future development.
 
-### ES-000-1: Initialize Next.js Project
+**Key Differences**:
+- **Slice 0** = Infrastructure setup (IS-001 through IS-009)
+- **Slices 1-7** = User-facing features (derived from splitting user stories US-001+)
+
+**Stories in Slice 0**:
+- **IS-001 through IS-009** = **I**nfrastructure **S**tories
+- NOT user stories (US-XXX) - these don't deliver direct user value
+- NOT derived from user requirements - these enable user requirements
+- Enable ALL future user stories by providing development infrastructure
+
+**Why "Slice 0"?**
+- It's a deployable increment (crosses all layers: repo → CI/CD → deployment)
+- It's independently testable (tests run, deployment works, health checks pass)
+- It delivers value (infrastructure for future features)
+- But it doesn't deliver USER value (no features yet)
+- Numbered "0" because it comes BEFORE user-facing slices (1-7)
+
+---
+
+## Slice 0: Infrastructure Stories
+
+**Note**: These are **infrastructure stories** (IS-XXX), not user stories (US-XXX). They enable future user-facing features but don't deliver direct user value themselves.
+
+### IS-001: Initialize Next.js Project
 
 **As a** developer
 **I want** a Next.js 14+ project initialized with TypeScript
 **So that** I can start building features with a modern framework
 
+**Story ID**: IS-001 (Infrastructure Story 001)
 **Priority**: Must Have (Slice 0)
 **Story Points**: 2
 **Dependencies**: None
@@ -141,7 +165,7 @@ npx create-next-app@latest
 
 ---
 
-### ES-000-2: Configure ESLint and Prettier
+### IS-002: Configure ESLint and Prettier
 
 **As a** developer
 **I want** ESLint and Prettier configured
@@ -149,7 +173,7 @@ npx create-next-app@latest
 
 **Priority**: Must Have (Slice 0)
 **Story Points**: 1
-**Dependencies**: ES-000-1
+**Dependencies**: IS-001
 
 **Acceptance Criteria**:
 
@@ -230,7 +254,7 @@ pnpm add -D @typescript-eslint/eslint-plugin @typescript-eslint/parser
 
 ---
 
-### ES-000-3: Set Up Database (PostgreSQL)
+### IS-003: Set Up Database (PostgreSQL)
 
 **As a** developer
 **I want** a PostgreSQL database configured with Prisma ORM
@@ -238,7 +262,7 @@ pnpm add -D @typescript-eslint/eslint-plugin @typescript-eslint/parser
 
 **Priority**: Must Have (Slice 0)
 **Story Points**: 3
-**Dependencies**: ES-000-1
+**Dependencies**: IS-001
 
 **Acceptance Criteria**:
 
@@ -365,7 +389,220 @@ if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
 
 ---
 
-### ES-000-4: Configure Testing Frameworks
+### IS-004: Setup API Routes Structure and Example Endpoint
+
+**As a** developer
+**I want** Next.js API Routes configured with a working example
+**So that** I can build backend endpoints for Slice 1
+
+**Story ID**: IS-004 (Infrastructure Story 004)
+**Priority**: Must Have (Slice 0)
+**Story Points**: 2
+**Dependencies**: IS-001 (Initialize Next.js), IS-003 (Database setup)
+
+**Acceptance Criteria**:
+
+**Scenario 1**: API Routes folder structure exists
+```gherkin
+Given the Next.js project is initialized
+When I review the project structure
+Then I see:
+  - src/app/api/ (API Routes directory)
+  - src/app/api/health/route.ts (health check endpoint)
+  - src/lib/api/ (API utilities)
+  - src/types/api.ts (API type definitions)
+```
+
+**Scenario 2**: Health check endpoint works
+```gherkin
+Given the API routes structure is created
+When I run the dev server
+And I visit http://localhost:3000/api/health
+Then I receive a JSON response with status, timestamp, and database status
+And the response has status 200
+```
+
+**Scenario 3**: Database integration example works
+```gherkin
+Given Prisma is configured
+When the health check endpoint queries the database
+And I visit /api/health
+Then the endpoint returns database connection status
+And TypeScript types are correct
+```
+
+**Scenario 4**: API testing setup works
+```gherkin
+Given Jest is configured
+When I create an integration test for /api/health
+And I run "pnpm test:integration"
+Then the test makes a request to the API endpoint
+And validates the response structure
+And all tests pass
+```
+
+**Technical Implementation**:
+
+1. **Create API health check endpoint**:
+
+`src/app/api/health/route.ts`:
+```typescript
+import { NextResponse } from 'next/server';
+import prisma from '@/lib/prisma';
+
+export async function GET() {
+  try {
+    // Test database connection
+    await prisma.$connect();
+
+    return NextResponse.json({
+      status: 'ok',
+      message: 'API and database working',
+      timestamp: new Date().toISOString(),
+      database: 'connected',
+      environment: process.env.NODE_ENV
+    });
+  } catch (error) {
+    return NextResponse.json(
+      {
+        status: 'error',
+        message: 'Database connection failed',
+        error: error instanceof Error ? error.message : 'Unknown error'
+      },
+      { status: 500 }
+    );
+  } finally {
+    await prisma.$disconnect();
+  }
+}
+```
+
+2. **Create API utilities**:
+
+`src/lib/api/response.ts`:
+```typescript
+import { NextResponse } from 'next/server';
+
+export function apiSuccess<T>(data: T, status = 200) {
+  return NextResponse.json(data, { status });
+}
+
+export function apiError(message: string, status = 500, details?: unknown) {
+  return NextResponse.json(
+    {
+      error: message,
+      ...(details && { details })
+    },
+    { status }
+  );
+}
+
+export function apiValidationError(errors: Record<string, string[]>) {
+  return NextResponse.json(
+    {
+      error: 'Validation failed',
+      errors
+    },
+    { status: 400 }
+  );
+}
+```
+
+3. **Create API types**:
+
+`src/types/api.ts`:
+```typescript
+export interface ApiResponse<T = unknown> {
+  data?: T;
+  error?: string;
+  message?: string;
+}
+
+export interface ApiError {
+  error: string;
+  details?: unknown;
+}
+
+export interface PaginatedResponse<T> {
+  data: T[];
+  pagination: {
+    total: number;
+    page: number;
+    pageSize: number;
+    totalPages: number;
+  };
+}
+
+export interface HealthCheckResponse {
+  status: 'ok' | 'error';
+  message: string;
+  timestamp: string;
+  database: 'connected' | 'disconnected';
+  environment: string;
+}
+```
+
+4. **Create integration test example**:
+
+`src/app/api/health/route.test.ts`:
+```typescript
+/**
+ * @jest-environment node
+ */
+import { GET } from './route';
+import { NextRequest } from 'next/server';
+
+describe('GET /api/health', () => {
+  it('returns health check response', async () => {
+    const request = new NextRequest('http://localhost:3000/api/health');
+    const response = await GET(request);
+    const data = await response.json();
+
+    expect(response.status).toBe(200);
+    expect(data).toHaveProperty('status', 'ok');
+    expect(data).toHaveProperty('message');
+    expect(data).toHaveProperty('timestamp');
+    expect(data).toHaveProperty('database');
+    expect(data).toHaveProperty('environment');
+  });
+
+  it('includes valid timestamp', async () => {
+    const request = new NextRequest('http://localhost:3000/api/health');
+    const response = await GET(request);
+    const data = await response.json();
+
+    const timestamp = new Date(data.timestamp);
+    expect(timestamp).toBeInstanceOf(Date);
+    expect(timestamp.getTime()).toBeLessThanOrEqual(Date.now());
+  });
+});
+```
+
+5. **Update package.json scripts**:
+```json
+{
+  "scripts": {
+    "test": "jest",
+    "test:unit": "jest --testPathIgnorePatterns=route.test.ts",
+    "test:integration": "jest --testPathPattern=route.test.ts",
+    "test:watch": "jest --watch"
+  }
+}
+```
+
+**Definition of Done**:
+- [ ] src/app/api/ structure created
+- [ ] Health check endpoint implemented (GET /api/health)
+- [ ] Database connection test in API endpoint
+- [ ] API utility functions created (response.ts)
+- [ ] API type definitions created (api.ts)
+- [ ] Integration test for API endpoint passing
+- [ ] Documentation updated with API examples
+- [ ] Manual test: curl http://localhost:3000/api/health works
+
+---
+
+### IS-005: Configure Testing Frameworks
 
 **As a** developer
 **I want** Jest, React Testing Library, and Playwright configured
@@ -373,7 +610,7 @@ if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
 
 **Priority**: Must Have (Slice 0)
 **Story Points**: 3
-**Dependencies**: ES-000-1
+**Dependencies**: IS-001
 
 **Acceptance Criteria**:
 
@@ -545,7 +782,7 @@ test('homepage loads', async ({ page }) => {
 
 ---
 
-### ES-000-5: Set Up CI/CD Pipeline (GitHub Actions)
+### IS-006: Set Up CI/CD Pipeline (GitHub Actions)
 
 **As a** developer
 **I want** a CI/CD pipeline configured with quality gates
@@ -553,7 +790,7 @@ test('homepage loads', async ({ page }) => {
 
 **Priority**: Must Have (Slice 0)
 **Story Points**: 3
-**Dependencies**: ES-000-1, ES-000-2, ES-000-4
+**Dependencies**: IS-001, IS-002, IS-005
 
 **Acceptance Criteria**:
 
@@ -755,7 +992,7 @@ jobs:
 
 ---
 
-### ES-000-6: Configure Deployment (Vercel)
+### IS-007: Configure Deployment (Vercel)
 
 **As a** developer
 **I want** the application deployed to Vercel
@@ -763,7 +1000,7 @@ jobs:
 
 **Priority**: Must Have (Slice 0)
 **Story Points**: 2
-**Dependencies**: ES-000-1, ES-000-3
+**Dependencies**: IS-001, IS-003
 
 **Acceptance Criteria**:
 
@@ -878,7 +1115,7 @@ module.exports = nextConfig;
 
 ---
 
-### ES-000-7: Set Up Development Environment Documentation
+### IS-008: Set Up Development Environment Documentation
 
 **As a** developer
 **I want** clear setup instructions in README
@@ -886,7 +1123,7 @@ module.exports = nextConfig;
 
 **Priority**: Must Have (Slice 0)
 **Story Points**: 1
-**Dependencies**: ES-000-1 through ES-000-6
+**Dependencies**: IS-001 through IS-007 (All infrastructure setup complete)
 
 **Acceptance Criteria**:
 
@@ -1062,7 +1299,7 @@ test(checkout): add E2E tests
 
 ---
 
-### ES-000-8: Initialize Monitoring and Error Tracking
+### IS-009: Initialize Monitoring and Error Tracking
 
 **As a** developer
 **I want** basic monitoring and error tracking configured
@@ -1070,7 +1307,7 @@ test(checkout): add E2E tests
 
 **Priority**: Should Have (Slice 0)
 **Story Points**: 2
-**Dependencies**: ES-000-1, ES-000-6
+**Dependencies**: IS-001 (Next.js), IS-007 (Vercel deployment)
 
 **Acceptance Criteria**:
 

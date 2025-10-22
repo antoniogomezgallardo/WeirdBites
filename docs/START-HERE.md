@@ -291,7 +291,7 @@ Optional: Read other docs as needed during development.
 
 | Slice | Name | Duration | Story Points | Status |
 |-------|------|----------|--------------|--------|
-| 0 | **Project Setup** (Infrastructure) | 3-5 days | 15 | 📋 Ready |
+| 0 | **Project Setup** (Infrastructure) | 3-5 days | 17 (9 stories) | 📋 Ready |
 | 1 | Browse Products | 2 weeks | 13 | ⏳ Planned |
 | 2 | Shopping Cart | 1 week | 13 | ⏳ Planned |
 | 3 | Guest Checkout | 2 weeks | 19 | ⏳ Planned |
