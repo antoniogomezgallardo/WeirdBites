@@ -105,7 +105,7 @@ git submodule update --init --recursive
 #### 2. Install Dependencies
 
 ```bash
-# Install all npm packages (367 packages)
+# Install all npm packages (374 packages)
 pnpm install
 ```
 
@@ -116,7 +116,8 @@ This installs:
 - TypeScript 5.9.3
 - Tailwind CSS 3.4.18
 - ESLint 9.38.0
-- And all their dependencies
+- Prettier 3.6.2
+- And all their dependencies (374 packages)
 
 #### 3. Run the Development Server
 
@@ -136,12 +137,15 @@ The app will be available at:
 
 ```bash
 # Check for TypeScript errors
-pnpm tsc --noEmit
+pnpm tsc
 
 # Run linter
 pnpm lint
 
-# Both should pass with no errors ✅
+# Check code formatting
+pnpm format:check
+
+# All should pass with no errors ✅
 ```
 
 ### Available Commands
@@ -154,6 +158,9 @@ pnpm start        # Start production server
 
 # Code Quality
 pnpm lint         # Run ESLint
+pnpm lint:fix     # Run ESLint and auto-fix issues
+pnpm format       # Format all files with Prettier
+pnpm format:check # Check if files are formatted correctly
 pnpm tsc          # TypeScript type checking (noEmit)
 
 # Testing (Coming in IS-005)
@@ -273,7 +280,8 @@ WeirdBites/
 **Current Phase**: Slice 0 - Project Setup (3-5 days, 17 story points) 🚧 **IN PROGRESS**
 
 - ✅ IS-001: Next.js 15 + TypeScript + Tailwind initialized (2 pts)
-- 🚧 IS-002-IS-009: Pending (15 pts remaining)
+- ✅ IS-002: ESLint and Prettier configured (1 pt)
+- 🚧 IS-003-IS-009: Pending (14 pts remaining)
 
 **Next Phase**: Slice 1 - Browse Products (2 weeks, 13 story points)
 
@@ -371,7 +379,7 @@ This project follows a Git Flow-inspired branching strategy:
 
 | Slice | Name                               | Duration | Story Points | Status                           |
 | ----- | ---------------------------------- | -------- | ------------ | -------------------------------- |
-| 0     | **Project Setup** (Infrastructure) | 3-5 days | 17           | 🚧 **In Progress** (1/9 stories) |
+| 0     | **Project Setup** (Infrastructure) | 3-5 days | 17           | 🚧 **In Progress** (2/9 stories) |
 | 1     | Browse Products                    | 2 weeks  | 13           | ⏳ Planned                       |
 | 2     | Shopping Cart                      | 1 week   | 13           | ⏳ Planned                       |
 | 3     | Guest Checkout                     | 2 weeks  | 19           | ⏳ Planned                       |
