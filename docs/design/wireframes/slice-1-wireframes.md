@@ -1,20 +1,20 @@
-# WeirdBites - Slice 1 Wireframes
+# WeirdBites - Deployment Increment 1 Wireframes
 
-**Version**: 1.0.0
-**Date**: 2025-10-19
-**Purpose**: Visual mockups for Slice 1 user stories (Browse Products)
-**Stories**: US-001, US-002, US-003
+**Version**: 1.1.0
+**Date**: 2025-10-22
+**Purpose**: Visual mockups for Deployment Increment 1 (Browse Products)
+**User Stories Split**: US-001, US-002, US-003
 
 ---
 
 ## Overview
 
-This document contains wireframes for all Slice 1 features. These wireframes serve as visual specifications for implementation and help ensure alignment with user experience goals.
+This document contains wireframes for Deployment Increment 1, which is composed of vertical slices derived by splitting user stories US-001, US-002, and US-003. These wireframes serve as visual specifications for implementation and help ensure alignment with user experience goals.
 
-**Slice 1 Stories**:
-- **US-001**: Browse all products (product listing page)
-- **US-002**: View product details (product detail page)
-- **US-003**: View product images (image gallery)
+**Stories Split into Vertical Slices**:
+- **US-001**: Browse all products → Split into vertical slices for product listing
+- **US-002**: View product details → Split into vertical slices for product detail view
+- **US-003**: View product images → Split into vertical slices for image gallery
 
 **Design Principles**:
 - Clean, modern e-commerce aesthetic

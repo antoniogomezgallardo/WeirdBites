@@ -9,7 +9,11 @@
 
 ## 1. What is Vertical Slicing?
 
-**Vertical slicing** is breaking down features into thin, end-to-end increments that cross all architectural layers (UI → API → Database) and deliver working, valuable functionality.
+**Vertical slicing** is the practice of splitting user stories into thin, end-to-end increments that cross all architectural layers (UI → API → Database) and deliver working, valuable functionality. Each slice is independently deployable and testable.
+
+**Key Relationship**: User Stories are **split into** Vertical Slices, not the other way around.
+- ✅ Correct: "US-001 is split into Vertical Slices 1.1, 1.2, 1.3"
+- ❌ Incorrect: "Vertical Slice 1 contains US-001, US-002, US-003"
 
 ### 1.1 Why Vertical Slices?
 
@@ -41,10 +45,10 @@ Sprint 3: Checkout (DB + API + UI) → Delivers value!
 
 ### Overview
 
-WeirdBites MVP will be built in **7 vertical slices**, each delivering deployable, working functionality.
+WeirdBites MVP will be built in **7 deployment increments**, where each increment is composed of multiple vertical slices derived by splitting user stories. Each deployment increment delivers working, valuable functionality across all architectural layers.
 
-| Slice | Name | Duration | Story Points | Value Delivered |
-|-------|------|----------|--------------|-----------------|
+| Deployment<br>Increment | Name | Duration | Story Points<br>(from split stories) | Value Delivered |
+|-------|------|----------|--------------------------------------|-----------------|
 | 1 | Browse Products | 2 weeks | 13 | Product discovery |
 | 2 | Shopping Cart | 1 week | 13 | Cart management |
 | 3 | Guest Checkout | 2 weeks | 19 | Complete purchase flow |
@@ -55,17 +59,21 @@ WeirdBites MVP will be built in **7 vertical slices**, each delivering deployabl
 
 **Total**: 10-12 weeks | 135 story points
 
+**Note**: Each deployment increment contains multiple vertical slices created by splitting user stories. Story points represent the estimated effort for all slices within that increment.
+
 ---
 
-## 3. Slice 1: Browse Products (Guest) 🍕
+## 3. Deployment Increment 1: Browse Products (Guest) 🍕
 
 **Duration**: 2 weeks
-**Story Points**: 13
+**Story Points**: 13 (aggregate from split stories)
 **Goal**: Users can discover weird snack products
+
+**Composition**: This deployment increment contains vertical slices derived by splitting US-001, US-002, and US-003 across all architectural layers.
 
 ### 3.1 Value Delivered
 
-After Slice 1, users can:
+After Deployment Increment 1, users can:
 - Visit WeirdBites.com
 - Browse product catalog (grid view)
 - View product details
@@ -106,10 +114,13 @@ CREATE INDEX idx_products_category ON products(category);
 CREATE INDEX idx_products_name ON products(name); -- for search later
 ```
 
-### 3.3 User Stories Included
-- US-001: Browse Product Catalog (5 pts)
-- US-002: View Product Details (5 pts)
-- US-003: Filter by Category (3 pts)
+### 3.3 Derived from User Stories
+This slice represents the first deployable increment derived by splitting these user stories:
+- US-001: Browse Product Catalog (5 pts) - Split into thin vertical slice for basic browsing
+- US-002: View Product Details (5 pts) - Split into thin vertical slice for basic product view
+- US-003: Filter by Category (3 pts) - Split into thin vertical slice for basic filtering
+
+**Note**: Each user story may be split into multiple vertical slices. This slice implements the minimal viable increment for product discovery.
 
 ### 3.4 Testing
 - **Unit**: Product card component, filtering logic
@@ -190,11 +201,14 @@ CREATE TABLE cart_items (
 CREATE INDEX idx_cart_session ON cart_items(cart_session_id);
 ```
 
-### 4.3 User Stories Included
-- US-006: Add to Cart (5 pts)
-- US-007: View Cart (3 pts)
-- US-008: Update Quantity (3 pts)
-- US-009: Remove from Cart (2 pts)
+### 4.3 Derived from User Stories
+This slice represents vertical slices derived by splitting these user stories:
+- US-006: Add to Cart (5 pts) - Split into basic add-to-cart vertical slice
+- US-007: View Cart (3 pts) - Split into basic cart view vertical slice
+- US-008: Update Quantity (3 pts) - Split into quantity management vertical slice
+- US-009: Remove from Cart (2 pts) - Split into item removal vertical slice
+
+**Note**: Each story is split to create deployable increments that cross all layers (UI → API → DB).
 
 ### 4.4 Testing
 - **Unit**: Cart logic, quantity validation
@@ -280,12 +294,15 @@ CREATE INDEX idx_orders_email ON orders(customer_email);
 CREATE INDEX idx_orders_number ON orders(order_number);
 ```
 
-### 5.3 User Stories Included
-- US-010: Enter Shipping Information (5 pts)
-- US-011: Payment Simulation (5 pts)
-- US-012: Order Confirmation (3 pts)
-- US-013: Form Validation (3 pts)
-- US-014: Error Handling (3 pts)
+### 5.3 Derived from User Stories
+This slice represents vertical slices derived by splitting these user stories:
+- US-010: Enter Shipping Information (5 pts) - Split into shipping form vertical slice
+- US-011: Payment Simulation (5 pts) - Split into payment processing vertical slice
+- US-012: Order Confirmation (3 pts) - Split into confirmation flow vertical slice
+- US-013: Form Validation (3 pts) - Split into validation logic vertical slice
+- US-014: Error Handling (3 pts) - Split into error handling vertical slice
+
+**Note**: This critical MVP slice combines multiple story splits into a complete checkout flow.
 
 ### 5.4 Testing
 - **Unit**: Form validation, order calculations
@@ -357,13 +374,16 @@ CREATE TABLE users (
 CREATE INDEX idx_users_email ON users(email);
 ```
 
-### 6.3 User Stories Included
-- US-015: User Registration (5 pts)
-- US-016: User Login (3 pts)
-- US-017: User Logout (1 pt)
-- US-018: Password Validation (2 pts)
-- US-019: Session Management (3 pts)
-- US-020: Remember Me (2 pts)
+### 6.3 Derived from User Stories
+This slice represents vertical slices derived by splitting these user stories:
+- US-015: User Registration (5 pts) - Split into registration flow vertical slice
+- US-016: User Login (3 pts) - Split into login flow vertical slice
+- US-017: User Logout (1 pt) - Split into logout vertical slice
+- US-018: Password Validation (2 pts) - Split into password security vertical slice
+- US-019: Session Management (3 pts) - Split into session handling vertical slice
+- US-020: Remember Me (2 pts) - Split into persistent session vertical slice
+
+**Note**: Authentication stories split into secure, testable vertical slices.
 
 ### 6.4 Testing
 - **Unit**: Password hashing, validation
@@ -419,10 +439,13 @@ After Slice 5, registered users can:
 - Link orders to users (user_id column already exists)
 - Update cart_sessions to link to user_id
 
-### 7.3 User Stories Included
-- US-021: Saved Checkout Info (3 pts)
-- US-022: Order History (5 pts)
-- US-023: Order Details View (3 pts)
+### 7.3 Derived from User Stories
+This slice represents vertical slices derived by splitting these user stories:
+- US-021: Saved Checkout Info (3 pts) - Split into saved profile vertical slice
+- US-022: Order History (5 pts) - Split into order listing vertical slice
+- US-023: Order Details View (3 pts) - Split into order detail vertical slice
+
+**Note**: User account enhancement stories split into manageable vertical slices.
 
 ### 7.4 Acceptance Criteria
 
@@ -483,11 +506,14 @@ ALTER TABLE products ADD COLUMN average_rating DECIMAL(3,2);
 ALTER TABLE products ADD COLUMN review_count INTEGER DEFAULT 0;
 ```
 
-### 8.3 User Stories Included
-- US-024: Product Search (5 pts)
-- US-025: Search Results (3 pts)
-- US-026: Leave Review (3 pts)
-- US-027: View Reviews (2 pts)
+### 8.3 Derived from User Stories
+This slice represents vertical slices derived by splitting these user stories:
+- US-024: Product Search (5 pts) - Split into search functionality vertical slice
+- US-025: Search Results (3 pts) - Split into results display vertical slice
+- US-026: Leave Review (3 pts) - Split into review submission vertical slice
+- US-027: View Reviews (2 pts) - Split into review display vertical slice
+
+**Note**: Discovery and feedback stories split into independent vertical slices.
 
 ### 8.4 Acceptance Criteria
 
@@ -537,8 +563,12 @@ After Slice 7, admin can:
 - Add admin role to users
 - Admin action logging (optional)
 
-### 9.3 User Stories Included
-- US-028 through US-039 (12 stories, 50 points)
+### 9.3 Derived from User Stories
+This slice represents vertical slices derived by splitting 12 admin-related user stories:
+- US-028 through US-039 (Admin authentication, product CRUD, inventory, orders, analytics)
+- Each story split into vertical slices crossing UI → API → DB layers
+
+**Note**: Admin stories split into multiple deployable vertical slices spanning 2 weeks.
 
 ### 9.4 Acceptance Criteria
 
@@ -594,8 +624,8 @@ const FEATURE_FLAGS = {
 
 ### Definition of Done (Per Slice)
 
-A slice is complete when:
-- [ ] All user stories in slice meet acceptance criteria
+A deployment increment is complete when:
+- [ ] All vertical slices (derived from split stories) meet acceptance criteria
 - [ ] All layers implemented (UI, API, DB)
 - [ ] Feature works end-to-end
 - [ ] Unit tests ≥80% coverage (new code)

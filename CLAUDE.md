@@ -44,6 +44,33 @@ docs/quality-standards/
 └── 16-agentic-workflows/    # Autonomous QA agents, multi-agent systems
 ```
 
+## Key Concepts - Critical Terminology
+
+### ⚠️ User Stories vs Vertical Slices
+
+**This is a common source of confusion. Please read carefully:**
+
+**Correct Relationship**:
+```
+User Story → (split into) → Vertical Slices → (grouped into) → Deployment Increment
+```
+
+**Key Points**:
+- ✅ **Correct**: "US-001 is split into vertical slices for listing, filtering, and pagination"
+- ❌ **Incorrect**: "Deployment Increment 1 contains US-001, US-002, US-003"
+- **User Story** = Feature requirement describing user value (1-8 story points)
+- **Vertical Slice** = Thin, deployable increment created BY SPLITTING a user story across all layers (UI → API → DB)
+- **Deployment Increment** = Collection of vertical slices (from multiple split stories) delivered together (10-50 points)
+
+**Why This Matters**:
+- Prevents conceptual errors in documentation and planning
+- Ensures correct understanding of incremental delivery
+- Aligns with industry best practices for vertical slicing
+
+**Reference**: See [docs/GLOSSARY.md](docs/GLOSSARY.md) for comprehensive definitions.
+
+---
+
 ## Development Approach: Phase-by-Phase Excellence
 
 We will build WeirdBites **incrementally**, implementing each SDLC/STLC phase with strict adherence to the quality standards:

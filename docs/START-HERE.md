@@ -171,9 +171,9 @@ Click on any module to see detailed README and document list:
 ### Documentation ☑️
 - [ ] You understand the project purpose (educational QA portfolio)
 - [ ] You know what we're building (e-commerce for weird snacks)
-- [ ] You know the MVP scope (35 Must Have stories)
-- [ ] You know the 7 vertical slices
-- [ ] You know Slice 1 is "Browse Products" (2 weeks, 13 points)
+- [ ] You know the MVP scope (35 Must Have user stories)
+- [ ] You know the 7 deployment increments (composed of vertical slices split from stories)
+- [ ] You know Deployment Increment 1 is "Browse Products" (2 weeks, 13 points from split stories)
 
 ### Environment ☑️
 - [ ] Repository cloned with submodules
@@ -216,17 +216,24 @@ The simplest version of the product that delivers core value and can be released
 **See**: [01-requirements/mvp-definition.md](01-requirements/mvp-definition.md)
 
 ### What are Vertical Slices?
-Thin, end-to-end increments that cross all architectural layers (UI → API → Database) and deliver working functionality.
+Thin, end-to-end increments created by **splitting user stories** across all architectural layers (UI → API → Database) to deliver working functionality incrementally.
 
-**WeirdBites has 7 slices**: Browse Products, Shopping Cart, Guest Checkout, User Accounts, Registered Checkout, Search & Reviews, Admin Panel
+**WeirdBites has 7 deployment increments** composed of vertical slices derived from 35+ user stories.
 
 **See**: [01-requirements/vertical-slices.md](01-requirements/vertical-slices.md)
 
 ### Vertical Slices vs User Stories?
-- **User Story** = Single feature (1-8 points)
-- **Vertical Slice** = Collection of related stories forming a deployable increment (10-20 points)
+**Key Relationship**: User Stories are **split into** Vertical Slices
 
-Both cross all layers, but slices are larger deployment units.
+- **User Story** = A feature requirement that describes user value (1-8 story points)
+- **Vertical Slice** = A thin, deployable increment created by splitting a user story across all layers
+- **Deployment Increment** = A collection of vertical slices (from multiple split stories) delivered together (10-20 points)
+
+**Example**:
+- ✅ Correct: "US-001 (Browse Products) is split into vertical slices for listing, filtering, and pagination"
+- ❌ Incorrect: "Deployment Increment 1 contains US-001, US-002, US-003"
+
+Both slices and stories cross all layers, but slices are the result of splitting stories for incremental delivery.
 
 ---
 

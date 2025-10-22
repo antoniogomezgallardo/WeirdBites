@@ -26,15 +26,17 @@ This product backlog contains all user stories for the WeirdBites MVP, organized
 - **Won't Have**: Listed in mvp-definition.md
 
 ### By Epic
-1. Product Discovery (5 stories)
-2. Shopping Cart (4 stories)
-3. Guest Checkout (5 stories)
-4. User Accounts (6 stories)
-5. Registered User Features (3 stories)
-6. Product Search & Reviews (4 stories)
-7. Admin Authentication (2 stories)
-8. Admin Product Management (4 stories)
-9. Admin Inventory (2 stories)
+1. Product Discovery (5 stories) - Split into deployment increments
+2. Shopping Cart (4 stories) - Split into deployment increments
+3. Guest Checkout (5 stories) - Split into deployment increments
+4. User Accounts (6 stories) - Split into deployment increments
+5. Registered User Features (3 stories) - Split into deployment increments
+6. Product Search & Reviews (4 stories) - Split into deployment increments
+7. Admin Authentication (2 stories) - Split into deployment increments
+8. Admin Product Management (4 stories) - Split into deployment increments
+9. Admin Inventory (2 stories) - Split into deployment increments
+
+**Note**: Each user story may be split into multiple vertical slices for incremental delivery.
 
 ---
 
@@ -48,7 +50,7 @@ This product backlog contains all user stories for the WeirdBites MVP, organized
 
 **Priority**: Must Have
 **Story Points**: 5
-**Vertical Slice**: Slice 1
+**Splits Into**: Deployment Increment 1 (vertical slices for basic browsing)
 
 **Acceptance Criteria**:
 
@@ -102,7 +104,7 @@ And they match the expected grid layout
 
 **Priority**: Must Have
 **Story Points**: 5
-**Vertical Slice**: Slice 1
+**Splits Into**: Deployment Increment 1 (vertical slices for product detail view)
 
 **Acceptance Criteria**:
 
@@ -158,7 +160,7 @@ And I see a message "This item is currently unavailable"
 
 **Priority**: Must Have
 **Story Points**: 3
-**Vertical Slice**: Slice 1
+**Splits Into**: Deployment Increment 1 (vertical slices for category filtering)
 
 **Acceptance Criteria**:
 
@@ -216,7 +218,7 @@ And no category is selected
 
 **Priority**: Must Have
 **Story Points**: 5
-**Vertical Slice**: Slice 2
+**Splits Into**: Deployment Increment 2 (vertical slices for add-to-cart functionality)
 
 **Acceptance Criteria**:
 
@@ -270,7 +272,7 @@ And quantities are preserved
 
 **Priority**: Must Have
 **Story Points**: 3
-**Vertical Slice**: Slice 2
+**Splits Into**: Deployment Increment 2 (vertical slices for cart display)
 
 **Acceptance Criteria**:
 
@@ -380,28 +382,32 @@ Due to length constraints, here's the complete list of MVP user stories with sto
 
 ## Backlog Prioritization
 
-### Vertical Slice Mapping
+### Deployment Increment Mapping
 
-**Slice 1: Browse Products** (Week 1-2)
-- US-001, US-002, US-003 = 13 points
+Stories are split into vertical slices and grouped into deployment increments:
 
-**Slice 2: Shopping Cart** (Week 3)
-- US-006, US-007, US-008, US-009 = 13 points
+**Deployment Increment 1: Browse Products** (Week 1-2)
+- Stories US-001, US-002, US-003 split into vertical slices = 13 points total
 
-**Slice 3: Guest Checkout** (Week 4-5)
-- US-010, US-011, US-012, US-013, US-014 = 19 points
+**Deployment Increment 2: Shopping Cart** (Week 3)
+- Stories US-006, US-007, US-008, US-009 split into vertical slices = 13 points total
 
-**Slice 4: User Accounts** (Week 6)
-- US-015, US-016, US-017, US-018, US-019, US-020 = 16 points
+**Deployment Increment 3: Guest Checkout** (Week 4-5)
+- Stories US-010, US-011, US-012, US-013, US-014 split into vertical slices = 19 points total
 
-**Slice 5: Registered Features** (Week 7)
-- US-021, US-022, US-023 = 11 points
+**Deployment Increment 4: User Accounts** (Week 6)
+- Stories US-015, US-016, US-017, US-018, US-019, US-020 split into vertical slices = 16 points total
 
-**Slice 6: Search & Reviews** (Week 8)
-- US-024, US-025, US-026, US-027 = 13 points
+**Deployment Increment 5: Registered Features** (Week 7)
+- Stories US-021, US-022, US-023 split into vertical slices = 11 points total
 
-**Slice 7: Admin Panel** (Week 9-10)
-- US-028 through US-039 = 50 points
+**Deployment Increment 6: Search & Reviews** (Week 8)
+- Stories US-024, US-025, US-026, US-027 split into vertical slices = 13 points total
+
+**Deployment Increment 7: Admin Panel** (Week 9-10)
+- Stories US-028 through US-039 split into vertical slices = 50 points total
+
+**Note**: Each story is split into one or more vertical slices that cross all architectural layers (UI → API → DB).
 
 ---
 
