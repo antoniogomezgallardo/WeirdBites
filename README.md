@@ -219,6 +219,9 @@ pnpm db:migrate   # Create and apply migrations (production)
 pnpm db:studio    # Open Prisma Studio (database GUI)
 pnpm db:seed      # Run database seed script (coming in IS-006)
 
+# API Health Check
+# Visit http://localhost:3000/api/health to check API and database status
+
 # Testing (Coming in IS-005)
 pnpm test         # Run all tests
 pnpm test:unit    # Run unit tests
@@ -338,7 +341,8 @@ WeirdBites/
 - ✅ IS-001: Next.js 15 + TypeScript + Tailwind initialized (2 pts)
 - ✅ IS-002: ESLint and Prettier configured (1 pt)
 - ✅ IS-003: PostgreSQL with Prisma ORM setup (3 pts)
-- 🚧 IS-004-IS-009: Pending (11 pts remaining)
+- ✅ IS-004: API Routes and health check endpoint (2 pts)
+- 🚧 IS-005-IS-009: Pending (9 pts remaining)
 
 **Next Phase**: Slice 1 - Browse Products (2 weeks, 13 story points)
 
@@ -436,7 +440,7 @@ This project follows a Git Flow-inspired branching strategy:
 
 | Slice | Name                               | Duration | Story Points | Status                           |
 | ----- | ---------------------------------- | -------- | ------------ | -------------------------------- |
-| 0     | **Project Setup** (Infrastructure) | 3-5 days | 17           | 🚧 **In Progress** (3/9 stories) |
+| 0     | **Project Setup** (Infrastructure) | 3-5 days | 17           | 🚧 **In Progress** (4/9 stories) |
 | 1     | Browse Products                    | 2 weeks  | 13           | ⏳ Planned                       |
 | 2     | Shopping Cart                      | 1 week   | 13           | ⏳ Planned                       |
 | 3     | Guest Checkout                     | 2 weeks  | 19           | ⏳ Planned                       |
