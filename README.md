@@ -347,9 +347,10 @@ WeirdBites/
 - ✅ IS-003: PostgreSQL with Prisma ORM setup (3 pts)
 - ✅ IS-004: API Routes and health check endpoint (2 pts)
 - ✅ IS-005: Testing frameworks configured (Jest + Playwright) (3 pts)
-- 🚧 IS-006-IS-009: Pending (6 pts remaining)
+- ✅ IS-006: CI/CD pipeline with GitHub Actions (3 pts)
+- 🚧 IS-007-IS-009: Pending (3 pts remaining)
 
-**Progress**: 5/9 stories completed (11/17 story points - 65%)
+**Progress**: 6/9 stories completed (14/17 story points - 82%)
 
 **Next Phase**: Slice 1 - Browse Products (2 weeks, 13 story points)
 
@@ -443,11 +444,36 @@ This project follows a Git Flow-inspired branching strategy:
 - `bugfix/*` - Bug fixes
 - `hotfix/*` - Critical production fixes
 
+### CI/CD Pipeline
+
+**Automated Quality Gates** (GitHub Actions):
+
+Every pull request and push to `main`, `staging`, or `develop` triggers:
+
+1. **Lint** - ESLint code quality checks + Prettier formatting
+2. **Type Check** - TypeScript compilation without emit
+3. **Unit & Integration Tests** - Jest with coverage reporting
+4. **E2E Tests** - Playwright browser tests
+5. **Build** - Next.js production build verification
+
+**Quality Gate Requirements**:
+- All jobs must pass for PR approval
+- Code coverage uploaded to Codecov
+- Playwright reports retained for 30 days
+- Concurrency control to cancel outdated runs
+
+**Deployment Flow** (to be configured in IS-007):
+- `feature/*` → `staging` → `main`
+- Staging environment for pre-production testing
+- Production deploys only from `main` branch
+
+See [.github/workflows/ci.yml](.github/workflows/ci.yml) for full CI configuration.
+
 ## Development Phases (Vertical Slices)
 
 | Slice | Name                               | Duration | Story Points | Status                           |
 | ----- | ---------------------------------- | -------- | ------------ | -------------------------------- |
-| 0     | **Project Setup** (Infrastructure) | 3-5 days | 17           | 🚧 **In Progress** (5/9 stories) |
+| 0     | **Project Setup** (Infrastructure) | 3-5 days | 17           | 🚧 **In Progress** (6/9 stories) |
 | 1     | Browse Products                    | 2 weeks  | 13           | ⏳ Planned                       |
 | 2     | Shopping Cart                      | 1 week   | 13           | ⏳ Planned                       |
 | 3     | Guest Checkout                     | 2 weeks  | 19           | ⏳ Planned                       |
