@@ -105,7 +105,7 @@ git submodule update --init --recursive
 #### 2. Install Dependencies
 
 ```bash
-# Install all npm packages (374 packages)
+# Install all npm packages (408 packages)
 pnpm install
 ```
 
@@ -117,7 +117,8 @@ This installs:
 - Tailwind CSS 3.4.18
 - ESLint 9.38.0
 - Prettier 3.6.2
-- And all their dependencies (374 packages)
+- Prisma 6.18.0
+- And all their dependencies (408 packages)
 
 #### 3. Run the Development Server
 
@@ -133,7 +134,36 @@ The app will be available at:
 
 **You should see**: WeirdBites welcome page with orange branding
 
-#### 4. Verify Installation
+#### 4. Setup Database (Optional for Slice 0)
+
+**Note**: Database setup is optional during Slice 0. You can skip this step and continue with verification.
+
+If you want to set up the database now:
+
+```bash
+# 1. Copy .env.example to .env
+cp .env.example .env
+
+# 2. Update DATABASE_URL in .env with your PostgreSQL connection string
+# Examples provided in .env.example for local PostgreSQL, Supabase, or Neon
+
+# 3. Generate Prisma client
+pnpm db:generate
+
+# 4. Push schema to database (development)
+pnpm db:push
+
+# OR create a migration (production approach)
+pnpm db:migrate
+```
+
+**Free PostgreSQL Options**:
+
+- **Supabase**: [https://supabase.com](https://supabase.com) (500 MB free)
+- **Neon**: [https://neon.tech](https://neon.tech) (3 GB free)
+- **Local PostgreSQL**: Install PostgreSQL 14+ locally
+
+#### 5. Verify Installation
 
 ```bash
 # Check for TypeScript errors
@@ -162,6 +192,13 @@ pnpm lint:fix     # Run ESLint and auto-fix issues
 pnpm format       # Format all files with Prettier
 pnpm format:check # Check if files are formatted correctly
 pnpm tsc          # TypeScript type checking (noEmit)
+
+# Database (Prisma)
+pnpm db:generate  # Generate Prisma client from schema
+pnpm db:push      # Push schema changes to database (development)
+pnpm db:migrate   # Create and apply migrations (production)
+pnpm db:studio    # Open Prisma Studio (database GUI)
+pnpm db:seed      # Run database seed script (coming in IS-006)
 
 # Testing (Coming in IS-005)
 pnpm test         # Run all tests
@@ -281,7 +318,8 @@ WeirdBites/
 
 - ✅ IS-001: Next.js 15 + TypeScript + Tailwind initialized (2 pts)
 - ✅ IS-002: ESLint and Prettier configured (1 pt)
-- 🚧 IS-003-IS-009: Pending (14 pts remaining)
+- ✅ IS-003: PostgreSQL with Prisma ORM setup (3 pts)
+- 🚧 IS-004-IS-009: Pending (11 pts remaining)
 
 **Next Phase**: Slice 1 - Browse Products (2 weeks, 13 story points)
 
@@ -379,7 +417,7 @@ This project follows a Git Flow-inspired branching strategy:
 
 | Slice | Name                               | Duration | Story Points | Status                           |
 | ----- | ---------------------------------- | -------- | ------------ | -------------------------------- |
-| 0     | **Project Setup** (Infrastructure) | 3-5 days | 17           | 🚧 **In Progress** (2/9 stories) |
+| 0     | **Project Setup** (Infrastructure) | 3-5 days | 17           | 🚧 **In Progress** (3/9 stories) |
 | 1     | Browse Products                    | 2 weeks  | 13           | ⏳ Planned                       |
 | 2     | Shopping Cart                      | 1 week   | 13           | ⏳ Planned                       |
 | 3     | Guest Checkout                     | 2 weeks  | 19           | ⏳ Planned                       |
