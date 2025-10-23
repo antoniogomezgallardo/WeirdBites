@@ -219,7 +219,7 @@ pnpm db:generate  # Generate Prisma client from schema
 pnpm db:push      # Push schema changes to database (development)
 pnpm db:migrate   # Create and apply migrations (production)
 pnpm db:studio    # Open Prisma Studio (database GUI)
-pnpm db:seed      # Run database seed script (coming in IS-006)
+pnpm db:seed      # Run database seed script (not yet implemented)
 
 # API Health Check
 # Visit http://localhost:3000/api/health to check API and database status
@@ -331,7 +331,9 @@ WeirdBites/
 │   │   ├── phase-testing.md               # Module 04-05 guidance
 │   │   └── phase-cicd.md                  # Module 08 guidance
 │   └── settings.json                      # Agent behavior config
-├── .github/                                # GitHub Actions workflows (to be created)
+├── .github/                                # GitHub Actions workflows
+│   └── workflows/
+│       └── ci.yml                          # ✅ CI pipeline with quality gates
 ├── CLAUDE.md                               # Project instructions for Claude
 └── README.md                               # This file
 ```
@@ -484,15 +486,15 @@ See [.github/workflows/ci.yml](.github/workflows/ci.yml) for full CI configurati
 
 **Total**: 11-13 weeks | 150 story points
 
-See [Project Setup](docs/8.project-setup.md) for Slice 0 details and [Vertical Slices](docs/6.vertical-slices.md) for Slices 1-7 breakdown.
+See [Project Setup](docs/setup/project-setup.md) for Slice 0 details and [Vertical Slices](docs/01-requirements/vertical-slices.md) for Slices 1-7 breakdown.
 
 ## Contributing
 
 Contributions welcome! This project follows strict quality standards:
 
 1. Read the [Quality Standards](docs/quality-standards/) documentation
-2. Check [Product Backlog](docs/product-backlog.md) for available stories
-3. Ensure story meets [Definition of Ready](docs/definition-of-ready.md)
+2. Check [Product Backlog](docs/01-requirements/product-backlog.md) for available stories
+3. Ensure story meets [Definition of Ready](docs/02-agile-planning/definition-of-ready.md)
 4. Follow TDD/BDD practices (write tests first!)
 5. Maintain >80% code coverage
 6. Pass all quality gates (linting, type-checking, tests, accessibility)
