@@ -105,7 +105,7 @@ git submodule update --init --recursive
 #### 2. Install Dependencies
 
 ```bash
-# Install all npm packages (408 packages)
+# Install all npm packages (670+ packages)
 pnpm install
 ```
 
@@ -118,7 +118,9 @@ This installs:
 - ESLint 9.38.0
 - Prettier 3.6.2
 - Prisma 6.18.0
-- And all their dependencies (408 packages)
+- Jest 30.2.0 + Testing Library
+- Playwright 1.56.1
+- And all their dependencies (670+ packages)
 
 #### 3. Run the Development Server
 
@@ -222,11 +224,13 @@ pnpm db:seed      # Run database seed script (coming in IS-006)
 # API Health Check
 # Visit http://localhost:3000/api/health to check API and database status
 
-# Testing (Coming in IS-005)
-pnpm test         # Run all tests
-pnpm test:unit    # Run unit tests
-pnpm test:e2e     # Run E2E tests
-pnpm test:watch   # Run tests in watch mode
+# Testing
+pnpm test              # Run Jest unit/integration tests
+pnpm test:watch        # Run Jest tests in watch mode
+pnpm test:coverage     # Run Jest tests with coverage report
+pnpm test:e2e          # Run Playwright E2E tests
+pnpm test:e2e:ui       # Run Playwright E2E tests with UI
+pnpm test:e2e:headed   # Run Playwright E2E tests in headed mode
 ```
 
 ### Troubleshooting
@@ -342,7 +346,10 @@ WeirdBites/
 - ✅ IS-002: ESLint and Prettier configured (1 pt)
 - ✅ IS-003: PostgreSQL with Prisma ORM setup (3 pts)
 - ✅ IS-004: API Routes and health check endpoint (2 pts)
-- 🚧 IS-005-IS-009: Pending (9 pts remaining)
+- ✅ IS-005: Testing frameworks configured (Jest + Playwright) (3 pts)
+- 🚧 IS-006-IS-009: Pending (6 pts remaining)
+
+**Progress**: 5/9 stories completed (11/17 story points - 65%)
 
 **Next Phase**: Slice 1 - Browse Products (2 weeks, 13 story points)
 
@@ -440,7 +447,7 @@ This project follows a Git Flow-inspired branching strategy:
 
 | Slice | Name                               | Duration | Story Points | Status                           |
 | ----- | ---------------------------------- | -------- | ------------ | -------------------------------- |
-| 0     | **Project Setup** (Infrastructure) | 3-5 days | 17           | 🚧 **In Progress** (4/9 stories) |
+| 0     | **Project Setup** (Infrastructure) | 3-5 days | 17           | 🚧 **In Progress** (5/9 stories) |
 | 1     | Browse Products                    | 2 weeks  | 13           | ⏳ Planned                       |
 | 2     | Shopping Cart                      | 1 week   | 13           | ⏳ Planned                       |
 | 3     | Guest Checkout                     | 2 weeks  | 19           | ⏳ Planned                       |
