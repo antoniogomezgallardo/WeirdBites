@@ -163,6 +163,25 @@ pnpm db:migrate
 - **Neon**: [https://neon.tech](https://neon.tech) (3 GB free)
 - **Local PostgreSQL**: Install PostgreSQL 14+ locally
 
+**Viewing Your Database**:
+
+Once you've connected to a database, you can view and manage it using Prisma Studio:
+
+```bash
+pnpm db:studio
+```
+
+This opens a visual database browser at `http://localhost:5555` where you can:
+
+- View all tables (currently: Products table)
+- Add, edit, and delete records
+- Browse table relationships
+- Query data visually
+
+**Current Database Schema**:
+
+- **Product Table**: id, name, description, price, imageUrl, category, origin, stock, createdAt, updatedAt
+
 #### 5. Verify Installation
 
 ```bash
