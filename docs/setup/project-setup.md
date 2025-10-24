@@ -23,7 +23,7 @@
 - Deployment infrastructure
 
 **Duration**: 3-5 days (Week 0)
-**Story Points**: ~17 points (9 infrastructure stories)
+**Story Points**: ~18 points (10 infrastructure stories)
 
 ---
 
@@ -1384,7 +1384,7 @@ test(checkout): add E2E tests
 **So that** I can detect and debug issues in production
 
 **Priority**: Should Have (Slice 0)
-**Story Points**: 2
+**Story Points**: 1
 **Dependencies**: IS-001 (Next.js), IS-007 (Vercel deployment)
 
 **Acceptance Criteria**:
@@ -1452,6 +1452,496 @@ pnpm add logrocket
 - [ ] Errors logged in production
 - [ ] Dashboard accessible
 - [ ] Notifications configured
+
+---
+
+### IS-010: Setup Feature Flags System
+
+**As a** developer
+**I want** a feature flags system configured
+**So that** I can deploy incomplete features safely and toggle features without redeployment
+
+**Story ID**: IS-010 (Infrastructure Story 010)
+**Priority**: Should Have (Slice 0)
+**Story Points**: 2
+**Dependencies**: IS-001 (Next.js with TypeScript)
+
+**Acceptance Criteria**:
+
+**Scenario 1**: Feature flags configuration exists
+
+```gherkin
+Given the Next.js project is initialized
+When I review the project structure
+Then I see:
+  - src/config/features.ts (feature flag definitions)
+  - src/hooks/useFeature.ts (React hook for checking flags)
+  - src/lib/features.ts (feature utilities)
+  - src/types/features.ts (TypeScript types)
+And all files are properly typed
+```
+
+**Scenario 2**: Feature flags work in components
+
+```gherkin
+Given a feature flag is defined
+When I use the useFeature hook in a component
+And the flag is set to false
+Then the feature is hidden
+When I set the flag to true
+Then the feature is visible
+And TypeScript autocomplete works for flag names
+```
+
+**Scenario 3**: Feature flags are testable
+
+```gherkin
+Given the feature flag system is configured
+When I write tests for a component with feature flags
+Then I can mock feature flags in tests
+And I can test both enabled and disabled states
+And tests pass for all flag combinations
+```
+
+**Scenario 4**: Feature flags support TBD workflow
+
+```gherkin
+Given I'm working on a multi-day feature
+When I implement part of the feature with flag OFF
+And I commit and deploy to production
+Then users don't see the incomplete feature
+And I can continue development safely
+When the feature is complete and I set flag ON
+Then users see the new feature
+And no redeployment is required (just config change)
+```
+
+**Technical Implementation**:
+
+**1. Create feature flag configuration**:
+
+`src/config/features.ts`:
+
+```typescript
+/**
+ * Feature Flags Configuration
+ *
+ * Controls which features are enabled/disabled.
+ * Supports Trunk-Based Development by allowing safe deployment of incomplete features.
+ *
+ * Usage:
+ * - Set flag to `false` while feature is in development
+ * - Deploy to production safely (feature hidden)
+ * - Set flag to `true` when feature is complete and tested
+ *
+ * @example
+ * // In a component:
+ * import { useFeature } from '@/hooks/useFeature'
+ *
+ * export function ProductPage() {
+ *   const showFilters = useFeature('productFiltering')
+ *   return <div>{showFilters && <ProductFilters />}</div>
+ * }
+ */
+
+export const features = {
+  // ==========================================
+  // Slice 1: Browse Products Features
+  // ==========================================
+  productFiltering: false,      // US-003: Filter products by category
+  productPagination: false,     // US-001: Paginate product listing
+  productSearch: false,         // US-006: Search products
+
+  // ==========================================
+  // Slice 2: Shopping Cart Features
+  // ==========================================
+  shoppingCart: false,          // US-004: Add to cart functionality
+  cartPersistence: false,       // US-005: Cart persists in localStorage
+
+  // ==========================================
+  // Slice 3: Guest Checkout Features
+  // ==========================================
+  guestCheckout: false,         // US-007: Guest checkout flow
+  stripePayment: false,         // US-008: Stripe payment integration
+
+  // ==========================================
+  // Slice 4: User Accounts Features
+  // ==========================================
+  userRegistration: false,      // US-010: User registration
+  userLogin: false,             // US-011: User login
+
+  // ==========================================
+  // Slice 5: Registered User Features
+  // ==========================================
+  orderHistory: false,          // US-013: View order history
+  savedAddresses: false,        // US-014: Save delivery addresses
+
+  // ==========================================
+  // Slice 6: Search & Reviews Features
+  // ==========================================
+  productReviews: false,        // US-016: Product reviews
+  advancedSearch: false,        // US-015: Advanced search filters
+
+  // ==========================================
+  // Slice 7: Admin Panel Features
+  // ==========================================
+  adminPanel: false,            // US-018+: Admin dashboard
+  productManagement: false,     // US-019: Manage products
+  inventoryManagement: false,   // US-020: Inventory tracking
+
+  // ==========================================
+  // Experimental/Beta Features
+  // ==========================================
+  darkMode: false,              // Optional: Dark mode UI
+  a11yEnhancements: false,      // Optional: Enhanced accessibility
+} as const
+
+/**
+ * Type-safe feature flag names
+ * Auto-generated from features object keys
+ */
+export type FeatureFlag = keyof typeof features
+
+/**
+ * Get feature flag value
+ * @param flag - Feature flag name
+ * @returns boolean - Whether feature is enabled
+ */
+export function isFeatureEnabled(flag: FeatureFlag): boolean {
+  return features[flag]
+}
+
+/**
+ * Get all enabled features
+ * @returns Array of enabled feature names
+ */
+export function getEnabledFeatures(): FeatureFlag[] {
+  return (Object.keys(features) as FeatureFlag[]).filter(
+    (key) => features[key]
+  )
+}
+
+/**
+ * Get all disabled features
+ * @returns Array of disabled feature names
+ */
+export function getDisabledFeatures(): FeatureFlag[] {
+  return (Object.keys(features) as FeatureFlag[]).filter(
+    (key) => !features[key]
+  )
+}
+```
+
+**2. Create React hook for feature flags**:
+
+`src/hooks/useFeature.ts`:
+
+```typescript
+import { features, FeatureFlag } from '@/config/features'
+
+/**
+ * React hook to check if a feature is enabled
+ *
+ * @param flag - Feature flag name (type-safe)
+ * @returns boolean - Whether the feature is enabled
+ *
+ * @example
+ * function ProductPage() {
+ *   const showFilters = useFeature('productFiltering')
+ *
+ *   return (
+ *     <div>
+ *       <ProductList />
+ *       {showFilters && <ProductFilters />}
+ *     </div>
+ *   )
+ * }
+ */
+export function useFeature(flag: FeatureFlag): boolean {
+  return features[flag]
+}
+
+/**
+ * React hook to get multiple feature flags
+ * Useful when checking multiple features at once
+ *
+ * @param flags - Array of feature flag names
+ * @returns Object mapping flag names to their values
+ *
+ * @example
+ * function ProductPage() {
+ *   const { productFiltering, productPagination } = useFeatures([
+ *     'productFiltering',
+ *     'productPagination'
+ *   ])
+ *
+ *   return (
+ *     <div>
+ *       <ProductList />
+ *       {productFiltering && <ProductFilters />}
+ *       {productPagination && <Pagination />}
+ *     </div>
+ *   )
+ * }
+ */
+export function useFeatures<T extends FeatureFlag>(
+  flags: T[]
+): Record<T, boolean> {
+  return flags.reduce(
+    (acc, flag) => ({
+      ...acc,
+      [flag]: features[flag],
+    }),
+    {} as Record<T, boolean>
+  )
+}
+```
+
+**3. Create feature utilities**:
+
+`src/lib/features.ts`:
+
+```typescript
+import { features, FeatureFlag } from '@/config/features'
+
+/**
+ * Feature flag utilities for server-side code
+ */
+
+/**
+ * Check if feature is enabled (server-side)
+ * @param flag - Feature flag name
+ * @returns boolean
+ */
+export function isEnabled(flag: FeatureFlag): boolean {
+  return features[flag]
+}
+
+/**
+ * Execute code conditionally based on feature flag
+ * @param flag - Feature flag name
+ * @param onEnabled - Function to execute if enabled
+ * @param onDisabled - Function to execute if disabled (optional)
+ */
+export function withFeature<T>(
+  flag: FeatureFlag,
+  onEnabled: () => T,
+  onDisabled?: () => T
+): T | undefined {
+  if (features[flag]) {
+    return onEnabled()
+  }
+  return onDisabled?.()
+}
+
+/**
+ * Filter items based on feature flags
+ * @param items - Array of items with feature flags
+ * @returns Filtered array
+ */
+export function filterByFeature<T extends { feature?: FeatureFlag }>(
+  items: T[]
+): T[] {
+  return items.filter((item) => {
+    if (!item.feature) return true
+    return features[item.feature]
+  })
+}
+```
+
+**4. Create TypeScript types**:
+
+`src/types/features.ts`:
+
+```typescript
+import { FeatureFlag } from '@/config/features'
+
+/**
+ * Component props for feature-flagged components
+ */
+export interface FeatureFlaggedProps {
+  feature?: FeatureFlag
+  fallback?: React.ReactNode
+}
+
+/**
+ * Feature metadata
+ */
+export interface FeatureMetadata {
+  name: FeatureFlag
+  enabled: boolean
+  description: string
+  slice: number
+  story: string
+}
+```
+
+**5. Create feature flag tests**:
+
+`src/hooks/__tests__/useFeature.test.ts`:
+
+```typescript
+import { renderHook } from '@testing-library/react'
+import { useFeature, useFeatures } from '../useFeature'
+
+// Mock the features config
+jest.mock('@/config/features', () => ({
+  features: {
+    productFiltering: true,
+    productPagination: false,
+    shoppingCart: true,
+  },
+}))
+
+describe('useFeature', () => {
+  it('returns true for enabled features', () => {
+    const { result } = renderHook(() => useFeature('productFiltering'))
+    expect(result.current).toBe(true)
+  })
+
+  it('returns false for disabled features', () => {
+    const { result } = renderHook(() => useFeature('productPagination'))
+    expect(result.current).toBe(false)
+  })
+})
+
+describe('useFeatures', () => {
+  it('returns correct values for multiple features', () => {
+    const { result } = renderHook(() =>
+      useFeatures(['productFiltering', 'productPagination', 'shoppingCart'])
+    )
+
+    expect(result.current).toEqual({
+      productFiltering: true,
+      productPagination: false,
+      shoppingCart: true,
+    })
+  })
+})
+```
+
+**6. Create example component using feature flags**:
+
+`src/components/FeatureExample.tsx`:
+
+```typescript
+import { useFeature } from '@/hooks/useFeature'
+
+export function ProductPageExample() {
+  const showFilters = useFeature('productFiltering')
+  const showPagination = useFeature('productPagination')
+
+  return (
+    <div>
+      <h1>Products</h1>
+
+      {/* This only renders if productFiltering flag is ON */}
+      {showFilters && (
+        <div>
+          <h2>Filters</h2>
+          {/* Filter components here */}
+        </div>
+      )}
+
+      {/* Product list always renders */}
+      <div>
+        {/* Product cards here */}
+      </div>
+
+      {/* This only renders if productPagination flag is ON */}
+      {showPagination && (
+        <div>
+          <button>Previous</button>
+          <button>Next</button>
+        </div>
+      )}
+    </div>
+  )
+}
+```
+
+**7. Add documentation to README**:
+
+Add section to README.md:
+
+```markdown
+## Feature Flags
+
+This project uses feature flags to support Trunk-Based Development (TBD).
+
+### Why Feature Flags?
+
+- **Deploy incomplete features** safely to production
+- **Toggle features** without redeployment
+- **Test in production** with gradual rollout
+- **Quick rollback** if issues occur
+
+### How to Use
+
+```typescript
+import { useFeature } from '@/hooks/useFeature'
+
+function MyComponent() {
+  const showNewFeature = useFeature('myNewFeature')
+
+  return (
+    <div>
+      {showNewFeature && <NewFeature />}
+    </div>
+  )
+}
+```
+
+### Adding a New Feature Flag
+
+1. Add flag to `src/config/features.ts`:
+   ```typescript
+   export const features = {
+     myNewFeature: false, // Start disabled
+     // ...
+   }
+   ```
+
+2. Use in component:
+   ```typescript
+   const showFeature = useFeature('myNewFeature')
+   ```
+
+3. When feature is complete, set to `true`
+
+### Testing with Feature Flags
+
+Mock feature flags in tests:
+
+```typescript
+jest.mock('@/config/features', () => ({
+  features: {
+    myNewFeature: true, // Override for testing
+  },
+}))
+```
+```
+
+**Definition of Done**:
+
+- [ ] `src/config/features.ts` created with initial flags
+- [ ] `src/hooks/useFeature.ts` React hook created
+- [ ] `src/lib/features.ts` utility functions created
+- [ ] `src/types/features.ts` TypeScript types created
+- [ ] Unit tests for useFeature hook passing
+- [ ] Example component demonstrates usage
+- [ ] README documentation added
+- [ ] TypeScript autocomplete works for flag names
+- [ ] All flags initially set to `false`
+- [ ] Feature flags documented in CLAUDE.md
+
+**Future Enhancements** (Post-Slice 0):
+
+For more advanced needs, consider:
+- **LaunchDarkly** - Feature flag service with UI
+- **Flagsmith** - Open source alternative
+- **Vercel Edge Config** - Runtime feature flags
+- **Database-backed flags** - Store flags in PostgreSQL
 
 ---
 

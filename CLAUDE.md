@@ -97,19 +97,24 @@ We will build WeirdBites **incrementally**, implementing each SDLC/STLC phase wi
 - [x] **Navigation**: START-HERE.md + 6 module READMEs (7 docs)
 - [x] Documentation aligned with quality-standards module structure (Modules 00-16)
 
-### Next Phase: **Slice 0 - Project Setup** (3-5 days, 17 story points, 9 stories) 📋 Ready to Start
+### Next Phase: **Slice 0 - Project Setup** (3-5 days, 18 story points, 10 stories) 📋 In Progress
 
-- IS-001: Initialize Next.js 14+ project with TypeScript (2 pts)
-- IS-002: Configure ESLint and Prettier (1 pt)
-- IS-003: Set up PostgreSQL database with Prisma ORM (3 pts)
-- IS-004: Setup API Routes structure and example endpoint (2 pts) **[NEW]**
-- IS-005: Configure testing frameworks (Jest, Playwright, axe-core) (3 pts)
-- IS-006: Set up CI/CD pipeline (GitHub Actions) (2 pts)
-- IS-007: Configure deployment to Vercel (2 pts)
-- IS-008: Create development environment documentation (1 pt)
-- IS-009: Set up basic monitoring and error tracking (1 pt)
+- [x] IS-001: Initialize Next.js 14+ project with TypeScript (2 pts)
+- [x] IS-002: Configure ESLint and Prettier (1 pt)
+- [x] IS-003: Set up PostgreSQL database with Prisma ORM (3 pts)
+- [x] IS-004: Setup API Routes structure and example endpoint (2 pts)
+- [x] IS-005: Configure testing frameworks (Jest, Playwright, axe-core) (3 pts)
+- [x] IS-006: Set up CI/CD pipeline (GitHub Actions) (2 pts)
+- [ ] IS-007: Configure deployment to Vercel (2 pts)
+- [ ] IS-008: Create development environment documentation (1 pt)
+- [ ] IS-009: Set up basic monitoring and error tracking (1 pt)
+- [ ] IS-010: Setup Feature Flags System (2 pts) **[NEW]**
 
-**Key Addition**: IS-004 adds backend API layer setup with health check endpoint, API utilities, type definitions, and integration testing.
+**Progress**: 6/10 stories complete (67%), ~12/18 points delivered
+
+**Recent Additions**:
+- IS-004 adds backend API layer setup with health check endpoint, API utilities, type definitions, and integration testing
+- IS-010 adds feature flags system to enable Trunk-Based Development with safe deployment of incomplete features
 
 ### Upcoming Phases
 
@@ -288,6 +293,192 @@ We will measure success using industry-standard metrics:
 - **Flaky Test Rate**: < 5%
 - **Test Coverage by Level**: Unit (70%), Integration (20%), E2E (10%)
 
+## Development Workflow - Trunk-Based Development (TBD)
+
+This project follows **Trunk-Based Development** with Pull Requests as documented in Module 03 (Version Control).
+
+### Complete Workflow: Code to Production
+
+#### **Phase 1: Before You Start Coding**
+
+```bash
+# 1. Make sure you're on main and it's up to date
+git checkout main
+git pull origin main
+
+# 2. Check what you're going to work on
+# - Look at product backlog: docs/01-requirements/product-backlog.md
+# - Check if story meets Definition of Ready: docs/02-agile-planning/definition-of-ready.md
+```
+
+**Checklist:**
+- [ ] Story is clear and understood
+- [ ] Acceptance criteria defined (Given-When-Then)
+- [ ] Story is small enough (< 1-2 days)
+- [ ] Dependencies identified
+- [ ] Team agreed on approach
+
+#### **Phase 2: Create Feature Branch**
+
+```bash
+# 3. Create a feature branch from main
+git checkout -b feature/add-product-listing
+
+# Branch naming conventions:
+# - feature/description    (new features)
+# - fix/description        (bug fixes)
+# - docs/description       (documentation)
+# - refactor/description   (code improvements)
+# - test/description       (test improvements)
+```
+
+#### **Phase 3: Develop in Small Increments (TDD)**
+
+```bash
+# 4. Write code in SMALL increments
+# Follow TDD (Test-Driven Development):
+
+# Step A: Write a failing test
+pnpm test:watch  # Keep running in terminal
+
+# Step B: Write minimal code to pass test
+
+# Step C: Refactor if needed
+
+# Step D: Commit when test passes
+git add .
+git commit -m "test(products): add getProducts unit tests"
+
+# Step E: Repeat - commit multiple times per day
+git commit -m "feat(products): implement getProducts function"
+git commit -m "refactor(products): optimize database query"
+```
+
+**Local Testing Loop:**
+```bash
+# Terminal 1: Development server
+pnpm dev
+
+# Terminal 2: Test watcher
+pnpm test:watch
+
+# Before each commit, run:
+pnpm lint && pnpm format && pnpm tsc && pnpm test
+```
+
+#### **Phase 4: Push Feature Branch**
+
+```bash
+# 5. Push feature branch to GitHub
+git push origin feature/add-product-listing
+```
+
+#### **Phase 5: Create Pull Request**
+
+```bash
+# 6. Create PR on GitHub
+# Option A: Use GitHub web interface
+# - Go to repository and click "Compare & pull request"
+
+# Option B: Use gh CLI
+gh pr create --base main --head feature/add-product-listing \
+  --title "feat: add product listing page" \
+  --body "Implements US-001
+
+## Summary
+- Add product listing component
+- Implement database query
+- Add unit and E2E tests
+
+## Test Plan
+- [x] Unit tests pass
+- [x] E2E test passes
+- [x] Accessibility checked
+
+Closes #1"
+```
+
+**What Happens:**
+- CI automatically runs 5 quality gates (lint, typecheck, test, e2e, build)
+- All must pass before merge
+- Vercel creates preview deployment (IS-007)
+
+#### **Phase 6: Code Review (Optional for Solo)**
+
+**If working solo:**
+- Review your own PR on GitHub
+- Check "Files changed" tab
+- Verify tests are comprehensive
+
+**If working with team:**
+- Wait for review approval
+- Address feedback if needed
+- Push new commits (CI re-runs automatically)
+
+#### **Phase 7: Merge to Main**
+
+```bash
+# 7. Merge PR on GitHub (recommended)
+# - Click "Squash and merge" (clean history)
+# - Click "Confirm merge"
+# - ✅ Click "Delete branch" (IMPORTANT!)
+```
+
+**What Happens:**
+- CI runs again on main (safety check)
+- Auto-deploys to production (IS-007)
+- Code is live! 🚀
+
+#### **Phase 8: Cleanup & Next Task**
+
+```bash
+# 8. Clean up locally
+git checkout main
+git pull origin main  # Get latest with your merged changes
+git branch -d feature/add-product-listing  # Delete local branch
+
+# 9. Verify production
+# - Visit production URL
+# - Test the feature manually
+# - Check monitoring/logs (IS-009)
+
+# 10. Ready for next task!
+git checkout -b feature/next-task
+```
+
+### TBD Key Principles
+
+1. **All changes via Pull Requests** - No direct push to main
+2. **Short-lived branches** - Max 1-2 days
+3. **Frequent integration** - Multiple PRs per day
+4. **Small commits** - Commit 3-5 times per feature branch
+5. **Always deployable** - Every commit to main is production-ready
+6. **Use feature flags** - For incomplete features
+7. **Test-driven** - Write tests first (TDD)
+
+### Quick Reference Cheat Sheet
+
+```bash
+# START NEW TASK
+git checkout main && git pull origin main
+git checkout -b feature/task-name
+
+# DEVELOP (repeat many times)
+# Write test → Write code → Pass test
+git add . && git commit -m "type(scope): description"
+
+# BEFORE PUSHING
+pnpm lint && pnpm format && pnpm tsc && pnpm test
+
+# PUSH & CREATE PR
+git push origin feature/task-name
+gh pr create --base main --title "feat: task description"
+
+# AFTER MERGE
+git checkout main && git pull origin main
+git branch -d feature/task-name
+```
+
 ## Git Workflow
 
 ### Commit Guidelines
@@ -298,6 +489,26 @@ We will measure success using industry-standard metrics:
   - Example: `feat(auth): add user registration endpoint`
 - Reference documentation modules in commit messages
   - Example: `test(payment): add unit tests per Module 05 testing strategy`
+- Commit frequently (3-5 times per feature branch)
+- Each commit should pass all tests
+- Keep commits small and focused (< 100 lines when possible)
+
+### Branch Strategy
+
+- `main` - Production-ready code, always deployable
+- `feature/*` - Short-lived feature branches (< 1-2 days)
+- `fix/*` - Bug fixes
+- `docs/*` - Documentation updates
+- `refactor/*` - Code improvements
+- `test/*` - Test improvements
+
+### Branch Protection
+
+- ✅ All changes via Pull Requests
+- ✅ CI must pass (lint, typecheck, test, e2e, build)
+- ✅ Branches up to date before merge
+- ❌ No direct push to main
+- ❌ No force pushes
 
 ### Configuration Management
 
@@ -349,19 +560,20 @@ WeirdBites/
 
 _"Quality is never an accident; it is always the result of intelligent effort." - John Ruskin_
 
-**Last Updated**: 2025-10-19
-**Current Phase**: Requirements Engineering - ✅ COMPLETED
-**Next Milestone**: Complete Slice 0 - Project Setup (Infrastructure)
+**Last Updated**: 2025-10-24
+**Current Phase**: Slice 0 - Project Setup - 🚧 **IN PROGRESS** (6/9 stories, 14/17 pts - 82%)
+**Next Milestone**: Complete Slice 0 (3 stories remaining: IS-007, IS-008, IS-009)
 
-**Documentation Deliverables**: 10 documents (~4,000+ lines)
+**Completed Stories**:
+- ✅ IS-001: Next.js 15 + TypeScript + Tailwind (2 pts)
+- ✅ IS-002: ESLint and Prettier (1 pt)
+- ✅ IS-003: PostgreSQL with Prisma ORM (3 pts)
+- ✅ IS-004: API Routes and health check endpoint (2 pts)
+- ✅ IS-005: Testing frameworks (Jest + Playwright) (3 pts)
+- ✅ IS-006: CI/CD pipeline (GitHub Actions) (3 pts)
 
-- 0. Documentation Guide
-- 1. Business Requirements
-- 2. User Personas
-- 3. MVP Definition
-- 4. Non-Functional Requirements
-- 5. Product Backlog (35 stories)
-- 6. Vertical Slices (Slice 0-7)
-- 7. Definition of Ready
-- 8. Project Setup (Slice 0)
-- 9. Project Kickoff Checklist
+**Development Workflow**: Trunk-Based Development (TBD)
+- Branch: `main` only (master → main migration complete)
+- All changes via Pull Requests
+- CI/CD: 5 automated quality gates (lint, typecheck, test, e2e, build)
+- See "Development Workflow - Trunk-Based Development" section above
