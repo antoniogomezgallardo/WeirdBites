@@ -514,16 +514,16 @@ See [.github/workflows/ci.yml](.github/workflows/ci.yml) for full CI configurati
 
 ## Development Phases (Vertical Slices)
 
-| Slice | Name                               | Duration | Story Points | Status                           |
-| ----- | ---------------------------------- | -------- | ------------ | -------------------------------- |
+| Slice | Name                               | Duration | Story Points | Status                            |
+| ----- | ---------------------------------- | -------- | ------------ | --------------------------------- |
 | 0     | **Project Setup** (Infrastructure) | 3-5 days | 18           | 🚧 **In Progress** (6/10 stories) |
-| 1     | Browse Products                    | 2 weeks  | 13           | ⏳ Planned                       |
-| 2     | Shopping Cart                      | 1 week   | 13           | ⏳ Planned                       |
-| 3     | Guest Checkout                     | 2 weeks  | 19           | ⏳ Planned                       |
-| 4     | User Accounts                      | 1 week   | 16           | ⏳ Planned                       |
-| 5     | Registered Checkout & History      | 1 week   | 11           | ⏳ Planned                       |
-| 6     | Search & Reviews                   | 1 week   | 13           | ⏳ Planned                       |
-| 7     | Admin Panel                        | 2 weeks  | 50           | ⏳ Planned                       |
+| 1     | Browse Products                    | 2 weeks  | 13           | ⏳ Planned                        |
+| 2     | Shopping Cart                      | 1 week   | 13           | ⏳ Planned                        |
+| 3     | Guest Checkout                     | 2 weeks  | 19           | ⏳ Planned                        |
+| 4     | User Accounts                      | 1 week   | 16           | ⏳ Planned                        |
+| 5     | Registered Checkout & History      | 1 week   | 11           | ⏳ Planned                        |
+| 6     | Search & Reviews                   | 1 week   | 13           | ⏳ Planned                        |
+| 7     | Admin Panel                        | 2 weeks  | 50           | ⏳ Planned                        |
 
 **Total**: 11-13 weeks | 151 story points
 
