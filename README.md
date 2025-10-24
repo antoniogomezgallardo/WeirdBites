@@ -280,60 +280,70 @@ All development on this project follows the quality standards and best practices
 WeirdBites/
 ├── docs/
 │   ├── START-HERE.md                       # ✅ Single entry point for all documentation
-│   ├── 00-foundations/                     # Module 00: Quality frameworks
-│   │   ├── README.md                       # Module overview
-│   │   ├── quality-framework.md            # ✅ Scrumban, sprint structure, quality policy
-│   │   └── iso-25010-mapping.md            # ✅ Quality characteristics mapping
-│   ├── 01-requirements/                    # Module 01: Requirements engineering
-│   │   ├── README.md                       # Module overview
-│   │   ├── business-requirements.md        # ✅ BRD, business context, scope
-│   │   ├── personas.md                     # ✅ User personas (4 types)
-│   │   ├── mvp-definition.md               # ✅ MVP scope, MoSCoW
-│   │   ├── non-functional-requirements.md  # ✅ Performance, security, accessibility
-│   │   ├── product-backlog.md              # ✅ 35 user stories with Given-When-Then
-│   │   ├── vertical-slices.md              # ✅ 7 delivery increments
-│   │   └── prioritization-rationale.md     # ✅ MoSCoW framework and decision rationale
-│   ├── 02-agile-planning/                  # Module 02: Agile planning
-│   │   ├── README.md                       # Module overview
-│   │   ├── definition-of-ready.md          # ✅ Story readiness checklist
-│   │   ├── sprint-cadence.md               # ✅ Weekly sprint rhythm and ceremonies
-│   │   ├── backlog-refinement.md           # ✅ Story refinement process
-│   │   ├── velocity-tracking.md            # ✅ Velocity calculation and forecasting
-│   │   └── templates/                      # Sprint templates
-│   │       ├── sprint-planning.md          # ✅ Sprint planning guide
-│   │       └── sprint-retrospective.md     # ✅ Retrospective formats
-│   ├── 09-metrics-monitoring/              # Module 09: Metrics & monitoring
-│   │   ├── README.md                       # Module overview
-│   │   └── metrics-tracking-plan.md        # ✅ Dashboard and metrics collection
-│   ├── 12-governance/                      # Module 12: Governance
-│   │   ├── README.md                       # Module overview
-│   │   └── change-management.md            # ✅ Change request process
-│   ├── 14-continuous-improvement/          # Module 14: Continuous improvement
-│   │   ├── README.md                       # Module overview
-│   │   └── testing-maturity-assessment.md  # ✅ Testing maturity roadmap (Level 0 → 3)
-│   ├── design/                             # Design artifacts
+│   ├── GLOSSARY.md                         # ✅ Key concepts and terminology
+│   ├── 00-foundations/                     # ✅ Module 00: Quality frameworks
+│   │   ├── README.md
+│   │   ├── quality-framework.md
+│   │   └── iso-25010-mapping.md
+│   ├── 01-requirements/                    # ✅ Module 01: Requirements engineering
+│   │   ├── README.md
+│   │   ├── business-requirements.md
+│   │   ├── personas.md
+│   │   ├── mvp-definition.md
+│   │   ├── non-functional-requirements.md
+│   │   ├── product-backlog.md
+│   │   ├── vertical-slices.md
+│   │   └── prioritization-rationale.md
+│   ├── 02-agile-planning/                  # ✅ Module 02: Agile planning
+│   │   ├── README.md
+│   │   ├── definition-of-ready.md
+│   │   ├── sprint-cadence.md
+│   │   ├── backlog-refinement.md
+│   │   ├── velocity-tracking.md
+│   │   └── templates/
+│   │       ├── sprint-planning.md
+│   │       └── sprint-retrospective.md
+│   ├── api/                                # API documentation (placeholder)
+│   ├── architecture/                       # System design docs (placeholder)
+│   ├── design/                             # ✅ Design artifacts
 │   │   └── wireframes/
-│   │       └── slice-1-wireframes.md       # ✅ Desktop & mobile wireframes for Slice 1
-│   ├── setup/                              # Project-specific setup
-│   │   └── project-setup.md                # ✅ Slice 0 infrastructure setup
+│   │       └── slice-1-wireframes.md
+│   ├── runbooks/                           # Operational guides (placeholder)
+│   ├── setup/                              # ✅ Project-specific setup
+│   │   └── project-setup.md
 │   └── quality-standards/                  # Git submodule - Quality standards (16 modules)
-├── src/                                    # Application source code (to be created)
-├── tests/                                  # Test suites (to be created)
-│   ├── unit/                               # Jest - 70% of tests
-│   ├── integration/                        # API/DB tests - 20% of tests
-│   ├── e2e/                                # Playwright - 10% of tests
-│   ├── contract/                           # Pact - consumer/provider
-│   └── performance/                        # k6, Artillery
-├── .claude/                                # Claude agent configuration
-│   ├── commands/                           # Custom slash commands
-│   │   ├── qa-guide.md                    # Query quality standards
-│   │   ├── phase-requirements.md          # Module 01 guidance
-│   │   ├── phase-testing.md               # Module 04-05 guidance
-│   │   └── phase-cicd.md                  # Module 08 guidance
-│   └── settings.json                      # Agent behavior config
-├── .github/                                # GitHub Actions workflows
+├── src/                                    # ✅ Application source code
+│   ├── app/                                # Next.js App Router
+│   │   ├── api/
+│   │   │   └── health/
+│   │   │       └── route.ts                # ✅ Health check endpoint
+│   │   ├── globals.css
+│   │   ├── layout.tsx
+│   │   └── page.tsx                        # ✅ Home page
+│   ├── components/                         # React components (empty)
+│   ├── lib/                                # Utility libraries
+│   │   ├── api/
+│   │   │   ├── __tests__/
+│   │   │   │   └── response.test.ts        # ✅ Unit tests for API utilities
+│   │   │   └── response.ts                 # ✅ API response helpers
+│   │   └── prisma.ts                       # ✅ Prisma client singleton
+│   └── types/                              # TypeScript type definitions
+│       └── api.ts                          # ✅ API types
+├── tests/                                  # ✅ Test suites
+│   └── e2e/                                # ✅ Playwright E2E tests
+│       └── home.spec.ts                    # ✅ Home page E2E test
+├── .claude/                                # ✅ Claude agent configuration
+│   ├── commands/
+│   │   ├── qa-guide.md
+│   │   ├── phase-requirements.md
+│   │   ├── phase-testing.md
+│   │   └── phase-cicd.md
+│   └── settings.json
+├── .github/                                # ✅ GitHub Actions workflows
 │   └── workflows/
 │       └── ci.yml                          # ✅ CI pipeline with quality gates
+├── prisma/                                 # ✅ Prisma schema and migrations
+│   └── schema.prisma                       # ✅ Database schema
 ├── CLAUDE.md                               # Project instructions for Claude
 └── README.md                               # This file
 ```
