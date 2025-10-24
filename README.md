@@ -447,20 +447,35 @@ WeirdBites/
 
 ## Development Workflow
 
-This project follows a Git Flow-inspired branching strategy:
+This project follows **Trunk-Based Development (TBD)** with Pull Requests:
 
-- `main` - Production-ready code
-- `develop` - Integration branch (to be created)
-- `staging` - Pre-production testing (to be created)
-- `feature/*` - New features
-- `bugfix/*` - Bug fixes
-- `hotfix/*` - Critical production fixes
+**Branch Strategy:**
+- `main` - Production-ready code, always deployable
+- `feature/*` - Short-lived feature branches (< 1-2 days)
+- `fix/*` - Bug fixes
+- `docs/*` - Documentation updates
+
+**Workflow:**
+1. Create feature branch from `main`
+2. Make small, incremental commits
+3. Open Pull Request to `main`
+4. CI automatically runs quality gates
+5. Merge after CI passes (and optional review)
+6. Delete feature branch immediately
+7. `main` auto-deploys to production (IS-007)
+
+**Key Principles:**
+- All changes go through Pull Requests (no direct push to `main`)
+- Keep branches short-lived (max 1-2 days)
+- Commit to `main` frequently (multiple times per day via PRs)
+- Use feature flags for incomplete features
+- Every commit to `main` is deployable
 
 ### CI/CD Pipeline
 
 **Automated Quality Gates** (GitHub Actions):
 
-Every pull request and push to `main`, `staging`, or `develop` triggers:
+Every pull request and push to `main` triggers:
 
 1. **Lint** - ESLint code quality checks + Prettier formatting
 2. **Type Check** - TypeScript compilation without emit
@@ -474,10 +489,17 @@ Every pull request and push to `main`, `staging`, or `develop` triggers:
 - Playwright reports retained for 30 days
 - Concurrency control to cancel outdated runs
 
+**Branch Protection Rules** (Manual GitHub Setup Required):
+- ✅ Require pull request before merging to `main`
+- ✅ Require all status checks to pass (lint, typecheck, test, e2e, build)
+- ✅ Require branches to be up to date before merging
+- ✅ No force pushes allowed
+- ❌ Direct push to `main` blocked
+
 **Deployment Flow** (to be configured in IS-007):
-- `feature/*` → `staging` → `main`
-- Staging environment for pre-production testing
-- Production deploys only from `main` branch
+- `feature/*` → PR to `main` → Auto-deploy to production
+- Vercel preview deployments for each PR
+- Production deploys automatically on merge to `main`
 
 See [.github/workflows/ci.yml](.github/workflows/ci.yml) for full CI configuration.
 
