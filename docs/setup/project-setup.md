@@ -1548,59 +1548,59 @@ export const features = {
   // ==========================================
   // Slice 1: Browse Products Features
   // ==========================================
-  productFiltering: false,      // US-003: Filter products by category
-  productPagination: false,     // US-001: Paginate product listing
-  productSearch: false,         // US-006: Search products
+  productFiltering: false, // US-003: Filter products by category
+  productPagination: false, // US-001: Paginate product listing
+  productSearch: false, // US-006: Search products
 
   // ==========================================
   // Slice 2: Shopping Cart Features
   // ==========================================
-  shoppingCart: false,          // US-004: Add to cart functionality
-  cartPersistence: false,       // US-005: Cart persists in localStorage
+  shoppingCart: false, // US-004: Add to cart functionality
+  cartPersistence: false, // US-005: Cart persists in localStorage
 
   // ==========================================
   // Slice 3: Guest Checkout Features
   // ==========================================
-  guestCheckout: false,         // US-007: Guest checkout flow
-  stripePayment: false,         // US-008: Stripe payment integration
+  guestCheckout: false, // US-007: Guest checkout flow
+  stripePayment: false, // US-008: Stripe payment integration
 
   // ==========================================
   // Slice 4: User Accounts Features
   // ==========================================
-  userRegistration: false,      // US-010: User registration
-  userLogin: false,             // US-011: User login
+  userRegistration: false, // US-010: User registration
+  userLogin: false, // US-011: User login
 
   // ==========================================
   // Slice 5: Registered User Features
   // ==========================================
-  orderHistory: false,          // US-013: View order history
-  savedAddresses: false,        // US-014: Save delivery addresses
+  orderHistory: false, // US-013: View order history
+  savedAddresses: false, // US-014: Save delivery addresses
 
   // ==========================================
   // Slice 6: Search & Reviews Features
   // ==========================================
-  productReviews: false,        // US-016: Product reviews
-  advancedSearch: false,        // US-015: Advanced search filters
+  productReviews: false, // US-016: Product reviews
+  advancedSearch: false, // US-015: Advanced search filters
 
   // ==========================================
   // Slice 7: Admin Panel Features
   // ==========================================
-  adminPanel: false,            // US-018+: Admin dashboard
-  productManagement: false,     // US-019: Manage products
-  inventoryManagement: false,   // US-020: Inventory tracking
+  adminPanel: false, // US-018+: Admin dashboard
+  productManagement: false, // US-019: Manage products
+  inventoryManagement: false, // US-020: Inventory tracking
 
   // ==========================================
   // Experimental/Beta Features
   // ==========================================
-  darkMode: false,              // Optional: Dark mode UI
-  a11yEnhancements: false,      // Optional: Enhanced accessibility
-} as const
+  darkMode: false, // Optional: Dark mode UI
+  a11yEnhancements: false, // Optional: Enhanced accessibility
+} as const;
 
 /**
  * Type-safe feature flag names
  * Auto-generated from features object keys
  */
-export type FeatureFlag = keyof typeof features
+export type FeatureFlag = keyof typeof features;
 
 /**
  * Get feature flag value
@@ -1608,7 +1608,7 @@ export type FeatureFlag = keyof typeof features
  * @returns boolean - Whether feature is enabled
  */
 export function isFeatureEnabled(flag: FeatureFlag): boolean {
-  return features[flag]
+  return features[flag];
 }
 
 /**
@@ -1616,9 +1616,7 @@ export function isFeatureEnabled(flag: FeatureFlag): boolean {
  * @returns Array of enabled feature names
  */
 export function getEnabledFeatures(): FeatureFlag[] {
-  return (Object.keys(features) as FeatureFlag[]).filter(
-    (key) => features[key]
-  )
+  return (Object.keys(features) as FeatureFlag[]).filter(key => features[key]);
 }
 
 /**
@@ -1626,9 +1624,7 @@ export function getEnabledFeatures(): FeatureFlag[] {
  * @returns Array of disabled feature names
  */
 export function getDisabledFeatures(): FeatureFlag[] {
-  return (Object.keys(features) as FeatureFlag[]).filter(
-    (key) => !features[key]
-  )
+  return (Object.keys(features) as FeatureFlag[]).filter(key => !features[key]);
 }
 ```
 
@@ -1637,7 +1633,7 @@ export function getDisabledFeatures(): FeatureFlag[] {
 `src/hooks/useFeature.ts`:
 
 ```typescript
-import { features, FeatureFlag } from '@/config/features'
+import { features, FeatureFlag } from '@/config/features';
 
 /**
  * React hook to check if a feature is enabled
@@ -1658,7 +1654,7 @@ import { features, FeatureFlag } from '@/config/features'
  * }
  */
 export function useFeature(flag: FeatureFlag): boolean {
-  return features[flag]
+  return features[flag];
 }
 
 /**
@@ -1684,16 +1680,14 @@ export function useFeature(flag: FeatureFlag): boolean {
  *   )
  * }
  */
-export function useFeatures<T extends FeatureFlag>(
-  flags: T[]
-): Record<T, boolean> {
+export function useFeatures<T extends FeatureFlag>(flags: T[]): Record<T, boolean> {
   return flags.reduce(
     (acc, flag) => ({
       ...acc,
       [flag]: features[flag],
     }),
     {} as Record<T, boolean>
-  )
+  );
 }
 ```
 
@@ -1702,7 +1696,7 @@ export function useFeatures<T extends FeatureFlag>(
 `src/lib/features.ts`:
 
 ```typescript
-import { features, FeatureFlag } from '@/config/features'
+import { features, FeatureFlag } from '@/config/features';
 
 /**
  * Feature flag utilities for server-side code
@@ -1714,7 +1708,7 @@ import { features, FeatureFlag } from '@/config/features'
  * @returns boolean
  */
 export function isEnabled(flag: FeatureFlag): boolean {
-  return features[flag]
+  return features[flag];
 }
 
 /**
@@ -1729,9 +1723,9 @@ export function withFeature<T>(
   onDisabled?: () => T
 ): T | undefined {
   if (features[flag]) {
-    return onEnabled()
+    return onEnabled();
   }
-  return onDisabled?.()
+  return onDisabled?.();
 }
 
 /**
@@ -1739,13 +1733,11 @@ export function withFeature<T>(
  * @param items - Array of items with feature flags
  * @returns Filtered array
  */
-export function filterByFeature<T extends { feature?: FeatureFlag }>(
-  items: T[]
-): T[] {
-  return items.filter((item) => {
-    if (!item.feature) return true
-    return features[item.feature]
-  })
+export function filterByFeature<T extends { feature?: FeatureFlag }>(items: T[]): T[] {
+  return items.filter(item => {
+    if (!item.feature) return true;
+    return features[item.feature];
+  });
 }
 ```
 
@@ -1754,25 +1746,25 @@ export function filterByFeature<T extends { feature?: FeatureFlag }>(
 `src/types/features.ts`:
 
 ```typescript
-import { FeatureFlag } from '@/config/features'
+import { FeatureFlag } from '@/config/features';
 
 /**
  * Component props for feature-flagged components
  */
 export interface FeatureFlaggedProps {
-  feature?: FeatureFlag
-  fallback?: React.ReactNode
+  feature?: FeatureFlag;
+  fallback?: React.ReactNode;
 }
 
 /**
  * Feature metadata
  */
 export interface FeatureMetadata {
-  name: FeatureFlag
-  enabled: boolean
-  description: string
-  slice: number
-  story: string
+  name: FeatureFlag;
+  enabled: boolean;
+  description: string;
+  slice: number;
+  story: string;
 }
 ```
 
@@ -1781,8 +1773,8 @@ export interface FeatureMetadata {
 `src/hooks/__tests__/useFeature.test.ts`:
 
 ```typescript
-import { renderHook } from '@testing-library/react'
-import { useFeature, useFeatures } from '../useFeature'
+import { renderHook } from '@testing-library/react';
+import { useFeature, useFeatures } from '../useFeature';
 
 // Mock the features config
 jest.mock('@/config/features', () => ({
@@ -1791,33 +1783,33 @@ jest.mock('@/config/features', () => ({
     productPagination: false,
     shoppingCart: true,
   },
-}))
+}));
 
 describe('useFeature', () => {
   it('returns true for enabled features', () => {
-    const { result } = renderHook(() => useFeature('productFiltering'))
-    expect(result.current).toBe(true)
-  })
+    const { result } = renderHook(() => useFeature('productFiltering'));
+    expect(result.current).toBe(true);
+  });
 
   it('returns false for disabled features', () => {
-    const { result } = renderHook(() => useFeature('productPagination'))
-    expect(result.current).toBe(false)
-  })
-})
+    const { result } = renderHook(() => useFeature('productPagination'));
+    expect(result.current).toBe(false);
+  });
+});
 
 describe('useFeatures', () => {
   it('returns correct values for multiple features', () => {
     const { result } = renderHook(() =>
       useFeatures(['productFiltering', 'productPagination', 'shoppingCart'])
-    )
+    );
 
     expect(result.current).toEqual({
       productFiltering: true,
       productPagination: false,
       shoppingCart: true,
-    })
-  })
-})
+    });
+  });
+});
 ```
 
 **6. Create example component using feature flags**:
@@ -1864,7 +1856,7 @@ export function ProductPageExample() {
 
 Add section to README.md:
 
-```markdown
+````markdown
 ## Feature Flags
 
 This project uses feature flags to support Trunk-Based Development (TBD).
@@ -1891,20 +1883,23 @@ function MyComponent() {
   )
 }
 ```
+````
 
 ### Adding a New Feature Flag
 
 1. Add flag to `src/config/features.ts`:
+
    ```typescript
    export const features = {
      myNewFeature: false, // Start disabled
      // ...
-   }
+   };
    ```
 
 2. Use in component:
+
    ```typescript
-   const showFeature = useFeature('myNewFeature')
+   const showFeature = useFeature('myNewFeature');
    ```
 
 3. When feature is complete, set to `true`
@@ -1918,8 +1913,9 @@ jest.mock('@/config/features', () => ({
   features: {
     myNewFeature: true, // Override for testing
   },
-}))
+}));
 ```
+
 ```
 
 **Definition of Done**:
@@ -2062,42 +2058,43 @@ Before starting Slice 1, verify ALL of the following:
 ## Project Structure After Slice 0
 
 ```
+
 weirdbites/
 ├── .github/
-│   └── workflows/
-│       ├── ci.yml
-│       └── deploy.yml
+│ └── workflows/
+│ ├── ci.yml
+│ └── deploy.yml
 ├── docs/
-│   ├── START-HERE.md          # Single entry point
-│   ├── 00-foundations/        # Quality framework, ISO 25010
-│   ├── 01-requirements/       # BRD, Personas, MVP, Backlog, Slices
-│   ├── 02-agile-planning/     # DoR, Sprint cadence, Velocity
-│   ├── 09-metrics-monitoring/ # Metrics tracking
-│   ├── 12-governance/         # Change management
-│   ├── 14-continuous-improvement/ # Testing maturity
-│   ├── design/wireframes/     # UI wireframes
-│   ├── setup/
-│   │   └── project-setup.md   # This document
-│   └── quality-standards/     # Git submodule
+│ ├── START-HERE.md # Single entry point
+│ ├── 00-foundations/ # Quality framework, ISO 25010
+│ ├── 01-requirements/ # BRD, Personas, MVP, Backlog, Slices
+│ ├── 02-agile-planning/ # DoR, Sprint cadence, Velocity
+│ ├── 09-metrics-monitoring/ # Metrics tracking
+│ ├── 12-governance/ # Change management
+│ ├── 14-continuous-improvement/ # Testing maturity
+│ ├── design/wireframes/ # UI wireframes
+│ ├── setup/
+│ │ └── project-setup.md # This document
+│ └── quality-standards/ # Git submodule
 ├── e2e/
-│   ├── example.spec.ts
-│   └── helpers/
+│ ├── example.spec.ts
+│ └── helpers/
 ├── prisma/
-│   ├── schema.prisma
-│   └── seed.ts (optional)
+│ ├── schema.prisma
+│ └── seed.ts (optional)
 ├── public/
-│   └── images/
+│ └── images/
 ├── src/
-│   ├── app/
-│   │   ├── layout.tsx
-│   │   ├── page.tsx
-│   │   └── globals.css
-│   ├── components/
-│   │   ├── __tests__/
-│   │   └── Example.tsx
-│   └── lib/
-│       ├── prisma.ts
-│       └── utils.ts
+│ ├── app/
+│ │ ├── layout.tsx
+│ │ ├── page.tsx
+│ │ └── globals.css
+│ ├── components/
+│ │ ├── **tests**/
+│ │ └── Example.tsx
+│ └── lib/
+│ ├── prisma.ts
+│ └── utils.ts
 ├── .env.local (git-ignored)
 ├── .eslintrc.json
 ├── .gitignore
@@ -2113,6 +2110,7 @@ weirdbites/
 ├── README.md
 ├── tsconfig.json
 └── vercel.json
+
 ```
 
 ---
@@ -2166,3 +2164,4 @@ After completing Slice 0, reflect:
 ---
 
 _This project setup document follows Module 01 (Vertical Slicing) and Module 11 (Tools Ecosystem) from the quality-standards documentation. It represents "Slice 0" - the foundation before user-facing features._
+```

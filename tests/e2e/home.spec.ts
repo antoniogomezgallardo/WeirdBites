@@ -9,9 +9,7 @@ test.describe('Home Page', () => {
     await expect(page.getByText('WeirdBites')).toBeVisible();
 
     // Check for description
-    await expect(
-      page.getByText('Unusual snacks from around the world')
-    ).toBeVisible();
+    await expect(page.getByText('Unusual snacks from around the world')).toBeVisible();
 
     // Check for action buttons
     await expect(page.getByRole('link', { name: /Browse Products/i })).toBeVisible();

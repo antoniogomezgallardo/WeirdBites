@@ -113,6 +113,7 @@ We will build WeirdBites **incrementally**, implementing each SDLC/STLC phase wi
 **Progress**: 6/10 stories complete (67%), ~12/18 points delivered
 
 **Recent Additions**:
+
 - IS-004 adds backend API layer setup with health check endpoint, API utilities, type definitions, and integration testing
 - IS-010 adds feature flags system to enable Trunk-Based Development with safe deployment of incomplete features
 
@@ -312,6 +313,7 @@ git pull origin main
 ```
 
 **Checklist:**
+
 - [ ] Story is clear and understood
 - [ ] Acceptance criteria defined (Given-When-Then)
 - [ ] Story is small enough (< 1-2 days)
@@ -355,6 +357,7 @@ git commit -m "refactor(products): optimize database query"
 ```
 
 **Local Testing Loop:**
+
 ```bash
 # Terminal 1: Development server
 pnpm dev
@@ -399,6 +402,7 @@ Closes #1"
 ```
 
 **What Happens:**
+
 - CI automatically runs 5 quality gates (lint, typecheck, test, e2e, build)
 - All must pass before merge
 - Vercel creates preview deployment (IS-007)
@@ -406,11 +410,13 @@ Closes #1"
 #### **Phase 6: Code Review (Optional for Solo)**
 
 **If working solo:**
+
 - Review your own PR on GitHub
 - Check "Files changed" tab
 - Verify tests are comprehensive
 
 **If working with team:**
+
 - Wait for review approval
 - Address feedback if needed
 - Push new commits (CI re-runs automatically)
@@ -425,6 +431,7 @@ Closes #1"
 ```
 
 **What Happens:**
+
 - CI runs again on main (safety check)
 - Auto-deploys to production (IS-007)
 - Code is live! 🚀
@@ -565,6 +572,7 @@ _"Quality is never an accident; it is always the result of intelligent effort." 
 **Next Milestone**: Complete Slice 0 (3 stories remaining: IS-007, IS-008, IS-009)
 
 **Completed Stories**:
+
 - ✅ IS-001: Next.js 15 + TypeScript + Tailwind (2 pts)
 - ✅ IS-002: ESLint and Prettier (1 pt)
 - ✅ IS-003: PostgreSQL with Prisma ORM (3 pts)
@@ -573,6 +581,7 @@ _"Quality is never an accident; it is always the result of intelligent effort." 
 - ✅ IS-006: CI/CD pipeline (GitHub Actions) (3 pts)
 
 **Development Workflow**: Trunk-Based Development (TBD)
+
 - Branch: `main` only (master → main migration complete)
 - All changes via Pull Requests
 - CI/CD: 5 automated quality gates (lint, typecheck, test, e2e, build)
