@@ -19,6 +19,7 @@
 5. Configure as follows:
 
 #### **Branch name pattern:**
+
 ```
 main
 ```
@@ -26,11 +27,13 @@ main
 #### **Protection Settings:**
 
 ✅ **Require a pull request before merging**
+
 - ✅ Require approvals: `1` (or `0` if working solo)
 - ✅ Dismiss stale pull request approvals when new commits are pushed
 - ✅ Require review from Code Owners (optional)
 
 ✅ **Require status checks to pass before merging**
+
 - ✅ Require branches to be up to date before merging
 - Search and select these status checks (they appear after first CI run):
   - `lint`
@@ -49,6 +52,7 @@ main
 ❌ **Do not allow bypassing the above settings** (checked)
 
 ✅ **Restrict who can push to matching branches**
+
 - Leave empty to block everyone from direct push
 
 ❌ **Allow force pushes** (unchecked)
@@ -70,11 +74,13 @@ main
 3. Add the following secrets:
 
 #### **CODECOV_TOKEN** (Optional - for coverage reporting)
+
 - Name: `CODECOV_TOKEN`
 - Value: Get from [codecov.io](https://codecov.io) after signing up
 - Status: Optional (CI won't fail without it)
 
 #### **For Vercel Deployment** (IS-007):
+
 - `VERCEL_TOKEN`
 - `VERCEL_ORG_ID`
 - `VERCEL_PROJECT_ID`
