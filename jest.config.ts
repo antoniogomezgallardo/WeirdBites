@@ -25,6 +25,14 @@ const config: Config = {
     '<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}',
   ],
   testPathIgnorePatterns: ['/node_modules/', '/.next/', '/tests/e2e/', '/docs/quality-standards/'],
+  coverageThreshold: {
+    global: {
+      branches: 40,
+      functions: 30,
+      lines: 18,
+      statements: 18,
+    },
+  },
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
