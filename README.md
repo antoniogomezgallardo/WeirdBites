@@ -2,6 +2,11 @@
 
 > Modern e-commerce platform built with Next.js, TypeScript, and PostgreSQL
 
+**Version**: 0.1.0
+**Last Updated**: 2025-10-25
+**Current Phase**: Slice 0 - Project Setup (67% complete, 6/10 stories)
+**Next Milestone**: Complete remaining 4 stories (IS-007 through IS-010)
+
 ## Project Vision
 
 WeirdBites is a full-stack e-commerce application for discovering and purchasing unusual snacks. This **educational project** demonstrates professional software engineering practices including BDD/TDD, comprehensive multi-level testing, CI/CD automation, and adherence to quality standards at every phase of development.
@@ -63,7 +68,7 @@ Each module folder contains a README.md with document list and navigation
 
 ## Technology Stack
 
-- **Frontend**: Next.js 14+ with React and TypeScript
+- **Frontend**: Next.js 15+ with React and TypeScript
 - **Backend**: Next.js API Routes / Node.js with TypeScript
 - **Database**: PostgreSQL (Supabase/Neon free tier)
 - **Package Manager**: pnpm
