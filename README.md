@@ -380,6 +380,51 @@ All feature flags are defined in [src/config/features.ts](src/config/features.ts
 
 See the [Feature Flags Example Component](src/components/FeatureExample.tsx) for usage demonstrations.
 
+## Monitoring & Analytics
+
+This project uses **Vercel Analytics** for basic monitoring and observability in production.
+
+### What's Being Tracked
+
+**Vercel Analytics** automatically tracks:
+
+- **Page Views** - Which pages users visit and how often
+- **User Demographics** - Geographic location, device types
+- **Performance Metrics** - Core Web Vitals (LCP, FID, CLS)
+- **Traffic Sources** - Where users come from (direct, referral, search)
+
+### Accessing the Dashboard
+
+1. **Go to**: https://vercel.com/dashboard
+2. **Select** your project (`weird-bites`)
+3. **Click** on the **Analytics** tab
+4. View real-time and historical data
+
+### What You'll See
+
+- **Real-Time Visitors** - Active users on your site right now
+- **Page Views** - Most popular pages
+- **Top Referrers** - Traffic sources
+- **Web Vitals** - Performance scores (LCP, FID, CLS, TTFB)
+- **Geographic Distribution** - Where your users are located
+
+### Privacy & Compliance
+
+- **No cookies** - Vercel Analytics is GDPR/CCPA compliant by default
+- **Anonymous** - No personally identifiable information (PII) collected
+- **Lightweight** - < 1KB bundle size impact
+
+### Future Enhancements
+
+Planned monitoring improvements:
+
+- **Error Tracking** - Sentry integration (IS-009 future)
+- **Custom Events** - Track user actions (button clicks, form submissions)
+- **A/B Testing** - Feature flag usage tracking
+- **API Monitoring** - Response times, error rates
+
+See [Vercel Analytics Docs](https://vercel.com/docs/analytics) for more information.
+
 ## Quality Standards
 
 All development on this project follows the quality standards and best practices documented in the [docs/quality-standards](docs/quality-standards) submodule. **Key modules being applied**:
@@ -478,12 +523,12 @@ WeirdBites/
 - ✅ IS-004: API Routes and health check endpoint (2 pts)
 - ✅ IS-005: Testing frameworks configured (Jest + Playwright) (3 pts)
 - ✅ IS-006: CI/CD pipeline with GitHub Actions (2 pts)
-- 🚧 IS-007: Configure deployment to Vercel (2 pts)
+- ✅ IS-007: Configure deployment to Vercel (2 pts)
 - 🚧 IS-008: Create development environment documentation (1 pt)
-- 🚧 IS-009: Set up basic monitoring and error tracking (1 pt)
-- 🚧 IS-010: Setup Feature Flags System (2 pts)
+- ✅ IS-009: Set up basic monitoring and error tracking (1 pt)
+- ✅ IS-010: Setup Feature Flags System (2 pts)
 
-**Progress**: 6/10 stories completed (12/18 story points - 67%)
+**Progress**: 9/10 stories completed (17/18 story points - 94%)
 
 **Next Phase**: Slice 1 - Browse Products (2 weeks, 13 story points)
 
