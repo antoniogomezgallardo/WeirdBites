@@ -267,6 +267,119 @@ rm -rf node_modules pnpm-lock.yaml
 pnpm install
 ```
 
+## Feature Flags
+
+This project uses **feature flags** to support Trunk-Based Development (TBD), allowing safe deployment of incomplete features to production.
+
+### Why Feature Flags?
+
+- **Deploy incomplete features safely** - Features hidden behind flags can be deployed to production without affecting users
+- **Toggle features without redeployment** - Change feature visibility by updating configuration
+- **Test in production** - Gradually roll out features to real users
+- **Quick rollback** - Instantly disable problematic features without code changes
+- **Support TBD workflow** - Commit to main frequently with work-in-progress features disabled
+
+### How to Use Feature Flags
+
+**In React Components:**
+
+```typescript
+import { useFeature } from '@/hooks/useFeature';
+
+function ProductPage() {
+  const showFilters = useFeature('productFiltering');
+
+  return (
+    <div>
+      <ProductList />
+      {showFilters && <ProductFilters />}
+    </div>
+  );
+}
+```
+
+**Check Multiple Features:**
+
+```typescript
+import { useFeatures } from '@/hooks/useFeature';
+
+function ProductPage() {
+  const { productFiltering, productPagination } = useFeatures([
+    'productFiltering',
+    'productPagination',
+  ]);
+
+  return (
+    <div>
+      <ProductList />
+      {productFiltering && <ProductFilters />}
+      {productPagination && <Pagination />}
+    </div>
+  );
+}
+```
+
+**Server-Side (API Routes, Server Components):**
+
+```typescript
+import { isEnabled } from '@/lib/features';
+
+export async function GET() {
+  if (isEnabled('productFiltering')) {
+    // Include filtering logic
+  }
+  // ...
+}
+```
+
+### Adding a New Feature Flag
+
+1. **Add flag to configuration** (`src/config/features.ts`):
+
+   ```typescript
+   export const features = {
+     myNewFeature: false, // Start disabled
+     // ...
+   };
+   ```
+
+2. **Use in component**:
+
+   ```typescript
+   const showFeature = useFeature('myNewFeature');
+   ```
+
+3. **When feature is complete, set to `true`** in `features.ts`
+
+### Testing with Feature Flags
+
+Mock feature flags in your tests:
+
+```typescript
+jest.mock('@/config/features', () => ({
+  features: {
+    myNewFeature: true, // Override for testing
+  },
+}));
+```
+
+### Available Feature Flags
+
+All feature flags are defined in [src/config/features.ts](src/config/features.ts) and organized by deployment slice:
+
+- **Slice 1**: `productFiltering`, `productPagination`, `productSearch`
+- **Slice 2**: `shoppingCart`, `cartPersistence`
+- **Slice 3**: `guestCheckout`, `stripePayment`
+- **Slice 4**: `userRegistration`, `userLogin`
+- **Slice 5**: `orderHistory`, `savedAddresses`
+- **Slice 6**: `productReviews`, `advancedSearch`
+- **Slice 7**: `adminPanel`, `productManagement`, `inventoryManagement`
+- **Experimental**: `darkMode`, `a11yEnhancements`
+
+**Current Status**: All flags are initially set to `false` (features disabled)
+
+See the [Feature Flags Example Component](src/components/FeatureExample.tsx) for usage demonstrations.
+
 ## Quality Standards
 
 All development on this project follows the quality standards and best practices documented in the [docs/quality-standards](docs/quality-standards) submodule. **Key modules being applied**:

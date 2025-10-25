@@ -62,7 +62,7 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "prettier --write",
-      "eslint --fix",
+      "next lint --fix --file",
       "bash -c 'pnpm tsc --noEmit'"
     ],
     "*.{json,css,md}": [
