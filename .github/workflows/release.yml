@@ -1,9 +1,18 @@
 name: Release
 
 on:
+  # Manual trigger - click "Run workflow" button in GitHub Actions UI
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (preview without creating release)'
+        required: false
+        type: boolean
+        default: false
+  # Tag-based trigger - push a git tag to create release
   push:
-    branches:
-      - main
+    tags:
+      - 'v*.*.*'
 
 permissions:
   contents: write
@@ -14,8 +23,6 @@ jobs:
   release:
     name: Semantic Release
     runs-on: ubuntu-latest
-    # Only run on pushes to main (not PRs)
-    if: github.event_name == 'push'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -42,7 +49,14 @@ jobs:
       - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
         run: pnpm audit signatures
 
+      - name: Run Semantic Release (Dry Run)
+        if: github.event.inputs.dry_run == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: pnpm semantic-release --dry-run
+
       - name: Run Semantic Release
+        if: github.event.inputs.dry_run != 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: pnpm semantic-release
