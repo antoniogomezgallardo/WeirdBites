@@ -23,7 +23,7 @@ export default function Home() {
       </div>
       <div className="mt-16 text-center text-sm text-gray-500">
         <p>✅ Next.js 15 + TypeScript + Tailwind CSS</p>
-        <p>🚀 Slice 0 - IS-001 Complete</p>
+        <p>🚀 Slice 0 - IS-007 Preview Deployment Test</p>
       </div>
     </main>
   );
