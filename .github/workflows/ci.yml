@@ -31,6 +31,8 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+        env:
+          DATABASE_URL: postgresql://dummy:dummy@localhost:5432/dummy
 
       - name: Run ESLint
         run: pnpm lint
@@ -58,9 +60,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-
-      - name: Generate Prisma Client
-        run: pnpm db:generate
         env:
           DATABASE_URL: postgresql://dummy:dummy@localhost:5432/dummy
 
@@ -87,9 +86,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-
-      - name: Generate Prisma Client
-        run: pnpm db:generate
         env:
           DATABASE_URL: postgresql://dummy:dummy@localhost:5432/dummy
 
@@ -127,9 +123,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-
-      - name: Generate Prisma Client
-        run: pnpm db:generate
         env:
           DATABASE_URL: postgresql://dummy:dummy@localhost:5432/dummy
 
@@ -167,9 +160,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-
-      - name: Generate Prisma Client
-        run: pnpm db:generate
         env:
           DATABASE_URL: postgresql://dummy:dummy@localhost:5432/dummy
 
