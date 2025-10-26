@@ -47,15 +47,16 @@ docs/
 ├── 00-foundations/                     # Module 00: Quality frameworks (2 docs)
 ├── 01-requirements/                    # Module 01: What we're building (7 docs)
 ├── 02-agile-planning/                  # Module 02: How we plan (4 docs + templates)
+├── 03-version-control/                 # Module 03: TBD, Security, Commits (5 docs) [NEW]
 ├── 09-metrics-monitoring/              # Module 09: Metrics tracking (1 doc)
 ├── 12-governance/                      # Module 12: Change management (1 doc)
 ├── 14-continuous-improvement/          # Module 14: Testing maturity (1 doc)
 ├── design/wireframes/                  # UI wireframes
-├── setup/                              # Project setup (Slice 0)
+├── setup/                              # Project setup, Branch protection, Releases (4 docs)
 └── quality-standards/                  # Git submodule (16 modules)
 ```
 
-**Total**: 18 documents across 6 modules + wireframes (~15,000 lines)
+**Total**: 24+ documents across 7 modules + wireframes (~18,000+ lines)
 
 ---
 

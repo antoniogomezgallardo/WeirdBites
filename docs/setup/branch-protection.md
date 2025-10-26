@@ -39,10 +39,14 @@ Branch protection rules ensure code quality and security by requiring all change
 - `test` - Unit and integration tests
 - `e2e` - End-to-end tests
 - `build` - Production build verification
-- `security` - Security scanning (npm audit + secret scanning)
+- `security` - Security scanning (TruffleHog secret scanner + npm audit)
 - `quality-gate` - Overall quality gate verification
 
+**Total**: 7 automated quality gates
+
 **Purpose**: Ensures all automated quality gates pass before merging.
+
+**Note on Security Check**: The security job includes TruffleHog for secret detection and npm audit for dependency vulnerabilities. As of PR #18, TruffleHog is configured to work correctly for both pull requests (scans PR commits) and pushes to main (scans entire repository).
 
 #### 3. **Require conversation resolution before merging** ✅
 

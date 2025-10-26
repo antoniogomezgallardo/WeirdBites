@@ -2,10 +2,11 @@
 
 > Modern e-commerce platform built with Next.js, TypeScript, and PostgreSQL
 
-**Version**: 0.1.0
-**Last Updated**: 2025-10-25
-**Current Phase**: Slice 0 - Project Setup ✅ **COMPLETE** (10/10 stories, 18/18 points)
-**Next Milestone**: Slice 1 - Browse Products (2 weeks, 13 story points)
+**Version**: 0.2.0 (Recommended - Module 03 milestone)
+**Last Updated**: 2025-10-26
+**Current Phase**: Module 03 - Version Control & Branching 🚧 **IN PROGRESS** (2/3 phases, 67%)
+**Previous Milestone**: Slice 0 - Project Setup ✅ **COMPLETE** (10/10 stories, 18/18 points)
+**Next Milestone**: Module 03 Phase 3 OR Deployment Increment 1 - Browse Products (2 weeks, 13 points)
 
 ## Project Vision
 
@@ -45,21 +46,23 @@ docs/
 ├── 00-foundations/                     # Quality framework, ISO 25010 (2 docs)
 ├── 01-requirements/                    # BRD, Personas, MVP, NFRs, Backlog (7 docs)
 ├── 02-agile-planning/                  # DoR, Sprint cadence, Velocity (4 docs + templates)
+├── 03-version-control/                 # TBD, Security, Commit standards (5 docs) [NEW]
 ├── 09-metrics-monitoring/              # Metrics tracking plan (1 doc)
 ├── 12-governance/                      # Change management (1 doc)
 ├── 14-continuous-improvement/          # Testing maturity (1 doc)
 ├── design/wireframes/                  # UI wireframes
-├── setup/                              # Project setup (Slice 0)
+├── setup/                              # Project setup, Branch protection, Releases (4 docs)
 └── quality-standards/                  # Git submodule (16 modules)
 ```
 
-**Total**: 18 documents across 6 modules (~15,000 lines)
+**Total**: 24+ documents across 7 modules (~18,000+ lines)
 
 **Browse by module**:
 
 - [Module 00: Foundations](docs/00-foundations/) - Quality frameworks and models
 - [Module 01: Requirements](docs/01-requirements/) - What we're building
 - [Module 02: Agile Planning](docs/02-agile-planning/) - How we plan and execute
+- [Module 03: Version Control](docs/03-version-control/) - TBD workflow, security, commit standards **[NEW]**
 - [Module 09: Metrics & Monitoring](docs/09-metrics-monitoring/) - Metrics collection
 - [Module 12: Governance](docs/12-governance/) - Change management
 - [Module 14: Continuous Improvement](docs/14-continuous-improvement/) - Testing maturity
