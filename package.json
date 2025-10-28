@@ -83,5 +83,8 @@
       "prettier --write",
       "pnpm audit --audit-level=high"
     ]
+  },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"commonjs\"} prisma/seed.ts"
   }
 }
