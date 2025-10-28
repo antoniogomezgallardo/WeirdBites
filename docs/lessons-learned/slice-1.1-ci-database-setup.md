@@ -607,11 +607,220 @@ When deploying to production for the first time:
 
 ---
 
+## Issue 5: Preview Deployment Wrong DATABASE_URL
+
+**Date**: 2025-10-28 (After fixing production database)
+
+### What Happened
+
+After fixing production database and updating documentation, **Preview deployment FP2vu9SRf showed "Failed to load products"** even though Vercel reported it as "Ready".
+
+**Error in logs**:
+
+```
+Can't reach database server at `ep-snowy-frost-agpba9ds-pooler.c-2.eu-central-1.aws.neon.tech:5432`
+```
+
+### Root Cause
+
+**Preview environment DATABASE_URL pointed to wrong/non-existent database**:
+
+| Environment | Expected Database                       | Actual DATABASE_URL                      | Result    |
+| ----------- | --------------------------------------- | ---------------------------------------- | --------- |
+| Preview     | WeirdBites (`ep-hidden-sound-ab6yk4ap`) | Old endpoint (`ep-snowy-frost-agpba9ds`) | ❌ Failed |
+| Local Dev   | WeirdBites (`ep-hidden-sound-ab6yk4ap`) | Correct                                  | ✅ Works  |
+
+**Why this happened**:
+
+- Old DATABASE_URL was set 3 days ago for Preview environment
+- When we cleaned up databases, the old endpoint no longer existed
+- Preview deployments used cached/old DATABASE_URL
+- No validation that DATABASE_URL points to an active database
+
+### The Fix
+
+#### Step 1: Remove Old Preview DATABASE_URL
+
+```bash
+# Remove incorrect DATABASE_URL for preview
+vercel env rm DATABASE_URL preview --yes
+```
+
+#### Step 2: Add Correct Preview DATABASE_URL
+
+```bash
+# Get local development DATABASE_URL
+cat .env | grep DATABASE_URL
+
+# Add same DATABASE_URL for preview deployments
+echo "postgresql://neondb_owner:npg_...@ep-hidden-sound-ab6yk4ap-pooler.eu-west-2.aws.neon.tech/neondb?sslmode=require" \
+  | vercel env add DATABASE_URL preview
+```
+
+#### Step 3: Trigger New Preview Deployment
+
+```bash
+# Deploy with updated environment variable
+vercel --yes
+
+# New deployment will use correct DATABASE_URL
+# URL: https://weird-bites-67sb9hsog-antoniogomezgallardos-projects.vercel.app
+```
+
+**Result**: ✅ New preview deployment works correctly with products loading
+
+### Key Learnings
+
+#### Environment Variables Are Cached
+
+**Important**: Changing environment variables in Vercel **does NOT** automatically redeploy existing deployments!
+
+- Old deployments keep old environment variable values
+- New deployments pick up new values
+- Must trigger new deployment after changing env vars
+
+#### Preview vs Production Environments
+
+Both need separate DATABASE_URL configuration:
+
+| Environment     | When Used                 | DATABASE_URL                   |
+| --------------- | ------------------------- | ------------------------------ |
+| **Preview**     | Pull Request deployments  | Dev database (same as local)   |
+| **Production**  | `main` branch deployments | Production database (separate) |
+| **Development** | Local machine             | Dev database (.env file)       |
+
+#### Verification Checklist
+
+After changing environment variables:
+
+- [ ] Remove old environment variable: `vercel env rm`
+- [ ] Add new environment variable: `vercel env add`
+- [ ] Verify change: `vercel env ls`
+- [ ] **Trigger new deployment**: `vercel --yes` (Preview) or `vercel --prod` (Production)
+- [ ] Test new deployment URL
+- [ ] Check deployment logs for errors
+
+### Prevention Strategy
+
+#### 1. Document All Environment Variables
+
+Create `.env.example` with all required variables:
+
+```bash
+# .env.example
+DATABASE_URL="postgresql://..."  # Required for all environments
+NEXT_PUBLIC_APP_URL="..."        # Optional
+NODE_ENV="development"           # development | production
+```
+
+#### 2. Validate Environment Variables
+
+Add validation in application startup:
+
+```typescript
+// lib/env.ts
+if (!process.env.DATABASE_URL) {
+  throw new Error('DATABASE_URL is not defined');
+}
+
+if (!process.env.DATABASE_URL.includes('neon.tech')) {
+  console.warn('DATABASE_URL may be incorrect');
+}
+```
+
+#### 3. Create Health Check Endpoint
+
+```typescript
+// app/api/health/route.ts
+export async function GET() {
+  try {
+    await prisma.$queryRaw`SELECT 1`;
+    return Response.json({ status: 'ok', database: 'connected' });
+  } catch (error) {
+    return Response.json(
+      { status: 'error', database: 'disconnected', error: error.message },
+      { status: 500 }
+    );
+  }
+}
+```
+
+#### 4. Verify Environment Variables Before Deployment
+
+```bash
+# Check all environments have DATABASE_URL
+vercel env ls
+
+# Should see:
+# DATABASE_URL    Encrypted    Production
+# DATABASE_URL    Encrypted    Preview
+```
+
+#### 5. Test Preview Deployments
+
+After creating PR:
+
+1. Wait for preview deployment to complete
+2. Visit preview URL
+3. Test critical functionality (homepage, API endpoints)
+4. Check for errors in browser console
+5. Review Vercel deployment logs
+
+### Updated Deployment Checklist
+
+**After changing Vercel environment variables**:
+
+1. **Verify Change**:
+
+   ```bash
+   vercel env ls
+   ```
+
+2. **Trigger New Deployment**:
+
+   ```bash
+   # For Preview
+   vercel --yes
+
+   # For Production
+   vercel --prod --yes
+   ```
+
+3. **Test Deployment**:
+   - Visit new deployment URL
+   - Test database-dependent features
+   - Check deployment logs for errors
+
+4. **Monitor**:
+   - First 5 minutes: Watch Vercel logs
+   - Check error tracking (if configured)
+   - Verify metrics are normal
+
+### Impact
+
+**Before Fix**:
+
+- ❌ Preview deployments: "Failed to load products"
+- ❌ Deployment shows "Ready" but application fails
+- ❌ DATABASE_URL pointing to non-existent database
+
+**After Fix**:
+
+- ✅ Preview deployments: Products loading correctly
+- ✅ DATABASE_URL points to active dev database
+- ✅ All environment variables documented
+- ✅ Clear process for updating env vars
+
+---
+
 **Lessons Learned Summary**:
 
 1. ✅ CI tests validate code, not deployment configuration
-2. ✅ Always verify production environment before deploying
-3. ✅ Test production manually after deployment
-4. ✅ Document database setup procedures
+2. ✅ Always verify production AND preview environments before deploying
+3. ✅ Test production AND preview deployments manually
+4. ✅ Document database setup procedures for ALL environments
 5. ✅ Implement production smoke tests
 6. ✅ Keep database architecture simple (only create what you need)
+7. ✅ **Changing environment variables requires new deployment**
+8. ✅ **Verify environment variables for ALL Vercel environments (Production + Preview)**
+9. ✅ **Test preview deployments after PR creation, not just CI checks**
