@@ -32,10 +32,11 @@ We follow **Trunk-Based Development (TBD)** with Pull Requests:
 3. **Write tests** for your changes
 4. **Run quality checks** locally
 5. **Push and create** a Pull Request
-6. **Wait for CI** to pass (all 6 quality gates)
-7. **Get code review** (optional for solo development)
-8. **Squash and merge** to `main`
-9. **Delete the feature branch**
+6. **Wait for CI** to pass (all 7 quality gates)
+7. **Complete self-review** using checklist
+8. **Get code review** (optional for solo development)
+9. **Squash and merge** to `main`
+10. **Delete the feature branch**
 
 ### Key Principles
 
@@ -163,33 +164,90 @@ gh pr create --base main --title "feat: add product listing page" --body "Descri
 
 ### 5. CI Checks
 
-GitHub Actions will automatically run **6 quality gates**:
+GitHub Actions will automatically run **7 quality gates**:
 
 1. **Lint** - ESLint checks
 2. **Type Check** - TypeScript compilation
 3. **Unit Tests** - Jest tests
 4. **E2E Tests** - Playwright tests
 5. **Build** - Production build verification
-6. **Quality Gate** - Overall quality check
+6. **Security** - TruffleHog + npm audit
+7. **Quality Gate** - Overall quality check
 
 **All must pass before merging!** ✅
 
-### 6. Code Review (Optional)
+### 6. Self-Review (Required)
 
-For solo development, self-review is acceptable:
+**Before requesting review**, complete the [Self-Review Checklist](docs/03-version-control/templates/self-review-checklist.md):
 
-- Review your own PR on GitHub
-- Check the "Files changed" tab
-- Verify tests are comprehensive
-- Ensure documentation is updated
+```bash
+# 1. Review your own diff on GitHub
+# Visit: https://github.com/antoniogomezgallardo/WeirdBites/compare/main...your-branch
 
-For team development:
+# 2. Complete the checklist
+- [ ] Pre-submission checks (CI passed, branch updated, manual testing)
+- [ ] Code quality (naming, DRY, KISS, TypeScript)
+- [ ] Testing (coverage >80%, all tests pass)
+- [ ] Security (no secrets, input validation, auth checks)
+- [ ] Performance (efficient queries, pagination, caching)
+- [ ] Documentation (JSDoc, README updates, env vars)
+- [ ] PR quality (title, description, commits)
+```
 
-- Request review from team member
-- Address feedback
-- Push new commits (CI re-runs automatically)
+**Why self-review?**
 
-### 7. Merge PR
+- Catches 60-80% of issues before formal review
+- Faster PR approval (fewer review cycles)
+- Respects reviewers' time
+- Improves your code quality over time
+
+**Check the box** in the PR template: `- [x] Self-Review Completed`
+
+### 7. Code Review
+
+#### For Solo Development
+
+Self-review is acceptable using both checklists:
+
+1. **Self-Review Checklist**: [templates/self-review-checklist.md](docs/03-version-control/templates/self-review-checklist.md)
+2. **Code Review Checklist**: [templates/code-review-checklist.md](docs/03-version-control/templates/code-review-checklist.md)
+
+Review your code as if you were reviewing someone else's work.
+
+#### For Team Development
+
+**As Author**:
+
+1. Complete self-review checklist
+2. Request review from team member
+3. Respond to feedback within 24 hours
+4. Push fixes (CI re-runs automatically)
+5. Re-request review after addressing feedback
+
+**As Reviewer**:
+
+1. Review within 24 hours (same day preferred)
+2. Use [Code Review Checklist](docs/03-version-control/templates/code-review-checklist.md)
+3. Provide constructive, specific feedback
+4. Use comment prefixes: `blocking:`, `nit:`, `question:`, `praise:`
+5. Choose action: Approve, Request Changes, or Comment
+
+**Review Guidelines**:
+
+- See [Review Guidelines](docs/03-version-control/review-guidelines.md) for comprehensive guide
+- Focus on: functionality, design, tests, security, performance
+- Be kind and constructive
+- Explain WHY, not just WHAT
+- Acknowledge good work
+
+**Response Times**:
+
+- Production bugs: < 4 hours
+- Blocking PRs: < 8 hours
+- Feature PRs: < 24 hours
+- Documentation: < 48 hours
+
+### 8. Merge PR
 
 Once CI passes and review is complete:
 
@@ -200,7 +258,7 @@ Once CI passes and review is complete:
 # IMPORTANT: Delete the feature branch after merging
 ```
 
-### 8. Clean Up Locally
+### 9. Clean Up Locally
 
 ```bash
 # Switch back to main
@@ -471,4 +529,4 @@ export function ProductPage() {
 
 **Thank you for contributing to WeirdBites!** 🎉
 
-_Last Updated: 2025-10-25_
+_Last Updated: 2025-10-28_
