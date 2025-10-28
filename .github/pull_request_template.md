@@ -4,6 +4,12 @@
 
 <!-- Provide a brief description of the changes in this PR -->
 
+## Self-Review Completed
+
+<!-- REQUIRED: Complete self-review before requesting review -->
+
+- [ ] **Self-Review Completed** - I have reviewed my own code using the [Self-Review Checklist](../docs/03-version-control/templates/self-review-checklist.md)
+
 ## Type of Change
 
 <!-- Mark the relevant option with an "x" -->
@@ -104,21 +110,41 @@ Closes #
 
 ---
 
-## Reviewer Checklist
+## For Reviewers
 
-<!-- For reviewers - verify the following -->
+### Review Guidance
 
+**Use the comprehensive [Code Review Checklist](../docs/03-version-control/templates/code-review-checklist.md)** covering:
+
+1. **Functionality** - Requirements met, edge cases handled
+2. **Design** - Architecture, SOLID principles
+3. **Code Quality** - Clean code, DRY, KISS, naming
+4. **Testing** - Coverage >80%, comprehensive tests
+5. **Security** - No secrets, input validation, auth checks
+6. **Performance** - Efficient queries, caching, pagination
+7. **Documentation** - JSDoc, comments, README updates
+8. **PR Quality** - Conventional commits, size, CI passing
+
+**Review Guidelines**: See [review-guidelines.md](../docs/03-version-control/review-guidelines.md) for detailed guidance on:
+
+- How to provide constructive feedback
+- Using comment prefixes (`blocking:`, `nit:`, `question:`, `praise:`)
+- Handling large PRs
+- Response time expectations
+
+### Quick Reviewer Checklist
+
+- [ ] Self-review completed by author
 - [ ] Code follows project style guide
-- [ ] Changes align with Module 03 quality standards
-- [ ] Tests are comprehensive and meaningful
-- [ ] Documentation is clear and complete
-- [ ] No obvious security issues
+- [ ] Changes align with quality standards
+- [ ] Tests are comprehensive (>80% coverage)
+- [ ] No security vulnerabilities
 - [ ] Performance impact considered
-- [ ] Accessibility requirements met (if UI changes)
-- [ ] All CI checks passing
+- [ ] Documentation updated
+- [ ] All 7 CI checks passing
 
 ---
 
-**Module 03 Reference**: This PR follows standards from `docs/quality-standards/docs/03-version-control/`
+**Module 03 Reference**: This PR follows standards from [Module 03: Version Control](../docs/03-version-control/)
 
 🤖 Generated with [Claude Code](https://claude.com/claude-code)
