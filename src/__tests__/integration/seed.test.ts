@@ -4,8 +4,12 @@
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
+const hasDatabase = !!process.env.DATABASE_URL;
 
-describe('Seed Data (Integration Tests)', () => {
+// Skip all tests if no database configured
+const describeIfDatabase = hasDatabase ? describe : describe.skip;
+
+describeIfDatabase('Seed Data (Integration Tests)', () => {
   afterAll(async () => {
     await prisma.$disconnect();
   });

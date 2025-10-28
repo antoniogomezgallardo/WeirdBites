@@ -6,8 +6,12 @@ import { PrismaClient } from '@prisma/client';
 import { NextRequest } from 'next/server';
 
 const prisma = new PrismaClient();
+const hasDatabase = !!process.env.DATABASE_URL;
 
-describe('GET /api/products (Integration Tests)', () => {
+// Skip all tests if no database configured
+const describeIfDatabase = hasDatabase ? describe : describe.skip;
+
+describeIfDatabase('GET /api/products (Integration Tests)', () => {
   afterAll(async () => {
     await prisma.$disconnect();
   });
