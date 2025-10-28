@@ -23,7 +23,7 @@ async function getProducts(): Promise<Product[]> {
     const products = await prisma.product.findMany({
       take: 12,
       orderBy: {
-        createdAt: 'desc',
+        name: 'asc',
       },
     });
 
