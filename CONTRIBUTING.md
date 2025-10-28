@@ -10,8 +10,11 @@ Thank you for your interest in contributing to WeirdBites! This document provide
 - [Pull Request Process](#pull-request-process)
 - [Coding Standards](#coding-standards)
 - [Testing Guidelines](#testing-guidelines)
+- [Database Migrations](#database-migrations)
 - [Commit Message Convention](#commit-message-convention)
 - [Branch Naming Convention](#branch-naming-convention)
+- [Deployment](#deployment)
+- [Feature Flags](#feature-flags)
 
 ## Code of Conduct
 
@@ -609,6 +612,158 @@ export function ProductPage() {
   );
 }
 ```
+
+## Deployment
+
+### Automatic Deployments
+
+WeirdBites uses Vercel for continuous deployment:
+
+- **Production**: Automatic deployment when PRs are merged to `main`
+- **Preview**: Automatic preview deployment for every Pull Request
+
+**No manual intervention required** for standard deployments!
+
+### Production Database
+
+Production uses a separate Neon PostgreSQL database:
+
+| Environment       | Database                                    | Purpose          |
+| ----------------- | ------------------------------------------- | ---------------- |
+| Local Dev         | WeirdBites (small-bread-03305364)           | Your `.env` file |
+| Vercel Preview    | WeirdBites (small-bread-03305364)           | PR previews      |
+| Vercel Production | weirdbites-production (empty-term-17859536) | Live production  |
+
+### Database Migrations in Production
+
+Migrations are applied automatically during Vercel deployments via the `vercel-build` script:
+
+```json
+{
+  "scripts": {
+    "vercel-build": "prisma migrate deploy && prisma generate && next build"
+  }
+}
+```
+
+**What happens**:
+
+1. PR merged to `main`
+2. Vercel triggers deployment
+3. Runs `prisma migrate deploy` (applies pending migrations)
+4. Runs `prisma generate` (generates Prisma Client)
+5. Runs `next build` (builds Next.js app)
+6. Deploys to production
+
+### Manual Production Deployment
+
+Only needed for hotfixes or testing:
+
+```bash
+# Install Vercel CLI (if not already installed)
+npm install -g vercel
+
+# Login to Vercel
+vercel login
+
+# Link project (first time only)
+vercel link --yes
+
+# Deploy to production
+vercel --prod --yes
+```
+
+### Verifying Production Deployment
+
+After each deployment:
+
+1. **Check Vercel dashboard**: https://vercel.com/dashboard
+2. **Visit production URL**: https://weird-bites.vercel.app
+3. **Test critical flows**: Product listing, navigation
+4. **Check Vercel logs** for errors:
+   ```bash
+   vercel logs --prod
+   ```
+
+### Production Environment Variables
+
+Managed in Vercel dashboard (encrypted):
+
+- `DATABASE_URL` - Production Neon database connection
+- `NEXT_PUBLIC_APP_URL` - Production URL
+- `NODE_ENV` - Set to "production"
+
+**Never commit production credentials to git!**
+
+### Rollback Production
+
+If a deployment causes issues:
+
+```bash
+# List recent deployments
+vercel ls --prod
+
+# Redeploy previous version
+vercel redeploy <previous-deployment-url> --prod
+```
+
+### Production Troubleshooting
+
+**Issue: "Failed to load products"**
+
+```bash
+# Check database connection
+vercel env ls
+# Verify DATABASE_URL exists for production
+
+# Check Vercel logs
+vercel logs --prod --limit 100
+
+# Verify migrations applied
+DATABASE_URL="<production-url>" pnpm prisma migrate status
+```
+
+**Issue: Build fails in Vercel**
+
+1. Check build logs in Vercel dashboard
+2. Verify all dependencies in `package.json`
+3. Test build locally: `pnpm build`
+4. Check environment variables are set
+
+### First-Time Production Setup
+
+**Only required once** (already completed for this project):
+
+See complete guide: [docs/deployment/production-setup.md](docs/deployment/production-setup.md)
+
+Key steps:
+
+1. Create production database (Neon)
+2. Configure DATABASE_URL in Vercel
+3. Run initial migrations
+4. Seed production database
+5. Deploy to production
+6. Verify deployment
+
+### Deployment Checklist
+
+Before merging to `main`:
+
+- [ ] All CI checks passing (7/7 quality gates)
+- [ ] Self-review completed
+- [ ] Code review approved (if team member available)
+- [ ] Database migrations tested locally
+- [ ] Feature tested in preview deployment
+- [ ] Breaking changes documented
+- [ ] CHANGELOG updated (if applicable)
+
+After merging to `main`:
+
+- [ ] Verify production deployment succeeds
+- [ ] Test critical functionality on production
+- [ ] Monitor Vercel logs for errors (first 5 minutes)
+- [ ] Verify database migrations applied
+- [ ] Update team/stakeholders if major feature
 
 ## Questions or Issues?
 
