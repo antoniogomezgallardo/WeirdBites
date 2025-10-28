@@ -1,29 +1,70 @@
-export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <div className="text-center">
-        <h1 className="mb-4 text-6xl font-bold">
-          Welcome to <span className="text-orange-600">WeirdBites</span>
-        </h1>
-        <p className="mb-8 text-2xl text-gray-600">Unusual snacks from around the world</p>
-        <div className="flex justify-center gap-4">
-          <a
-            href="/products"
-            className="rounded-lg bg-orange-600 px-6 py-3 text-white transition hover:bg-orange-700"
-          >
-            Browse Products
-          </a>
-          <a
-            href="/about"
-            className="rounded-lg border-2 border-orange-600 px-6 py-3 text-orange-600 transition hover:bg-orange-50"
-          >
-            Learn More
-          </a>
+import { PrismaClient } from '@prisma/client';
+import { ProductCard } from '@/components/product-card';
+
+const prisma = new PrismaClient();
+
+interface Product {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  imageUrl: string;
+  category: string;
+  origin: string;
+  stock: number;
+}
+
+async function getProducts(): Promise<Product[]> {
+  try {
+    const products = await prisma.product.findMany({
+      take: 12,
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+
+    // Convert Prisma Decimal to number for serialization
+    return products.map(product => ({
+      ...product,
+      price: Number(product.price),
+    }));
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    return [];
+  }
+}
+
+export default async function Home() {
+  const products = await getProducts();
+
+  if (products.length === 0) {
+    return (
+      <main className="flex min-h-screen flex-col items-center justify-center p-24">
+        <div className="text-center">
+          <h1 className="mb-4 text-4xl font-bold text-red-600">Failed to load products</h1>
+          <p className="text-gray-600">Unable to fetch products. Please try again later.</p>
         </div>
-      </div>
-      <div className="mt-16 text-center text-sm text-gray-500">
-        <p>✅ Next.js 15 + TypeScript + Tailwind CSS</p>
-        <p>🚀 Slice 0 - IS-007 Preview Deployment Test</p>
+      </main>
+    );
+  }
+
+  return (
+    <main className="min-h-screen bg-gray-50 p-8">
+      <div className="mx-auto max-w-7xl">
+        <header className="mb-8 text-center">
+          <h1 className="mb-2 text-4xl font-bold text-gray-900">
+            Welcome to <span className="text-orange-600">WeirdBites</span>
+          </h1>
+          <p className="text-xl text-gray-600">Unusual snacks from around the world</p>
+        </header>
+
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {products.map(product => (
+            <div key={product.id} data-testid="product-card">
+              <ProductCard product={product} />
+            </div>
+          ))}
+        </div>
       </div>
     </main>
   );

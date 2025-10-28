@@ -69,6 +69,20 @@ jobs:
   test:
     name: Unit & Integration Tests
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: test
+          POSTGRES_PASSWORD: test
+          POSTGRES_DB: test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -87,10 +101,22 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
         env:
-          DATABASE_URL: postgresql://dummy:dummy@localhost:5432/dummy
+          DATABASE_URL: postgresql://test:test@localhost:5432/test
+
+      - name: Run Prisma migrations
+        run: pnpm prisma migrate deploy
+        env:
+          DATABASE_URL: postgresql://test:test@localhost:5432/test
+
+      - name: Seed test database
+        run: pnpm db:seed
+        env:
+          DATABASE_URL: postgresql://test:test@localhost:5432/test
 
       - name: Run tests with coverage
         run: pnpm test:coverage
+        env:
+          DATABASE_URL: postgresql://test:test@localhost:5432/test
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
@@ -106,6 +132,20 @@ jobs:
   e2e:
     name: E2E Tests
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: test
+          POSTGRES_PASSWORD: test
+          POSTGRES_DB: test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -124,13 +164,25 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
         env:
-          DATABASE_URL: postgresql://dummy:dummy@localhost:5432/dummy
+          DATABASE_URL: postgresql://test:test@localhost:5432/test
+
+      - name: Run Prisma migrations
+        run: pnpm prisma migrate deploy
+        env:
+          DATABASE_URL: postgresql://test:test@localhost:5432/test
+
+      - name: Seed test database
+        run: pnpm db:seed
+        env:
+          DATABASE_URL: postgresql://test:test@localhost:5432/test
 
       - name: Install Playwright browsers
         run: pnpm playwright install --with-deps chromium
 
       - name: Run E2E tests
         run: pnpm test:e2e
+        env:
+          DATABASE_URL: postgresql://test:test@localhost:5432/test
 
       - name: Upload Playwright report
         uses: actions/upload-artifact@v4
