@@ -23,6 +23,15 @@ This module contains all requirements artifacts for the WeirdBites e-commerce pl
 
 **Total**: 7 documents, ~4,600 lines
 
+### User Story Implementation Plans
+
+| Document                                                                                                           | Purpose                                                          | Lines | Status      |
+| ------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------- | ----- | ----------- |
+| [user-stories/us-001-implementation-plan.md](user-stories/us-001-implementation-plan.md)                           | US-001 implementation plan: 3 slices, 60 tests, TDD workflow     | 700+  | ✅ Complete |
+| [user-stories/TEMPLATE-user-story-implementation-plan.md](user-stories/TEMPLATE-user-story-implementation-plan.md) | Reusable template for planning future user story implementations | 400+  | ✅ Complete |
+
+**Sub-Total**: 2 documents, ~1,100 lines
+
 ---
 
 ## What's in This Module
@@ -79,6 +88,22 @@ This module contains all requirements artifacts for the WeirdBites e-commerce pl
 - Key trade-offs and decisions
 - Validation methods
 
+### User Story Implementation Plans
+
+Each user story has a detailed implementation plan following TBD, TDD, and vertical slicing principles:
+
+- **Vertical Slices**: Stories split into 1+ thin, deployable increments (1-2 days each, no fixed number)
+- **Test-Driven Development**: Red → Green → Refactor workflow
+- **Comprehensive Testing**: 60+ tests per story covering happy paths + error scenarios
+- **Branch Strategy**: One feature branch per slice
+- **Test Distribution**:
+  - Unit Tests (40-50%): Component behavior, utilities, edge cases
+  - Integration Tests (25-35%): API endpoints, database interactions
+  - E2E Tests (20-30%): Critical user flows, responsive behavior
+- **Quality Gates**: All 7 CI checks pass before merge
+
+**Template Available**: Use `TEMPLATE-user-story-implementation-plan.md` for planning future stories
+
 ---
 
 ## Alignment with Quality-Standards
@@ -102,6 +127,7 @@ This module implements concepts from:
 3. mvp-definition.md (understand the what)
 4. product-backlog.md (understand the how)
 5. vertical-slices.md (understand the delivery plan)
+6. user-stories/us-001-implementation-plan.md (see detailed implementation example)
 
 **For stakeholders**:
 
@@ -115,6 +141,13 @@ This module implements concepts from:
 1. product-backlog.md (acceptance criteria)
 2. non-functional-requirements.md (quality targets)
 3. business-requirements.md (business rules to test)
+4. user-stories/us-001-implementation-plan.md (see TDD + error scenario approach)
+
+**For planning new user stories**:
+
+1. user-stories/TEMPLATE-user-story-implementation-plan.md (copy and adapt)
+2. user-stories/us-001-implementation-plan.md (reference example)
+3. vertical-slices.md (understand slicing strategy)
 
 ---
 
@@ -126,4 +159,4 @@ This module implements concepts from:
 
 ---
 
-**Module Status**: ✅ Complete (7/7 documents)
+**Module Status**: ✅ Complete (7 core documents + 2 planning documents = 9 total, ~5,700 lines)
