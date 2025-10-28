@@ -3,6 +3,10 @@ import { ProductCard } from '@/components/product-card';
 
 const prisma = new PrismaClient();
 
+// Force dynamic rendering (no caching) for now
+// TODO: Add proper revalidation strategy when we add CMS
+export const dynamic = 'force-dynamic';
+
 interface Product {
   id: string;
   name: string;
