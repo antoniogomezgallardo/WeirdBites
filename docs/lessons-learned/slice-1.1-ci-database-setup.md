@@ -321,3 +321,297 @@ When adding database-dependent features:
 - `package.json` - Build scripts
 - `prisma/migrations/` - Migration files
 - `src/__tests__/integration/` - Integration tests with guards
+
+---
+
+## Issue 4: Production Database Not Configured (Post-Merge)
+
+**Date**: 2025-10-28 (After PR #24 merged)
+
+### What Happened
+
+After merging PR #24 with all CI checks passing ✅, the **production deployment showed a black screen** with error:
+
+```
+Failed to load products
+Unable to fetch products. Please try again later.
+```
+
+**Critical Question**: How can all E2E tests pass but production fail with such a huge issue?
+
+### Root Cause Analysis
+
+**The Problem**: Environmental mismatch between CI and Production
+
+| Environment             | Database Configuration                     | Result          |
+| ----------------------- | ------------------------------------------ | --------------- |
+| **CI (GitHub Actions)** | ✅ PostgreSQL service + migrations + seed  | E2E tests PASS  |
+| **Vercel Preview**      | ✅ DATABASE_URL configured (WeirdBites DB) | Works correctly |
+| **Vercel Production**   | ❌ DATABASE_URL configured BUT...          | Shows error     |
+| **Production Database** | ❌ NO migrations run, NO seed data         | Empty database! |
+
+### Why This Happened
+
+1. **CI Environment** (GitHub Actions):
+   - PostgreSQL service configured in workflow
+   - DATABASE_URL: `postgresql://test:test@localhost:5432/test`
+   - Migrations run automatically: `pnpm prisma migrate deploy`
+   - Seed data populated: `pnpm db:seed`
+   - **Result**: E2E tests connect successfully and pass ✅
+
+2. **Vercel Production**:
+   - DATABASE_URL was set (pointing to empty Neon database)
+   - `vercel-build` script runs migrations
+   - **BUT**: The production Neon database (`weirdbites-production`) had never been initialized!
+   - `prisma.product.findMany()` returns empty array `[]`
+   - Homepage shows "Failed to load products" error (from [page.tsx:40-48](src/app/page.tsx#L40-L48))
+
+### Database Architecture Discovered
+
+We had **3 separate Neon databases** (unnecessary complexity):
+
+| Database Name         | Project ID           | Region       | Usage             | Status    |
+| --------------------- | -------------------- | ------------ | ----------------- | --------- |
+| WeirdBites            | small-bread-03305364 | eu-west-2    | Local dev (.env)  | ✅ Active |
+| weirdbites-production | empty-term-17859536  | eu-central-1 | Vercel production | ❌ Empty  |
+| weirdbites-staging    | long-base-09963869   | eu-central-1 | Unused            | ❌ Delete |
+
+### The Fix
+
+#### Step 1: Audit Neon Databases
+
+```bash
+# Install Neon CLI
+npm install -g neonctl
+
+# Authenticate
+neonctl auth
+
+# List all projects
+neonctl projects list --org-id org-nameless-mode-77481300 --output json
+```
+
+**Found**: 3 databases, only 1 in use (local dev), production database empty.
+
+#### Step 2: Configure Production Database
+
+```bash
+# Get production database connection string
+neonctl connection-string empty-term-17859536 \
+  --branch-id br-ancient-feather-agmqcjli \
+  --role-name neondb_owner \
+  --pooled
+
+# Output:
+# postgresql://neondb_owner:npg_...@ep-lively-fog-ag97t8jl-pooler.c-2.eu-central-1.aws.neon.tech/neondb?sslmode=require
+```
+
+#### Step 3: Update Vercel Environment Variables
+
+```bash
+# Install Vercel CLI
+npm install -g vercel
+
+# Login and link project
+vercel login
+vercel link --yes
+
+# Remove old DATABASE_URL
+vercel env rm DATABASE_URL production --yes
+
+# Add correct DATABASE_URL
+echo "postgresql://neondb_owner:npg_...@ep-lively-fog-ag97t8jl-pooler.c-2.eu-central-1.aws.neon.tech/neondb?sslmode=require" \
+  | vercel env add DATABASE_URL production
+```
+
+#### Step 4: Initialize Production Database
+
+```bash
+# Run migrations on production database
+DATABASE_URL="postgresql://neondb_owner:npg_...@ep-lively-fog-ag97t8jl-pooler.c-2.eu-central-1.aws.neon.tech/neondb?sslmode=require" \
+  pnpm prisma migrate deploy
+
+# Seed production database
+DATABASE_URL="postgresql://neondb_owner:npg_...@ep-lively-fog-ag97t8jl-pooler.c-2.eu-central-1.aws.neon.tech/neondb?sslmode=require" \
+  pnpm db:seed
+```
+
+**Result**:
+
+- ✅ Migration applied: `20251028145814_init_products_table`
+- ✅ Seeded 15 products
+
+#### Step 5: Redeploy Production
+
+```bash
+# Deploy to production with new DATABASE_URL
+vercel --prod --yes
+```
+
+**Result**: Production deployment successful, products loading correctly! 🎉
+
+### Final Database Architecture
+
+| Environment           | Database                                    | Region       | Purpose                |
+| --------------------- | ------------------------------------------- | ------------ | ---------------------- |
+| **Local Dev**         | WeirdBites (small-bread-03305364)           | eu-west-2    | Your .env file         |
+| **Vercel Preview**    | WeirdBites (small-bread-03305364)           | eu-west-2    | PR preview deployments |
+| **Vercel Production** | weirdbites-production (empty-term-17859536) | eu-central-1 | Live production site   |
+
+**Deleted**: weirdbites-staging (unused, manual deletion via Neon console required)
+
+### Key Learnings
+
+#### Why All Tests Passed But Production Failed
+
+**The Gap**: Tests validate code correctness, not deployment configuration
+
+1. **Unit Tests**: ✅ Passed (mocked dependencies)
+2. **Integration Tests**: ✅ Passed (CI has PostgreSQL service)
+3. **E2E Tests**: ✅ Passed (CI has seeded database)
+4. **Build**: ✅ Passed (no runtime checks)
+5. **Production**: ❌ Failed (database empty/not configured)
+
+**Missing**: No automated check for production database state!
+
+#### Critical Gap in CI/CD Pipeline
+
+Our CI pipeline validates:
+
+- ✅ Code quality (lint, typecheck)
+- ✅ Tests pass (unit, integration, E2E)
+- ✅ Security vulnerabilities
+- ✅ Build succeeds
+- ❌ **Production environment configuration** ← Missing!
+- ❌ **Production database migrations** ← Missing!
+- ❌ **Production smoke tests** ← Missing!
+
+### Prevention Strategies
+
+#### 1. Production Deployment Checklist
+
+Before first production deployment:
+
+- [ ] Database created and accessible
+- [ ] DATABASE_URL configured in production environment
+- [ ] Migrations run on production database: `prisma migrate deploy`
+- [ ] Seed data populated (if needed): `pnpm db:seed`
+- [ ] Verify connection: Query database from Vercel logs
+- [ ] Test production URL manually after deployment
+- [ ] Set up monitoring/alerting for database errors
+
+#### 2. Post-Deployment Verification
+
+Add to deployment workflow:
+
+```yaml
+# .github/workflows/deploy-production.yml
+- name: Run production smoke tests
+  run: |
+    # Wait for deployment
+    sleep 30
+    # Test critical endpoints
+    curl -f https://weird-bites.vercel.app/api/products || exit 1
+    # Verify products returned
+    curl https://weird-bites.vercel.app/api/products | jq '.products | length' | grep -v '^0$'
+```
+
+#### 3. Environment Parity Checklist
+
+Ensure all environments match:
+
+| Configuration         | Local | CI  | Preview | Production |
+| --------------------- | ----- | --- | ------- | ---------- |
+| PostgreSQL version    | 16    | 16  | 16      | 16         |
+| Migrations applied    | ✅    | ✅  | ✅      | ✅         |
+| Seed data             | ✅    | ✅  | ✅      | ✅         |
+| Environment variables | ✅    | ✅  | ✅      | ✅         |
+
+#### 4. Database Initialization Documentation
+
+Create `docs/deployment/production-setup.md`:
+
+- Step-by-step production database setup
+- Environment variable configuration
+- Migration commands
+- Verification steps
+- Rollback procedures
+
+#### 5. Monitoring and Alerting
+
+Set up:
+
+- **Vercel Logs**: Monitor for database connection errors
+- **Error Tracking**: Sentry/LogRocket for runtime errors
+- **Health Check Endpoint**: `/api/health` that verifies database connectivity
+- **Synthetic Monitoring**: Ping production every 5 minutes
+
+### Updated Deployment Checklist
+
+When deploying to production for the first time:
+
+1. **Database Setup**:
+   - [ ] Create production database (Neon/Supabase/Postgres)
+   - [ ] Save connection string securely
+   - [ ] Test connection from local machine
+
+2. **Vercel Configuration**:
+   - [ ] Add DATABASE_URL to Vercel environment (Production)
+   - [ ] Add DATABASE_URL to Vercel environment (Preview)
+   - [ ] Verify environment variables: `vercel env ls`
+
+3. **Database Initialization**:
+   - [ ] Run migrations: `DATABASE_URL=... pnpm prisma migrate deploy`
+   - [ ] Seed data: `DATABASE_URL=... pnpm db:seed`
+   - [ ] Verify tables exist: Connect with database client
+
+4. **Deployment**:
+   - [ ] Deploy to production: `vercel --prod`
+   - [ ] Wait for build to complete
+   - [ ] Check deployment logs for errors
+
+5. **Verification**:
+   - [ ] Visit production URL
+   - [ ] Test critical user flows
+   - [ ] Check API endpoints manually
+   - [ ] Review Vercel logs for errors
+   - [ ] Set up monitoring
+
+6. **Documentation**:
+   - [ ] Document production DATABASE_URL (in password manager)
+   - [ ] Update deployment documentation
+   - [ ] Create runbook for common issues
+
+### Impact
+
+**Before Fix**:
+
+- ❌ Production: Black screen with "Failed to load products"
+- ❌ User Experience: Complete failure
+- ❌ All CI checks: Passing (false confidence!)
+- ❌ Database: Empty/not configured
+
+**After Fix**:
+
+- ✅ Production: Products loading correctly
+- ✅ Database: Properly configured with migrations + seed data
+- ✅ Environment Variables: Correctly set for Production and Preview
+- ✅ Documentation: Updated with deployment procedures
+
+### References
+
+- **Neon Database**: https://neon.tech/docs
+- **Vercel Environment Variables**: https://vercel.com/docs/concepts/projects/environment-variables
+- **Prisma Migrations**: https://www.prisma.io/docs/concepts/components/prisma-migrate
+- **Production Best Practices**: [Module 10 - Deployment](../../quality-standards/10-deployment/)
+
+---
+
+**Lessons Learned Summary**:
+
+1. ✅ CI tests validate code, not deployment configuration
+2. ✅ Always verify production environment before deploying
+3. ✅ Test production manually after deployment
+4. ✅ Document database setup procedures
+5. ✅ Implement production smoke tests
+6. ✅ Keep database architecture simple (only create what you need)

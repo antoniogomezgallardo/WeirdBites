@@ -26,6 +26,7 @@ coverage/
 .env.test.local
 .env.production.local
 .env*.local
+.env.vercel
 
 # Vercel
 .vercel
@@ -86,3 +87,5 @@ temp/
 .claude/.cache/
 
 /src/generated/prisma
+
+.vercel
