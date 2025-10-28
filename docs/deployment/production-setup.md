@@ -99,14 +99,26 @@ echo "postgresql://neondb_owner:npg_...@ep-lively-fog-ag97t8jl-pooler.c-2.eu-cen
 
 #### Preview Environment
 
+⚠️ **CRITICAL**: Preview deployments also need DATABASE_URL configured!
+
 ```bash
 # Check if DATABASE_URL exists for preview
 vercel env ls
 
-# If needed, add preview DATABASE_URL (uses dev database)
+# Remove old DATABASE_URL if it exists
+vercel env rm DATABASE_URL preview --yes
+
+# Add preview DATABASE_URL (uses dev database - same as local .env)
 echo "postgresql://neondb_owner:npg_...@ep-hidden-sound-ab6yk4ap-pooler.eu-west-2.aws.neon.tech/neondb?sslmode=require" \
   | vercel env add DATABASE_URL preview
 ```
+
+**Important Notes**:
+
+- Preview uses the **same database as local development** (WeirdBites dev database)
+- **NOT** the production database
+- This allows testing PRs without affecting production data
+- After changing env vars, trigger new deployment: `vercel --yes`
 
 #### Verify Configuration
 
