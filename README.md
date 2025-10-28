@@ -157,15 +157,14 @@ cp .env.example .env
 # 2. Update DATABASE_URL in .env with your PostgreSQL connection string
 # Examples provided in .env.example for local PostgreSQL, Supabase, or Neon
 
-# 3. Generate Prisma client
-pnpm db:generate
+# 3. Run migrations (creates tables)
+pnpm prisma migrate dev
 
-# 4. Push schema to database (development)
-pnpm db:push
-
-# OR create a migration (production approach)
-pnpm db:migrate
+# 4. Seed database with test data
+pnpm db:seed
 ```
+
+**Important**: Always use migrations (`prisma migrate dev`), never `db:push` in shared environments.
 
 **Free PostgreSQL Options**:
 
@@ -223,11 +222,11 @@ pnpm format:check # Check if files are formatted correctly
 pnpm tsc          # TypeScript type checking (noEmit)
 
 # Database (Prisma)
-pnpm db:generate  # Generate Prisma client from schema
-pnpm db:push      # Push schema changes to database (development)
-pnpm db:migrate   # Create and apply migrations (production)
-pnpm db:studio    # Open Prisma Studio (database GUI)
-pnpm db:seed      # Run database seed script (not yet implemented)
+pnpm prisma migrate dev     # Create and apply migration (development)
+pnpm prisma migrate deploy  # Apply migrations (production/CI)
+pnpm db:generate            # Generate Prisma client from schema
+pnpm db:studio              # Open Prisma Studio (database GUI)
+pnpm db:seed                # Seed database with test data
 
 # API Health Check
 # Visit http://localhost:3000/api/health to check API and database status

@@ -76,8 +76,8 @@ cp .env.example .env
 # Edit .env with your DATABASE_URL
 
 # 4. Set up database
-pnpm db:generate
-pnpm db:push
+pnpm prisma migrate dev  # Run migrations (creates tables)
+pnpm db:seed              # Seed with test data
 
 # 5. Run development server
 pnpm dev
@@ -349,6 +349,105 @@ pnpm test:e2e            # Headless
 pnpm test:e2e:ui         # With UI
 pnpm test:e2e:headed     # Headed mode
 ```
+
+## Database Migrations
+
+**IMPORTANT**: Always use Prisma migrations for schema changes. Never use `db:push` in production or shared environments.
+
+### When to Create a Migration
+
+Create a migration whenever you modify `prisma/schema.prisma`:
+
+- Adding/removing models
+- Adding/removing fields
+- Changing field types
+- Adding indexes or constraints
+
+### Creating Migrations
+
+```bash
+# 1. Modify prisma/schema.prisma
+# 2. Create migration
+pnpm prisma migrate dev --name descriptive_name
+
+# Examples:
+pnpm prisma migrate dev --name add_users_table
+pnpm prisma migrate dev --name add_email_to_users
+pnpm prisma migrate dev --name add_index_on_email
+```
+
+**What happens**:
+
+- Creates migration file in `prisma/migrations/`
+- Applies migration to your local database
+- Regenerates Prisma Client
+
+### Applying Migrations
+
+**Local Development**:
+
+```bash
+pnpm prisma migrate dev  # Apply pending migrations
+```
+
+**CI/Production** (automatic):
+
+- CI: Runs `prisma migrate deploy` before tests
+- Vercel: Runs migrations during build (configured in `package.json`)
+
+### Migration Best Practices
+
+✅ **DO**:
+
+- Create descriptive migration names
+- Review generated SQL before committing
+- Test migrations on a copy of production data
+- Commit migration files to git
+- Run migrations before seeding
+
+❌ **DON'T**:
+
+- Use `db:push` (only for prototyping, never commit)
+- Manually edit migration files after creation
+- Delete migrations that have been deployed
+- Skip migrations in the deployment process
+
+### Integration Tests with Database
+
+Integration tests require a real database. They automatically skip if DATABASE_URL is not set:
+
+```typescript
+// Tests skip gracefully without database
+const hasDatabase = !!process.env.DATABASE_URL;
+const describeIfDatabase = hasDatabase ? describe : describe.skip;
+
+describeIfDatabase('Integration Tests', () => {
+  // Tests only run if DATABASE_URL is set
+});
+```
+
+**CI Setup**: CI workflow automatically provides PostgreSQL service for integration tests.
+
+### Troubleshooting
+
+**Migration conflicts**:
+
+```bash
+# Reset database (WARNING: deletes all data)
+pnpm prisma migrate reset --force
+
+# Re-apply all migrations
+pnpm prisma migrate deploy
+```
+
+**Schema drift** (local DB doesn't match schema):
+
+```bash
+# Generate new migration from schema
+pnpm prisma migrate dev --name fix_drift
+```
+
+For more details, see [Lessons Learned: CI & Database Setup](docs/lessons-learned/slice-1.1-ci-database-setup.md)
 
 ## Commit Message Convention
 
