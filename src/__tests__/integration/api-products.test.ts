@@ -90,4 +90,80 @@ describeIfDatabase('GET /api/products (Integration Tests)', () => {
       expect(data).toHaveProperty('error');
     });
   });
+
+  describe('Pagination', () => {
+    it('should return paginated response with metadata', async () => {
+      const request = new NextRequest('http://localhost:3000/api/products?page=1&pageSize=6');
+      const response = await GET(request);
+
+      expect(response.status).toBe(200);
+
+      const data = await response.json();
+      expect(data).toHaveProperty('data');
+      expect(data).toHaveProperty('pagination');
+      expect(data.pagination).toHaveProperty('currentPage');
+      expect(data.pagination).toHaveProperty('totalPages');
+      expect(data.pagination).toHaveProperty('totalItems');
+      expect(data.pagination).toHaveProperty('pageSize');
+    });
+
+    it('should return first page products correctly', async () => {
+      const request = new NextRequest('http://localhost:3000/api/products?page=1&pageSize=6');
+      const response = await GET(request);
+
+      const data = await response.json();
+      expect(data.data.length).toBeLessThanOrEqual(6);
+      expect(data.pagination.currentPage).toBe(1);
+    });
+
+    it('should return second page products correctly', async () => {
+      const request = new NextRequest('http://localhost:3000/api/products?page=2&pageSize=6');
+      const response = await GET(request);
+
+      const data = await response.json();
+      expect(data.pagination.currentPage).toBe(2);
+    });
+
+    it('should respect custom pageSize parameter', async () => {
+      const request = new NextRequest('http://localhost:3000/api/products?page=1&pageSize=3');
+      const response = await GET(request);
+
+      const data = await response.json();
+      expect(data.data.length).toBeLessThanOrEqual(3);
+      expect(data.pagination.pageSize).toBe(3);
+    });
+
+    it('should return 400 for invalid page number (less than 1)', async () => {
+      const request = new NextRequest('http://localhost:3000/api/products?page=0&pageSize=12');
+      const response = await GET(request);
+
+      expect(response.status).toBe(400);
+
+      const data = await response.json();
+      expect(data).toHaveProperty('error');
+      expect(data.error).toContain('Page must be');
+    });
+
+    it('should return 400 for invalid pageSize (too high)', async () => {
+      const request = new NextRequest('http://localhost:3000/api/products?page=1&pageSize=101');
+      const response = await GET(request);
+
+      expect(response.status).toBe(400);
+
+      const data = await response.json();
+      expect(data).toHaveProperty('error');
+      expect(data.error).toContain('Page size must be');
+    });
+
+    it('should return empty data for page beyond total pages', async () => {
+      const request = new NextRequest('http://localhost:3000/api/products?page=999&pageSize=12');
+      const response = await GET(request);
+
+      expect(response.status).toBe(200);
+
+      const data = await response.json();
+      expect(data.data).toEqual([]);
+      expect(data.pagination.currentPage).toBe(999);
+    });
+  });
 });
