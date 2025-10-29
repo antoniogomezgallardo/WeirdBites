@@ -85,7 +85,7 @@ describe('ProductCard Component', () => {
 
       // Wait for state update and verify placeholder
       await waitFor(() => {
-        expect(image).toHaveAttribute('src', '/images/placeholder.jpg');
+        expect(image).toHaveAttribute('src', '/images/placeholder.png');
       });
     });
 
