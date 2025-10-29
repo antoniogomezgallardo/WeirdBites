@@ -23,9 +23,9 @@ test.describe('Product Pagination', () => {
     test('displays pagination controls when multiple pages exist', async ({ page }) => {
       await page.waitForSelector('[data-testid="product-card"]');
 
-      // Check if pagination controls are visible
-      const previousButton = page.getByRole('button', { name: /previous/i });
-      const nextButton = page.getByRole('button', { name: /next/i });
+      // Check if pagination controls are visible (use more specific selectors)
+      const previousButton = page.getByRole('button', { name: 'Go to previous page' });
+      const nextButton = page.getByRole('button', { name: 'Go to next page' });
 
       await expect(previousButton).toBeVisible();
       await expect(nextButton).toBeVisible();
@@ -34,8 +34,8 @@ test.describe('Product Pagination', () => {
     test('clicking next button loads page 2', async ({ page }) => {
       await page.waitForSelector('[data-testid="product-card"]');
 
-      // Click next button
-      const nextButton = page.getByRole('button', { name: /next/i });
+      // Click next button (use specific aria-label)
+      const nextButton = page.getByRole('button', { name: 'Go to next page' });
       await nextButton.click();
 
       // Wait for page to update
@@ -51,8 +51,8 @@ test.describe('Product Pagination', () => {
     test('URL updates with page parameter', async ({ page }) => {
       await page.waitForSelector('[data-testid="product-card"]');
 
-      // Click next button
-      const nextButton = page.getByRole('button', { name: /next/i });
+      // Click next button (use specific aria-label)
+      const nextButton = page.getByRole('button', { name: 'Go to next page' });
       await nextButton.click();
 
       await page.waitForLoadState('networkidle');
@@ -66,22 +66,25 @@ test.describe('Product Pagination', () => {
     test('previous button is disabled on first page', async ({ page }) => {
       await page.waitForSelector('[data-testid="product-card"]');
 
-      const previousButton = page.getByRole('button', { name: /previous/i });
+      const previousButton = page.getByRole('button', { name: 'Go to previous page' });
       await expect(previousButton).toBeDisabled();
     });
 
     test('next button is disabled on last page', async ({ page }) => {
-      // Navigate to a very high page number to reach the end
-      await page.goto('/?page=999');
+      // First, get to page 1 to determine total pages
+      await page.goto('/');
+      await page.waitForSelector('[data-testid="product-card"]');
 
-      // Wait for page to load
-      await page.waitForLoadState('networkidle');
+      // Extract total pages from the page indicator
+      const pageIndicator = await page.getByText(/page \d+ of \d+/i).textContent();
+      const totalPages = parseInt(pageIndicator?.match(/of (\d+)/)?.[1] || '1', 10);
 
-      // If products exist, next should be disabled
-      // If no products (beyond total pages), both buttons should be disabled
-      const nextButton = page.getByRole('button', { name: /next/i });
+      // Navigate to the last page
+      await page.goto(`/?page=${totalPages}`);
+      await page.waitForSelector('[data-testid="product-card"]');
 
-      // The button should exist and be disabled
+      // Next button should be visible but disabled on last page
+      const nextButton = page.getByRole('button', { name: 'Go to next page' });
       await expect(nextButton).toBeVisible();
       await expect(nextButton).toBeDisabled();
     });
@@ -96,7 +99,7 @@ test.describe('Product Pagination', () => {
       await expect(page.getByText(/page 2 of/i)).toBeVisible();
 
       // Previous button should be enabled
-      const previousButton = page.getByRole('button', { name: /previous/i });
+      const previousButton = page.getByRole('button', { name: 'Go to previous page' });
       await expect(previousButton).toBeEnabled();
     });
   });

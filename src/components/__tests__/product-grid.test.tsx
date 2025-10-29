@@ -9,9 +9,7 @@ jest.mock('../loading-skeleton', () => ({
 }));
 
 jest.mock('../product-card', () => ({
-  ProductCard: ({ product }: { product: { name: string } }) => (
-    <div data-testid="product-card">{product.name}</div>
-  ),
+  ProductCard: ({ product }: { product: { name: string } }) => <div>{product.name}</div>,
 }));
 
 jest.mock('../pagination', () => ({
