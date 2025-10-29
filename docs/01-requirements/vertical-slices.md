@@ -1,7 +1,8 @@
 # WeirdBites - Vertical Slices Implementation Plan
 
-**Version**: 1.0.0
-**Date**: 2025-10-19
+**Version**: 1.1.0
+**Date**: 2025-10-28
+**Last Updated**: 2025-10-28 (Added progress tracking for Deployment Increment 1)
 **Purpose**: Define thin, deployable increments that deliver end-to-end value
 **Reference**: Module 01 - Vertical Slicing
 
@@ -70,8 +71,17 @@ WeirdBites MVP will be built in **7 deployment increments**, where each incremen
 **Duration**: 2 weeks
 **Story Points**: 13 (aggregate from split stories)
 **Goal**: Users can discover weird snack products
+**Status**: 🟡 IN PROGRESS (2/13 points complete, 15%)
 
 **Composition**: This deployment increment contains vertical slices derived by splitting US-001, US-002, and US-003 across all architectural layers.
+
+**Progress**:
+
+- ✅ US-001 Slice 1.1 (Basic Product Listing) - 2 points - COMPLETE (PR #24, #28, #29)
+- 🔲 US-001 Slice 1.2 (Pagination & Loading States) - 2 points - NOT STARTED
+- 🔲 US-001 Slice 1.3 (Responsive Design & Polish) - 1 point - NOT STARTED
+- 🔲 US-002 (View Product Details) - 5 points - NOT STARTED
+- 🔲 US-003 (Filter by Category) - 3 points - NOT STARTED
 
 ### 3.1 Value Delivered
 
@@ -102,22 +112,23 @@ After Deployment Increment 1, users can:
 **Database (PostgreSQL)**:
 
 ```sql
+-- Actual schema implemented (Slice 1.1)
 CREATE TABLE products (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
+  id TEXT PRIMARY KEY, -- CUID generated
+  name TEXT NOT NULL,
   description TEXT NOT NULL,
   price DECIMAL(10,2) NOT NULL,
-  stock_quantity INTEGER NOT NULL DEFAULT 0,
-  category VARCHAR(100),
-  images JSONB, -- array of image URLs
-  ingredients TEXT,
-  nutrition_facts JSONB,
-  created_at TIMESTAMP DEFAULT NOW(),
-  updated_at TIMESTAMP DEFAULT NOW()
+  imageUrl TEXT NOT NULL,
+  category TEXT NOT NULL,
+  origin TEXT NOT NULL,
+  stock INTEGER NOT NULL DEFAULT 0,
+  createdAt TIMESTAMP NOT NULL DEFAULT NOW(),
+  updatedAt TIMESTAMP NOT NULL
 );
 
-CREATE INDEX idx_products_category ON products(category);
-CREATE INDEX idx_products_name ON products(name); -- for search later
+-- Indexes to be added in future slices:
+-- CREATE INDEX idx_products_category ON products(category); -- US-003 (filtering)
+-- CREATE INDEX idx_products_name ON products(name); -- US-024 (search)
 ```
 
 ### 3.3 Derived from User Stories
@@ -138,18 +149,22 @@ This slice represents the first deployable increment derived by splitting these 
 
 ### 3.5 Acceptance Criteria
 
-**Slice 1 is complete when**:
+**Deployment Increment 1 is complete when**:
 
-- [ ] Homepage displays 8-12 products in responsive grid
-- [ ] Product detail page shows all product info
-- [ ] Category filtering works (updates URL)
-- [ ] Pagination or "Load More" functional
-- [ ] Loading states implemented
-- [ ] Mobile responsive (320px+)
-- [ ] Unit tests passing (≥80% coverage)
-- [ ] E2E test: Browse flow
-- [ ] Lighthouse Performance > 90
-- [ ] Deployed to Vercel
+- [x] **US-001 Slice 1.1 (COMPLETE)**: Homepage displays 12 products in basic grid
+- [x] **US-001 Slice 1.1 (COMPLETE)**: Products show name, price, image, description
+- [x] **US-001 Slice 1.1 (COMPLETE)**: Products ordered alphabetically (A-Z)
+- [x] **US-001 Slice 1.1 (COMPLETE)**: ProductCard component with tests
+- [x] **US-001 Slice 1.1 (COMPLETE)**: GET /api/products endpoint working
+- [x] **US-001 Slice 1.1 (COMPLETE)**: Unit + integration + E2E tests passing
+- [x] **US-001 Slice 1.1 (COMPLETE)**: Deployed to production (Vercel)
+- [ ] **US-001 Slice 1.2 (TODO)**: Pagination or "Load More" functional
+- [ ] **US-001 Slice 1.2 (TODO)**: Loading states implemented
+- [ ] **US-001 Slice 1.3 (TODO)**: Mobile responsive (320px+)
+- [ ] **US-001 Slice 1.3 (TODO)**: Accessibility (WCAG 2.1 AA)
+- [ ] **US-001 Slice 1.3 (TODO)**: Lighthouse Performance > 90
+- [ ] **US-002 (TODO)**: Product detail page shows all product info
+- [ ] **US-003 (TODO)**: Category filtering works (updates URL)
 
 ### 3.6 Success Metrics
 
@@ -738,19 +753,31 @@ A deployment increment is complete when:
 
 ## 13. Progress Tracking
 
-### Slice Completion Log
+### Deployment Increment Completion Log
 
-| Slice | Start Date | End Date | Actual Points | Velocity | Status      |
-| ----- | ---------- | -------- | ------------- | -------- | ----------- |
-| 1     | TBD        | TBD      | TBD           | TBD      | Not Started |
-| 2     | TBD        | TBD      | TBD           | TBD      | Not Started |
-| 3     | TBD        | TBD      | TBD           | TBD      | Not Started |
-| 4     | TBD        | TBD      | TBD           | TBD      | Not Started |
-| 5     | TBD        | TBD      | TBD           | TBD      | Not Started |
-| 6     | TBD        | TBD      | TBD           | TBD      | Not Started |
-| 7     | TBD        | TBD      | TBD           | TBD      | Not Started |
+| Deployment<br>Increment | Name            | Start Date | End Date | Planned<br>Points | Actual<br>Points | Status      | PRs     |
+| ----------------------- | --------------- | ---------- | -------- | ----------------- | ---------------- | ----------- | ------- |
+| 1                       | Browse Products | 2025-10-28 | TBD      | 13                | 2                | In Progress | #24-#29 |
+| 2                       | Shopping Cart   | TBD        | TBD      | 13                | -                | Not Started | -       |
+| 3                       | Guest Checkout  | TBD        | TBD      | 19                | -                | Not Started | -       |
+| 4                       | User Accounts   | TBD        | TBD      | 16                | -                | Not Started | -       |
+| 5                       | Reg. Checkout   | TBD        | TBD      | 11                | -                | Not Started | -       |
+| 6                       | Search/Reviews  | TBD        | TBD      | 13                | -                | Not Started | -       |
+| 7                       | Admin Panel     | TBD        | TBD      | 50                | -                | Not Started | -       |
 
-_Update as slices complete_
+### Detailed Progress: Deployment Increment 1 (Browse Products)
+
+| Vertical Slice            | Story Points | Start Date | End Date   | Status   | PRs           |
+| ------------------------- | ------------ | ---------- | ---------- | -------- | ------------- |
+| US-001 Slice 1.1 (Basic)  | 2            | 2025-10-28 | 2025-10-28 | Complete | #24, #28, #29 |
+| US-001 Slice 1.2 (Pagin.) | 2            | TBD        | TBD        | Pending  | -             |
+| US-001 Slice 1.3 (Resp.)  | 1            | TBD        | TBD        | Pending  | -             |
+| US-002 (Product Details)  | 5            | TBD        | TBD        | Pending  | -             |
+| US-003 (Filter Category)  | 3            | TBD        | TBD        | Pending  | -             |
+
+**Velocity**: 2 points per day (based on Slice 1.1 completion in 1 day)
+
+_Update as deployment increments and vertical slices complete_
 
 ---
 
@@ -770,11 +797,12 @@ After each slice, reflect:
 
 **Version History**:
 
-| Version | Date       | Author                 | Changes                      |
-| ------- | ---------- | ---------------------- | ---------------------------- |
-| 1.0.0   | 2025-10-19 | Antonio Gomez Gallardo | Initial vertical slices plan |
+| Version | Date       | Author                 | Changes                                                  |
+| ------- | ---------- | ---------------------- | -------------------------------------------------------- |
+| 1.0.0   | 2025-10-19 | Antonio Gomez Gallardo | Initial vertical slices plan                             |
+| 1.1.0   | 2025-10-28 | Antonio Gomez Gallardo | Updated progress tracking, actual schema, Slice 1.1 done |
 
-**Next Review**: After Slice 1 completion
+**Next Review**: After US-001 Slice 1.2 completion
 
 ---
 
