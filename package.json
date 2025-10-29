@@ -52,6 +52,7 @@
     "@typescript-eslint/eslint-plugin": "^8.46.2",
     "@typescript-eslint/parser": "^8.46.2",
     "autoprefixer": "^10.0.1",
+    "axe-playwright": "^2.2.2",
     "dotenv": "^17.2.3",
     "eslint": "^9",
     "eslint-config-next": "^15.0.3",
