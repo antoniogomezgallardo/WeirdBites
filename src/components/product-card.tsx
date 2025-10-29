@@ -47,7 +47,7 @@ export function ProductCard({ product }: ProductCardProps) {
         data-image-container="true"
       >
         <Image
-          src={imageError ? '/images/placeholder.jpg' : product.imageUrl}
+          src={imageError ? '/images/placeholder.png' : product.imageUrl}
           alt={product.name}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
