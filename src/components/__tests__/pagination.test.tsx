@@ -32,6 +32,19 @@ describe('Pagination', () => {
 
       expect(mockOnPageChange).toHaveBeenCalledWith(3);
     });
+
+    it('buttons meet minimum 44x44px touch target size', () => {
+      render(<Pagination currentPage={2} totalPages={5} onPageChange={mockOnPageChange} />);
+
+      const prevButton = screen.getByRole('button', { name: /previous/i });
+      const nextButton = screen.getByRole('button', { name: /next/i });
+
+      // Verify buttons have minimum height and width classes
+      expect(prevButton).toHaveClass('min-h-[44px]');
+      expect(prevButton).toHaveClass('min-w-[44px]');
+      expect(nextButton).toHaveClass('min-h-[44px]');
+      expect(nextButton).toHaveClass('min-w-[44px]');
+    });
   });
 
   describe('Error Scenarios', () => {
