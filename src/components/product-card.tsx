@@ -56,7 +56,7 @@ export function ProductCard({ product }: ProductCardProps) {
         />
       </div>
       <div className="mt-4">
-        <h3 className="line-clamp-2 text-lg font-semibold text-gray-900">{product.name}</h3>
+        <h2 className="line-clamp-2 text-lg font-semibold text-gray-900">{product.name}</h2>
         {product.description && (
           <p className="mt-1 line-clamp-3 text-sm text-gray-600">{product.description}</p>
         )}

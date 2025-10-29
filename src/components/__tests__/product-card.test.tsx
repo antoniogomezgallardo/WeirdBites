@@ -66,7 +66,7 @@ describe('ProductCard Component', () => {
       };
 
       const { container } = render(<ProductCard product={longNameProduct} />);
-      const heading = container.querySelector('h3');
+      const heading = container.querySelector('h2');
 
       // Check if heading has truncation CSS classes
       expect(heading).toHaveClass('line-clamp-2');
