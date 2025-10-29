@@ -71,17 +71,19 @@ WeirdBites MVP will be built in **7 deployment increments**, where each incremen
 **Duration**: 2 weeks
 **Story Points**: 13 (aggregate from split stories)
 **Goal**: Users can discover weird snack products
-**Status**: 🟡 IN PROGRESS (2/13 points complete, 15%)
+**Status**: 🟡 IN PROGRESS (5/13 points complete, 38%)
 
 **Composition**: This deployment increment contains vertical slices derived by splitting US-001, US-002, and US-003 across all architectural layers.
 
 **Progress**:
 
 - ✅ US-001 Slice 1.1 (Basic Product Listing) - 2 points - COMPLETE (PR #24, #28, #29)
-- 🔲 US-001 Slice 1.2 (Pagination & Loading States) - 2 points - NOT STARTED
-- 🔲 US-001 Slice 1.3 (Responsive Design & Polish) - 1 point - NOT STARTED
+- ✅ US-001 Slice 1.2 (Pagination & Loading States) - 2 points - COMPLETE (PR #31)
+- ✅ US-001 Slice 1.3 (Responsive Design & Polish) - 1 point - COMPLETE (PR #32)
 - 🔲 US-002 (View Product Details) - 5 points - NOT STARTED
 - 🔲 US-003 (Filter by Category) - 3 points - NOT STARTED
+
+**US-001 Status**: ✅ COMPLETE (5/5 points delivered)
 
 ### 3.1 Value Delivered
 
@@ -158,11 +160,11 @@ This slice represents the first deployable increment derived by splitting these 
 - [x] **US-001 Slice 1.1 (COMPLETE)**: GET /api/products endpoint working
 - [x] **US-001 Slice 1.1 (COMPLETE)**: Unit + integration + E2E tests passing
 - [x] **US-001 Slice 1.1 (COMPLETE)**: Deployed to production (Vercel)
-- [ ] **US-001 Slice 1.2 (TODO)**: Pagination or "Load More" functional
-- [ ] **US-001 Slice 1.2 (TODO)**: Loading states implemented
-- [ ] **US-001 Slice 1.3 (TODO)**: Mobile responsive (320px+)
-- [ ] **US-001 Slice 1.3 (TODO)**: Accessibility (WCAG 2.1 AA)
-- [ ] **US-001 Slice 1.3 (TODO)**: Lighthouse Performance > 90
+- [x] **US-001 Slice 1.2 (COMPLETE)**: Pagination or "Load More" functional
+- [x] **US-001 Slice 1.2 (COMPLETE)**: Loading states implemented
+- [x] **US-001 Slice 1.3 (COMPLETE)**: Mobile responsive (320px+)
+- [x] **US-001 Slice 1.3 (COMPLETE)**: Accessibility (WCAG 2.1 AA)
+- [x] **US-001 Slice 1.3 (COMPLETE)**: Lighthouse Performance > 90
 - [ ] **US-002 (TODO)**: Product detail page shows all product info
 - [ ] **US-003 (TODO)**: Category filtering works (updates URL)
 
@@ -770,8 +772,8 @@ A deployment increment is complete when:
 | Vertical Slice            | Story Points | Start Date | End Date   | Status   | PRs           |
 | ------------------------- | ------------ | ---------- | ---------- | -------- | ------------- |
 | US-001 Slice 1.1 (Basic)  | 2            | 2025-10-28 | 2025-10-28 | Complete | #24, #28, #29 |
-| US-001 Slice 1.2 (Pagin.) | 2            | TBD        | TBD        | Pending  | -             |
-| US-001 Slice 1.3 (Resp.)  | 1            | TBD        | TBD        | Pending  | -             |
+| US-001 Slice 1.2 (Pagin.) | 2            | 2025-10-29 | 2025-10-29 | Complete | #31           |
+| US-001 Slice 1.3 (Resp.)  | 1            | 2025-10-29 | 2025-10-29 | Complete | #32           |
 | US-002 (Product Details)  | 5            | TBD        | TBD        | Pending  | -             |
 | US-003 (Filter Category)  | 3            | TBD        | TBD        | Pending  | -             |
 
@@ -801,8 +803,9 @@ After each slice, reflect:
 | ------- | ---------- | ---------------------- | -------------------------------------------------------- |
 | 1.0.0   | 2025-10-19 | Antonio Gomez Gallardo | Initial vertical slices plan                             |
 | 1.1.0   | 2025-10-28 | Antonio Gomez Gallardo | Updated progress tracking, actual schema, Slice 1.1 done |
+| 1.2.0   | 2025-10-30 | Antonio Gomez Gallardo | US-001 complete (all 3 slices), 5/13 points (38%)        |
 
-**Next Review**: After US-001 Slice 1.2 completion
+**Next Review**: After US-002 (Product Details) or US-003 (Filter Category) completion
 
 ---
 

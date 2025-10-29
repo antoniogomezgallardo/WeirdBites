@@ -2,11 +2,11 @@
 
 > Modern e-commerce platform built with Next.js, TypeScript, and PostgreSQL
 
-**Version**: 0.3.0 (Recommended - Module 03 complete milestone)
-**Last Updated**: 2025-10-28
-**Current Phase**: Module 03 - Version Control & Branching ✅ **COMPLETE** (3/3 phases, 100%)
-**Previous Milestone**: Slice 0 - Project Setup ✅ **COMPLETE** (10/10 stories, 18/18 points)
-**Next Milestone**: Release v0.3.0 OR Deployment Increment 1 - Browse Products (2 weeks, 13 points)
+**Version**: 1.3.0 (Latest - US-001 complete milestone)
+**Last Updated**: 2025-10-30
+**Current Phase**: Deployment Increment 1 - Browse Products 🟡 **IN PROGRESS** (5/13 pts, 38%)
+**Latest Milestone**: US-001 (Browse Products - Basic) ✅ **COMPLETE** (all 3 slices, 5/5 points)
+**Next Milestone**: US-002 (Product Details) or US-003 (Category Filter)
 
 ## Project Vision
 
