@@ -1,5 +1,7 @@
 import { PrismaClient } from '@prisma/client';
-import { ProductCard } from '@/components/product-card';
+import { ProductsPageClient } from './products-page-client';
+import { Product, PaginationInfo } from '@/components/product-grid';
+import { calculatePaginationOffset, calculatePaginationMeta } from '@/lib/pagination';
 
 const prisma = new PrismaClient();
 
@@ -7,50 +9,74 @@ const prisma = new PrismaClient();
 // TODO: Add proper revalidation strategy when we add CMS
 export const dynamic = 'force-dynamic';
 
-interface Product {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  imageUrl: string;
-  category: string;
-  origin: string;
-  stock: number;
+interface PageProps {
+  searchParams: Promise<{ page?: string; pageSize?: string }>;
 }
 
-async function getProducts(): Promise<Product[]> {
+async function getProducts(
+  page: number,
+  pageSize: number
+): Promise<{ products: Product[]; pagination: PaginationInfo; error?: string }> {
   try {
+    // Calculate offset
+    const { skip, take } = calculatePaginationOffset(page, pageSize);
+
+    // Get total count
+    const totalItems = await prisma.product.count();
+
+    // Fetch paginated products
     const products = await prisma.product.findMany({
-      take: 12,
+      skip,
+      take,
       orderBy: {
         name: 'asc',
       },
     });
 
     // Convert Prisma Decimal to number for serialization
-    return products.map(product => ({
+    const serializedProducts: Product[] = products.map(product => ({
       ...product,
       price: Number(product.price),
+      createdAt: product.createdAt,
+      updatedAt: product.updatedAt,
     }));
+
+    // Calculate pagination metadata
+    const pagination = calculatePaginationMeta(page, pageSize, totalItems);
+
+    return {
+      products: serializedProducts,
+      pagination,
+    };
   } catch (error) {
     console.error('Error fetching products:', error);
-    return [];
+    return {
+      products: [],
+      pagination: {
+        currentPage: page,
+        pageSize,
+        totalItems: 0,
+        totalPages: 0,
+      },
+      error: 'Failed to load products',
+    };
   }
 }
 
-export default async function Home() {
-  const products = await getProducts();
+export default async function Home({ searchParams }: PageProps) {
+  // Await search params (Next.js 15 requirement)
+  const params = await searchParams;
 
-  if (products.length === 0) {
-    return (
-      <main className="flex min-h-screen flex-col items-center justify-center p-24">
-        <div className="text-center">
-          <h1 className="mb-4 text-4xl font-bold text-red-600">Failed to load products</h1>
-          <p className="text-gray-600">Unable to fetch products. Please try again later.</p>
-        </div>
-      </main>
-    );
-  }
+  // Parse pagination parameters from URL
+  const page = params.page ? parseInt(params.page, 10) : 1;
+  const pageSize = params.pageSize ? parseInt(params.pageSize, 10) : 12;
+
+  // Validate parameters
+  const validPage = isNaN(page) || page < 1 ? 1 : page;
+  const validPageSize = isNaN(pageSize) || pageSize < 1 || pageSize > 100 ? 12 : pageSize;
+
+  // Fetch products with pagination
+  const { products, pagination, error } = await getProducts(validPage, validPageSize);
 
   return (
     <main className="min-h-screen bg-gray-50 p-8">
@@ -62,13 +88,11 @@ export default async function Home() {
           <p className="text-xl text-gray-600">Unusual snacks from around the world</p>
         </header>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {products.map(product => (
-            <div key={product.id} data-testid="product-card">
-              <ProductCard product={product} />
-            </div>
-          ))}
-        </div>
+        <ProductsPageClient
+          initialProducts={products}
+          initialPagination={pagination}
+          error={error}
+        />
       </div>
     </main>
   );

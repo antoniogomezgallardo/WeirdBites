@@ -24,7 +24,7 @@ export const features = {
   // Slice 1: Browse Products Features
   // ==========================================
   productFiltering: false, // US-003: Filter products by category
-  productPagination: false, // US-001: Paginate product listing
+  productPagination: true, // US-001: Paginate product listing ✅ ENABLED
   productSearch: false, // US-006: Search products
 
   // ==========================================
