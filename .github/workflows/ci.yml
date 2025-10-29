@@ -192,6 +192,33 @@ jobs:
           path: playwright-report/
           retention-days: 30
 
+      - name: Upload test screenshots
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-screenshots
+          path: test-results/**/screenshots/
+          retention-days: 30
+          if-no-files-found: ignore
+
+      - name: Upload test videos
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-videos
+          path: test-results/**/video.webm
+          retention-days: 30
+          if-no-files-found: ignore
+
+      - name: Upload test traces
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-traces
+          path: test-results/**/trace.zip
+          retention-days: 30
+          if-no-files-found: ignore
+
   build:
     name: Build
     runs-on: ubuntu-latest
