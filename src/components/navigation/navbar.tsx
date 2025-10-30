@@ -58,10 +58,10 @@ export function Navbar({ cartItemCount = 0 }: NavbarProps) {
     <nav className="sticky top-0 z-50 border-b border-gray-200 bg-white shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
+          {/* Logo - 44x44px minimum touch target */}
           <Link
             href="/"
-            className={`text-xl font-bold text-gray-900 transition-colors hover:text-gray-600 ${
+            className={`inline-flex min-h-[44px] min-w-[44px] items-center text-xl font-bold text-gray-900 transition-colors hover:text-gray-600 ${
               isActive('/') ? 'border-b-2 border-gray-900' : ''
             }`}
           >
@@ -72,7 +72,7 @@ export function Navbar({ cartItemCount = 0 }: NavbarProps) {
           <div className="hidden items-center gap-6 md:flex">
             <Link
               href="/products"
-              className={`px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:text-gray-900 ${
+              className={`inline-flex min-h-[44px] items-center px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:text-gray-900 ${
                 isActive('/products') ? 'border-b-2 border-gray-900' : ''
               }`}
             >
@@ -82,7 +82,7 @@ export function Navbar({ cartItemCount = 0 }: NavbarProps) {
             {/* Cart */}
             <Link
               href="/cart"
-              className="relative px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:text-gray-900"
+              className="relative inline-flex min-h-[44px] items-center px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:text-gray-900"
               aria-label={getCartAriaLabel(cartItemCount)}
             >
               <svg
@@ -113,7 +113,7 @@ export function Navbar({ cartItemCount = 0 }: NavbarProps) {
             {/* Account */}
             <Link
               href="/account"
-              className={`px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:text-gray-900 ${
+              className={`inline-flex min-h-[44px] items-center px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:text-gray-900 ${
                 isActive('/account') ? 'border-b-2 border-gray-900' : ''
               }`}
             >
@@ -159,14 +159,14 @@ export function Navbar({ cartItemCount = 0 }: NavbarProps) {
               <Link
                 href="/products"
                 onClick={handleMobileLinkClick}
-                className="rounded px-3 py-2 text-base font-medium text-gray-700 transition-colors hover:bg-gray-100"
+                className="inline-flex min-h-[44px] items-center rounded px-3 py-2 text-base font-medium text-gray-700 transition-colors hover:bg-gray-100"
               >
                 Products
               </Link>
               <Link
                 href="/cart"
                 onClick={handleMobileLinkClick}
-                className="rounded px-3 py-2 text-base font-medium text-gray-700 transition-colors hover:bg-gray-100"
+                className="inline-flex min-h-[44px] items-center rounded px-3 py-2 text-base font-medium text-gray-700 transition-colors hover:bg-gray-100"
                 aria-label={getCartAriaLabel(cartItemCount)}
               >
                 Cart{' '}
@@ -177,7 +177,7 @@ export function Navbar({ cartItemCount = 0 }: NavbarProps) {
               <Link
                 href="/account"
                 onClick={handleMobileLinkClick}
-                className="rounded px-3 py-2 text-base font-medium text-gray-700 transition-colors hover:bg-gray-100"
+                className="inline-flex min-h-[44px] items-center rounded px-3 py-2 text-base font-medium text-gray-700 transition-colors hover:bg-gray-100"
               >
                 Account
               </Link>
