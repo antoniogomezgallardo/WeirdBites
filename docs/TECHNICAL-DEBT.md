@@ -8,60 +8,7 @@
 
 ## Active Technical Debt
 
-### TD-001: E2E Tests Not Testing Complete User Journeys
-
-**Category**: Testing
-**Severity**: Medium
-**Created**: 2025-10-30
-**Related PRs**: #37 (US-002 Slice 2.1)
-
-**Issue**:
-Product detail E2E tests use direct navigation (`page.goto('/products/[id]')`) instead of testing the complete user journey from product listing → product detail.
-
-**Current Behavior**:
-
-```typescript
-// tests/e2e/product-detail.spec.ts
-test('should display product detail page', async ({ page }) => {
-  await page.goto(`/products/${testProductId}`); // Direct navigation
-  // This is more like an INTEGRATION test, not true E2E
-});
-```
-
-**Expected Behavior**:
-
-```typescript
-test('should navigate from listing to detail', async ({ page }) => {
-  await page.goto('/'); // Start at homepage
-  await page.locator('[data-testid="product-card"]').first().click(); // Click product
-  await expect(page.locator('h1')).toBeVisible(); // Verify detail page loaded
-});
-```
-
-**Why We Took This Shortcut**:
-
-- `/products` route doesn't exist yet (only components exist)
-- Wanted to unblock US-002 development
-- Plan to build proper product listing page later
-
-**Impact**:
-
-- ❌ Not testing ProductCard → ProductDetailPage link navigation
-- ❌ Missing coverage for complete user journey
-- ✅ Direct navigation still validates detail page renders correctly
-
-**Remediation Plan**:
-
-1. Build `/products` route (see backlog IS-012)
-2. Update E2E tests to test full user journey
-3. Keep "Direct Navigation" tests as supplementary smoke tests
-4. Target: Complete with US-001 improvements or Deployment Increment 2
-
-**Related Items**:
-
-- IS-012: Create `/products` route for product listing page
-- IS-011: Navigation bar component
-- IS-013: Marketing landing page for `/`
+_(No active technical debt at this time)_
 
 ---
 
@@ -78,11 +25,11 @@ test('should navigate from listing to detail', async ({ page }) => {
 | `accessibility.spec.ts` | ✅ Good | Tests homepage accessibility (axe-core scans)      |
 | `responsive.spec.ts`    | ✅ Good | Tests homepage at various viewport sizes           |
 
-### ⚠️ Incomplete E2E Coverage (Direct Navigation Shortcuts)
+### ✅ Complete E2E Coverage (All Tests Updated)
 
-| Test File                | Status        | Missing Coverage                                     |
-| ------------------------ | ------------- | ---------------------------------------------------- |
-| `product-detail.spec.ts` | ⚠️ Incomplete | Missing: Homepage → Click Product Card → Detail Page |
+| Test File                | Status  | Notes                                                |
+| ------------------------ | ------- | ---------------------------------------------------- |
+| `product-detail.spec.ts` | ✅ Good | Tests full journey + smoke tests (Updated in IS-014) |
 
 ### Recommended E2E Test Additions (Future)
 
@@ -114,6 +61,67 @@ When `/products` route is built, add these test scenarios:
 ---
 
 ## Resolved Technical Debt
+
+### TD-001: E2E Tests Not Testing Complete User Journeys
+
+**Category**: Testing
+**Severity**: Medium
+**Created**: 2025-10-30
+**Resolved**: 2025-10-30 (PR #41, IS-014)
+**Related PRs**: #37 (US-002 Slice 2.1), #40 (IS-012), #41 (IS-014)
+
+**Issue**:
+Product detail E2E tests used direct navigation (`page.goto('/products/[id]')`) instead of testing the complete user journey from product listing → product detail.
+
+**Original Behavior**:
+
+```typescript
+// tests/e2e/product-detail.spec.ts
+test('should display product detail page', async ({ page }) => {
+  await page.goto(`/products/${testProductId}`); // Direct navigation only
+});
+```
+
+**Solution Implemented**:
+
+1. Built `/products` route (IS-012, PR #40)
+2. Updated E2E tests with two test suites (IS-014, PR #41):
+   - **User Journey Tests**: Start from `/products` → Click product card → Verify detail page
+   - **Direct Navigation Tests (Smoke Tests)**: Direct URL access for bookmarks/shares
+3. Added comprehensive documentation explaining test purposes
+
+**New Behavior**:
+
+```typescript
+// User Journey Tests (3 tests)
+test('should navigate from products page to detail via card click', async ({ page }) => {
+  await page.goto('/products'); // Real entry point
+  await page.locator('[data-testid="product-card"]').first().click();
+  await expect(page.locator('h1')).toBeVisible();
+});
+
+// Direct Navigation Tests (2 tests) - Smoke tests
+test('should display product detail page for valid product ID', async ({ page }) => {
+  await page.goto(`/products/${testProductId}`); // Direct access
+  await expect(page.locator('h1')).toBeVisible();
+});
+```
+
+**Impact of Resolution**:
+
+- ✅ Now testing complete user journey (5 E2E tests total)
+- ✅ Catches integration issues between products listing and detail pages
+- ✅ Validates browser navigation (back/forward buttons)
+- ✅ Verifies product name consistency across pages
+- ✅ Maintains smoke tests for direct URL access
+
+**Lessons Learned**:
+
+- E2E tests should simulate real user behavior, not just page renders
+- Direct navigation tests still valuable as smoke tests
+- Clear documentation prevents confusion about test purposes
+
+---
 
 ### TD-000: Dark Mode Causing Black Background
 
