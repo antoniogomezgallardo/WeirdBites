@@ -1,27 +1,22 @@
+/**
+ * Script to seed PRODUCTION database directly
+ * This ensures the production Neon database has the correct .png URLs
+ */
+
 import { PrismaClient } from '@prisma/client';
 
+// Use the DATABASE_URL from environment (should point to production Neon)
 const prisma = new PrismaClient();
 
-/**
- * Seed database with exotic WeirdBites products
- *
- * ⚠️ IMPORTANT - Dual Database Setup:
- * - Running `pnpm prisma db seed` seeds your LOCAL database (from .env)
- * - To seed PRODUCTION database, you must override DATABASE_URL:
- *
- *   vercel env pull .env.production --environment=production
- *   DATABASE_URL="$(grep DATABASE_URL .env.production | cut -d'=' -f2 | tr -d '\"' | tr -d '\n')" pnpm prisma db seed
- *
- * See docs/setup/database-operations.md for complete guide.
- */
 async function main() {
-  console.log('🌱 Seeding database...');
+  console.log('🌱 Seeding PRODUCTION database...');
+  console.log('📍 Database URL:', process.env.DATABASE_URL?.substring(0, 50) + '...');
 
   // Clear existing products
   await prisma.product.deleteMany();
   console.log('🗑️  Cleared existing products');
 
-  // Seed 15 exotic products
+  // Seed 15 exotic products with .png URLs
   const products = await prisma.product.createMany({
     data: [
       {
@@ -163,12 +158,13 @@ async function main() {
     ],
   });
 
-  console.log(`✅ Seeded ${products.count} products`);
+  console.log(`✅ Seeded ${products.count} products with .png URLs`);
+  console.log('✨ Production database updated!');
 }
 
 main()
   .catch(e => {
-    console.error('❌ Seed failed:', e);
+    console.error('❌ Error seeding production:', e);
     process.exit(1);
   })
   .finally(async () => {

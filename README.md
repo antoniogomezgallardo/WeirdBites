@@ -166,6 +166,21 @@ pnpm db:seed
 
 **Important**: Always use migrations (`prisma migrate dev`), never `db:push` in shared environments.
 
+**⚠️ CRITICAL - Dual Database Setup**:
+WeirdBites uses **two separate databases**:
+
+- **Local/Development**: Your `.env` database (for dev/testing)
+- **Production**: Vercel's production database (separate instance)
+
+To seed **production** database:
+
+```bash
+vercel env pull .env.production --environment=production
+DATABASE_URL="$(grep DATABASE_URL .env.production | cut -d'=' -f2 | tr -d '\"' | tr -d '\n')" pnpm prisma db seed
+```
+
+See [Database Operations Guide](docs/setup/database-operations.md) for complete details.
+
 **Free PostgreSQL Options**:
 
 - **Supabase**: [https://supabase.com](https://supabase.com) (500 MB free)
