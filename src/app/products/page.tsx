@@ -1,4 +1,4 @@
-import { ProductsPageClient } from './products-page-client';
+import { ProductsPageClient } from '../products-page-client';
 import { getProducts } from '@/lib/products';
 
 // Force dynamic rendering (no caching) for now
@@ -9,7 +9,7 @@ interface PageProps {
   searchParams: Promise<{ page?: string; pageSize?: string }>;
 }
 
-export default async function Home({ searchParams }: PageProps) {
+export default async function ProductsPage({ searchParams }: PageProps) {
   // Await search params (Next.js 15 requirement)
   const params = await searchParams;
 
@@ -28,10 +28,10 @@ export default async function Home({ searchParams }: PageProps) {
     <main className="min-h-screen bg-gray-50 p-8">
       <div className="mx-auto max-w-7xl">
         <header className="mb-8 text-center">
-          <h1 className="mb-2 text-4xl font-bold text-gray-900">
-            Welcome to <span className="text-orange-600">WeirdBites</span>
-          </h1>
-          <p className="text-xl text-gray-600">Unusual snacks from around the world</p>
+          <h1 className="mb-2 text-4xl font-bold text-gray-900">All Products</h1>
+          <p className="text-xl text-gray-600">
+            Browse our collection of unusual snacks from around the world
+          </p>
         </header>
 
         <ProductsPageClient
