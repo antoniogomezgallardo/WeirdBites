@@ -38,8 +38,8 @@ test.describe('Product Pagination', () => {
       const nextButton = page.getByRole('button', { name: 'Go to next page' });
       await nextButton.click();
 
-      // Wait for page to update
-      await page.waitForLoadState('networkidle');
+      // Wait for URL to update with page=2 parameter
+      await page.waitForURL(/[?&]page=2/, { timeout: 10000 });
 
       // Verify URL updated with page parameter
       expect(page.url()).toContain('page=2');
@@ -55,7 +55,8 @@ test.describe('Product Pagination', () => {
       const nextButton = page.getByRole('button', { name: 'Go to next page' });
       await nextButton.click();
 
-      await page.waitForLoadState('networkidle');
+      // Wait for URL to update with page=2 parameter
+      await page.waitForURL(/[?&]page=2/, { timeout: 10000 });
 
       // URL should contain page=2
       expect(page.url()).toMatch(/[?&]page=2/);
