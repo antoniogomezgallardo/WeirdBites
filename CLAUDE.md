@@ -621,10 +621,12 @@ WeirdBites/
 - **Philosophy**: `docs/quality-standards/PHILOSOPHY.md`
 - **Templates**: `docs/quality-standards/templates/`
 - **Examples**: `docs/quality-standards/examples/`
+- **Technical Debt**: `docs/TECHNICAL-DEBT.md` - Known shortcuts and remediation plans
+- **Infrastructure Backlog**: `docs/01-requirements/infrastructure-backlog.md` - Missing items (IS-011 to IS-014)
 
 ## Next Steps
 
-**US-001 Complete!** 🎉 All 3 vertical slices delivered (5/5 points)
+**US-002 Slice 2.1 Complete!** 🎉 Basic Product Detail Page delivered (PR #37)
 
 ### Current Status: Deployment Increment 1 - In Progress (38% complete)
 
@@ -636,34 +638,54 @@ WeirdBites/
 
 **Remaining**:
 
-- 🔲 US-002: View Product Details (5 pts) - NOT STARTED
+- ✅ US-002 Slice 2.1: Basic Product Detail Page (2 pts) - PR #37 **MERGED**
+- 🔲 US-002 Slice 2.2: Stock Status & Add to Cart (2 pts) - NOT STARTED
+- 🔲 US-002 Slice 2.3: Image Gallery & Extras (1 pt) - NOT STARTED
 - 🔲 US-003: Filter by Category (3 pts) - NOT STARTED
 
-**Progress**: 5/13 points complete (38%)
+**Progress**: 7/13 points complete (54%)
+
+### Known Gaps & Technical Debt
+
+**Active Technical Debt** (see [docs/TECHNICAL-DEBT.md](docs/TECHNICAL-DEBT.md)):
+
+- **TD-001**: E2E tests use direct navigation instead of full user journeys (Medium severity)
+  - Impact: Not testing ProductCard → ProductDetailPage link navigation
+  - Remediation: Build `/products` route and update tests
+
+**Missing Infrastructure** (see [docs/01-requirements/infrastructure-backlog.md](docs/01-requirements/infrastructure-backlog.md)):
+
+- **IS-011**: Navigation Bar Component (2 pts) - Must Have
+- **IS-012**: Products Listing Page Route (1 pt) - Must Have
+- **IS-013**: Marketing Landing Page (3 pts) - Should Have
+- **IS-014**: Update E2E Tests for Complete Journeys (1 pt) - Should Have
+
+**Total Infrastructure Gap**: 7 story points
 
 ### Next Steps Options:
 
-**Option A: Continue Deployment Increment 1** (Recommended for momentum)
+**Option A: Continue US-002 Remaining Slices** (Recommended for feature completion)
 
-1. Implement **US-002: View Product Details** (5 pts, ~2-3 days)
-2. Then implement **US-003: Filter by Category** (3 pts, ~1-2 days)
-3. Complete entire Browse Products increment (13/13 pts)
-4. Create release v1.4.0 after full increment
+1. Implement **US-002 Slice 2.2**: Stock Status & Add to Cart (2 pts, ~1 day)
+2. Implement **US-002 Slice 2.3**: Image Gallery & Extras (1 pt, ~0.5 days)
+3. Complete US-002 entirely (5/5 pts)
+4. Then decide: US-003 or Infrastructure
 
-**Option B: Pause for Quality Improvements**
+**Option B: Build Missing Infrastructure First** (Recommended for UX)
 
-1. Enhance test coverage beyond current 80%
-2. Add performance budgets and monitoring
-3. Implement additional accessibility tests
-4. Then return to US-002/US-003
+1. Implement **IS-011**: Navigation Bar (2 pts, ~1 day)
+2. Implement **IS-012**: `/products` Page Route (1 pt, ~0.5 days)
+3. Fix **TD-001**: Update E2E tests for full journeys
+4. Then continue with US-002 or US-003
 
-**Option C: Create Interim Release v1.3.5**
+**Option C: Build Marketing Landing Page** (Optional for polish)
 
-1. Tag current progress (US-001 complete milestone)
-2. Celebrate 38% of Deployment Increment 1
-3. Then continue with US-002
+1. Complete Option A or B first
+2. Implement **IS-013**: Marketing Landing Page (3 pts, ~1.5 days)
+3. Move product grid to `/products`
+4. Create hero, featured products, brand story
 
-**Recommended**: **Option A** - Build momentum by completing the full Browse Products increment before pausing
+**Recommended**: **Option B** - Fix infrastructure gaps now for better UX before continuing features
 
 ---
 
