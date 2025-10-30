@@ -278,14 +278,55 @@ Then it includes both:
 
 ## Prioritization & Roadmap
 
+### When Will We Tackle These?
+
+**Decision Point**: After PR #37 (US-002 Slice 2.1) merged
+
+**Recommended Timing**: **Build Phase 1 NOW** (before continuing US-002 or US-003)
+
+**Rationale**:
+
+- IS-011 and IS-012 fix fundamental UX gaps (navigation, proper routes)
+- Blocks US-003 (Filter by Category) which needs `/products` route
+- Fixes TD-001 (E2E test coverage) so future tests are properly structured
+- Only 3 story points (~1.5 days) - minimal delay to feature delivery
+- Prevents accumulating more technical debt
+
+**Timeline Proposal**:
+
+```
+Week 1 (Current):
+├── ✅ US-002 Slice 2.1 (PR #37) - MERGED
+├── 📝 Documentation (PR #38) - In Review
+└── 🔲 Decision: Infrastructure first or continue features?
+
+Week 2 (Recommended - Infrastructure First):
+├── IS-011: Navigation Bar (2 pts, ~1 day)
+├── IS-012: Products Page Route (1 pt, ~0.5 days)
+├── IS-014: Update E2E Tests (1 pt, ~0.5 days)
+└── Total: 4 pts, ~2 days
+
+Week 3-4 (Continue Features):
+├── US-002 Slice 2.2: Stock & Add to Cart (2 pts)
+├── US-002 Slice 2.3: Image Gallery (1 pt)
+├── US-003: Filter by Category (3 pts)
+└── OR IS-013: Marketing Landing Page (3 pts)
+```
+
 ### Recommended Order
 
-**Phase 1: Core Navigation** (Must Have - 3 story points, ~1.5 days)
+**Phase 1: Core Navigation** (Must Have - 3 story points, ~1.5 days) **← DO THIS NEXT**
 
 1. IS-011: Navigation Bar Component (2 pts)
 2. IS-012: Products Listing Page Route (1 pt)
 
-**Phase 2: Polish & Quality** (Should Have - 4 story points, ~2 days) 3. IS-013: Marketing Landing Page (3 pts) 4. IS-014: Update E2E Tests (1 pt)
+**Phase 2: Testing Fix** (Should Have - 1 story point, ~0.5 days) **← DO IMMEDIATELY AFTER**
+
+3. IS-014: Update E2E Tests for Complete Journeys (1 pt)
+
+**Phase 3: Marketing Polish** (Should Have - 3 story points, ~1.5 days) **← DO LATER**
+
+4. IS-013: Marketing Landing Page (3 pts)
 
 ### Integration with Current Work
 
