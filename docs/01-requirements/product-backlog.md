@@ -1,9 +1,10 @@
 # WeirdBites - Product Backlog
 
-**Version**: 1.0.0
-**Date**: 2025-10-19
+**Version**: 1.1.0
+**Date**: 2025-10-30
 **Status**: Ready for Development
 **Prioritization Method**: MoSCoW + Vertical Slicing
+**Last Update**: Added Epic 0 (Infrastructure) - 4 stories identified during US-001/US-002 development
 
 ---
 
@@ -11,9 +12,10 @@
 
 This product backlog contains all user stories for the WeirdBites MVP, organized by epic and prioritized using MoSCoW (Must Have, Should Have, Could Have, Won't Have). Each story follows the INVEST criteria and includes acceptance criteria in Given-When-Then format.
 
-**Total Stories**: 35 (MVP Must-Have)
-**Estimated Story Points**: ~150 points
+**Total Stories**: 39 (35 original + 4 infrastructure)
+**Estimated Story Points**: ~157 points (150 original + 7 infrastructure)
 **Target MVP Timeline**: 10-12 weeks
+**Infrastructure Gap**: 7 story points identified during US-001/US-002 development
 
 ---
 
@@ -28,6 +30,7 @@ This product backlog contains all user stories for the WeirdBites MVP, organized
 
 ### By Epic
 
+0. **Infrastructure & Platform (4 stories, 7 points)** - Identified gaps during development
 1. Product Discovery (5 stories) - Split into deployment increments
 2. Shopping Cart (4 stories) - Split into deployment increments
 3. Guest Checkout (5 stories) - Split into deployment increments
@@ -39,6 +42,128 @@ This product backlog contains all user stories for the WeirdBites MVP, organized
 9. Admin Inventory (2 stories) - Split into deployment increments
 
 **Note**: Each user story may be split into multiple vertical slices for incremental delivery.
+
+---
+
+## Epic 0: Infrastructure & Platform (Must Have)
+
+**Purpose**: Core platform components needed for proper e-commerce experience. These stories were identified as gaps during development of US-001 and US-002.
+
+**Reference**: See [infrastructure-backlog.md](infrastructure-backlog.md) for detailed specifications.
+
+### IS-011: Navigation Bar Component
+
+**As a** visitor
+**I want** a consistent navigation bar across all pages
+**So that** I can easily navigate between different sections of the site
+
+**Priority**: Must Have
+**Story Points**: 2
+**Status**: 🔲 Not Started
+**Dependencies**: None
+**Blocks**: IS-012, IS-013, US-003
+**Related Technical Debt**: None
+
+**Acceptance Criteria**: See [infrastructure-backlog.md](infrastructure-backlog.md#is-011-navigation-bar-component)
+
+**Definition of Done**:
+
+- [ ] Navigation component created and added to layout
+- [ ] All links navigate correctly (Products, Cart, Account)
+- [ ] Mobile hamburger menu works
+- [ ] Active link is highlighted
+- [ ] Accessibility: keyboard navigation, ARIA labels
+- [ ] Unit tests (5+ tests)
+- [ ] E2E test for navigation between pages
+- [ ] Responsive at all breakpoints
+
+---
+
+### IS-012: Products Listing Page Route
+
+**As a** visitor
+**I want** a dedicated page to browse all products
+**So that** I can explore the full catalog and use filters
+
+**Priority**: Must Have
+**Story Points**: 1
+**Status**: 🔲 Not Started
+**Dependencies**: IS-011 (Navigation Bar)
+**Blocks**: US-003 (Filter by Category), TD-001 (E2E test fix)
+**Related Technical Debt**: TD-001 (E2E Tests Not Testing Complete User Journeys)
+
+**Acceptance Criteria**: See [infrastructure-backlog.md](infrastructure-backlog.md#is-012-products-listing-page-route)
+
+**Definition of Done**:
+
+- [ ] `/products` route created
+- [ ] Product grid displays correctly
+- [ ] Pagination works with URL params
+- [ ] Navigation link works from all pages
+- [ ] Unit tests (3+ tests)
+- [ ] E2E test for navigation: / → /products
+- [ ] Meta tags for SEO
+
+---
+
+### IS-013: Marketing Landing Page
+
+**As a** visitor
+**I want** an engaging landing page when I first visit the site
+**So that** I understand what WeirdBites offers and am enticed to browse products
+
+**Priority**: Should Have
+**Story Points**: 3
+**Status**: 🔲 Not Started
+**Dependencies**: IS-011 (Navigation Bar), IS-012 (Products Page)
+**Blocks**: None
+**Related Technical Debt**: None
+
+**Acceptance Criteria**: See [infrastructure-backlog.md](infrastructure-backlog.md#is-013-marketing-landing-page)
+
+**Design Inspiration**:
+
+- Bob Snail: https://www.bob-snail.com/gb/
+- Germinal Bio: https://www.germinalbio.it/it
+- Brars Retail: https://www.awwards.com/sites/brars-retail
+
+**Definition of Done**:
+
+- [ ] Landing page with hero, featured products, about sections
+- [ ] CTA buttons link to /products
+- [ ] Featured products dynamic (from database)
+- [ ] Responsive design
+- [ ] Accessibility compliant
+- [ ] Unit tests (8+ tests)
+- [ ] E2E test: / → Browse Products CTA → /products
+- [ ] Lighthouse score > 90
+
+**Notes**: Could be split into 2 vertical slices (Hero + CTA = 1pt, Featured Products + About = 2pts)
+
+---
+
+### IS-014: Update E2E Tests for Complete User Journeys
+
+**As a** QA engineer
+**I want** E2E tests to test complete user journeys
+**So that** we validate real user flows, not just isolated page loads
+
+**Priority**: Should Have
+**Story Points**: 1
+**Status**: 🔲 Not Started
+**Dependencies**: IS-012 (Products Page)
+**Blocks**: None
+**Related Technical Debt**: TD-001 (E2E Tests Not Testing Complete User Journeys)
+
+**Acceptance Criteria**: See [infrastructure-backlog.md](infrastructure-backlog.md#is-014-update-e2e-tests-for-complete-user-journeys)
+
+**Definition of Done**:
+
+- [ ] E2E tests updated to test full user journey
+- [ ] Tests pass in CI pipeline
+- [ ] Direct navigation tests kept as smoke tests
+- [ ] Test documentation updated
+- [ ] TD-001 marked as resolved
 
 ---
 

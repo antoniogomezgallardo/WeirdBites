@@ -772,10 +772,45 @@ After merging to `main`:
 - **GitHub Issues**: Open an issue for bugs or feature requests
 - **Discussions**: Use GitHub Discussions for questions
 
+## Technical Debt & Infrastructure Gaps
+
+Before starting new work, review known gaps:
+
+### Active Technical Debt
+
+See [docs/TECHNICAL-DEBT.md](docs/TECHNICAL-DEBT.md) for complete log.
+
+**TD-001: E2E Tests Not Testing Complete User Journeys**
+
+- Product detail tests use direct navigation instead of full flow
+- Missing `/products` route blocks proper E2E testing
+- Remediation planned with IS-012
+
+### Missing Infrastructure
+
+See [docs/01-requirements/infrastructure-backlog.md](docs/01-requirements/infrastructure-backlog.md) for detailed specs.
+
+**Available for contribution** (7 story points):
+
+- IS-011: Navigation Bar Component (2 pts) - Must Have
+- IS-012: Products Listing Page Route (1 pt) - Must Have
+- IS-013: Marketing Landing Page (3 pts) - Should Have
+- IS-014: Update E2E Tests (1 pt) - Should Have
+
+**Why these matter**:
+
+- IS-011/IS-012: Fix navigation and E2E testing gaps
+- IS-013: Improve landing page UX (hero, featured products)
+- IS-014: Achieve true E2E test coverage
+
+**Want to help?** Pick an infrastructure story from the backlog!
+
 ## Resources
 
 - [Quality Standards](docs/quality-standards/) - Comprehensive QA documentation
 - [Product Backlog](docs/01-requirements/product-backlog.md) - Feature list
+- [Infrastructure Backlog](docs/01-requirements/infrastructure-backlog.md) - Missing items
+- [Technical Debt Log](docs/TECHNICAL-DEBT.md) - Known gaps and remediation
 - [Vertical Slices](docs/01-requirements/vertical-slices.md) - Deployment increments
 - [Module 02: Agile Planning](docs/02-agile-planning/) - Sprint planning guides
 
@@ -783,4 +818,4 @@ After merging to `main`:
 
 **Thank you for contributing to WeirdBites!** 🎉
 
-_Last Updated: 2025-10-28_
+_Last Updated: 2025-10-30_

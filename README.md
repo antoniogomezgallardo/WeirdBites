@@ -43,8 +43,10 @@ Documentation is organized into **module folders** aligned with quality-standard
 ```
 docs/
 ├── START-HERE.md                       # ← Single entry point
+├── TECHNICAL-DEBT.md                   # Known technical debt and remediation plans
 ├── 00-foundations/                     # Quality framework, ISO 25010 (2 docs)
 ├── 01-requirements/                    # BRD, Personas, MVP, NFRs, Backlog (7 docs)
+│   └── infrastructure-backlog.md       # Missing infrastructure items (IS-011 to IS-014)
 ├── 02-agile-planning/                  # DoR, Sprint cadence, Velocity (4 docs + templates)
 ├── 03-version-control/                 # TBD, Security, Commits, Code Review (9 docs) [COMPLETE]
 ├── 09-metrics-monitoring/              # Metrics tracking plan (1 doc)
@@ -708,6 +710,37 @@ See [.github/workflows/ci.yml](.github/workflows/ci.yml) for full CI configurati
 **Total**: 11-13 weeks | 151 story points
 
 See [Project Setup](docs/setup/project-setup.md) for Slice 0 details and [Vertical Slices](docs/01-requirements/vertical-slices.md) for Slices 1-7 breakdown.
+
+## Technical Debt & Infrastructure Backlog
+
+We maintain transparency about known gaps and future work:
+
+### Active Technical Debt
+
+See [docs/TECHNICAL-DEBT.md](docs/TECHNICAL-DEBT.md) for complete tracking.
+
+**TD-001: E2E Tests Not Testing Complete User Journeys** (Medium severity)
+
+- Current: Product detail E2E tests use direct navigation
+- Expected: Full user journey (product listing → click card → detail page)
+- Why: `/products` route doesn't exist yet (only components)
+- Remediation: Build `/products` route (IS-012) and update tests
+
+### Missing Infrastructure (7 story points)
+
+See [docs/01-requirements/infrastructure-backlog.md](docs/01-requirements/infrastructure-backlog.md) for detailed specs.
+
+**Must Have** (3 story points):
+
+- IS-011: Navigation Bar Component (2 pts) - Sticky nav across all pages
+- IS-012: Products Listing Page Route (1 pt) - Dedicated `/products` page
+
+**Should Have** (4 story points):
+
+- IS-013: Marketing Landing Page (3 pts) - Hero, featured products, brand story
+- IS-014: Update E2E Tests for Complete Journeys (1 pt) - Fix TD-001
+
+**Prioritization**: Options documented for building now vs. after Deployment Increment 1
 
 ## Contributing
 
