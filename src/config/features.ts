@@ -21,44 +21,46 @@
 
 export const features = {
   // ==========================================
-  // Slice 1: Browse Products Features
+  // Deployment Increment 1: Browse Products Features
   // ==========================================
+  productListing: true, // US-001: View product listings ✅ ENABLED
+  productDetail: true, // US-002: View product details ✅ ENABLED
   productFiltering: false, // US-003: Filter products by category
   productPagination: true, // US-001: Paginate product listing ✅ ENABLED
   productSearch: false, // US-006: Search products
 
   // ==========================================
-  // Slice 2: Shopping Cart Features
+  // Shopping Cart User Stories
   // ==========================================
   shoppingCart: false, // US-004: Add to cart functionality
   cartPersistence: false, // US-005: Cart persists in localStorage
 
   // ==========================================
-  // Slice 3: Guest Checkout Features
+  // Guest Checkout User Stories
   // ==========================================
   guestCheckout: false, // US-007: Guest checkout flow
   stripePayment: false, // US-008: Stripe payment integration
 
   // ==========================================
-  // Slice 4: User Accounts Features
+  // User Accounts User Stories
   // ==========================================
   userRegistration: false, // US-010: User registration
   userLogin: false, // US-011: User login
 
   // ==========================================
-  // Slice 5: Registered User Features
+  // Registered User User Stories
   // ==========================================
   orderHistory: false, // US-013: View order history
   savedAddresses: false, // US-014: Save delivery addresses
 
   // ==========================================
-  // Slice 6: Search & Reviews Features
+  // Search & Reviews User Stories
   // ==========================================
   productReviews: false, // US-016: Product reviews
   advancedSearch: false, // US-015: Advanced search filters
 
   // ==========================================
-  // Slice 7: Admin Panel Features
+  // Admin Panel User Stories
   // ==========================================
   adminPanel: false, // US-018+: Admin dashboard
   productManagement: false, // US-019: Manage products
