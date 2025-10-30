@@ -121,9 +121,9 @@ export function Navbar({ cartItemCount = 0 }: NavbarProps) {
             </Link>
           </div>
 
-          {/* Mobile Hamburger Button */}
+          {/* Mobile Hamburger Button - 44x44px minimum touch target */}
           <button
-            className="block p-3 md:hidden"
+            className="block min-h-[44px] min-w-[44px] p-2.5 md:hidden"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
           >
