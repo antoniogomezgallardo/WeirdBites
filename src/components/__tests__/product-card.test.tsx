@@ -10,6 +10,18 @@ jest.mock('next/image', () => ({
   },
 }));
 
+// Mock Next.js Link component
+jest.mock('next/link', () => ({
+  __esModule: true,
+  default: ({ children, href, ...props }: any) => {
+    return (
+      <a href={href} {...props}>
+        {children}
+      </a>
+    );
+  },
+}));
+
 describe('ProductCard Component', () => {
   const mockProduct = {
     id: '1',
@@ -70,6 +82,22 @@ describe('ProductCard Component', () => {
 
       // Check if heading has truncation CSS classes
       expect(heading).toHaveClass('line-clamp-2');
+    });
+
+    it('should link to product detail page', () => {
+      const { container } = render(<ProductCard product={mockProduct} />);
+      const link = container.querySelector('a');
+
+      expect(link).toBeInTheDocument();
+      expect(link).toHaveAttribute('href', '/products/1');
+    });
+
+    it('should have data-testid attributes for E2E testing', () => {
+      render(<ProductCard product={mockProduct} />);
+
+      expect(screen.getByTestId('product-card')).toBeInTheDocument();
+      expect(screen.getByTestId('product-name')).toBeInTheDocument();
+      expect(screen.getByTestId('product-price')).toBeInTheDocument();
     });
   });
 

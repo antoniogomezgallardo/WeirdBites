@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface Product {
   id: string;
@@ -41,7 +42,11 @@ export function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
-    <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md">
+    <Link
+      href={`/products/${product.id}`}
+      data-testid="product-card"
+      className="block rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
+    >
       <div
         className="relative aspect-square overflow-hidden rounded-md bg-gray-100"
         data-image-container="true"
@@ -56,12 +61,16 @@ export function ProductCard({ product }: ProductCardProps) {
         />
       </div>
       <div className="mt-4">
-        <h2 className="line-clamp-2 text-lg font-semibold text-gray-900">{product.name}</h2>
+        <h2 data-testid="product-name" className="line-clamp-2 text-lg font-semibold text-gray-900">
+          {product.name}
+        </h2>
         {product.description && (
           <p className="mt-1 line-clamp-3 text-sm text-gray-600">{product.description}</p>
         )}
-        <p className="mt-2 text-xl font-bold text-gray-900">{formatPrice(product.price)}</p>
+        <p data-testid="product-price" className="mt-2 text-xl font-bold text-gray-900">
+          {formatPrice(product.price)}
+        </p>
       </div>
-    </div>
+    </Link>
   );
 }
