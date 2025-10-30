@@ -37,7 +37,7 @@ describe('GET /api/products/[id]', () => {
     (prisma.product.findUnique as jest.Mock).mockResolvedValue(mockProduct);
 
     const request = new NextRequest('http://localhost:3000/api/products/test-product-id');
-    const params = { id: 'test-product-id' };
+    const params = Promise.resolve({ id: 'test-product-id' });
 
     // Act
     const response = await GET(request, { params });
@@ -73,7 +73,7 @@ describe('GET /api/products/[id]', () => {
     (prisma.product.findUnique as jest.Mock).mockResolvedValue(mockProduct);
 
     const request = new NextRequest('http://localhost:3000/api/products/schema-test-id');
-    const params = { id: 'schema-test-id' };
+    const params = Promise.resolve({ id: 'schema-test-id' });
 
     // Act
     const response = await GET(request, { params });
@@ -111,7 +111,7 @@ describe('GET /api/products/[id]', () => {
     (prisma.product.findUnique as jest.Mock).mockResolvedValue(mockProduct);
 
     const request = new NextRequest(`http://localhost:3000/api/products/${productId}`);
-    const params = { id: productId };
+    const params = Promise.resolve({ id: productId });
 
     // Act
     const response = await GET(request, { params });
@@ -131,7 +131,7 @@ describe('GET /api/products/[id]', () => {
     (prisma.product.findUnique as jest.Mock).mockResolvedValue(null);
 
     const request = new NextRequest(`http://localhost:3000/api/products/${nonExistentId}`);
-    const params = { id: nonExistentId };
+    const params = Promise.resolve({ id: nonExistentId });
 
     // Act
     const response = await GET(request, { params });

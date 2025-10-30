@@ -29,7 +29,7 @@ describeIfDatabase('GET /api/products/[id] (Integration Tests)', () => {
   describe('Happy Path', () => {
     it('should return 200 with product object for valid ID', async () => {
       const request = new NextRequest(`http://localhost:3000/api/products/${testProductId}`);
-      const response = await GET(request, { params: { id: testProductId } });
+      const response = await GET(request, { params: Promise.resolve({ id: testProductId }) });
 
       expect(response.status).toBe(200);
 
@@ -39,7 +39,7 @@ describeIfDatabase('GET /api/products/[id] (Integration Tests)', () => {
 
     it('should return product matching Product schema with all fields', async () => {
       const request = new NextRequest(`http://localhost:3000/api/products/${testProductId}`);
-      const response = await GET(request, { params: { id: testProductId } });
+      const response = await GET(request, { params: Promise.resolve({ id: testProductId }) });
 
       const data = await response.json();
 
@@ -67,7 +67,7 @@ describeIfDatabase('GET /api/products/[id] (Integration Tests)', () => {
 
     it('should return correct product data for given ID', async () => {
       const request = new NextRequest(`http://localhost:3000/api/products/${testProductId}`);
-      const response = await GET(request, { params: { id: testProductId } });
+      const response = await GET(request, { params: Promise.resolve({ id: testProductId }) });
 
       const data = await response.json();
 
@@ -80,7 +80,7 @@ describeIfDatabase('GET /api/products/[id] (Integration Tests)', () => {
 
     it('should return valid image URL', async () => {
       const request = new NextRequest(`http://localhost:3000/api/products/${testProductId}`);
-      const response = await GET(request, { params: { id: testProductId } });
+      const response = await GET(request, { params: Promise.resolve({ id: testProductId }) });
 
       const data = await response.json();
 
@@ -92,7 +92,7 @@ describeIfDatabase('GET /api/products/[id] (Integration Tests)', () => {
     it('should return 404 if product ID not found', async () => {
       const nonExistentId = 'non-existent-product-id-12345';
       const request = new NextRequest(`http://localhost:3000/api/products/${nonExistentId}`);
-      const response = await GET(request, { params: { id: nonExistentId } });
+      const response = await GET(request, { params: Promise.resolve({ id: nonExistentId }) });
 
       expect(response.status).toBe(404);
 
@@ -104,7 +104,7 @@ describeIfDatabase('GET /api/products/[id] (Integration Tests)', () => {
     it('should return 404 for empty ID', async () => {
       const emptyId = '';
       const request = new NextRequest(`http://localhost:3000/api/products/${emptyId}`);
-      const response = await GET(request, { params: { id: emptyId } });
+      const response = await GET(request, { params: Promise.resolve({ id: emptyId }) });
 
       expect(response.status).toBe(404);
 
@@ -115,7 +115,7 @@ describeIfDatabase('GET /api/products/[id] (Integration Tests)', () => {
     it('should return 404 for malformed ID', async () => {
       const malformedId = 'invalid-id-!@#$%^&*()';
       const request = new NextRequest(`http://localhost:3000/api/products/${malformedId}`);
-      const response = await GET(request, { params: { id: malformedId } });
+      const response = await GET(request, { params: Promise.resolve({ id: malformedId }) });
 
       expect(response.status).toBe(404);
 
@@ -128,7 +128,7 @@ describeIfDatabase('GET /api/products/[id] (Integration Tests)', () => {
     it('should handle very long product ID gracefully', async () => {
       const longId = 'a'.repeat(1000);
       const request = new NextRequest(`http://localhost:3000/api/products/${longId}`);
-      const response = await GET(request, { params: { id: longId } });
+      const response = await GET(request, { params: Promise.resolve({ id: longId }) });
 
       // Should return 404, not crash
       expect(response.status).toBe(404);
@@ -136,11 +136,11 @@ describeIfDatabase('GET /api/products/[id] (Integration Tests)', () => {
 
     it('should return consistent data on multiple requests', async () => {
       const request1 = new NextRequest(`http://localhost:3000/api/products/${testProductId}`);
-      const response1 = await GET(request1, { params: { id: testProductId } });
+      const response1 = await GET(request1, { params: Promise.resolve({ id: testProductId }) });
       const data1 = await response1.json();
 
       const request2 = new NextRequest(`http://localhost:3000/api/products/${testProductId}`);
-      const response2 = await GET(request2, { params: { id: testProductId } });
+      const response2 = await GET(request2, { params: Promise.resolve({ id: testProductId }) });
       const data2 = await response2.json();
 
       // Same product should return identical data

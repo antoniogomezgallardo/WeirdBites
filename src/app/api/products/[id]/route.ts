@@ -16,9 +16,9 @@ import { prisma } from '@/lib/prisma';
  * Response: { id: "abc123", name: "Durian Chips", ... }
  * ```
  */
-export async function GET(_request: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(_request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
-    const { id } = params;
+    const { id } = await params;
 
     // Fetch product from database
     const product = await prisma.product.findUnique({

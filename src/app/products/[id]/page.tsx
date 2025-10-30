@@ -3,9 +3,9 @@ import Image from 'next/image';
 import { prisma } from '@/lib/prisma';
 
 interface ProductDetailPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 /**
@@ -18,7 +18,7 @@ interface ProductDetailPageProps {
  * @returns Product detail page JSX
  */
 export default async function ProductDetailPage({ params }: ProductDetailPageProps) {
-  const { id } = params;
+  const { id } = await params;
 
   // Fetch product from database
   const product = await prisma.product.findUnique({
@@ -84,7 +84,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
  * Generate metadata for the product detail page
  */
 export async function generateMetadata({ params }: ProductDetailPageProps) {
-  const { id } = params;
+  const { id } = await params;
 
   const product = await prisma.product.findUnique({
     where: { id },

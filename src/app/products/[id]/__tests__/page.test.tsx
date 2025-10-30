@@ -43,7 +43,7 @@ describe('ProductDetailPage', () => {
     (prisma.product.findUnique as jest.Mock).mockResolvedValue(mockProduct);
 
     // Act
-    const page = await ProductDetailPage({ params: { id: 'test-product-id' } });
+    const page = await ProductDetailPage({ params: Promise.resolve({ id: 'test-product-id' }) });
     render(page);
 
     // Assert
@@ -55,7 +55,7 @@ describe('ProductDetailPage', () => {
     (prisma.product.findUnique as jest.Mock).mockResolvedValue(mockProduct);
 
     // Act
-    const page = await ProductDetailPage({ params: { id: 'test-product-id' } });
+    const page = await ProductDetailPage({ params: Promise.resolve({ id: 'test-product-id' }) });
     render(page);
 
     // Assert
@@ -67,7 +67,7 @@ describe('ProductDetailPage', () => {
     (prisma.product.findUnique as jest.Mock).mockResolvedValue(mockProduct);
 
     // Act
-    const page = await ProductDetailPage({ params: { id: 'test-product-id' } });
+    const page = await ProductDetailPage({ params: Promise.resolve({ id: 'test-product-id' }) });
     render(page);
 
     // Assert
@@ -79,7 +79,7 @@ describe('ProductDetailPage', () => {
     (prisma.product.findUnique as jest.Mock).mockResolvedValue(mockProduct);
 
     // Act
-    const page = await ProductDetailPage({ params: { id: 'test-product-id' } });
+    const page = await ProductDetailPage({ params: Promise.resolve({ id: 'test-product-id' }) });
     render(page);
 
     // Assert
@@ -92,7 +92,7 @@ describe('ProductDetailPage', () => {
     (prisma.product.findUnique as jest.Mock).mockResolvedValue(mockProduct);
 
     // Act
-    const page = await ProductDetailPage({ params: { id: 'test-product-id' } });
+    const page = await ProductDetailPage({ params: Promise.resolve({ id: 'test-product-id' }) });
     render(page);
 
     // Assert
