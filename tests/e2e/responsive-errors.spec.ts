@@ -32,7 +32,7 @@ test.describe('Responsive Error Scenarios', () => {
 
       // Verify content is still accessible
       await expect(page.locator('h1')).toBeVisible();
-      await expect(page.locator('nav')).toBeVisible();
+      await expect(page.locator('nav').first()).toBeVisible();
     });
 
     test('should render without errors on ultra-wide 2560px monitor', async ({ page }) => {
@@ -55,7 +55,7 @@ test.describe('Responsive Error Scenarios', () => {
       await page.goto('/');
 
       // Navigation should be accessible in landscape
-      await expect(page.locator('nav')).toBeVisible();
+      await expect(page.locator('nav').first()).toBeVisible();
 
       // Content should not require excessive vertical scrolling
       const contentHeight = await page.evaluate(() => document.documentElement.scrollHeight);

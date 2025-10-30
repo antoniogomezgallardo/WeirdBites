@@ -123,7 +123,7 @@ export function Navbar({ cartItemCount = 0 }: NavbarProps) {
 
           {/* Mobile Hamburger Button */}
           <button
-            className="block md:hidden"
+            className="block p-3 md:hidden"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
           >
