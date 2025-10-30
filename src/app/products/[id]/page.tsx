@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
+import Link from 'next/link';
 import { prisma } from '@/lib/prisma';
 
 interface ProductDetailPageProps {
@@ -36,6 +37,24 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mx-auto max-w-6xl">
+        {/* Back Button */}
+        <Link
+          href="/"
+          className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="currentColor"
+            className="h-4 w-4"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+          </svg>
+          Back to Products
+        </Link>
+
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           {/* Product Image */}
           <div className="relative aspect-square overflow-hidden rounded-lg bg-gray-100">
