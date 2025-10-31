@@ -76,7 +76,7 @@ describe('CategoryFilter', () => {
       const sweetButton = screen.getByRole('button', { name: /sweet.*3/i });
 
       // Selected category should have active styling
-      expect(spicyButton).toHaveClass('bg-green-600');
+      expect(spicyButton).toHaveClass('bg-green-700');
       expect(spicyButton).toHaveClass('text-white');
 
       // Unselected category should have default styling
@@ -92,7 +92,7 @@ describe('CategoryFilter', () => {
       const allProductsButton = screen.getByRole('button', { name: /all products/i });
 
       // "All Products" should have active styling
-      expect(allProductsButton).toHaveClass('bg-green-600');
+      expect(allProductsButton).toHaveClass('bg-green-700');
       expect(allProductsButton).toHaveClass('text-white');
     });
   });

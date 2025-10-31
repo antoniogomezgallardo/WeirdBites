@@ -107,8 +107,8 @@ export function CategoryFilter({ categories, selectedCategory }: CategoryFilterP
         aria-pressed={isAllSelected}
         className={`rounded-full px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 ${
           isAllSelected
-            ? 'bg-green-600 text-white hover:bg-green-700'
-            : 'border border-gray-300 bg-white text-gray-900 hover:bg-gray-100'
+            ? 'bg-green-700 text-white hover:bg-green-800'
+            : 'border border-gray-400 bg-white text-gray-900 hover:bg-gray-100'
         }`}
       >
         All Products
@@ -127,8 +127,8 @@ export function CategoryFilter({ categories, selectedCategory }: CategoryFilterP
             aria-label={`${category.name} - ${category.count} products`}
             className={`rounded-full px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 ${
               isSelected
-                ? 'bg-green-600 text-white hover:bg-green-700'
-                : 'border border-gray-300 bg-white text-gray-900 hover:bg-gray-100'
+                ? 'bg-green-700 text-white hover:bg-green-800'
+                : 'border border-gray-400 bg-white text-gray-900 hover:bg-gray-100'
             }`}
           >
             {category.name} ({category.count})

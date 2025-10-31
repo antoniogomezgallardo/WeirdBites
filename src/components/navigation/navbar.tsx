@@ -61,7 +61,7 @@ export function Navbar({ cartItemCount = 0 }: NavbarProps) {
           {/* Logo - 44x44px minimum touch target */}
           <Link
             href="/"
-            className={`inline-flex min-h-[44px] min-w-[44px] items-center text-xl font-bold text-gray-900 transition-colors hover:text-gray-600 ${
+            className={`inline-flex min-h-[44px] min-w-[44px] items-center text-xl font-bold text-gray-900 transition-colors hover:text-gray-700 ${
               isActive('/') ? 'border-b-2 border-gray-900' : ''
             }`}
           >

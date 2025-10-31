@@ -34,7 +34,7 @@ export default async function ProductsPage({ searchParams }: PageProps) {
       <div className="mx-auto max-w-7xl">
         <header className="mb-8 text-center">
           <h1 className="mb-2 text-4xl font-bold text-gray-900">All Products</h1>
-          <p className="text-xl text-gray-600">
+          <p className="text-xl text-gray-700">
             Browse our collection of unusual snacks from around the world
           </p>
         </header>
