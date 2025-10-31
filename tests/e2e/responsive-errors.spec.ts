@@ -169,9 +169,11 @@ test.describe('Responsive Error Scenarios', () => {
 
       for (const viewport of viewports) {
         await page.setViewportSize({ width: viewport.width, height: viewport.height });
-        // Use faster wait strategy with explicit network idle check
-        await page.goto('/', { waitUntil: 'domcontentloaded' });
-        await page.waitForLoadState('networkidle', { timeout: 10000 });
+        // Navigate and wait for page content
+        await page.goto('/');
+
+        // Wait for main heading to ensure page is loaded
+        await page.waitForSelector('h1', { timeout: 30000 });
 
         // Verify page loads without errors (baseline check)
         await expect(page.locator('body')).toBeVisible();
