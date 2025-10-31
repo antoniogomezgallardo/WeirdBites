@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation';
-import Image from 'next/image';
 import Link from 'next/link';
 import { prisma } from '@/lib/prisma';
 import { StockBadge } from '@/components/stock-badge';
 import { AddToCartButton } from '@/components/add-to-cart-button';
+import { ProductImageWithLightbox } from '@/components/product-image-with-lightbox';
 
 interface ProductDetailPageProps {
   params: Promise<{
@@ -58,16 +58,8 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
         </Link>
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-          {/* Product Image */}
-          <div className="relative aspect-square overflow-hidden rounded-lg bg-gray-100">
-            <Image
-              src={product.imageUrl}
-              alt={product.name}
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
+          {/* Product Image with Lightbox */}
+          <ProductImageWithLightbox imageUrl={product.imageUrl} productName={product.name} />
 
           {/* Product Information */}
           <div className="flex flex-col space-y-6">
