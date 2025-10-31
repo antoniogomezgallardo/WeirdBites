@@ -84,9 +84,10 @@ export function CategoryFilter({ categories, selectedCategory }: CategoryFilterP
       // Clear filter - navigate to root path
       router.push(pathname);
     } else {
-      // Set category filter - add query param
+      // Set category filter - add query param and reset to page 1
       const params = new URLSearchParams(searchParams);
       params.set('category', categoryName);
+      params.delete('page'); // Reset to page 1 when filtering
       router.push(`${pathname}?${params.toString()}`);
     }
   };
@@ -107,7 +108,7 @@ export function CategoryFilter({ categories, selectedCategory }: CategoryFilterP
         className={`rounded-full px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 ${
           isAllSelected
             ? 'bg-green-600 text-white hover:bg-green-700'
-            : 'border border-gray-300 bg-white text-gray-700 hover:bg-gray-100'
+            : 'border border-gray-300 bg-white text-gray-900 hover:bg-gray-100'
         }`}
       >
         All Products
@@ -127,7 +128,7 @@ export function CategoryFilter({ categories, selectedCategory }: CategoryFilterP
             className={`rounded-full px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 ${
               isSelected
                 ? 'bg-green-600 text-white hover:bg-green-700'
-                : 'border border-gray-300 bg-white text-gray-700 hover:bg-gray-100'
+                : 'border border-gray-300 bg-white text-gray-900 hover:bg-gray-100'
             }`}
           >
             {category.name} ({category.count})

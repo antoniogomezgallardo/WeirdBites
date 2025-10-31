@@ -81,7 +81,7 @@ describe('CategoryFilter', () => {
 
       // Unselected category should have default styling
       expect(sweetButton).toHaveClass('bg-white');
-      expect(sweetButton).toHaveClass('text-gray-700');
+      expect(sweetButton).toHaveClass('text-gray-900');
     });
 
     it('should highlight "All Products" when no category selected', () => {
