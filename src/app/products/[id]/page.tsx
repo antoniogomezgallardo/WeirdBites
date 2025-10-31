@@ -39,7 +39,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
       <div className="mx-auto max-w-6xl">
         {/* Back Button */}
         <Link
-          href="/"
+          href="/products"
           className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
         >
           <svg
