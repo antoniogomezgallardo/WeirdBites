@@ -2,6 +2,8 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { prisma } from '@/lib/prisma';
+import { StockBadge } from '@/components/stock-badge';
+import { AddToCartButton } from '@/components/add-to-cart-button';
 
 interface ProductDetailPageProps {
   params: Promise<{
@@ -74,6 +76,20 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
 
             {/* Price */}
             <div className="text-3xl font-semibold text-green-600">{formattedPrice}</div>
+
+            {/* Stock Badge */}
+            <div>
+              <StockBadge stock={product.stock} />
+            </div>
+
+            {/* Add to Cart Button */}
+            <div>
+              <AddToCartButton
+                stock={product.stock}
+                productId={product.id}
+                productName={product.name}
+              />
+            </div>
 
             {/* Category and Origin */}
             <div className="flex gap-4 text-sm text-gray-600">
