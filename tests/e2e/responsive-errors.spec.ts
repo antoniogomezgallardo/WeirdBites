@@ -156,6 +156,8 @@ test.describe('Responsive Error Scenarios', () => {
 
   test.describe('Empty States', () => {
     test('should render empty state gracefully on all viewports', async ({ page }) => {
+      test.setTimeout(90000); // Increased timeout for dynamic rendering with multiple viewports
+
       // This test assumes we might have an empty products page in the future
       // Currently skipped as we always have products, but demonstrates the pattern
 

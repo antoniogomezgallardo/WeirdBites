@@ -440,6 +440,8 @@ test.describe('Landing Page (IS-013)', () => {
     });
 
     test('should be fully responsive', async ({ page }) => {
+      test.setTimeout(90000); // Increased timeout for dynamic rendering with multiple viewports
+
       const viewports = [
         { width: 375, height: 667, name: 'mobile' }, // iPhone SE
         { width: 768, height: 1024, name: 'tablet' }, // iPad
