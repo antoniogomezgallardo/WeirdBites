@@ -410,7 +410,7 @@ test.describe('Landing Page (IS-013)', () => {
 
       // Get all section headings
       const heroHeading = page.getByRole('heading', {
-        name: /discover the world's weirdest snacks/i,
+        name: /discover weird snacks from around the world/i,
       });
       const featuredHeading = page.getByRole('heading', { name: /featured snacks/i, level: 2 });
       const whyHeading = page.getByRole('heading', { name: /why weirdbites\?/i, level: 2 });
@@ -451,7 +451,7 @@ test.describe('Landing Page (IS-013)', () => {
 
         // All sections should be visible on all viewports
         await expect(
-          page.getByRole('heading', { name: /discover the world's weirdest snacks/i })
+          page.getByRole('heading', { name: /discover weird snacks from around the world/i })
         ).toBeVisible();
         await expect(page.getByRole('heading', { name: /featured snacks/i })).toBeVisible();
         await expect(page.getByRole('heading', { name: /why weirdbites\?/i })).toBeVisible();
