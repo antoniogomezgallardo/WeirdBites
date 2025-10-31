@@ -5,7 +5,7 @@ test.describe('Responsive Layout Tests', () => {
     test('product grid displays 1 column on mobile (375px)', async ({ page }) => {
       // Set mobile viewport
       await page.setViewportSize({ width: 375, height: 667 });
-      await page.goto('/');
+      await page.goto('/products');
 
       // Wait for products to load
       await page.waitForSelector('[data-testid="product-card"]');
@@ -24,7 +24,7 @@ test.describe('Responsive Layout Tests', () => {
     test('product grid displays 2 columns on tablet (768px)', async ({ page }) => {
       // Set tablet viewport
       await page.setViewportSize({ width: 768, height: 1024 });
-      await page.goto('/');
+      await page.goto('/products');
 
       // Wait for products to load
       await page.waitForSelector('[data-testid="product-card"]');
@@ -37,7 +37,7 @@ test.describe('Responsive Layout Tests', () => {
     test('product grid displays 3 columns on desktop (1024px)', async ({ page }) => {
       // Set desktop viewport
       await page.setViewportSize({ width: 1024, height: 768 });
-      await page.goto('/');
+      await page.goto('/products');
 
       // Wait for products to load
       await page.waitForSelector('[data-testid="product-card"]');
@@ -50,7 +50,7 @@ test.describe('Responsive Layout Tests', () => {
     test('product grid displays 4 columns on large desktop (1440px)', async ({ page }) => {
       // Set large desktop viewport
       await page.setViewportSize({ width: 1440, height: 900 });
-      await page.goto('/');
+      await page.goto('/products');
 
       // Wait for products to load
       await page.waitForSelector('[data-testid="product-card"]');

@@ -10,8 +10,8 @@ test.describe('Navigation Bar E2E Tests', () => {
       const navbar = page.locator('nav').first(); // Use first() to handle multiple nav elements
       await expect(navbar).toBeVisible();
 
-      // Click Products link in navbar
-      await page.getByRole('link', { name: 'Products' }).click();
+      // Click Products link in navbar (exact match to avoid matching "Browse Products")
+      await page.getByRole('link', { name: 'Products', exact: true }).click();
 
       // Verify navigation to products page
       await expect(page).toHaveURL('/products');

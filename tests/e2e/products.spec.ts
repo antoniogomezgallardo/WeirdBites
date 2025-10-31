@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Product Listing (Homepage)', () => {
+test.describe('Product Listing (Products Page)', () => {
   test.describe('Happy Path', () => {
-    test('should display product grid on homepage', async ({ page }) => {
-      await page.goto('/');
+    test('should display product grid on products page', async ({ page }) => {
+      await page.goto('/products');
 
       // Wait for products to load
       await page.waitForSelector('[data-testid="product-card"]', {
@@ -28,10 +28,10 @@ test.describe('Product Listing (Homepage)', () => {
       // This test verifies the UI handles empty state gracefully
       // In real scenario, this would happen if database has no products
       // For now, we verify the page loads successfully even if it would be empty
-      await page.goto('/');
+      await page.goto('/products');
 
       // Verify page loads (even if products are present, the page structure should be there)
-      await expect(page.getByRole('heading', { name: /weirdbites/i })).toBeVisible();
+      await expect(page.getByRole('heading', { name: /products/i })).toBeVisible();
     });
   });
 });

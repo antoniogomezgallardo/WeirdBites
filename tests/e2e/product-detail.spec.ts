@@ -107,6 +107,37 @@ test.describe('Product Detail Page', () => {
       await page.waitForURL(/\/products\/[a-z0-9-]+/);
       await expect(page.locator('h1')).toBeVisible();
     });
+
+    test('should navigate back to products page when clicking "Back to Products" button', async ({
+      page,
+    }) => {
+      // 1. Start at /products page
+      await page.goto('/products');
+
+      // 2. Wait for and click first product
+      await page.waitForSelector('[data-testid="product-card"]', { timeout: 10000 });
+      await page.locator('[data-testid="product-card"]').first().click();
+
+      // 3. Wait for navigation to detail page
+      await page.waitForURL(/\/products\/[a-z0-9-]+/);
+
+      // 4. Click "Back to Products" button
+      const backButton = page.getByRole('link', { name: 'Back to Products' });
+      await expect(backButton).toBeVisible();
+      await backButton.click();
+
+      // 5. Wait for URL to navigate to /products
+      await page.waitForURL(/\/products(?:\?|$)/, { timeout: 10000 });
+
+      // 6. Verify we're on /products page (not homepage)
+      expect(page.url()).toMatch(/\/products(?:\?|$)/);
+
+      // 7. Verify we didn't navigate to homepage
+      expect(page.url()).not.toMatch(/^\/$|^\/\?/);
+
+      // 8. Verify product cards are visible (confirms we're on products page)
+      await expect(page.locator('[data-testid="product-card"]').first()).toBeVisible();
+    });
   });
 
   /**

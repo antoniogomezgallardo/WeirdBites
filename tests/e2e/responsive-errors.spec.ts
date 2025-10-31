@@ -221,7 +221,7 @@ test.describe('Responsive Error Scenarios', () => {
 
   test.describe('Performance & Rendering', () => {
     test('should not cause layout shifts on viewport resize', async ({ page }) => {
-      await page.goto('/');
+      await page.goto('/products');
 
       // Start at desktop size
       await page.setViewportSize({ width: 1920, height: 1080 });

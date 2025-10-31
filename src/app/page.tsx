@@ -1,45 +1,22 @@
-import { ProductsPageClient } from './products-page-client';
-import { getProducts } from '@/lib/products';
+import { Hero } from '@/components/landing/hero';
 
-// Force dynamic rendering (no caching) for now
-// TODO: Add proper revalidation strategy when we add CMS
-export const dynamic = 'force-dynamic';
-
-interface PageProps {
-  searchParams: Promise<{ page?: string; pageSize?: string }>;
-}
-
-export default async function Home({ searchParams }: PageProps) {
-  // Await search params (Next.js 15 requirement)
-  const params = await searchParams;
-
-  // Parse pagination parameters from URL
-  const page = params.page ? parseInt(params.page, 10) : 1;
-  const pageSize = params.pageSize ? parseInt(params.pageSize, 10) : 12;
-
-  // Validate parameters
-  const validPage = isNaN(page) || page < 1 ? 1 : page;
-  const validPageSize = isNaN(pageSize) || pageSize < 1 || pageSize > 100 ? 12 : pageSize;
-
-  // Fetch products with pagination
-  const { products, pagination, error } = await getProducts(validPage, validPageSize);
-
+/**
+ * Landing Page (Home)
+ *
+ * Marketing landing page with hero section to introduce WeirdBites
+ * and encourage visitors to browse products.
+ *
+ * IS-013 Slice 13.1: Hero + CTA
+ * - Eye-catching hero section with headline and subheading
+ * - Call-to-action button linking to /products
+ * - Hero image showcasing weird snacks
+ *
+ * Note: Product listing moved to /products route (IS-012)
+ */
+export default function Home() {
   return (
-    <main className="min-h-screen bg-gray-50 p-8">
-      <div className="mx-auto max-w-7xl">
-        <header className="mb-8 text-center">
-          <h1 className="mb-2 text-4xl font-bold text-gray-900">
-            Welcome to <span className="text-orange-600">WeirdBites</span>
-          </h1>
-          <p className="text-xl text-gray-600">Unusual snacks from around the world</p>
-        </header>
-
-        <ProductsPageClient
-          initialProducts={products}
-          initialPagination={pagination}
-          error={error}
-        />
-      </div>
+    <main className="min-h-screen">
+      <Hero />
     </main>
   );
 }

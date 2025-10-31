@@ -3,8 +3,8 @@ import { injectAxe, checkA11y } from 'axe-playwright';
 
 test.describe('Accessibility Tests', () => {
   test.describe('Happy Path', () => {
-    test('homepage passes axe-core accessibility scan', async ({ page }) => {
-      await page.goto('/');
+    test('products page passes axe-core accessibility scan', async ({ page }) => {
+      await page.goto('/products');
 
       // Wait for page to be fully loaded
       await page.waitForSelector('[data-testid="product-card"]');
@@ -17,7 +17,7 @@ test.describe('Accessibility Tests', () => {
     });
 
     test('all product images have descriptive alt text', async ({ page }) => {
-      await page.goto('/');
+      await page.goto('/products');
 
       // Wait for products to load
       await page.waitForSelector('[data-testid="product-card"]');

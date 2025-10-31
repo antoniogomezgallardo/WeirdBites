@@ -29,7 +29,7 @@ export function ProductsPageClient({
     // Update URL with new page parameter
     const params = new URLSearchParams(searchParams.toString());
     params.set('page', newPage.toString());
-    router.push(`/?${params.toString()}`);
+    router.push(`/products?${params.toString()}`);
   };
 
   // If pagination is disabled, show products without pagination
