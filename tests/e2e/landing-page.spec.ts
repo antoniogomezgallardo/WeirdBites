@@ -450,7 +450,9 @@ test.describe('Landing Page (IS-013)', () => {
 
       for (const viewport of viewports) {
         await page.setViewportSize({ width: viewport.width, height: viewport.height });
-        await page.goto('/');
+        // Use faster wait strategy with explicit network idle check
+        await page.goto('/', { waitUntil: 'domcontentloaded' });
+        await page.waitForLoadState('networkidle', { timeout: 10000 });
 
         // All sections should be visible on all viewports
         await expect(
