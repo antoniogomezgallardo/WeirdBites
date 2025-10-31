@@ -16,8 +16,8 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Category Filter (US-003)', () => {
   test.beforeEach(async ({ page }) => {
-    // Navigate to home page
-    await page.goto('/');
+    // Navigate to products page
+    await page.goto('/products');
     await page.waitForLoadState('networkidle');
   });
 
@@ -63,7 +63,7 @@ test.describe('Category Filter (US-003)', () => {
   test.describe('Category Filtering', () => {
     test('should filter products when clicking a category button', async ({ page }) => {
       // Get initial product count
-      const initialProducts = page.locator('[data-testid="featured-product-card"]');
+      const initialProducts = page.locator('[data-testid="product-card"]');
       const initialCount = await initialProducts.count();
 
       // Find and click a category button (not "All Products")
@@ -77,7 +77,7 @@ test.describe('Category Filter (US-003)', () => {
       await categoryButton.click();
 
       // Wait for URL to update (Next.js client-side navigation)
-      await page.waitForURL(`**/?category=${categoryName}`, { waitUntil: 'networkidle' });
+      await page.waitForURL(`**/products?category=${categoryName}`, { waitUntil: 'networkidle' });
 
       // URL should update with ?category= param
       expect(page.url()).toContain(`?category=${categoryName}`);
@@ -90,7 +90,7 @@ test.describe('Category Filter (US-003)', () => {
       await expect(allProductsButton).toHaveClass(/bg-white/);
 
       // Products should be visible (filtered products)
-      const filteredProducts = page.locator('[data-testid="featured-product-card"]');
+      const filteredProducts = page.locator('[data-testid="product-card"]');
       await expect(filteredProducts.first()).toBeVisible();
 
       // Product count may be different than initial (depending on category)
@@ -111,7 +111,7 @@ test.describe('Category Filter (US-003)', () => {
       await categoryButton.click();
 
       // Wait for URL to update (Next.js client-side navigation)
-      await page.waitForURL(`**/?category=${categoryName}`, { waitUntil: 'networkidle' });
+      await page.waitForURL(`**/products?category=${categoryName}`, { waitUntil: 'networkidle' });
 
       // Verify we're filtered
       expect(page.url()).toContain('?category=');
@@ -121,7 +121,7 @@ test.describe('Category Filter (US-003)', () => {
       await allProductsButton.click();
 
       // Wait for URL to update (Next.js client-side navigation)
-      await page.waitForURL('**/', { waitUntil: 'networkidle' });
+      await page.waitForURL('**/products', { waitUntil: 'networkidle' });
 
       // URL should not have category param
       expect(page.url()).not.toContain('?category=');
@@ -133,7 +133,7 @@ test.describe('Category Filter (US-003)', () => {
       await expect(categoryButton).toHaveClass(/bg-white/);
 
       // All products should be visible again
-      const allProducts = page.locator('[data-testid="featured-product-card"]');
+      const allProducts = page.locator('[data-testid="product-card"]');
       await expect(allProducts.first()).toBeVisible();
     });
 
@@ -149,7 +149,7 @@ test.describe('Category Filter (US-003)', () => {
       await categoryButton.click();
 
       // Wait for URL to update (Next.js client-side navigation)
-      await page.waitForURL(`**/?category=${categoryName}`, { waitUntil: 'networkidle' });
+      await page.waitForURL(`**/products?category=${categoryName}`, { waitUntil: 'networkidle' });
 
       const urlBeforeReload = page.url();
 
@@ -186,7 +186,7 @@ test.describe('Category Filter (US-003)', () => {
       await page.keyboard.press('Enter');
 
       // Wait for URL to update (Next.js client-side navigation)
-      await page.waitForURL(`**/?category=${categoryName}`, { waitUntil: 'networkidle' });
+      await page.waitForURL(`**/products?category=${categoryName}`, { waitUntil: 'networkidle' });
 
       // URL should have category param
       expect(page.url()).toContain(`?category=${categoryName}`);
@@ -204,10 +204,10 @@ test.describe('Category Filter (US-003)', () => {
       await categoryButton.click();
 
       // Wait for URL to update and page to re-render (Next.js client-side navigation)
-      await page.waitForURL(`**/?category=${categoryName}`, { waitUntil: 'networkidle' });
+      await page.waitForURL(`**/products?category=${categoryName}`, { waitUntil: 'networkidle' });
 
       // Products should be visible after filtering
-      const products = page.locator('[data-testid="featured-product-card"]');
+      const products = page.locator('[data-testid="product-card"]');
       await expect(products.first()).toBeVisible({ timeout: 5000 });
     });
   });
@@ -241,7 +241,7 @@ test.describe('Category Filter (US-003)', () => {
       await categoryButton.click();
 
       // Wait for URL to update (Next.js client-side navigation)
-      await page.waitForURL(`**/?category=${categoryName}`, { waitUntil: 'networkidle' });
+      await page.waitForURL(`**/products?category=${categoryName}`, { waitUntil: 'networkidle' });
 
       await expect(categoryButton).toHaveAttribute('aria-pressed', 'true');
     });
@@ -261,7 +261,7 @@ test.describe('Category Filter (US-003)', () => {
   test.describe('Edge Cases', () => {
     test('should handle direct navigation to filtered URL', async ({ page }) => {
       // Navigate directly to a filtered URL
-      await page.goto('/?category=Snacks');
+      await page.goto('/products?category=Snacks');
       await page.waitForLoadState('networkidle');
 
       // Category filter should reflect the selected category
@@ -269,13 +269,13 @@ test.describe('Category Filter (US-003)', () => {
       await expect(snacksButton).toHaveClass(/bg-green-600/);
 
       // Products should be filtered
-      const products = page.locator('[data-testid="featured-product-card"]');
+      const products = page.locator('[data-testid="product-card"]');
       await expect(products.first()).toBeVisible();
     });
 
     test('should handle invalid category gracefully', async ({ page }) => {
       // Navigate to URL with invalid category
-      await page.goto('/?category=InvalidCategory123');
+      await page.goto('/products?category=InvalidCategory123');
       await page.waitForLoadState('networkidle');
 
       // Page should still load (even if no products match)
@@ -305,7 +305,7 @@ test.describe('Category Filter (US-003)', () => {
       await expect(categoryButtons.nth(buttonCount - 1)).toHaveClass(/bg-green-600/);
 
       // Products should be visible
-      const products = page.locator('[data-testid="featured-product-card"]');
+      const products = page.locator('[data-testid="product-card"]');
       await expect(products.first()).toBeVisible();
     });
   });

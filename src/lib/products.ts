@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { Product, PaginationInfo } from '@/components/product-grid';
 import { calculatePaginationOffset, calculatePaginationMeta } from '@/lib/pagination';
+import { Category } from '@/components/category-filter';
 
 const prisma = new PrismaClient();
 
@@ -9,6 +10,7 @@ const prisma = new PrismaClient();
  *
  * @param page - Current page number (1-indexed)
  * @param pageSize - Number of items per page
+ * @param category - Optional category filter
  * @returns Object containing products array, pagination info, and optional error message
  *
  * @example
@@ -23,17 +25,22 @@ const prisma = new PrismaClient();
  */
 export async function getProducts(
   page: number,
-  pageSize: number
+  pageSize: number,
+  category?: string | null
 ): Promise<{ products: Product[]; pagination: PaginationInfo; error?: string }> {
   try {
     // Calculate offset
     const { skip, take } = calculatePaginationOffset(page, pageSize);
 
-    // Get total count
-    const totalItems = await prisma.product.count();
+    // Build WHERE clause for category filtering
+    const where = category ? { category } : {};
 
-    // Fetch paginated products
+    // Get total count with category filter
+    const totalItems = await prisma.product.count({ where });
+
+    // Fetch paginated products with category filter
     const products = await prisma.product.findMany({
+      where,
       skip,
       take,
       orderBy: {
@@ -68,5 +75,38 @@ export async function getProducts(
       },
       error: 'Failed to load products',
     };
+  }
+}
+
+/**
+ * Fetches category counts from the database
+ *
+ * @returns Array of categories with product counts
+ *
+ * @example
+ * ```ts
+ * const categories = await getCategories();
+ * console.log(`Found ${categories.length} categories`);
+ * ```
+ */
+export async function getCategories(): Promise<Category[]> {
+  try {
+    const categoryGroups = await prisma.product.groupBy({
+      by: ['category'],
+      _count: {
+        category: true,
+      },
+      orderBy: {
+        category: 'asc',
+      },
+    });
+
+    return categoryGroups.map(group => ({
+      name: group.category,
+      count: group._count.category,
+    }));
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+    return [];
   }
 }
