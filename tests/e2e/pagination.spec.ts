@@ -39,10 +39,13 @@ test.describe('Product Pagination', () => {
       await nextButton.click();
 
       // Wait for URL to update with page=2 parameter
-      await page.waitForURL(/[?&]page=2/, { timeout: 10000 });
+      await page.waitForURL(/\/products\?page=2/, { timeout: 10000 });
 
-      // Verify URL updated with page parameter
-      expect(page.url()).toContain('page=2');
+      // Verify we're still on /products page with page=2 parameter
+      expect(page.url()).toContain('/products?page=2');
+
+      // Verify we didn't navigate away to homepage
+      expect(page.url()).not.toContain('/?page=2');
     });
 
     test('URL updates with page parameter', async ({ page }) => {
