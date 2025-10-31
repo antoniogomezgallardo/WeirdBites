@@ -439,26 +439,43 @@ test.describe('Landing Page (IS-013)', () => {
       expect(loadTime).toBeLessThan(10000);
     });
 
-    test('should be fully responsive', async ({ page }) => {
-      test.setTimeout(90000); // Increased timeout for dynamic rendering with multiple viewports
+    test('should be fully responsive on mobile', async ({ page }) => {
+      await page.setViewportSize({ width: 375, height: 667 });
+      await page.goto('/', { waitUntil: 'domcontentloaded' });
+      await page.waitForLoadState('networkidle', { timeout: 10000 });
 
-      const viewports = [
-        { width: 375, height: 667, name: 'mobile' }, // iPhone SE
-        { width: 768, height: 1024, name: 'tablet' }, // iPad
-        { width: 1920, height: 1080, name: 'desktop' }, // Full HD
-      ];
+      // All sections should be visible
+      await expect(
+        page.getByRole('heading', { name: /discover weird snacks from around the world/i })
+      ).toBeVisible();
+      await expect(page.getByRole('heading', { name: /featured snacks/i })).toBeVisible();
+      await expect(page.getByRole('heading', { name: /why weirdbites\?/i })).toBeVisible();
+    });
 
-      for (const viewport of viewports) {
-        await page.setViewportSize({ width: viewport.width, height: viewport.height });
-        await page.goto('/');
+    test('should be fully responsive on tablet', async ({ page }) => {
+      await page.setViewportSize({ width: 768, height: 1024 });
+      await page.goto('/', { waitUntil: 'domcontentloaded' });
+      await page.waitForLoadState('networkidle', { timeout: 10000 });
 
-        // All sections should be visible on all viewports
-        await expect(
-          page.getByRole('heading', { name: /discover weird snacks from around the world/i })
-        ).toBeVisible();
-        await expect(page.getByRole('heading', { name: /featured snacks/i })).toBeVisible();
-        await expect(page.getByRole('heading', { name: /why weirdbites\?/i })).toBeVisible();
-      }
+      // All sections should be visible
+      await expect(
+        page.getByRole('heading', { name: /discover weird snacks from around the world/i })
+      ).toBeVisible();
+      await expect(page.getByRole('heading', { name: /featured snacks/i })).toBeVisible();
+      await expect(page.getByRole('heading', { name: /why weirdbites\?/i })).toBeVisible();
+    });
+
+    test('should be fully responsive on desktop', async ({ page }) => {
+      await page.setViewportSize({ width: 1920, height: 1080 });
+      await page.goto('/', { waitUntil: 'domcontentloaded' });
+      await page.waitForLoadState('networkidle', { timeout: 10000 });
+
+      // All sections should be visible
+      await expect(
+        page.getByRole('heading', { name: /discover weird snacks from around the world/i })
+      ).toBeVisible();
+      await expect(page.getByRole('heading', { name: /featured snacks/i })).toBeVisible();
+      await expect(page.getByRole('heading', { name: /why weirdbites\?/i })).toBeVisible();
     });
   });
 });
