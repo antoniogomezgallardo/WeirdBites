@@ -46,9 +46,9 @@ test.describe('Navigation Accessibility E2E Tests', () => {
       const logoLink = page.getByRole('link', { name: 'WeirdBites' });
       await expect(logoLink).toBeFocused();
 
-      // Tab to Products link
+      // Tab to Products link (navbar link, not the hero CTA)
       await page.keyboard.press('Tab');
-      const productsLink = page.getByRole('link', { name: 'Products' });
+      const productsLink = page.getByRole('link', { name: 'Products', exact: true });
       await expect(productsLink).toBeFocused();
 
       // Tab to Cart link
