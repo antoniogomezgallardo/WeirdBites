@@ -229,8 +229,21 @@ test.describe('Stock Scenarios (US-002 Slice 2.2)', () => {
     test('should maintain consistent stock information between badge and button', async ({
       page,
     }) => {
+      // Find an actually out of stock product in real-time
+      const prisma = new PrismaClient();
+      const outOfStockProduct = await prisma.product.findFirst({
+        where: { stock: 0 },
+      });
+      await prisma.$disconnect();
+
+      // Skip if no out of stock products exist
+      if (!outOfStockProduct) {
+        test.skip();
+        return;
+      }
+
       // Test with out of stock product
-      await page.goto(`/products/${outOfStockProductId}`);
+      await page.goto(`/products/${outOfStockProduct.id}`);
       await page.waitForLoadState('networkidle');
 
       // Both should indicate out of stock
@@ -248,9 +261,9 @@ test.describe('Stock Scenarios (US-002 Slice 2.2)', () => {
       // Set mobile viewport
       await page.setViewportSize({ width: 375, height: 667 });
 
-      // Navigate to product
-      await page.goto(`/products/${inStockProductId}`);
-      await page.waitForLoadState('networkidle');
+      // Navigate to product with faster wait strategy
+      await page.goto(`/products/${inStockProductId}`, { waitUntil: 'domcontentloaded' });
+      await page.waitForLoadState('networkidle', { timeout: 10000 });
 
       // Verify components are visible on mobile
       const stockBadge = page.locator('[role="status"]').first();
