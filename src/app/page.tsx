@@ -3,6 +3,10 @@ import { FeaturedProducts } from '@/components/landing/featured-products';
 import { WhyWeirdBites } from '@/components/landing/why-weirdbites';
 import { prisma } from '@/lib/prisma';
 
+// Force dynamic rendering to fetch featured products at request time
+// Prevents build-time errors when database is not available during CI/CD
+export const dynamic = 'force-dynamic';
+
 /**
  * Landing Page (Home)
  *
