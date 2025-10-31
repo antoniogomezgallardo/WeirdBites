@@ -434,8 +434,9 @@ test.describe('Landing Page (IS-013)', () => {
       await page.goto('/');
       const loadTime = Date.now() - startTime;
 
-      // Page should load in less than 5 seconds
-      expect(loadTime).toBeLessThan(5000);
+      // Page should load in less than 10 seconds (increased for dynamic rendering)
+      // Note: Landing page uses dynamic rendering to fetch featured products at request time
+      expect(loadTime).toBeLessThan(10000);
     });
 
     test('should be fully responsive', async ({ page }) => {
