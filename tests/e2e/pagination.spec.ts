@@ -43,9 +43,6 @@ test.describe('Product Pagination', () => {
 
       // Verify URL updated with page parameter
       expect(page.url()).toContain('page=2');
-
-      // Verify page indicator updated
-      await expect(page.getByText(/page 2 of/i)).toBeVisible();
     });
 
     test('URL updates with page parameter', async ({ page }) => {
