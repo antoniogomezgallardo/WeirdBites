@@ -1,8 +1,8 @@
 # WeirdBites - Vertical Slices Implementation Plan
 
-**Version**: 1.1.0
+**Version**: 1.3.0
 **Date**: 2025-10-28
-**Last Updated**: 2025-10-28 (Added progress tracking for Deployment Increment 1)
+**Last Updated**: 2025-11-01 (US-003 complete, 8/13 points delivered, 62%)
 **Purpose**: Define thin, deployable increments that deliver end-to-end value
 **Reference**: Module 01 - Vertical Slicing
 
@@ -71,7 +71,7 @@ WeirdBites MVP will be built in **7 deployment increments**, where each incremen
 **Duration**: 2 weeks
 **Story Points**: 13 (aggregate from split stories)
 **Goal**: Users can discover weird snack products
-**Status**: 🟡 IN PROGRESS (5/13 points complete, 38%)
+**Status**: 🟡 IN PROGRESS (8/13 points complete, 62%)
 
 **Composition**: This deployment increment contains vertical slices derived by splitting US-001, US-002, and US-003 across all architectural layers.
 
@@ -80,10 +80,14 @@ WeirdBites MVP will be built in **7 deployment increments**, where each incremen
 - ✅ US-001 Slice 1.1 (Basic Product Listing) - 2 points - COMPLETE (PR #24, #28, #29)
 - ✅ US-001 Slice 1.2 (Pagination & Loading States) - 2 points - COMPLETE (PR #31)
 - ✅ US-001 Slice 1.3 (Responsive Design & Polish) - 1 point - COMPLETE (PR #32)
-- 🔲 US-002 (View Product Details) - 5 points - NOT STARTED
-- 🔲 US-003 (Filter by Category) - 3 points - NOT STARTED
+- ✅ US-002 Slice 2.1 (Basic Product Detail Page) - 2 points - COMPLETE (PR #37, #38)
+- 🔲 US-002 Slice 2.2 (Stock Status & Add to Cart) - 2 points - NOT STARTED
+- 🔲 US-002 Slice 2.3 (Image Gallery & Extras) - 1 point - NOT STARTED
+- ✅ US-003 (Filter by Category) - 3 points - COMPLETE (PR #45)
 
 **US-001 Status**: ✅ COMPLETE (5/5 points delivered)
+**US-002 Status**: 🟡 IN PROGRESS (2/5 points delivered)
+**US-003 Status**: ✅ COMPLETE (3/3 points delivered)
 
 ### 3.1 Value Delivered
 
@@ -165,8 +169,10 @@ This slice represents the first deployable increment derived by splitting these 
 - [x] **US-001 Slice 1.3 (COMPLETE)**: Mobile responsive (320px+)
 - [x] **US-001 Slice 1.3 (COMPLETE)**: Accessibility (WCAG 2.1 AA)
 - [x] **US-001 Slice 1.3 (COMPLETE)**: Lighthouse Performance > 90
-- [ ] **US-002 (TODO)**: Product detail page shows all product info
-- [ ] **US-003 (TODO)**: Category filtering works (updates URL)
+- [x] **US-002 Slice 2.1 (COMPLETE)**: Product detail page shows basic product info
+- [ ] **US-002 Slice 2.2 (TODO)**: Stock status displayed and Add to Cart button
+- [ ] **US-002 Slice 2.3 (TODO)**: Image gallery and additional product details
+- [x] **US-003 (COMPLETE)**: Category filtering works (updates URL, resets pagination)
 
 ### 3.6 Success Metrics
 
@@ -759,7 +765,7 @@ A deployment increment is complete when:
 
 | Deployment<br>Increment | Name            | Start Date | End Date | Planned<br>Points | Actual<br>Points | Status      | PRs     |
 | ----------------------- | --------------- | ---------- | -------- | ----------------- | ---------------- | ----------- | ------- |
-| 1                       | Browse Products | 2025-10-28 | TBD      | 13                | 2                | In Progress | #24-#29 |
+| 1                       | Browse Products | 2025-10-28 | TBD      | 13                | 8                | In Progress | #24-#45 |
 | 2                       | Shopping Cart   | TBD        | TBD      | 13                | -                | Not Started | -       |
 | 3                       | Guest Checkout  | TBD        | TBD      | 19                | -                | Not Started | -       |
 | 4                       | User Accounts   | TBD        | TBD      | 16                | -                | Not Started | -       |
@@ -769,15 +775,18 @@ A deployment increment is complete when:
 
 ### Detailed Progress: Deployment Increment 1 (Browse Products)
 
-| Vertical Slice            | Story Points | Start Date | End Date   | Status   | PRs           |
-| ------------------------- | ------------ | ---------- | ---------- | -------- | ------------- |
-| US-001 Slice 1.1 (Basic)  | 2            | 2025-10-28 | 2025-10-28 | Complete | #24, #28, #29 |
-| US-001 Slice 1.2 (Pagin.) | 2            | 2025-10-29 | 2025-10-29 | Complete | #31           |
-| US-001 Slice 1.3 (Resp.)  | 1            | 2025-10-29 | 2025-10-29 | Complete | #32           |
-| US-002 (Product Details)  | 5            | TBD        | TBD        | Pending  | -             |
-| US-003 (Filter Category)  | 3            | TBD        | TBD        | Pending  | -             |
+| Vertical Slice                  | Story Points | Start Date | End Date   | Status   | PRs           |
+| ------------------------------- | ------------ | ---------- | ---------- | -------- | ------------- |
+| US-001 Slice 1.1 (Basic)        | 2            | 2025-10-28 | 2025-10-28 | Complete | #24, #28, #29 |
+| US-001 Slice 1.2 (Pagin.)       | 2            | 2025-10-29 | 2025-10-29 | Complete | #31           |
+| US-001 Slice 1.3 (Resp.)        | 1            | 2025-10-29 | 2025-10-29 | Complete | #32           |
+| US-002 Slice 2.1 (Basic Detail) | 2            | 2025-10-30 | 2025-10-30 | Complete | #37, #38      |
+| US-002 Slice 2.2 (Stock & Cart) | 2            | TBD        | TBD        | Pending  | -             |
+| US-002 Slice 2.3 (Gallery)      | 1            | TBD        | TBD        | Pending  | -             |
+| US-003 (Filter Category)        | 3            | 2025-10-31 | 2025-11-01 | Complete | #45           |
 
-**Velocity**: 2 points per day (based on Slice 1.1 completion in 1 day)
+**Velocity**: ~2 points per day (8 points delivered over 4 days)
+**Remaining**: 5 points (US-002 Slices 2.2-2.3)
 
 _Update as deployment increments and vertical slices complete_
 
@@ -804,8 +813,9 @@ After each slice, reflect:
 | 1.0.0   | 2025-10-19 | Antonio Gomez Gallardo | Initial vertical slices plan                             |
 | 1.1.0   | 2025-10-28 | Antonio Gomez Gallardo | Updated progress tracking, actual schema, Slice 1.1 done |
 | 1.2.0   | 2025-10-30 | Antonio Gomez Gallardo | US-001 complete (all 3 slices), 5/13 points (38%)        |
+| 1.3.0   | 2025-11-01 | Antonio Gomez Gallardo | US-002 Slice 2.1 + US-003 complete, 8/13 points (62%)    |
 
-**Next Review**: After US-002 (Product Details) or US-003 (Filter Category) completion
+**Next Review**: After US-002 Slices 2.2-2.3 completion (end of Deployment Increment 1)
 
 ---
 
