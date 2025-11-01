@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="antialiased">
         <CartProvider>
-          <Navbar cartItemCount={0} />
+          <Navbar />
           {children}
           <Toaster position="top-right" richColors />
           <Analytics />
