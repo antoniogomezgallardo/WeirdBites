@@ -24,6 +24,9 @@ async function clickInStockProduct(page: any): Promise<string | null> {
   // Wait for products to load
   await page.waitForSelector('[data-testid="product-card"]', { timeout: 10000 });
 
+  // Wait for at least one stock badge to be visible (ensures client-side hydration complete)
+  await page.waitForSelector('[role="status"]', { timeout: 10000 });
+
   // Find all product cards
   const allProducts = page.locator('[data-testid="product-card"]');
   const count = await allProducts.count();
