@@ -166,9 +166,13 @@ test.describe('Stock Scenarios (US-002 Slice 2.2)', () => {
   });
 
   test.describe('Add to Cart Button - Feature Flag', () => {
-    test('should show "Coming Soon" when shopping cart feature is not enabled', async ({
+    test.skip('should show "Coming Soon" when shopping cart feature is not enabled', async ({
       page,
     }) => {
+      // SKIPPED: This test was written for US-002 Slice 2.2 (before US-004 implementation)
+      // Now that US-004 Slice 4.1 is implemented, shoppingCart feature flag is enabled
+      // This test is no longer relevant as the feature is live
+
       // Navigate to product with stock available
       await page.goto(`/products/${inStockProductId}`);
 

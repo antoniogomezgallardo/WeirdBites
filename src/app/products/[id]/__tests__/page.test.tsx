@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import ProductDetailPage from '../page';
 import { prisma } from '@/lib/prisma';
+import { CartProvider } from '@/contexts/cart-context';
 
 // Mock Prisma
 jest.mock('@/lib/prisma', () => ({
@@ -9,6 +10,14 @@ jest.mock('@/lib/prisma', () => ({
       findUnique: jest.fn(),
     },
   },
+}));
+
+// Mock Sonner toast
+jest.mock('sonner', () => ({
+  toast: {
+    success: jest.fn(),
+  },
+  Toaster: () => null,
 }));
 
 // Mock Next.js Image component
@@ -34,8 +43,13 @@ describe('ProductDetailPage', () => {
     updatedAt: new Date('2025-10-30'),
   };
 
+  const renderWithCart = (page: React.ReactElement) => {
+    return render(<CartProvider>{page}</CartProvider>);
+  };
+
   beforeEach(() => {
     jest.clearAllMocks();
+    localStorage.clear();
   });
 
   it('should render product name correctly', async () => {
@@ -44,7 +58,7 @@ describe('ProductDetailPage', () => {
 
     // Act
     const page = await ProductDetailPage({ params: Promise.resolve({ id: 'test-product-id' }) });
-    render(page);
+    renderWithCart(page);
 
     // Assert
     expect(screen.getByText('Durian Chips')).toBeInTheDocument();
@@ -56,7 +70,7 @@ describe('ProductDetailPage', () => {
 
     // Act
     const page = await ProductDetailPage({ params: Promise.resolve({ id: 'test-product-id' }) });
-    render(page);
+    renderWithCart(page);
 
     // Assert
     expect(screen.getByText(/\$12\.99/)).toBeInTheDocument();
@@ -68,7 +82,7 @@ describe('ProductDetailPage', () => {
 
     // Act
     const page = await ProductDetailPage({ params: Promise.resolve({ id: 'test-product-id' }) });
-    render(page);
+    renderWithCart(page);
 
     // Assert
     expect(screen.getByText(/Crispy chips made from the king of fruits/)).toBeInTheDocument();
@@ -80,7 +94,7 @@ describe('ProductDetailPage', () => {
 
     // Act
     const page = await ProductDetailPage({ params: Promise.resolve({ id: 'test-product-id' }) });
-    render(page);
+    renderWithCart(page);
 
     // Assert
     expect(screen.getByText(/Snacks/)).toBeInTheDocument();
@@ -93,7 +107,7 @@ describe('ProductDetailPage', () => {
 
     // Act
     const page = await ProductDetailPage({ params: Promise.resolve({ id: 'test-product-id' }) });
-    render(page);
+    renderWithCart(page);
 
     // Assert
     const image = screen.getByAltText('Durian Chips');
