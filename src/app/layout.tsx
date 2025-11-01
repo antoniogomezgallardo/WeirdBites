@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Toaster } from 'sonner';
+import { CartProvider } from '@/contexts/cart-context';
 import { Navbar } from '@/components/navigation/navbar';
 import './globals.css';
 
@@ -17,10 +19,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        <Navbar cartItemCount={0} />
-        {children}
-        <Analytics />
-        <SpeedInsights />
+        <CartProvider>
+          <Navbar cartItemCount={0} />
+          {children}
+          <Toaster position="top-right" richColors />
+          <Analytics />
+          <SpeedInsights />
+        </CartProvider>
       </body>
     </html>
   );

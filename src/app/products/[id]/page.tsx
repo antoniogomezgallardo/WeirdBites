@@ -77,9 +77,9 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
             {/* Add to Cart Button */}
             <div>
               <AddToCartButton
-                stock={product.stock}
                 productId={product.id}
                 productName={product.name}
+                disabled={product.stock === 0}
               />
             </div>
 
