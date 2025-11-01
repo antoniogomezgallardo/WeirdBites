@@ -28,20 +28,15 @@ async function clickInStockProduct(page: any): Promise<string | null> {
   const allProducts = page.locator('[data-testid="product-card"]');
   const count = await allProducts.count();
 
-  console.log(`Found ${count} product cards`);
-
   // Find first product that has stock badge with "In Stock" or "Low Stock"
   for (let i = 0; i < count; i++) {
     const product = allProducts.nth(i);
     const stockBadge = product.locator('[role="status"]');
     const stockText = await stockBadge.textContent();
 
-    console.log(`Product ${i}: Stock badge text = "${stockText}"`);
-
     // Check if product is in stock (either "In Stock" or "Low Stock N left")
     if (stockText && (stockText.includes('In Stock') || stockText.includes('left'))) {
       const productName = await product.locator('[data-testid="product-name"]').textContent();
-      console.log(`Selecting in-stock product: ${productName}`);
       await product.click();
       return productName;
     }
@@ -168,15 +163,18 @@ test.describe('Add to Cart - Happy Path', () => {
     await page.goto('/products');
     await page.waitForSelector('[data-testid="product-card"]', { timeout: 10000 });
 
-    // Find all in-stock products
+    // Find all in-stock products using stock badge
     const allProducts = page.locator('[data-testid="product-card"]');
     const count = await allProducts.count();
 
     const inStockIndices: number[] = [];
     for (let i = 0; i < count; i++) {
       const product = allProducts.nth(i);
-      const text = await product.textContent();
-      if (!text?.includes('Out of Stock')) {
+      const stockBadge = product.locator('[role="status"]');
+      const stockText = await stockBadge.textContent();
+
+      // Check if product is in stock (either "In Stock" or "Low Stock N left")
+      if (stockText && (stockText.includes('In Stock') || stockText.includes('left'))) {
         inStockIndices.push(i);
       }
     }
