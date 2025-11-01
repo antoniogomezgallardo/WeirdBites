@@ -200,7 +200,7 @@ describe('AddToCartButton', () => {
       renderWithCart(<AddToCartButton productId="product-1" />);
 
       const button = screen.getByRole('button');
-      expect(button.className).toContain('bg-primary');
+      expect(button.className).toContain('bg-green-600');
     });
   });
 });

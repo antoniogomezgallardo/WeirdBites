@@ -118,9 +118,7 @@ export function AddToCartButton({
       disabled={disabled}
       aria-label={getAriaLabel()}
       aria-disabled={disabled}
-      className={`bg-primary hover:bg-primary/90 focus:ring-primary inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 text-base font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 ${
-        disabled ? 'cursor-not-allowed opacity-50' : ''
-      } ${className}`}
+      className={`inline-flex w-full items-center justify-center gap-2 rounded-md bg-green-600 px-6 py-3 text-base font-medium text-white transition-colors hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
     >
       <ShoppingCart className="h-5 w-5" aria-hidden="true" />
       {label}
