@@ -31,15 +31,21 @@ async function clickInStockProduct(page: any): Promise<string | null> {
   const allProducts = page.locator('[data-testid="product-card"]');
   const count = await allProducts.count();
 
+  // DEBUG: Log all stock statuses
+  console.log(`Found ${count} products. Checking stock statuses:`);
+
   // Find first product that has stock badge with "In Stock" or "Low Stock"
   for (let i = 0; i < count; i++) {
     const product = allProducts.nth(i);
     const stockBadge = product.locator('[role="status"]');
     const stockText = await stockBadge.textContent();
+    const productName = await product.locator('[data-testid="product-name"]').textContent();
+
+    // DEBUG: Log each product's stock status
+    console.log(`Product ${i}: "${productName}" - Stock: "${stockText}"`);
 
     // Check if product is in stock (either "In Stock" or "Low Stock N left")
     if (stockText && (stockText.includes('In Stock') || stockText.includes('left'))) {
-      const productName = await product.locator('[data-testid="product-name"]').textContent();
       await product.click();
       return productName;
     }
