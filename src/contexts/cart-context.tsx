@@ -1,7 +1,8 @@
 'use client';
 
-import { createContext, useContext, useState, useCallback, useMemo } from 'react';
+import { createContext, useContext, useState, useCallback, useMemo, useEffect } from 'react';
 import type { ReactNode } from 'react';
+import { loadCart, saveCart, clearCartStorage } from '@/lib/cart-storage';
 
 /**
  * Represents a single item in the shopping cart
@@ -40,6 +41,29 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
  */
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  /**
+   * Load cart from localStorage on mount (client-side only)
+   */
+  useEffect(() => {
+    const savedItems = loadCart();
+    if (savedItems.length > 0) {
+      setItems(savedItems);
+    }
+    setIsHydrated(true);
+  }, []);
+
+  /**
+   * Save cart to localStorage whenever items change
+   */
+  useEffect(() => {
+    // Skip saving during initial hydration
+    if (!isHydrated) {
+      return;
+    }
+    saveCart(items);
+  }, [items, isHydrated]);
 
   /**
    * Adds a product to the cart
@@ -98,6 +122,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
    */
   const clearCart = useCallback(() => {
     setItems([]);
+    clearCartStorage();
   }, []);
 
   /**

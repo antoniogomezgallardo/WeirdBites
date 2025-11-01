@@ -7,6 +7,11 @@ describe('CartContext', () => {
     <CartProvider>{children}</CartProvider>
   );
 
+  beforeEach(() => {
+    // Clear localStorage before each test
+    localStorage.clear();
+  });
+
   describe('addItem', () => {
     it('should add item to cart', () => {
       const { result } = renderHook(() => useCart(), { wrapper });
