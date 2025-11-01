@@ -1,5 +1,87 @@
 import '@testing-library/jest-dom';
 
+// Mock Next.js Request and Response for API route tests
+// Next.js uses Web APIs that aren't available in Node.js test environment
+class MockHeaders {
+  private headers: Map<string, string> = new Map();
+
+  append(name: string, value: string) {
+    this.headers.set(name.toLowerCase(), value);
+  }
+
+  delete(name: string) {
+    this.headers.delete(name.toLowerCase());
+  }
+
+  get(name: string) {
+    return this.headers.get(name.toLowerCase()) || null;
+  }
+
+  has(name: string) {
+    return this.headers.has(name.toLowerCase());
+  }
+
+  set(name: string, value: string) {
+    this.headers.set(name.toLowerCase(), value);
+  }
+
+  forEach(callback: (value: string, key: string) => void) {
+    this.headers.forEach((value, key) => callback(value, key));
+  }
+}
+
+class MockRequest {
+  method: string;
+  url: string;
+  headers: MockHeaders;
+  body: unknown;
+
+  constructor(input: string | { url: string; method?: string }) {
+    if (typeof input === 'string') {
+      this.url = input;
+      this.method = 'GET';
+    } else {
+      this.url = input.url;
+      this.method = input.method || 'GET';
+    }
+    this.headers = new MockHeaders();
+    this.body = null;
+  }
+}
+
+class MockResponse {
+  status: number;
+  statusText: string;
+  headers: MockHeaders;
+  body: unknown;
+
+  constructor(body?: unknown, init?: { status?: number; statusText?: string }) {
+    this.body = body;
+    this.status = init?.status || 200;
+    this.statusText = init?.statusText || 'OK';
+    this.headers = new MockHeaders();
+  }
+
+  json() {
+    return Promise.resolve(this.body);
+  }
+
+  // Static method for NextResponse.json()
+  static json(data: unknown, init?: { status?: number; statusText?: string; headers?: unknown }) {
+    const response = new MockResponse(data, init);
+    if (init?.headers) {
+      Object.entries(init.headers as Record<string, string>).forEach(([key, value]) => {
+        response.headers.set(key, value);
+      });
+    }
+    return response;
+  }
+}
+
+global.Request = MockRequest as never;
+global.Response = MockResponse as never;
+global.Headers = MockHeaders as never;
+
 // Suppress React DOM warnings about Next.js Image boolean props in test environment
 // These warnings occur because Next.js Image uses `fill={true}` and `priority={true}`
 // which React DOM interprets as non-boolean attributes in jsdom
