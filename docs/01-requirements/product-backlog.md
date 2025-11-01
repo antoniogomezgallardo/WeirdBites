@@ -1,10 +1,10 @@
 # WeirdBites - Product Backlog
 
-**Version**: 1.1.0
-**Date**: 2025-10-30
+**Version**: 1.2.0
+**Date**: 2025-11-01
 **Status**: Ready for Development
 **Prioritization Method**: MoSCoW + Vertical Slicing
-**Last Update**: Added Epic 0 (Infrastructure) - 4 stories identified during US-001/US-002 development
+**Last Update**: US-003 completed, IS-012 and IS-014 infrastructure stories completed
 
 ---
 
@@ -87,22 +87,22 @@ This product backlog contains all user stories for the WeirdBites MVP, organized
 
 **Priority**: Must Have
 **Story Points**: 1
-**Status**: 🔲 Not Started
+**Status**: ✅ **COMPLETED** (PR #40)
 **Dependencies**: IS-011 (Navigation Bar)
 **Blocks**: US-003 (Filter by Category), TD-001 (E2E test fix)
-**Related Technical Debt**: TD-001 (E2E Tests Not Testing Complete User Journeys)
+**Related Technical Debt**: TD-001 (E2E Tests Not Testing Complete User Journeys) - **RESOLVED**
 
 **Acceptance Criteria**: See [infrastructure-backlog.md](infrastructure-backlog.md#is-012-products-listing-page-route)
 
 **Definition of Done**:
 
-- [ ] `/products` route created
-- [ ] Product grid displays correctly
-- [ ] Pagination works with URL params
-- [ ] Navigation link works from all pages
-- [ ] Unit tests (3+ tests)
-- [ ] E2E test for navigation: / → /products
-- [ ] Meta tags for SEO
+- [x] `/products` route created
+- [x] Product grid displays correctly
+- [x] Pagination works with URL params
+- [x] Navigation link works from all pages
+- [x] Unit tests (3+ tests)
+- [x] E2E test for navigation: / → /products
+- [x] Meta tags for SEO
 
 ---
 
@@ -150,20 +150,20 @@ This product backlog contains all user stories for the WeirdBites MVP, organized
 
 **Priority**: Should Have
 **Story Points**: 1
-**Status**: 🔲 Not Started
+**Status**: ✅ **COMPLETED** (PR #41)
 **Dependencies**: IS-012 (Products Page)
 **Blocks**: None
-**Related Technical Debt**: TD-001 (E2E Tests Not Testing Complete User Journeys)
+**Related Technical Debt**: TD-001 (E2E Tests Not Testing Complete User Journeys) - **RESOLVED**
 
 **Acceptance Criteria**: See [infrastructure-backlog.md](infrastructure-backlog.md#is-014-update-e2e-tests-for-complete-user-journeys)
 
 **Definition of Done**:
 
-- [ ] E2E tests updated to test full user journey
-- [ ] Tests pass in CI pipeline
-- [ ] Direct navigation tests kept as smoke tests
-- [ ] Test documentation updated
-- [ ] TD-001 marked as resolved
+- [x] E2E tests updated to test full user journey
+- [x] Tests pass in CI pipeline
+- [x] Direct navigation tests kept as smoke tests
+- [x] Test documentation updated
+- [x] TD-001 marked as resolved
 
 ---
 
@@ -297,6 +297,7 @@ And I see a message "This item is currently unavailable"
 
 **Priority**: Must Have
 **Story Points**: 3
+**Status**: ✅ **COMPLETED** (PR #45)
 **Splits Into**: Deployment Increment 1 (vertical slices for category filtering)
 
 **Acceptance Criteria**:
@@ -337,12 +338,12 @@ And no category is selected
 
 **Definition of Done**:
 
-- [ ] Category filter UI implemented
-- [ ] Filtering works correctly
-- [ ] URL updates with query params
-- [ ] Clear filters option works
-- [ ] Unit tests for filter logic
-- [ ] E2E test for filtering flow
+- [x] Category filter UI implemented
+- [x] Filtering works correctly
+- [x] URL updates with query params
+- [x] Clear filters option works
+- [x] Unit tests for filter logic (6+ tests)
+- [x] E2E test for filtering flow (14 tests)
 
 ---
 

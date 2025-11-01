@@ -626,75 +626,70 @@ WeirdBites/
 
 ## Next Steps
 
-**US-002 Slice 2.1 Complete!** 🎉 Basic Product Detail Page delivered (PR #37)
+**US-003 Complete!** 🎉 Filter Products by Category delivered (PR #45)
 
-### Current Status: Deployment Increment 1 - In Progress (38% complete)
+### Current Status: Deployment Increment 1 - In Progress (62% complete)
 
 **Completed**:
 
 - ✅ US-001 Slice 1.1: Basic Product Listing (2 pts) - PR #24, #28, #29
 - ✅ US-001 Slice 1.2: Pagination & Loading States (2 pts) - PR #31
 - ✅ US-001 Slice 1.3: Responsive Design & Polish (1 pt) - PR #32
+- ✅ US-003: Filter by Category (3 pts) - PR #45 **MERGED**
 
 **Remaining**:
 
-- ✅ US-002 Slice 2.1: Basic Product Detail Page (2 pts) - PR #37 **MERGED**
 - 🔲 US-002 Slice 2.2: Stock Status & Add to Cart (2 pts) - NOT STARTED
 - 🔲 US-002 Slice 2.3: Image Gallery & Extras (1 pt) - NOT STARTED
-- 🔲 US-003: Filter by Category (3 pts) - NOT STARTED
 
-**Progress**: 7/13 points complete (54%)
+**Progress**: 8/13 points complete (62%)
 
 ### Known Gaps & Technical Debt
 
 **Active Technical Debt** (see [docs/TECHNICAL-DEBT.md](docs/TECHNICAL-DEBT.md)):
 
-- **TD-001**: E2E tests use direct navigation instead of full user journeys (Medium severity)
-  - Impact: Not testing ProductCard → ProductDetailPage link navigation
-  - Remediation: Build `/products` route and update tests
+- _(No active technical debt at this time)_
 
 **Missing Infrastructure** (see [docs/01-requirements/infrastructure-backlog.md](docs/01-requirements/infrastructure-backlog.md)):
 
 - **IS-011**: Navigation Bar Component (2 pts) - Must Have
-- **IS-012**: Products Listing Page Route (1 pt) - Must Have
+- ✅ **IS-012**: Products Listing Page Route (1 pt) - **COMPLETED** (PR #40)
 - **IS-013**: Marketing Landing Page (3 pts) - Should Have
-- **IS-014**: Update E2E Tests for Complete Journeys (1 pt) - Should Have
+- ✅ **IS-014**: Update E2E Tests for Complete Journeys (1 pt) - **COMPLETED** (PR #41)
 
-**Total Infrastructure Gap**: 7 story points
+**Total Infrastructure Gap**: 5 story points (2 completed, 5 remaining)
 
 ### Next Steps Options:
 
-**Option A: Continue US-002 Remaining Slices** (Recommended for feature completion)
+**Option A: Complete US-002 Remaining Slices** (Recommended for feature completion)
 
 1. Implement **US-002 Slice 2.2**: Stock Status & Add to Cart (2 pts, ~1 day)
 2. Implement **US-002 Slice 2.3**: Image Gallery & Extras (1 pt, ~0.5 days)
-3. Complete US-002 entirely (5/5 pts)
-4. Then decide: US-003 or Infrastructure
+3. Complete Deployment Increment 1 entirely (13/13 pts)
+4. Celebrate completion of first deployment increment! 🎉
 
 **Option B: Build Missing Infrastructure First** (Recommended for UX)
 
 1. Implement **IS-011**: Navigation Bar (2 pts, ~1 day)
-2. Implement **IS-012**: `/products` Page Route (1 pt, ~0.5 days)
-3. Fix **TD-001**: Update E2E tests for full journeys
-4. Then continue with US-002 or US-003
+2. Then continue with US-002 remaining slices
+3. Complete Deployment Increment 1
 
 **Option C: Build Marketing Landing Page** (Optional for polish)
 
 1. Complete Option A or B first
 2. Implement **IS-013**: Marketing Landing Page (3 pts, ~1.5 days)
-3. Move product grid to `/products`
-4. Create hero, featured products, brand story
+3. Create hero, featured products, brand story
 
-**Recommended**: **Option B** - Fix infrastructure gaps now for better UX before continuing features
+**Recommended**: **Option A** - Complete Deployment Increment 1 first, then build infrastructure for better navigation
 
 ---
 
 _"Quality is never an accident; it is always the result of intelligent effort." - John Ruskin_
 
-**Last Updated**: 2025-10-30
-**Current Phase**: Deployment Increment 1 - Browse Products - 🟡 **IN PROGRESS** (5/13 pts, 38%)
-**Latest Milestone**: US-001 (Browse Products - Basic) ✅ **COMPLETE** (all 3 slices, 5/5 pts)
-**Next Milestone**: US-002 (Product Details) or US-003 (Category Filter) - 🔲 **PENDING**
+**Last Updated**: 2025-11-01
+**Current Phase**: Deployment Increment 1 - Browse Products - 🟡 **IN PROGRESS** (8/13 pts, 62%)
+**Latest Milestone**: US-003 (Filter by Category) ✅ **COMPLETE** (3 pts)
+**Next Milestone**: US-002 Slices 2.2-2.3 (Stock Status, Add to Cart, Image Gallery) - 🔲 **PENDING**
 
 **Completed Stories**:
 
@@ -711,11 +706,18 @@ _"Quality is never an accident; it is always the result of intelligent effort." 
 - ✅ IS-009: Set up basic monitoring and error tracking (1 pt)
 - ✅ IS-010: Setup Feature Flags System (2 pts)
 
+**Infrastructure (Additional):**
+
+- ✅ IS-012: Products Listing Page Route (1 pt) - PR #40
+- ✅ IS-014: Update E2E Tests for Complete Journeys (1 pt) - PR #41
+
 **Features (Deployment Increment 1):**
 
 - ✅ US-001 Slice 1.1: Basic Product Listing (2 pts) - PR #24, #28, #29
 - ✅ US-001 Slice 1.2: Pagination & Loading States (2 pts) - PR #31
 - ✅ US-001 Slice 1.3: Responsive Design & Polish (1 pt) - PR #32
+- ✅ US-002 Slice 2.1: Basic Product Detail Page (2 pts) - PR #37, #38
+- ✅ US-003: Filter by Category (3 pts) - PR #45
 
 **Testing & Quality:**
 
@@ -723,7 +725,7 @@ _"Quality is never an accident; it is always the result of intelligent effort." 
 - ✅ Testing Improvements: Visual debugging, 42 unit tests, 9 E2E tests - PR #33
 - ✅ Product Images: 15 real images, directory structure - PR #34
 
-**Total Delivered**: 41 story points + 3 module phases
+**Total Delivered**: 45 story points + 3 module phases
 
 **Development Workflow**: Trunk-Based Development (TBD)
 

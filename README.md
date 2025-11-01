@@ -2,11 +2,11 @@
 
 > Modern e-commerce platform built with Next.js, TypeScript, and PostgreSQL
 
-**Version**: 1.3.0 (Latest - US-001 complete milestone)
-**Last Updated**: 2025-10-30
-**Current Phase**: Deployment Increment 1 - Browse Products 🟡 **IN PROGRESS** (5/13 pts, 38%)
-**Latest Milestone**: US-001 (Browse Products - Basic) ✅ **COMPLETE** (all 3 slices, 5/5 points)
-**Next Milestone**: US-002 (Product Details) or US-003 (Category Filter)
+**Version**: 1.4.0 (Latest - US-003 complete milestone)
+**Last Updated**: 2025-11-01
+**Current Phase**: Deployment Increment 1 - Browse Products 🟡 **IN PROGRESS** (8/13 pts, 62%)
+**Latest Milestone**: US-003 (Filter by Category) ✅ **COMPLETE** (3 points)
+**Next Milestone**: US-002 Slices 2.2-2.3 (Stock Status, Add to Cart, Image Gallery)
 
 ## Project Vision
 
@@ -696,16 +696,16 @@ See [.github/workflows/ci.yml](.github/workflows/ci.yml) for full CI configurati
 
 ## Development Phases (Vertical Slices)
 
-| Slice | Name                               | Duration | Story Points | Status                            |
-| ----- | ---------------------------------- | -------- | ------------ | --------------------------------- |
-| 0     | **Project Setup** (Infrastructure) | 3-5 days | 18           | 🚧 **In Progress** (6/10 stories) |
-| 1     | Browse Products                    | 2 weeks  | 13           | ⏳ Planned                        |
-| 2     | Shopping Cart                      | 1 week   | 13           | ⏳ Planned                        |
-| 3     | Guest Checkout                     | 2 weeks  | 19           | ⏳ Planned                        |
-| 4     | User Accounts                      | 1 week   | 16           | ⏳ Planned                        |
-| 5     | Registered Checkout & History      | 1 week   | 11           | ⏳ Planned                        |
-| 6     | Search & Reviews                   | 1 week   | 13           | ⏳ Planned                        |
-| 7     | Admin Panel                        | 2 weeks  | 50           | ⏳ Planned                        |
+| Slice | Name                               | Duration | Story Points | Status                          |
+| ----- | ---------------------------------- | -------- | ------------ | ------------------------------- |
+| 0     | **Project Setup** (Infrastructure) | 3-5 days | 18           | ✅ **Complete** (10/10 stories) |
+| 1     | Browse Products                    | 2 weeks  | 13           | 🚧 **In Progress** (8/13 pts)   |
+| 2     | Shopping Cart                      | 1 week   | 13           | ⏳ Planned                      |
+| 3     | Guest Checkout                     | 2 weeks  | 19           | ⏳ Planned                      |
+| 4     | User Accounts                      | 1 week   | 16           | ⏳ Planned                      |
+| 5     | Registered Checkout & History      | 1 week   | 11           | ⏳ Planned                      |
+| 6     | Search & Reviews                   | 1 week   | 13           | ⏳ Planned                      |
+| 7     | Admin Panel                        | 2 weeks  | 50           | ⏳ Planned                      |
 
 **Total**: 11-13 weeks | 151 story points
 
@@ -719,28 +719,24 @@ We maintain transparency about known gaps and future work:
 
 See [docs/TECHNICAL-DEBT.md](docs/TECHNICAL-DEBT.md) for complete tracking.
 
-**TD-001: E2E Tests Not Testing Complete User Journeys** (Medium severity)
+- _(No active technical debt at this time)_
 
-- Current: Product detail E2E tests use direct navigation
-- Expected: Full user journey (product listing → click card → detail page)
-- Why: `/products` route doesn't exist yet (only components)
-- Remediation: Build `/products` route (IS-012) and update tests
-
-### Missing Infrastructure (7 story points)
+### Missing Infrastructure (5 story points)
 
 See [docs/01-requirements/infrastructure-backlog.md](docs/01-requirements/infrastructure-backlog.md) for detailed specs.
 
-**Must Have** (3 story points):
+**Must Have** (2 story points):
 
 - IS-011: Navigation Bar Component (2 pts) - Sticky nav across all pages
-- IS-012: Products Listing Page Route (1 pt) - Dedicated `/products` page
 
-**Should Have** (4 story points):
+**Should Have** (3 story points):
 
 - IS-013: Marketing Landing Page (3 pts) - Hero, featured products, brand story
-- IS-014: Update E2E Tests for Complete Journeys (1 pt) - Fix TD-001
 
-**Prioritization**: Options documented for building now vs. after Deployment Increment 1
+**Completed Infrastructure**:
+
+- ✅ IS-012: Products Listing Page Route (1 pt) - PR #40
+- ✅ IS-014: Update E2E Tests for Complete Journeys (1 pt) - PR #41
 
 ## Contributing
 
