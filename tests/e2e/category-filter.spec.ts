@@ -56,7 +56,7 @@ test.describe('Category Filter (US-003)', () => {
       const allProductsButton = page.getByRole('button', { name: /all products/i });
 
       // Active button should have green background
-      await expect(allProductsButton).toHaveClass(/bg-green-600/);
+      await expect(allProductsButton).toHaveClass(/bg-green-700/);
     });
   });
 
@@ -83,7 +83,7 @@ test.describe('Category Filter (US-003)', () => {
       expect(page.url()).toContain(`?category=${categoryName}`);
 
       // Category button should now be highlighted
-      await expect(categoryButton).toHaveClass(/bg-green-600/);
+      await expect(categoryButton).toHaveClass(/bg-green-700/);
 
       // "All Products" should not be highlighted
       const allProductsButton = page.getByRole('button', { name: /all products/i });
@@ -127,7 +127,7 @@ test.describe('Category Filter (US-003)', () => {
       expect(page.url()).not.toContain('?category=');
 
       // "All Products" should be highlighted
-      await expect(allProductsButton).toHaveClass(/bg-green-600/);
+      await expect(allProductsButton).toHaveClass(/bg-green-700/);
 
       // Category button should not be highlighted
       await expect(categoryButton).toHaveClass(/bg-white/);
@@ -162,7 +162,7 @@ test.describe('Category Filter (US-003)', () => {
       expect(page.url()).toContain(`?category=${categoryName}`);
 
       // Category button should still be highlighted
-      await expect(categoryButton).toHaveClass(/bg-green-600/);
+      await expect(categoryButton).toHaveClass(/bg-green-700/);
     });
   });
 
@@ -266,7 +266,7 @@ test.describe('Category Filter (US-003)', () => {
 
       // Category filter should reflect the selected category
       const snacksButton = page.getByRole('button', { name: /snacks/i });
-      await expect(snacksButton).toHaveClass(/bg-green-600/);
+      await expect(snacksButton).toHaveClass(/bg-green-700/);
 
       // Products should be filtered
       const products = page.locator('[data-testid="product-card"]');
@@ -302,7 +302,7 @@ test.describe('Category Filter (US-003)', () => {
       await page.waitForLoadState('networkidle');
 
       // Last clicked button should be highlighted
-      await expect(categoryButtons.nth(buttonCount - 1)).toHaveClass(/bg-green-600/);
+      await expect(categoryButtons.nth(buttonCount - 1)).toHaveClass(/bg-green-700/);
 
       // Products should be visible
       const products = page.locator('[data-testid="product-card"]');
