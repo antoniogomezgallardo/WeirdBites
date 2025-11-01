@@ -251,8 +251,8 @@ test.describe('Add to Cart - Disabled State', () => {
     await outOfStockProduct.click();
     await page.waitForURL(/\/products\/.+/);
 
-    // Verify "Add to Cart" button is disabled
-    const addToCartButton = page.locator('button:has-text("Add to Cart")');
+    // Verify "Out of Stock" button is disabled
+    const addToCartButton = page.locator('button:has-text("Out of Stock")');
     await expect(addToCartButton).toBeVisible();
     await expect(addToCartButton).toBeDisabled();
 
