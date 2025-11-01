@@ -163,11 +163,12 @@ test.describe('Add to Cart - Happy Path', () => {
     await page.goto('/products');
     await page.waitForSelector('[data-testid="product-card"]', { timeout: 10000 });
 
-    // Find all in-stock products using stock badge
+    // Find TWO different in-stock products
     const allProducts = page.locator('[data-testid="product-card"]');
     const count = await allProducts.count();
 
-    const inStockIndices: number[] = [];
+    const inStockProductIds: string[] = [];
+
     for (let i = 0; i < count; i++) {
       const product = allProducts.nth(i);
       const stockBadge = product.locator('[role="status"]');
@@ -175,29 +176,38 @@ test.describe('Add to Cart - Happy Path', () => {
 
       // Check if product is in stock (either "In Stock" or "Low Stock N left")
       if (stockText && (stockText.includes('In Stock') || stockText.includes('left'))) {
-        inStockIndices.push(i);
+        // Get product ID from the link href
+        const href = await product.getAttribute('href');
+        const productId = href?.split('/').pop() || '';
+
+        if (productId && productId !== '') {
+          inStockProductIds.push(productId);
+
+          if (inStockProductIds.length >= 2) {
+            break; // Found enough products
+          }
+        }
       }
     }
 
-    if (inStockIndices.length < 2) {
+    // Skip if we don't have at least 2 different in-stock products
+    if (inStockProductIds.length < 2) {
       test.skip();
       return;
     }
 
-    // Add first product
-    await allProducts.nth(inStockIndices[0]).click();
-    await page.waitForURL(/\/products\/.+/);
+    // Verify we actually have 2 DIFFERENT products
+    expect(inStockProductIds[0]).not.toBe(inStockProductIds[1]);
+
+    // Add first product by navigating directly to its detail page
+    await page.goto(`/products/${inStockProductIds[0]}`);
+    await page.waitForSelector('button:has-text("Add to Cart")', { timeout: 5000 });
     await page.locator('button:has-text("Add to Cart")').click();
     await page.waitForTimeout(500);
 
-    // Go back to products page
-    await page.goto('/products');
-    await page.waitForSelector('[data-testid="product-card"]', { timeout: 10000 });
-
-    // Add second product
-    const allProducts2 = page.locator('[data-testid="product-card"]');
-    await allProducts2.nth(inStockIndices[1]).click();
-    await page.waitForURL(/\/products\/.+/);
+    // Add second product by navigating directly to its detail page
+    await page.goto(`/products/${inStockProductIds[1]}`);
+    await page.waitForSelector('button:has-text("Add to Cart")', { timeout: 5000 });
     await page.locator('button:has-text("Add to Cart")').click();
     await page.waitForTimeout(500);
 
@@ -261,13 +271,18 @@ test.describe('Add to Cart - Disabled State', () => {
     const toast = page.locator('[data-sonner-toast]');
     await expect(toast).not.toBeVisible();
 
-    // Verify cart is empty
+    // Verify cart is empty (cart may exist from previous tests but should have no items)
     const cartData = await page.evaluate(() => {
       const stored = localStorage.getItem('weirdbites_cart');
       return stored ? JSON.parse(stored) : null;
     });
 
-    expect(cartData).toBeNull();
+    // Cart data may exist but items array should be empty
+    if (cartData) {
+      expect(cartData.items).toHaveLength(0);
+    } else {
+      expect(cartData).toBeNull();
+    }
   });
 });
 
