@@ -28,24 +28,44 @@ class MockHeaders {
   forEach(callback: (value: string, key: string) => void) {
     this.headers.forEach((value, key) => callback(value, key));
   }
+
+  entries() {
+    return this.headers.entries();
+  }
+
+  keys() {
+    return this.headers.keys();
+  }
+
+  values() {
+    return this.headers.values();
+  }
 }
 
 class MockRequest {
-  method: string;
-  url: string;
+  private _url: string;
+  private _method: string;
   headers: MockHeaders;
   body: unknown;
 
   constructor(input: string | { url: string; method?: string }) {
     if (typeof input === 'string') {
-      this.url = input;
-      this.method = 'GET';
+      this._url = input;
+      this._method = 'GET';
     } else {
-      this.url = input.url;
-      this.method = input.method || 'GET';
+      this._url = input.url;
+      this._method = input.method || 'GET';
     }
     this.headers = new MockHeaders();
     this.body = null;
+  }
+
+  get url() {
+    return this._url;
+  }
+
+  get method() {
+    return this._method;
   }
 }
 
