@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { usePathname } from 'next/navigation';
 import { Navbar } from '../navbar';
+import * as CartContext from '@/contexts/cart-context';
 
 // Mock Next.js navigation
 jest.mock('next/navigation', () => ({
@@ -28,10 +29,26 @@ jest.mock('next/link', () => {
   return MockLink;
 });
 
+// Mock CartContext
+jest.mock('@/contexts/cart-context', () => ({
+  useCart: jest.fn(),
+}));
+
 describe('Navbar Component', () => {
+  const mockUseCart = CartContext.useCart as jest.MockedFunction<typeof CartContext.useCart>;
+
   beforeEach(() => {
     jest.clearAllMocks();
     (usePathname as jest.Mock).mockReturnValue('/');
+    // Default: empty cart
+    mockUseCart.mockReturnValue({
+      items: [],
+      addItem: jest.fn(),
+      removeItem: jest.fn(),
+      updateQuantity: jest.fn(),
+      clearCart: jest.fn(),
+      totalQuantity: 0,
+    });
   });
 
   describe('Happy Path - Desktop Navigation', () => {
@@ -46,7 +63,18 @@ describe('Navbar Component', () => {
     });
 
     it('should render "Cart" icon with count badge', () => {
-      render(<Navbar cartItemCount={3} />);
+      mockUseCart.mockReturnValue({
+        items: [
+          { productId: '1', quantity: 2, addedAt: new Date() },
+          { productId: '2', quantity: 1, addedAt: new Date() },
+        ],
+        addItem: jest.fn(),
+        removeItem: jest.fn(),
+        updateQuantity: jest.fn(),
+        clearCart: jest.fn(),
+        totalQuantity: 3,
+      });
+      render(<Navbar />);
       // Cart link should exist with proper aria-label
       const cartLink = screen.getByRole('link', { name: /cart.*3 items/i });
       expect(cartLink).toBeInTheDocument();
@@ -73,22 +101,47 @@ describe('Navbar Component', () => {
     });
 
     it('should display cart count correctly for 0 items', () => {
-      render(<Navbar cartItemCount={0} />);
+      // Default mock has empty cart (items: [])
+      render(<Navbar />);
       expect(screen.queryByText('0')).not.toBeInTheDocument(); // Don't show badge for 0
     });
 
     it('should display cart count correctly for 1 item', () => {
-      render(<Navbar cartItemCount={1} />);
+      mockUseCart.mockReturnValue({
+        items: [{ productId: '1', quantity: 1, addedAt: new Date() }],
+        addItem: jest.fn(),
+        removeItem: jest.fn(),
+        updateQuantity: jest.fn(),
+        clearCart: jest.fn(),
+        totalQuantity: 1,
+      });
+      render(<Navbar />);
       expect(screen.getByText('1')).toBeInTheDocument();
     });
 
     it('should display cart count correctly for 10 items', () => {
-      render(<Navbar cartItemCount={10} />);
+      mockUseCart.mockReturnValue({
+        items: [{ productId: '1', quantity: 10, addedAt: new Date() }],
+        addItem: jest.fn(),
+        removeItem: jest.fn(),
+        updateQuantity: jest.fn(),
+        clearCart: jest.fn(),
+        totalQuantity: 10,
+      });
+      render(<Navbar />);
       expect(screen.getByText('10')).toBeInTheDocument();
     });
 
     it('should display cart count as "99+" for 100+ items', () => {
-      render(<Navbar cartItemCount={150} />);
+      mockUseCart.mockReturnValue({
+        items: [{ productId: '1', quantity: 150, addedAt: new Date() }],
+        addItem: jest.fn(),
+        removeItem: jest.fn(),
+        updateQuantity: jest.fn(),
+        clearCart: jest.fn(),
+        totalQuantity: 150,
+      });
+      render(<Navbar />);
       expect(screen.getByText('99+')).toBeInTheDocument();
     });
   });
@@ -141,12 +194,28 @@ describe('Navbar Component', () => {
 
   describe('Accessibility', () => {
     it('should have proper ARIA labels for cart icon', () => {
-      render(<Navbar cartItemCount={5} />);
+      mockUseCart.mockReturnValue({
+        items: [{ productId: '1', quantity: 5, addedAt: new Date() }],
+        addItem: jest.fn(),
+        removeItem: jest.fn(),
+        updateQuantity: jest.fn(),
+        clearCart: jest.fn(),
+        totalQuantity: 5,
+      });
+      render(<Navbar />);
       expect(screen.getByLabelText(/cart.*5 items/i)).toBeInTheDocument();
     });
 
     it('should support keyboard navigation with Tab key', () => {
-      render(<Navbar cartItemCount={1} />);
+      mockUseCart.mockReturnValue({
+        items: [{ productId: '1', quantity: 1, addedAt: new Date() }],
+        addItem: jest.fn(),
+        removeItem: jest.fn(),
+        updateQuantity: jest.fn(),
+        clearCart: jest.fn(),
+        totalQuantity: 1,
+      });
+      render(<Navbar />);
 
       const logo = screen.getByText('WeirdBites').closest('a');
       const productsLink = screen.getByText('Products').closest('a');

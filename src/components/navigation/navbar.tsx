@@ -3,27 +3,38 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
+import { useCart } from '@/contexts/cart-context';
 
 /**
  * Navigation Bar Component
  *
  * Provides site-wide navigation with mobile responsive menu.
- * Highlights active link and displays cart item count.
+ * Highlights active link and displays cart item count from CartContext.
  *
+ * Features:
+ * - Sticky header that stays at top of page
+ * - Logo linking to home page
+ * - Navigation links (Products, Account)
+ * - Cart icon with dynamic item count badge from CartContext
+ * - Mobile-responsive hamburger menu
+ * - WCAG 2.1 AA compliant with ARIA attributes
+ * - Active link highlighting
+ *
+ * @component
  * @example
  * ```tsx
- * <Navbar cartItemCount={3} />
+ * // In layout.tsx
+ * <Navbar />
  * ```
  */
 
-export interface NavbarProps {
-  /** Number of items in shopping cart (placeholder for US-004) */
-  cartItemCount?: number;
-}
-
-export function Navbar({ cartItemCount = 0 }: NavbarProps) {
+export function Navbar() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { items } = useCart();
+
+  // Calculate total items in cart from CartContext
+  const cartItemCount = items.reduce((sum, item) => sum + item.quantity, 0);
 
   /**
    * Check if a route is currently active
