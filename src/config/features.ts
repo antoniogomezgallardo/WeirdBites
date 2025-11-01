@@ -25,15 +25,15 @@ export const features = {
   // ==========================================
   productListing: true, // US-001: View product listings ✅ ENABLED
   productDetail: true, // US-002: View product details ✅ ENABLED
-  productFiltering: false, // US-003: Filter products by category
+  productFiltering: true, // US-003: Filter products by category ✅ ENABLED
   productPagination: true, // US-001: Paginate product listing ✅ ENABLED
   productSearch: false, // US-006: Search products
 
   // ==========================================
   // Shopping Cart User Stories
   // ==========================================
-  shoppingCart: false, // US-004: Add to cart functionality
-  cartPersistence: false, // US-005: Cart persists in localStorage
+  shoppingCart: true, // US-004: Add to cart functionality ✅ ENABLED
+  cartPersistence: true, // US-005: Cart persists in localStorage ✅ ENABLED
 
   // ==========================================
   // Guest Checkout User Stories

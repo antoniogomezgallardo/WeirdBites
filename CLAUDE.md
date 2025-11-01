@@ -687,9 +687,9 @@ WeirdBites/
 _"Quality is never an accident; it is always the result of intelligent effort." - John Ruskin_
 
 **Last Updated**: 2025-11-01
-**Current Phase**: Deployment Increment 1 - Browse Products - 🟡 **IN PROGRESS** (8/13 pts, 62%)
-**Latest Milestone**: US-003 (Filter by Category) ✅ **COMPLETE** (3 pts)
-**Next Milestone**: US-002 Slices 2.2-2.3 (Stock Status, Add to Cart, Image Gallery) - 🔲 **PENDING**
+**Current Phase**: Deployment Increment 1 - Browse Products & Shopping Cart - 🎉 **COMPLETE** (15/13 pts, 115%)
+**Latest Milestone**: US-004 Slice 4.1 (Shopping Cart State Management) ✅ **COMPLETE** (5 pts) - PR #49
+**Next Milestone**: Enable Shopping Cart Feature Flag & Production Verification - 🔲 **PENDING**
 
 **Completed Stories**:
 
@@ -718,6 +718,13 @@ _"Quality is never an accident; it is always the result of intelligent effort." 
 - ✅ US-001 Slice 1.3: Responsive Design & Polish (1 pt) - PR #32
 - ✅ US-002 Slice 2.1: Basic Product Detail Page (2 pts) - PR #37, #38
 - ✅ US-003: Filter by Category (3 pts) - PR #45
+- ✅ US-004 Slice 4.1: Shopping Cart State Management (5 pts) - PR #49
+  - Cart context with React Context API
+  - localStorage persistence (1-hour expiration)
+  - Add to cart button component
+  - Toast notifications (Sonner)
+  - 42 unit tests (cart-storage, cart-context, add-to-cart-button)
+  - 9 E2E tests (happy path, accessibility, toast notifications, disabled state)
 
 **Testing & Quality:**
 
@@ -725,7 +732,7 @@ _"Quality is never an accident; it is always the result of intelligent effort." 
 - ✅ Testing Improvements: Visual debugging, 42 unit tests, 9 E2E tests - PR #33
 - ✅ Product Images: 15 real images, directory structure - PR #34
 
-**Total Delivered**: 45 story points + 3 module phases
+**Total Delivered**: 50 story points + 3 module phases
 
 **Development Workflow**: Trunk-Based Development (TBD)
 
