@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { StockBadge } from './stock-badge';
 
 interface Product {
   id: string;
@@ -61,6 +62,9 @@ export function ProductCard({ product }: ProductCardProps) {
         />
       </div>
       <div className="mt-4">
+        <div className="mb-2">
+          <StockBadge stock={product.stock} />
+        </div>
         <h2 data-testid="product-name" className="line-clamp-2 text-lg font-semibold text-gray-900">
           {product.name}
         </h2>

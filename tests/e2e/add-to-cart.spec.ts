@@ -16,18 +16,39 @@ import { test, expect } from '@playwright/test';
 
 /**
  * Helper function to find and click an in-stock product
+ * Uses the stock badge to identify available products
  * @param page - Playwright page object
  * @returns Product name
  */
 async function clickInStockProduct(page: any): Promise<string | null> {
-  const inStockProduct = page
-    .locator('[data-testid="product-card"]')
-    .filter({ hasNot: page.locator(':has-text("Out of Stock")') })
-    .first();
+  // Wait for products to load
+  await page.waitForSelector('[data-testid="product-card"]', { timeout: 10000 });
 
-  const productName = await inStockProduct.locator('h2').textContent();
-  await inStockProduct.click();
-  return productName;
+  // Find all product cards
+  const allProducts = page.locator('[data-testid="product-card"]');
+  const count = await allProducts.count();
+
+  console.log(`Found ${count} product cards`);
+
+  // Find first product that has stock badge with "In Stock" or "Low Stock"
+  for (let i = 0; i < count; i++) {
+    const product = allProducts.nth(i);
+    const stockBadge = product.locator('[role="status"]');
+    const stockText = await stockBadge.textContent();
+
+    console.log(`Product ${i}: Stock badge text = "${stockText}"`);
+
+    // Check if product is in stock (either "In Stock" or "Low Stock N left")
+    if (stockText && (stockText.includes('In Stock') || stockText.includes('left'))) {
+      const productName = await product.locator('[data-testid="product-name"]').textContent();
+      console.log(`Selecting in-stock product: ${productName}`);
+      await product.click();
+      return productName;
+    }
+  }
+
+  // If no in-stock product found, throw error
+  throw new Error('No in-stock products found for testing');
 }
 
 test.describe('Add to Cart - Happy Path', () => {
@@ -147,20 +168,26 @@ test.describe('Add to Cart - Happy Path', () => {
     await page.goto('/products');
     await page.waitForSelector('[data-testid="product-card"]', { timeout: 10000 });
 
-    // Get in-stock products
-    const inStockProducts = page
-      .locator('[data-testid="product-card"]')
-      .filter({ hasNot: page.locator(':has-text("Out of Stock")') });
+    // Find all in-stock products
+    const allProducts = page.locator('[data-testid="product-card"]');
+    const count = await allProducts.count();
 
-    const productCount = await inStockProducts.count();
+    const inStockIndices: number[] = [];
+    for (let i = 0; i < count; i++) {
+      const product = allProducts.nth(i);
+      const text = await product.textContent();
+      if (!text?.includes('Out of Stock')) {
+        inStockIndices.push(i);
+      }
+    }
 
-    if (productCount < 2) {
+    if (inStockIndices.length < 2) {
       test.skip();
       return;
     }
 
     // Add first product
-    await inStockProducts.nth(0).click();
+    await allProducts.nth(inStockIndices[0]).click();
     await page.waitForURL(/\/products\/.+/);
     await page.locator('button:has-text("Add to Cart")').click();
     await page.waitForTimeout(500);
@@ -170,10 +197,8 @@ test.describe('Add to Cart - Happy Path', () => {
     await page.waitForSelector('[data-testid="product-card"]', { timeout: 10000 });
 
     // Add second product
-    const inStockProducts2 = page
-      .locator('[data-testid="product-card"]')
-      .filter({ hasNot: page.locator(':has-text("Out of Stock")') });
-    await inStockProducts2.nth(1).click();
+    const allProducts2 = page.locator('[data-testid="product-card"]');
+    await allProducts2.nth(inStockIndices[1]).click();
     await page.waitForURL(/\/products\/.+/);
     await page.locator('button:has-text("Add to Cart")').click();
     await page.waitForTimeout(500);
