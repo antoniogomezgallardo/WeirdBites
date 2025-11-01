@@ -154,8 +154,11 @@ test.describe('Category Filter (US-003)', () => {
       const urlBeforeReload = page.url();
 
       // Reload the page
-      await page.reload();
-      await page.waitForLoadState('networkidle');
+      await page.reload({ waitUntil: 'load' });
+      // Wait for category button to be visible (more reliable than networkidle)
+      await page
+        .getByRole('button', { name: new RegExp(categoryName, 'i') })
+        .waitFor({ state: 'visible', timeout: 10000 });
 
       // URL should still have category param
       expect(page.url()).toBe(urlBeforeReload);
