@@ -7,6 +7,7 @@ jest.mock('@prisma/client', () => {
     product: {
       count: jest.fn(),
       findMany: jest.fn(),
+      groupBy: jest.fn(),
     },
   };
   return {
@@ -35,9 +36,30 @@ jest.mock('@/app/products-page-client', () => ({
   ),
 }));
 
+// Mock CategoryFilter component
+jest.mock('@/components/category-filter', () => ({
+  CategoryFilter: () => <div data-testid="category-filter">Category Filter</div>,
+}));
+
 describe('Products Page', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { PrismaClient } = require('@prisma/client');
+    const mockPrisma = new PrismaClient();
+
+    // Mock default groupBy response for categories
+    mockPrisma.product.groupBy.mockResolvedValue([
+      { category: 'Snacks', _count: { category: 10 } },
+      { category: 'Candy', _count: { category: 5 } },
+    ]);
+
+    // Mock default findMany response
+    mockPrisma.product.findMany.mockResolvedValue([]);
+
+    // Mock default count response
+    mockPrisma.product.count.mockResolvedValue(0);
   });
 
   describe('Happy Path', () => {

@@ -22,8 +22,9 @@ export const dynamic = 'force-dynamic';
  * - "Why WeirdBites?" section explaining mission and value proposition
  * - Trust indicators (secure checkout, free shipping, returns)
  *
- * Note: Product listing moved to /products route (IS-012)
+ * Note: Product listing and filtering moved to /products route (IS-012, US-003)
  */
+
 export default async function Home() {
   // Fetch featured products from database
   const featuredProducts = await prisma.product.findMany({
