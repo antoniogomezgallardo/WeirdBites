@@ -36,8 +36,16 @@ export async function GET(_request: NextRequest, { params }: { params: Promise<{
       );
     }
 
-    // Return product data
-    return NextResponse.json(product, { status: 200 });
+    // Return product data with serialized dates and price
+    return NextResponse.json(
+      {
+        ...product,
+        price: Number(product.price),
+        createdAt: product.createdAt.toISOString(),
+        updatedAt: product.updatedAt.toISOString(),
+      },
+      { status: 200 }
+    );
   } catch (error) {
     // Log error for debugging
     console.error('Error fetching product:', error);
